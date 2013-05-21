@@ -271,7 +271,10 @@ namespace TcpTool
             receiverThread.Start(tcpClient);
 
             sourceIPAddress.Enabled = false;
+            IPEndPoint endPoint = (IPEndPoint)tcpClient.Client.LocalEndPoint;
+            sourceIPAddress.Text = endPoint.Address.ToString();
             sourcePort.Enabled = false;
+            sourcePort.Text = endPoint.Port.ToString();
             destinationIPAddress.Enabled = false;
             destinationPort.Enabled = false;
         }
