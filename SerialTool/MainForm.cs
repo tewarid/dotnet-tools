@@ -72,7 +72,14 @@ namespace SerialTool
             }
             else
             {
-                port.Write(data, 0, length);
+                try
+                { 
+                    port.Write(data, 0, length);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -251,8 +258,14 @@ namespace SerialTool
             }
             if (port != null)
             {
-                port.Close();
-                port = null;
+                try
+                {
+                    port.Close();
+                }
+                catch
+                {
+                    //
+                }
             }
         }
 
