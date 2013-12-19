@@ -36,6 +36,10 @@ namespace IcmpTool
             icmpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
             LocalEndPoint = endPoint;
             icmpSocket.Bind(endPoint);
+            if (!endPoint.Address.Equals(IPAddress.Any))
+            {
+                icmpSocket.IOControl(IOControlCode.ReceiveAll, new byte[] { 1, 0, 0, 0 }, new byte[] { 1, 0, 0, 0 });
+            }
             BeginReceiveFrom();
         }
 

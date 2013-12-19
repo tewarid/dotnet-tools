@@ -40,10 +40,10 @@
             this.sendButton = new System.Windows.Forms.Button();
             this.destinationIPAddress = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.clearButton = new System.Windows.Forms.Button();
             this.outputText = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +82,7 @@
             this.requestType.Location = new System.Drawing.Point(11, 75);
             this.requestType.Name = "requestType";
             this.requestType.Size = new System.Drawing.Size(174, 21);
-            this.requestType.TabIndex = 12;
+            this.requestType.TabIndex = 3;
             this.requestType.SelectedIndexChanged += new System.EventHandler(this.requestType_SelectedIndexChanged);
             this.requestType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.requestType_KeyPress);
             // 
@@ -91,7 +91,7 @@
             this.bind.Location = new System.Drawing.Point(135, 22);
             this.bind.Name = "bind";
             this.bind.Size = new System.Drawing.Size(75, 23);
-            this.bind.TabIndex = 11;
+            this.bind.TabIndex = 2;
             this.bind.Text = "Bind";
             this.bind.UseVisualStyleBackColor = true;
             this.bind.Click += new System.EventHandler(this.bind_Click);
@@ -129,7 +129,7 @@
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
             this.inputText.Size = new System.Drawing.Size(561, 70);
-            this.inputText.TabIndex = 8;
+            this.inputText.TabIndex = 5;
             // 
             // sourceIPAddress
             // 
@@ -145,7 +145,7 @@
             this.sendButton.Location = new System.Drawing.Point(497, 178);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
-            this.sendButton.TabIndex = 10;
+            this.sendButton.TabIndex = 6;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
@@ -155,7 +155,7 @@
             this.destinationIPAddress.Location = new System.Drawing.Point(191, 75);
             this.destinationIPAddress.Name = "destinationIPAddress";
             this.destinationIPAddress.Size = new System.Drawing.Size(120, 20);
-            this.destinationIPAddress.TabIndex = 3;
+            this.destinationIPAddress.TabIndex = 4;
             // 
             // panel2
             // 
@@ -167,6 +167,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(588, 134);
             this.panel2.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 97);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(165, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "The first 20 bytes is the IP header";
             // 
             // label6
             // 
@@ -182,7 +191,7 @@
             this.clearButton.Location = new System.Drawing.Point(497, 100);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 13;
+            this.clearButton.TabIndex = 8;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
@@ -194,16 +203,7 @@
             this.outputText.Name = "outputText";
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.outputText.Size = new System.Drawing.Size(562, 72);
-            this.outputText.TabIndex = 11;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 97);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 13);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "The first 20 bytes is the IP header";
+            this.outputText.TabIndex = 7;
             // 
             // MainForm
             // 

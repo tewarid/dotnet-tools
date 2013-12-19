@@ -24,14 +24,11 @@ namespace IcmpTool
             NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
             foreach (NetworkInterface iface in interfaces)
             {
-                if (iface.Supports(NetworkInterfaceComponent.IPv4) && iface.OperationalStatus == OperationalStatus.Up)
+                UnicastIPAddressInformationCollection addresses = iface.GetIPProperties().UnicastAddresses;
+                foreach (UnicastIPAddressInformation address in addresses)
                 {
-                    UnicastIPAddressInformationCollection addresses = iface.GetIPProperties().UnicastAddresses;
-                    foreach (UnicastIPAddressInformation address in addresses)
-                    {
-                        if (address.Address.AddressFamily == AddressFamily.InterNetwork)
-                            sourceIPAddress.Items.Add(address.Address);
-                    }
+                    if (address.Address.AddressFamily == AddressFamily.InterNetwork)
+                        sourceIPAddress.Items.Add(address.Address);
                 }
             }
         }
@@ -200,6 +197,7 @@ namespace IcmpTool
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, this.Text);
+                return;
             }
 
             sourceIPAddress.Enabled = false;
@@ -228,11 +226,8 @@ namespace IcmpTool
 
         private void bind_Click(object sender, EventArgs e)
         {
-            if (icmpSocket == null)
-            {
-                CreateIcmpSocket();
-                sendButton.Enabled = true;
-            }
+            CreateIcmpSocket();
+            sendButton.Enabled = true;
         }
 
         private void requestType_KeyPress(object sender, KeyPressEventArgs e)
