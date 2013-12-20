@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bind = new System.Windows.Forms.Button();
             this.inputInHex = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.viewInHex = new System.Windows.Forms.CheckBox();
             this.clearButton = new System.Windows.Forms.Button();
             this.outputText = new System.Windows.Forms.TextBox();
-            this.bind = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -77,13 +77,23 @@
             this.panel1.Size = new System.Drawing.Size(588, 241);
             this.panel1.TabIndex = 0;
             // 
+            // bind
+            // 
+            this.bind.Location = new System.Drawing.Point(242, 22);
+            this.bind.Name = "bind";
+            this.bind.Size = new System.Drawing.Size(75, 23);
+            this.bind.TabIndex = 3;
+            this.bind.Text = "Bind";
+            this.bind.UseVisualStyleBackColor = true;
+            this.bind.Click += new System.EventHandler(this.bind_Click);
+            // 
             // inputInHex
             // 
             this.inputInHex.AutoSize = true;
             this.inputInHex.Location = new System.Drawing.Point(11, 203);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(347, 17);
-            this.inputInHex.TabIndex = 9;
+            this.inputInHex.TabIndex = 8;
             this.inputInHex.Text = "Send binary, text is a hexadecimal string (e.g. 0xDE 0xAD or DE AD)";
             this.inputInHex.UseVisualStyleBackColor = true;
             // 
@@ -144,7 +154,7 @@
             this.groupBox1.Controls.Add(this.endOfLineUnix);
             this.groupBox1.Controls.Add(this.endOfLineDos);
             this.groupBox1.Controls.Add(this.endOfLineMac);
-            this.groupBox1.Location = new System.Drawing.Point(242, 61);
+            this.groupBox1.Location = new System.Drawing.Point(331, 78);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(247, 45);
             this.groupBox1.TabIndex = 5;
@@ -178,7 +188,7 @@
             this.endOfLineMac.Location = new System.Drawing.Point(6, 19);
             this.endOfLineMac.Name = "endOfLineMac";
             this.endOfLineMac.Size = new System.Drawing.Size(72, 17);
-            this.endOfLineMac.TabIndex = 5;
+            this.endOfLineMac.TabIndex = 6;
             this.endOfLineMac.TabStop = true;
             this.endOfLineMac.Text = "MAC (CR)";
             this.endOfLineMac.UseVisualStyleBackColor = true;
@@ -188,8 +198,8 @@
             this.inputText.Location = new System.Drawing.Point(10, 127);
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
-            this.inputText.Size = new System.Drawing.Size(561, 70);
-            this.inputText.TabIndex = 8;
+            this.inputText.Size = new System.Drawing.Size(568, 70);
+            this.inputText.TabIndex = 7;
             // 
             // sourceIPAddress
             // 
@@ -201,10 +211,10 @@
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(496, 203);
+            this.sendButton.Location = new System.Drawing.Point(503, 203);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
-            this.sendButton.TabIndex = 10;
+            this.sendButton.TabIndex = 9;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
@@ -214,14 +224,14 @@
             this.destinationPort.Location = new System.Drawing.Point(148, 78);
             this.destinationPort.Name = "destinationPort";
             this.destinationPort.Size = new System.Drawing.Size(82, 20);
-            this.destinationPort.TabIndex = 4;
+            this.destinationPort.TabIndex = 5;
             // 
             // destinationIPAddress
             // 
             this.destinationIPAddress.Location = new System.Drawing.Point(10, 78);
             this.destinationIPAddress.Name = "destinationIPAddress";
             this.destinationIPAddress.Size = new System.Drawing.Size(120, 20);
-            this.destinationIPAddress.TabIndex = 3;
+            this.destinationIPAddress.TabIndex = 4;
             // 
             // panel2
             // 
@@ -251,16 +261,16 @@
             this.viewInHex.Location = new System.Drawing.Point(11, 100);
             this.viewInHex.Name = "viewInHex";
             this.viewInHex.Size = new System.Drawing.Size(153, 17);
-            this.viewInHex.TabIndex = 12;
+            this.viewInHex.TabIndex = 11;
             this.viewInHex.Text = "View as hexadecimal string";
             this.viewInHex.UseVisualStyleBackColor = true;
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(497, 100);
+            this.clearButton.Location = new System.Drawing.Point(503, 100);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 13;
+            this.clearButton.TabIndex = 12;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
@@ -271,18 +281,8 @@
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(562, 72);
-            this.outputText.TabIndex = 11;
-            // 
-            // bind
-            // 
-            this.bind.Location = new System.Drawing.Point(242, 22);
-            this.bind.Name = "bind";
-            this.bind.Size = new System.Drawing.Size(75, 23);
-            this.bind.TabIndex = 11;
-            this.bind.Text = "Bind";
-            this.bind.UseVisualStyleBackColor = true;
-            this.bind.Click += new System.EventHandler(this.bind_Click);
+            this.outputText.Size = new System.Drawing.Size(567, 72);
+            this.outputText.TabIndex = 10;
             // 
             // MainForm
             // 
