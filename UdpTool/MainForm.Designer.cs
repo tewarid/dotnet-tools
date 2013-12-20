@@ -157,7 +157,7 @@
             this.groupBox1.Location = new System.Drawing.Point(331, 78);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(247, 45);
-            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "End of Line";
             // 
@@ -177,7 +177,7 @@
             this.endOfLineDos.Location = new System.Drawing.Point(157, 19);
             this.endOfLineDos.Name = "endOfLineDos";
             this.endOfLineDos.Size = new System.Drawing.Size(87, 17);
-            this.endOfLineDos.TabIndex = 7;
+            this.endOfLineDos.TabIndex = 6;
             this.endOfLineDos.Text = "DOS (CR-LF)";
             this.endOfLineDos.UseVisualStyleBackColor = true;
             // 
