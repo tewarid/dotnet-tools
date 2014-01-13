@@ -229,6 +229,7 @@ namespace SerialTool
             {
                 MessageBox.Show("Invalid port name or unknown error.");
                 port = null;
+                openButton.Enabled = true;
                 return;
             }
 
@@ -271,6 +272,9 @@ namespace SerialTool
 
         private void openButton_Click(object sender, EventArgs e)
         {
+            openButton.Enabled = false;
+            btnClose.Enabled = port.IsOpen;
+
             if (string.Empty.Equals(serialPortName.Text))
             {
                 MessageBox.Show("Need a port name to Open.");
@@ -294,6 +298,8 @@ namespace SerialTool
             btnClose.Enabled = false;
             if (port.IsOpen)
                 port.Close();
+
+            openButton.Enabled = true;
         }
     }
 }
