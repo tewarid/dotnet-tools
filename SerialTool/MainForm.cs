@@ -282,5 +282,18 @@ namespace SerialTool
                 CreateSerialPort();
             }
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            ShowSerialPorts();
+            btnClose.Enabled = port.IsOpen;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            btnClose.Enabled = false;
+            if (port.IsOpen)
+                port.Close();
+        }
     }
 }
