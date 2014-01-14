@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.updateButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.baudRate = new System.Windows.Forms.ComboBox();
             this.openButton = new System.Windows.Forms.Button();
@@ -48,7 +48,7 @@
             this.viewInHex = new System.Windows.Forms.CheckBox();
             this.clearButton = new System.Windows.Forms.Button();
             this.outputText = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.closeButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -56,8 +56,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnClose);
-            this.panel1.Controls.Add(this.btnUpdate);
+            this.panel1.Controls.Add(this.closeButton);
+            this.panel1.Controls.Add(this.updateButton);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.baudRate);
             this.panel1.Controls.Add(this.openButton);
@@ -75,13 +75,13 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(135, 22);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 14;
-            this.btnUpdate.Text = "&Update List";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.updateButton.Location = new System.Drawing.Point(135, 22);
+            this.updateButton.Name = "btnUpdate";
+            this.updateButton.Size = new System.Drawing.Size(75, 23);
+            this.updateButton.TabIndex = 14;
+            this.updateButton.Text = "&Update List";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label1
             // 
@@ -279,14 +279,14 @@
             // 
             // btnClose
             // 
-            this.btnClose.Enabled = false;
-            this.btnClose.Location = new System.Drawing.Point(216, 67);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 15;
-            this.btnClose.Text = "&Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.closeButton.Enabled = false;
+            this.closeButton.Location = new System.Drawing.Point(216, 67);
+            this.closeButton.Name = "btnClose";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 15;
+            this.closeButton.Text = "&Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // MainForm
             // 
@@ -335,8 +335,8 @@
         private System.Windows.Forms.Button openButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox baudRate;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.Button closeButton;
     }
 }
 

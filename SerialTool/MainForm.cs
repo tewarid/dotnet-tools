@@ -21,6 +21,7 @@ namespace SerialTool
 
         private void ShowSerialPorts()
         {
+            serialPortName.Items.Clear();
             foreach (string portName in SerialPort.GetPortNames())
             {
                 serialPortName.Items.Add(portName);
@@ -273,7 +274,6 @@ namespace SerialTool
         private void openButton_Click(object sender, EventArgs e)
         {
             openButton.Enabled = false;
-            btnClose.Enabled = port.IsOpen;
 
             if (string.Empty.Equals(serialPortName.Text))
             {
@@ -285,21 +285,29 @@ namespace SerialTool
             {
                 CreateSerialPort();
             }
+
+            closeButton.Enabled = port.IsOpen;
+            updateButton.Enabled = !port.IsOpen;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             ShowSerialPorts();
-            btnClose.Enabled = port.IsOpen;
+            closeButton.Enabled = port!= null ? port.IsOpen : false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            btnClose.Enabled = false;
+            closeButton.Enabled = false;
             if (port.IsOpen)
+            {
                 port.Close();
+            }
 
             openButton.Enabled = true;
+            updateButton.Enabled = true;
+            serialPortName.Enabled = true;
+            baudRate.Enabled = true;
         }
     }
 }
