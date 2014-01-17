@@ -14,7 +14,8 @@ namespace TcpTool
     {
         TcpClient tcpClient;
         delegate void ShowReceivedDataDelegate(byte[] data, int length);
-        Thread receiverThread;
+        TcpListener listener;
+        byte[] buffer = new byte[100];
 
         public MainForm()
         {
@@ -189,37 +190,32 @@ namespace TcpTool
 
         private void ShowReceivedData(byte [] data, int length)
         {
-            if (!InvokeRequired)
+            if (InvokeRequired)
             {
-                if (viewInHex.Checked)
-                {
-                    for (int i = 0; i < length; i++)
-                    {
-                        outputText.AppendText(string.Format("{0:X2} ", data[i]));
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < length; i++)
-                    {
-                        // remove special chars
-                        if (data[i] < (byte)' ' || data[i] > (byte)'~') data[i] = (byte)'.';
-                    }
+                Invoke((MethodInvoker)delegate {
+                    ShowReceivedData(data, length);
+                });
+                return;
+            }
 
-                    outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, data.Length));
+            if (viewInHex.Checked)
+            {
+                for (int i = 0; i < length; i++)
+                {
+                    outputText.AppendText(string.Format("{0:X2} ", data[i]));
                 }
             }
             else
             {
-                try
+                for (int i = 0; i < length; i++)
                 {
-                    Invoke(new ShowReceivedDataDelegate(ShowReceivedData), data, length);
+                    // remove special chars
+                    if (data[i] < (byte)' ' || data[i] > (byte)'~') data[i] = (byte)'.';
                 }
-                catch (ObjectDisposedException)
-                {
-                }
+
+                outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, length));
             }
-        }
+    }
 
         private void CreateTcpClient() {
             if (tcpClient != null && tcpClient.Connected) return;
@@ -260,15 +256,13 @@ namespace TcpTool
                 IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Parse(destinationIPAddress.Text),
                     int.Parse(destinationPort.Text));
                 tcpClient.Connect(remoteEndPoint);
+                tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
             }
             catch (Exception e)
             {
                 MessageBox.Show(this, e.Message, this.Text);
                 return;
             }
-
-            receiverThread = new Thread(new ParameterizedThreadStart(DataReceiverThread));
-            receiverThread.Start(tcpClient);
 
             sourceIPAddress.Enabled = false;
             IPEndPoint endPoint = (IPEndPoint)tcpClient.Client.LocalEndPoint;
@@ -286,18 +280,91 @@ namespace TcpTool
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (receiverThread != null)
-            {
-                // 
-            }
-            else
-            {
-                return;
-            }
             if (tcpClient != null)
             {
                 tcpClient.Close();
             }
+        }
+
+        private void listen_Click(object sender, EventArgs e)
+        {
+            CreateTcpListener();
+        }
+
+        private void CreateTcpListener()
+        {
+            if (listener != null) return;
+
+            try
+            {
+                IPEndPoint localEndPoint;
+                int port = 0;
+                if(!string.Empty.Equals(sourcePort.Text))
+                {
+                    port = int.Parse(sourcePort.Text);
+                }
+                if (!string.Empty.Equals(sourceIPAddress.Text))
+                {
+                    localEndPoint = new IPEndPoint(IPAddress.Parse(sourceIPAddress.Text),
+                        port);
+                }
+                else
+                {
+                    localEndPoint = new IPEndPoint(IPAddress.Any, port);
+                }
+                if (listener == null)
+                {
+                    listener = new TcpListener(localEndPoint);
+                }
+                listener.Start();
+                listener.BeginAcceptTcpClient(BeginAcceptCallback, null);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(this, e.Message, this.Text);
+                return;
+            }
+
+            IPEndPoint ipEndPoint = (IPEndPoint)listener.LocalEndpoint;
+            sourceIPAddress.Text = ipEndPoint.Address.ToString();
+            sourcePort.Text = ipEndPoint.Port.ToString();
+
+            listen.Enabled = false;
+            sourceIPAddress.Enabled = false;
+            sourcePort.Enabled = false;
+            destinationIPAddress.Enabled = false;
+            destinationPort.Enabled = false;
+        }
+
+        private void BeginAcceptCallback(IAsyncResult ar)
+        {
+            if (InvokeRequired) 
+            {
+                Invoke((MethodInvoker)delegate {
+                    BeginAcceptCallback(ar);
+                });
+                return;
+            }
+
+            tcpClient = listener.EndAcceptTcpClient(ar);
+
+            tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
+
+            IPEndPoint ipEndPoint = (IPEndPoint)tcpClient.Client.RemoteEndPoint;
+            destinationIPAddress.Text = ipEndPoint.Address.ToString();
+            destinationPort.Text = ipEndPoint.Port.ToString();
+        }
+
+        private void ReadCallback(IAsyncResult ar)
+        {
+            try
+            {
+                int length = tcpClient.GetStream().EndRead(ar);
+                ShowReceivedData(buffer, length);
+                tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
+            }
+            catch (ObjectDisposedException)
+            { }
         }
     }
 }

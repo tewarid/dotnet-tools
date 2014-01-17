@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.listen = new System.Windows.Forms.Button();
             this.inputInHex = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -57,6 +58,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.listen);
             this.panel1.Controls.Add(this.inputInHex);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label3);
@@ -74,6 +76,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(588, 241);
             this.panel1.TabIndex = 0;
+            // 
+            // listen
+            // 
+            this.listen.Location = new System.Drawing.Point(242, 22);
+            this.listen.Name = "listen";
+            this.listen.Size = new System.Drawing.Size(75, 23);
+            this.listen.TabIndex = 11;
+            this.listen.Text = "Listen...";
+            this.listen.UseVisualStyleBackColor = true;
+            this.listen.Click += new System.EventHandler(this.listen_Click);
             // 
             // inputInHex
             // 
@@ -283,6 +295,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TCP Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -320,6 +333,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox inputInHex;
+        private System.Windows.Forms.Button listen;
     }
 }
 
