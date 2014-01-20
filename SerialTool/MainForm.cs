@@ -11,8 +11,6 @@ namespace SerialTool
     public partial class MainForm : Form
     {
         SerialPort port;
-        delegate void ShowReceivedDataDelegate(byte[] data);
-        Thread receiverThread;
 
         public MainForm()
         {
@@ -158,55 +156,49 @@ namespace SerialTool
             return count;
         }
 
-        private void DataReceiverThread()
+        private void ShowReceivedData(string data)
         {
-            while (port.IsOpen)
+            if (InvokeRequired)
             {
-                // receive
-                int bytesToRead = port.BytesToRead;
-                if (bytesToRead > 0)
-                {
-                    byte[] data = new byte[bytesToRead];
-                    port.Read(data, 0, bytesToRead);
+                Invoke((MethodInvoker)delegate {
                     ShowReceivedData(data);
-                }
-                Thread.Sleep(10);
+                });
+                return;
             }
-        }
 
-        private void ShowReceivedData(byte[] data)
-        {
-            if (!InvokeRequired)
+            if (viewInHex.Checked)
             {
-                if (viewInHex.Checked)
+                foreach (char c in data)
                 {
-                    foreach (byte b in data)
-                    {
-                        outputText.AppendText(string.Format("{0:X2} ", b));
-                    }
-                    outputText.AppendText("\r\n\r\n");
+                    outputText.AppendText(string.Format("{0:X2} ", c));
                 }
-                else
-                {
-                    for (int i = 0; i < data.Length; i++)
-                    {
-                        // remove special chars
-                        if (data[i] < (byte)' ' || data[i] > (byte)'~') data[i] = (byte)'.';
-                    }
-
-                    outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, data.Length));
-                    outputText.AppendText("\r\n\r\n");
-                }
+                outputText.AppendText("\r\n\r\n");
             }
             else
             {
-                try
+                StringBuilder output = new StringBuilder();
+                for (int i = 0; i < data.Length; i++)
                 {
-                    Invoke(new ShowReceivedDataDelegate(ShowReceivedData), data);
+                    switch (data[i])
+                    {
+                        case '\r':
+                            output.Append("\r\n");
+                            break;
+
+                        case '\n':
+                            if (i > 0 && data[i - 1] != '\r') output.Append("\r\n");
+                            break;
+
+                        default:
+                            // remove special char
+                            if (data[i] < (byte)' ' || data[i] > (byte)'~')
+                                output.Append('.');
+                            else
+                                output.Append(data[i]);
+                            break;
+                    }
                 }
-                catch (ObjectDisposedException)
-                {
-                }
+                outputText.AppendText(output.ToString());
             }
         }
 
@@ -225,6 +217,7 @@ namespace SerialTool
             try
             {
                 port.Open();
+                port.DataReceived += port_DataReceived;
             }
             catch
             {
@@ -234,13 +227,18 @@ namespace SerialTool
                 return;
             }
 
-            receiverThread = new Thread(DataReceiverThread);
-            receiverThread.Start();
-
             serialPortName.Enabled = false;
             baudRate.Enabled = false;
             openButton.Enabled = false;
             sendButton.Enabled = true;
+            closeButton.Enabled = true;
+            updateButton.Enabled = false;
+        }
+
+        void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            string data = port.ReadExisting();
+            ShowReceivedData(data);
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -250,19 +248,12 @@ namespace SerialTool
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (receiverThread != null)
-            {
-                receiverThread.Abort();
-            }
-            else
-            {
-                return;
-            }
             if (port != null)
             {
                 try
                 {
                     port.Close();
+                    port = null;
                 }
                 catch
                 {
@@ -285,9 +276,6 @@ namespace SerialTool
             {
                 CreateSerialPort();
             }
-
-            closeButton.Enabled = port.IsOpen;
-            updateButton.Enabled = !port.IsOpen;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -296,18 +284,32 @@ namespace SerialTool
             closeButton.Enabled = port!= null ? port.IsOpen : false;
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void CloseSerialPort()
         {
-            closeButton.Enabled = false;
             if (port.IsOpen)
             {
-                port.Close();
+                try
+                {
+                    port.Close();
+                }
+                catch
+                {
+                    port = null;
+                }
             }
+            port = null;
 
+            closeButton.Enabled = false;
+            sendButton.Enabled = false;
             openButton.Enabled = true;
             updateButton.Enabled = true;
             serialPortName.Enabled = true;
             baudRate.Enabled = true;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            CloseSerialPort();
         }
     }
 }

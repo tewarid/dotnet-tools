@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.closeButton = new System.Windows.Forms.Button();
             this.updateButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.baudRate = new System.Windows.Forms.ComboBox();
@@ -48,7 +49,6 @@
             this.viewInHex = new System.Windows.Forms.CheckBox();
             this.clearButton = new System.Windows.Forms.Button();
             this.outputText = new System.Windows.Forms.TextBox();
-            this.closeButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -73,13 +73,24 @@
             this.panel1.Size = new System.Drawing.Size(588, 241);
             this.panel1.TabIndex = 0;
             // 
-            // btnUpdate
+            // closeButton
+            // 
+            this.closeButton.Enabled = false;
+            this.closeButton.Location = new System.Drawing.Point(216, 67);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 4;
+            this.closeButton.Text = "&Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // updateButton
             // 
             this.updateButton.Location = new System.Drawing.Point(135, 22);
-            this.updateButton.Name = "btnUpdate";
+            this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(75, 23);
-            this.updateButton.TabIndex = 14;
-            this.updateButton.Text = "&Update List";
+            this.updateButton.TabIndex = 1;
+            this.updateButton.Text = "&Refresh";
             this.updateButton.UseVisualStyleBackColor = true;
             this.updateButton.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -114,14 +125,14 @@
             this.baudRate.Location = new System.Drawing.Point(10, 69);
             this.baudRate.Name = "baudRate";
             this.baudRate.Size = new System.Drawing.Size(119, 21);
-            this.baudRate.TabIndex = 12;
+            this.baudRate.TabIndex = 2;
             // 
             // openButton
             // 
             this.openButton.Location = new System.Drawing.Point(135, 67);
             this.openButton.Name = "openButton";
             this.openButton.Size = new System.Drawing.Size(75, 23);
-            this.openButton.TabIndex = 11;
+            this.openButton.TabIndex = 3;
             this.openButton.Text = "&Open";
             this.openButton.UseVisualStyleBackColor = true;
             this.openButton.Click += new System.EventHandler(this.openButton_Click);
@@ -132,7 +143,7 @@
             this.inputInHex.Location = new System.Drawing.Point(13, 207);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(347, 17);
-            this.inputInHex.TabIndex = 9;
+            this.inputInHex.TabIndex = 7;
             this.inputInHex.Text = "Send binary, text is a hexadecimal string (e.g. 0xDE 0xAD or DE AD)";
             this.inputInHex.UseVisualStyleBackColor = true;
             // 
@@ -172,7 +183,7 @@
             this.endOfLineUnix.Location = new System.Drawing.Point(84, 19);
             this.endOfLineUnix.Name = "endOfLineUnix";
             this.endOfLineUnix.Size = new System.Drawing.Size(67, 17);
-            this.endOfLineUnix.TabIndex = 6;
+            this.endOfLineUnix.TabIndex = 5;
             this.endOfLineUnix.Text = "Unix (LF)";
             this.endOfLineUnix.UseVisualStyleBackColor = true;
             // 
@@ -182,7 +193,7 @@
             this.endOfLineDos.Location = new System.Drawing.Point(157, 19);
             this.endOfLineDos.Name = "endOfLineDos";
             this.endOfLineDos.Size = new System.Drawing.Size(87, 17);
-            this.endOfLineDos.TabIndex = 7;
+            this.endOfLineDos.TabIndex = 5;
             this.endOfLineDos.Text = "DOS (CR-LF)";
             this.endOfLineDos.UseVisualStyleBackColor = true;
             // 
@@ -204,11 +215,10 @@
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
             this.inputText.Size = new System.Drawing.Size(561, 70);
-            this.inputText.TabIndex = 8;
+            this.inputText.TabIndex = 6;
             // 
             // serialPortName
             // 
-            this.serialPortName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.serialPortName.FormattingEnabled = true;
             this.serialPortName.Location = new System.Drawing.Point(10, 24);
             this.serialPortName.Name = "serialPortName";
@@ -221,7 +231,7 @@
             this.sendButton.Location = new System.Drawing.Point(496, 203);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
-            this.sendButton.TabIndex = 10;
+            this.sendButton.TabIndex = 8;
             this.sendButton.Text = "&Send";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
@@ -249,12 +259,10 @@
             // viewInHex
             // 
             this.viewInHex.AutoSize = true;
-            this.viewInHex.Checked = true;
-            this.viewInHex.CheckState = System.Windows.Forms.CheckState.Checked;
             this.viewInHex.Location = new System.Drawing.Point(11, 104);
             this.viewInHex.Name = "viewInHex";
             this.viewInHex.Size = new System.Drawing.Size(153, 17);
-            this.viewInHex.TabIndex = 12;
+            this.viewInHex.TabIndex = 10;
             this.viewInHex.Text = "View as hexadecimal string";
             this.viewInHex.UseVisualStyleBackColor = true;
             // 
@@ -263,7 +271,7 @@
             this.clearButton.Location = new System.Drawing.Point(497, 100);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 13;
+            this.clearButton.TabIndex = 11;
             this.clearButton.Text = "&Clear";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
@@ -275,18 +283,7 @@
             this.outputText.Name = "outputText";
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.outputText.Size = new System.Drawing.Size(562, 72);
-            this.outputText.TabIndex = 11;
-            // 
-            // btnClose
-            // 
-            this.closeButton.Enabled = false;
-            this.closeButton.Location = new System.Drawing.Point(216, 67);
-            this.closeButton.Name = "btnClose";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 15;
-            this.closeButton.Text = "&Close";
-            this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.btnClose_Click);
+            this.outputText.TabIndex = 9;
             // 
             // MainForm
             // 
@@ -299,7 +296,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Serial Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
