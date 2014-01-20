@@ -47,6 +47,13 @@ namespace TcpTool
 
         private void sendButton_Click(object sender, EventArgs e)
         {
+            if (listener != null && tcpClient == null)
+            {
+                MessageBox.Show("Listening for incoming TCP connection. Try again after a client has connected.");
+                return;
+            }
+
+
             if (tcpClient == null || !tcpClient.Connected)
             {
                 CreateTcpClient();

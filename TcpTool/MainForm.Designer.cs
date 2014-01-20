@@ -154,7 +154,7 @@
             this.groupBox1.Controls.Add(this.endOfLineUnix);
             this.groupBox1.Controls.Add(this.endOfLineDos);
             this.groupBox1.Controls.Add(this.endOfLineMac);
-            this.groupBox1.Location = new System.Drawing.Point(242, 61);
+            this.groupBox1.Location = new System.Drawing.Point(324, 76);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(247, 45);
             this.groupBox1.TabIndex = 5;
