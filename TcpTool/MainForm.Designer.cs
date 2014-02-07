@@ -83,7 +83,7 @@
             this.listen.Name = "listen";
             this.listen.Size = new System.Drawing.Size(75, 23);
             this.listen.TabIndex = 11;
-            this.listen.Text = "Listen...";
+            this.listen.Text = "Listen";
             this.listen.UseVisualStyleBackColor = true;
             this.listen.Click += new System.EventHandler(this.listen_Click);
             // 
@@ -111,9 +111,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(7, 111);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 13);
+            this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Text to send";
+            this.label3.Text = "Text to send (UTF-8)";
             // 
             // label4
             // 
@@ -249,9 +249,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(8, 6);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(272, 13);
+            this.label6.Size = new System.Drawing.Size(352, 13);
             this.label6.TabIndex = 9;
-            this.label6.Text = "Data received (special characters are replaced with a \'.\')";
+            this.label6.Text = "Data received (assumes UTF-8, special characters are replaced with a \'.\')";
             // 
             // viewInHex
             // 

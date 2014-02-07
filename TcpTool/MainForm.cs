@@ -87,7 +87,7 @@ namespace TcpTool
             }
             else
             {
-                data = ASCIIEncoding.ASCII.GetBytes(text);
+                data = UTF8Encoding.UTF8.GetBytes(text);
                 length = data.Length;
             }
 
@@ -370,7 +370,7 @@ namespace TcpTool
                 ShowReceivedData(buffer, length);
                 tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
             }
-            catch (ObjectDisposedException)
+            catch
             { }
         }
     }
