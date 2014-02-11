@@ -61,7 +61,7 @@ namespace SerialTool
             }
             else
             {
-                data = ASCIIEncoding.ASCII.GetBytes(text);
+                data = UTF8Encoding.UTF8.GetBytes(text);
                 length = data.Length;
             }
 
@@ -170,7 +170,7 @@ namespace SerialTool
             {
                 foreach (char c in data)
                 {
-                    outputText.AppendText(string.Format("{0:X2} ", c));
+                    outputText.AppendText(string.Format("{0:X2} ", (byte)c));
                 }
                 outputText.AppendText("\r\n\r\n");
             }
@@ -191,7 +191,7 @@ namespace SerialTool
 
                         default:
                             // remove special char
-                            if (data[i] < (byte)' ' || data[i] > (byte)'~')
+                            if (data[i] < ' ' || data[i] > '~')
                                 output.Append('.');
                             else
                                 output.Append(data[i]);
@@ -205,6 +205,7 @@ namespace SerialTool
         private void CreateSerialPort()
         {
             port = new SerialPort(serialPortName.Text);
+            port.Encoding = UTF8Encoding.UTF8;
             if (!baudRate.Text.Equals(string.Empty))
             {
                 port.BaudRate = int.Parse(baudRate.Text);
