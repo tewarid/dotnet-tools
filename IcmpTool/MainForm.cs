@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Globalization;
 using System.IO;
+using de.log.HexToBinLib;
 
 namespace IcmpTool
 {
@@ -59,7 +60,7 @@ namespace IcmpTool
 
             MemoryStream output = new MemoryStream();
             TextReader input = new StringReader(inputText.Text);
-            length = HexToBin(input, output);
+            length = HexToBin.Convert(input, output);
             data = output.GetBuffer();
 
             if (length <= 0)
@@ -70,80 +71,6 @@ namespace IcmpTool
             {
                 icmpSocket.Send(data, length, endPoint);
             }
-        }
-
-        static int HexToBin(TextReader input, Stream output)
-        {
-            int line = 1;
-            int col = 1;
-            int colStart = 0;
-            int count = 0;
-            StringBuilder val = new StringBuilder();
-            while (true)
-            {
-                int ch = input.Read();
-                switch (ch)
-                {
-                    case '\n':
-                    case '\r':
-                    case ' ':
-                    case -1:
-                        if (ch == '\n' || ch == '\r')
-                        {
-                            line++;
-                            col = 0;
-                        }
-                        if (val.Length > 0)
-                        {
-                            count++;
-                            byte result;
-                            if (byte.TryParse(val.ToString(), NumberStyles.HexNumber,
-                                CultureInfo.InvariantCulture, out result))
-                            {
-                                output.WriteByte(result);
-                            }
-                            else
-                            {
-                                Console.Error.WriteLine("Bad data at line {0} column {1}: {2}",
-                                    line, colStart, val);
-                                return -1;
-                            }
-                            val.Clear();
-                            colStart = 0;
-                        }
-                        if (ch == '\r' && input.Peek() == '\n')
-                        {
-                            // just so we don't count the same line twice for dos/windows
-                            input.Read();
-                        }
-                        break;
-                    default:
-                        if (colStart == 0)
-                        {
-                            colStart = col;
-                        }
-                        if (ch == '0')
-                        {
-                            // strip off 0x
-                            int x = input.Peek();
-                            if (x == 'x' || x == 'X')
-                            {
-                                input.Read();
-                                col++;
-                                break;
-                                // skip
-                            }
-                        }
-                        val.Append((char)ch);
-                        break;
-                }
-                if (ch == -1)
-                {
-                    break;
-                }
-                col++;
-            }
-            return count;
         }
 
         private void ShowReceivedData(IPEndPoint endPoint, byte[] data, int length)
