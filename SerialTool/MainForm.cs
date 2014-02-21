@@ -1,11 +1,9 @@
-﻿using System;
-using System.Text;
-using System.Windows.Forms;
-using System.Threading;
-using System.Globalization;
+﻿using HexToBinLib;
+using System;
 using System.IO;
 using System.IO.Ports;
-using de.log.HexToBinLib;
+using System.Text;
+using System.Windows.Forms;
 
 namespace SerialTool
 {
