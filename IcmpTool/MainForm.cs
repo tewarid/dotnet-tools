@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Globalization;
 using System.IO;
-using de.log.HexToBinLib;
+using HexToBinLib;
 
 namespace IcmpTool
 {
