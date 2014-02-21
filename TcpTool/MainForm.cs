@@ -1,13 +1,11 @@
-﻿using System;
-using System.Text;
-using System.Windows.Forms;
+﻿using HexToBinLib;
+using System;
+using System.IO;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using System.Net;
-using System.Threading;
-using System.Globalization;
-using System.IO;
-using de.log.HexToBinLib;
+using System.Text;
+using System.Windows.Forms;
 
 namespace TcpTool
 {
