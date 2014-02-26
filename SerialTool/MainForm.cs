@@ -144,6 +144,7 @@ namespace SerialTool
             {
                 port.Open();
                 port.DataReceived += port_DataReceived;
+                port.ErrorReceived += port_ErrorReceived;
             }
             catch
             {
@@ -158,13 +159,25 @@ namespace SerialTool
             openButton.Enabled = false;
             sendButton.Enabled = true;
             closeButton.Enabled = true;
-            updateButton.Enabled = false;
+            refreshButton.Enabled = false;
+        }
+
+        void port_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
+        {
+            CloseSerialPort();
         }
 
         void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            string data = port.ReadExisting();
-            ShowReceivedData(data);
+            try
+            {
+                string data = port.ReadExisting();
+                ShowReceivedData(data);
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -204,7 +217,7 @@ namespace SerialTool
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void refreshButton_Click(object sender, EventArgs e)
         {
             ShowSerialPorts();
             closeButton.Enabled = port!= null ? port.IsOpen : false;
@@ -212,28 +225,28 @@ namespace SerialTool
 
         private void CloseSerialPort()
         {
-            if (port.IsOpen)
+            try
             {
-                try
+                if (port.IsOpen)
                 {
-                    port.Close();
-                }
-                catch
-                {
-                    port = null;
+                        port.Close();
+                        port = null;
                 }
             }
-            port = null;
+            catch
+            {
+                port = null;
+            }
 
             closeButton.Enabled = false;
             sendButton.Enabled = false;
             openButton.Enabled = true;
-            updateButton.Enabled = true;
+            refreshButton.Enabled = true;
             serialPortName.Enabled = true;
             baudRate.Enabled = true;
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void closeButton_Click(object sender, EventArgs e)
         {
             CloseSerialPort();
         }

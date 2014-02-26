@@ -30,7 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.closeButton = new System.Windows.Forms.Button();
-            this.updateButton = new System.Windows.Forms.Button();
+            this.refreshButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.baudRate = new System.Windows.Forms.ComboBox();
             this.openButton = new System.Windows.Forms.Button();
@@ -57,7 +57,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.closeButton);
-            this.panel1.Controls.Add(this.updateButton);
+            this.panel1.Controls.Add(this.refreshButton);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.baudRate);
             this.panel1.Controls.Add(this.openButton);
@@ -82,17 +82,17 @@
             this.closeButton.TabIndex = 4;
             this.closeButton.Text = "&Close";
             this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.btnClose_Click);
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
-            // updateButton
+            // refreshButton
             // 
-            this.updateButton.Location = new System.Drawing.Point(135, 22);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(75, 23);
-            this.updateButton.TabIndex = 1;
-            this.updateButton.Text = "&Refresh";
-            this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.refreshButton.Location = new System.Drawing.Point(135, 22);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(75, 23);
+            this.refreshButton.TabIndex = 1;
+            this.refreshButton.Text = "&Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
             // label1
             // 
@@ -214,6 +214,7 @@
             this.inputText.Location = new System.Drawing.Point(10, 127);
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
+            this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputText.Size = new System.Drawing.Size(561, 70);
             this.inputText.TabIndex = 6;
             // 
@@ -244,7 +245,7 @@
             this.panel2.Controls.Add(this.outputText);
             this.panel2.Location = new System.Drawing.Point(2, 248);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(588, 134);
+            this.panel2.Size = new System.Drawing.Size(588, 184);
             this.panel2.TabIndex = 1;
             // 
             // label6
@@ -259,7 +260,7 @@
             // viewInHex
             // 
             this.viewInHex.AutoSize = true;
-            this.viewInHex.Location = new System.Drawing.Point(11, 104);
+            this.viewInHex.Location = new System.Drawing.Point(10, 158);
             this.viewInHex.Name = "viewInHex";
             this.viewInHex.Size = new System.Drawing.Size(153, 17);
             this.viewInHex.TabIndex = 10;
@@ -268,7 +269,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(497, 100);
+            this.clearButton.Location = new System.Drawing.Point(496, 154);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
             this.clearButton.TabIndex = 11;
@@ -282,14 +283,14 @@
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(562, 72);
+            this.outputText.Size = new System.Drawing.Size(562, 126);
             this.outputText.TabIndex = 9;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 384);
+            this.ClientSize = new System.Drawing.Size(592, 437);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -331,7 +332,7 @@
         private System.Windows.Forms.Button openButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox baudRate;
-        private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button closeButton;
     }
 }
