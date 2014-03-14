@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.IO.Ports;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SerialTool
@@ -30,10 +31,16 @@ namespace SerialTool
             ShowSerialPorts();
         }
 
-
         private void sendButton_Click(object sender, EventArgs e)
         {
+            SendAsync();
+        }
+
+        private async void SendAsync()
+        {
             string text;
+
+            sendButton.Enabled = false;
 
             if (endOfLineMac.Checked) // MAC - CR
             {
@@ -71,14 +78,20 @@ namespace SerialTool
             else
             {
                 try
-                { 
-                    port.Write(data, 0, length);
+                {
+                    // this will run in a worker thread
+                    await Task.Run(delegate {
+                        port.Write(data, 0, length);
+                    });
                 }
                 catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
+            // main thread gets resumed at this point
+            // so invoke not required
+            sendButton.Enabled = true;
         }
 
         private void ShowReceivedData(string data)
