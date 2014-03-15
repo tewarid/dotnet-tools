@@ -52,6 +52,7 @@ namespace TcpTool
                 return;
             }
 
+            sendButton.Enabled = false;
 
             if (tcpClient == null || !tcpClient.Connected)
             {
@@ -90,34 +91,20 @@ namespace TcpTool
                 length = data.Length;
             }
 
+            int tickcount = 0;
             if (length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
             else
             {
+                tickcount = Environment.TickCount;
                 tcpClient.GetStream().Write(data, 0, length);
+                tickcount = Environment.TickCount - tickcount;
             }
-        }
 
-        private void DataReceiverThread(object obj)
-        {
-            TcpClient tcpClient = (TcpClient)obj;
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 0);
-
-            while (true)
-            {
-                try
-                {
-                    byte[] data = new byte[100];
-                    int length = tcpClient.GetStream().Read(data, 0, 100);
-                    ShowReceivedData(data, length);
-                }
-                catch
-                {
-                    break;
-                }
-            }
+            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", length, tickcount);
+            sendButton.Enabled = true;
         }
 
         private void ShowReceivedData(byte [] data, int length)
@@ -142,7 +129,15 @@ namespace TcpTool
                 for (int i = 0; i < length; i++)
                 {
                     // remove special chars
-                    if (data[i] < (byte)' ' || data[i] > (byte)'~') data[i] = (byte)'.';
+                    if (data[i] == '\r' && data[i == length - 1 ? i : i + 1] == '\n')
+                    {
+                        i++; // maintain DOS end of line
+                        continue;
+                    }
+                    else if (data[i] < (byte)' ' || data[i] > (byte)'~')
+                    { 
+                        data[i] = (byte)'.';
+                    }
                 }
 
                 outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, length));
@@ -295,8 +290,10 @@ namespace TcpTool
                 ShowReceivedData(buffer, length);
                 tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
             }
-            catch
-            { }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
     }
 }
