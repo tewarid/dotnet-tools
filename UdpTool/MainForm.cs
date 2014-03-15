@@ -139,47 +139,45 @@ namespace UdpTool
 
         private void ShowReceivedData(IPEndPoint endPoint, byte[] data)
         {
-            if (!InvokeRequired)
+            if (InvokeRequired)
             {
-                destinationIPAddress.Text = endPoint.Address.ToString();
-                destinationPort.Text = endPoint.Port.ToString();
-                status.Text = string.Format("Received {0} byte(s) from {1}", data.Length, endPoint.ToString());
-                if (viewInHex.Checked)
+                Invoke((MethodInvoker)delegate
                 {
-                    foreach (byte b in data)
-                    {
-                        outputText.AppendText(string.Format("{0:X2} ", b));
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < data.Length; i++)
-                    {
-                        // remove special chars
-                        if (data[i] == '\r' && data[i == data.Length - 1 ? i : i + 1] == '\n')
-                        {
-                            i++;
-                            continue; // leave DOS CR LF as is
-                        }
-                        else if (data[i] < (byte)' ' || data[i] > (byte)'~')
-                        { 
-                            data[i] = (byte)'.';
-                        }
-                    }
+                    ShowReceivedData(endPoint, data);
+                });
+                return;
+            }
 
-                    outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, data.Length));
+            destinationIPAddress.Text = endPoint.Address.ToString();
+            destinationPort.Text = endPoint.Port.ToString();
+            outputText.AppendText(string.Format("{0} sent {1} bytes(s):\r\n", endPoint.ToString(), data.Length));
+            status.Text = string.Format("Received {0} byte(s) from {1}", data.Length, endPoint.ToString());
+            if (viewInHex.Checked)
+            {
+                foreach (byte b in data)
+                {
+                    outputText.AppendText(string.Format("{0:X2} ", b));
                 }
             }
             else
             {
-                try
+                for (int i = 0; i < data.Length; i++)
                 {
-                    Invoke(new ShowReceivedDataDelegate(ShowReceivedData), endPoint, data);
+                    // remove special chars
+                    if (data[i] == '\r' && data[i == data.Length - 1 ? i : i + 1] == '\n')
+                    {
+                        i++;
+                        continue; // leave DOS CR LF as is
+                    }
+                    else if (data[i] < (byte)' ' || data[i] > (byte)'~')
+                    {
+                        data[i] = (byte)'.';
+                    }
                 }
-                catch (ObjectDisposedException)
-                {
-                }
-            }
+
+                outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, data.Length));
+                outputText.AppendText("\r\n\r\n");
+            } 
         }
 
         private void CreateUdpClient() {
