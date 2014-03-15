@@ -61,6 +61,8 @@ namespace UdpTool
                 return;
             }
 
+            sendButton.Enabled = false;
+
             string text;
 
             if (endOfLineMac.Checked) // MAC - CR
@@ -92,14 +94,28 @@ namespace UdpTool
                 length = data.Length;
             }
 
+            int tickcount = 0;
+
             if (length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
             else
             {
-                udpClient.Send(data, length, endPoint);
+                try
+                {
+                    tickcount = Environment.TickCount;
+                    udpClient.Send(data, length, endPoint);
+                    tickcount = Environment.TickCount - tickcount;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
+
+            status.Text = String.Format("Sent {0} bytes in {1} milliseconds", length, tickcount);
+            sendButton.Enabled = true;
         }
 
         private void DataReceiverThread(object obj)
@@ -127,25 +143,31 @@ namespace UdpTool
             {
                 destinationIPAddress.Text = endPoint.Address.ToString();
                 destinationPort.Text = endPoint.Port.ToString();
-                outputText.AppendText(string.Format("{0} said:\r\n", endPoint.ToString()));
+                status.Text = string.Format("Received {0} byte(s) from {1}", data.Length, endPoint.ToString());
                 if (viewInHex.Checked)
                 {
                     foreach (byte b in data)
                     {
                         outputText.AppendText(string.Format("{0:X2} ", b));
                     }
-                    outputText.AppendText("\r\n\r\n");
                 }
                 else
                 {
                     for (int i = 0; i < data.Length; i++)
                     {
                         // remove special chars
-                        if (data[i] < (byte)' ' || data[i] > (byte)'~') data[i] = (byte)'.';
+                        if (data[i] == '\r' && data[i == data.Length - 1 ? i : i + 1] == '\n')
+                        {
+                            i++;
+                            continue; // leave DOS CR LF as is
+                        }
+                        else if (data[i] < (byte)' ' || data[i] > (byte)'~')
+                        { 
+                            data[i] = (byte)'.';
+                        }
                     }
 
                     outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, data.Length));
-                    outputText.AppendText("\r\n\r\n");
                 }
             }
             else
