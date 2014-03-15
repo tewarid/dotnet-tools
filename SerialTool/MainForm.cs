@@ -39,6 +39,7 @@ namespace SerialTool
         private async void SendAsync()
         {
             string text;
+            int tickcount = 0;
 
             sendButton.Enabled = false;
 
@@ -81,7 +82,9 @@ namespace SerialTool
                 {
                     // this will run in a worker thread
                     await Task.Run(delegate {
+                        tickcount = Environment.TickCount;
                         port.Write(data, 0, length);
+                        tickcount = Environment.TickCount - tickcount;
                     });
                 }
                 catch(Exception ex)
@@ -91,6 +94,7 @@ namespace SerialTool
             }
             // main thread gets resumed at this point
             // so invoke not required
+            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", length, tickcount);
             sendButton.Enabled = true;
         }
 
