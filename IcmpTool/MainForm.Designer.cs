@@ -125,9 +125,11 @@
             // 
             // inputText
             // 
+            this.inputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputText.Location = new System.Drawing.Point(11, 102);
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
+            this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputText.Size = new System.Drawing.Size(561, 70);
             this.inputText.TabIndex = 5;
             // 
@@ -165,13 +167,13 @@
             this.panel2.Controls.Add(this.outputText);
             this.panel2.Location = new System.Drawing.Point(2, 219);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(588, 134);
+            this.panel2.Size = new System.Drawing.Size(588, 160);
             this.panel2.TabIndex = 1;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 97);
+            this.label5.Location = new System.Drawing.Point(7, 139);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(165, 13);
             this.label5.TabIndex = 14;
@@ -188,7 +190,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(497, 100);
+            this.clearButton.Location = new System.Drawing.Point(497, 134);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
             this.clearButton.TabIndex = 8;
@@ -198,18 +200,19 @@
             // 
             // outputText
             // 
+            this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputText.Location = new System.Drawing.Point(11, 22);
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(562, 72);
+            this.outputText.Size = new System.Drawing.Size(562, 106);
             this.outputText.TabIndex = 7;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 355);
+            this.ClientSize = new System.Drawing.Size(592, 381);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

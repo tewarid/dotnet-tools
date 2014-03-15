@@ -77,7 +77,7 @@ namespace IcmpTool
         {
             if (!InvokeRequired)
             {
-                outputText.AppendText(string.Format("{0} said:\r\n", endPoint.ToString()));
+                outputText.AppendText(string.Format("{0} sent {1} bytes(s):\r\n", endPoint.ToString(), length));
                 for (int i = 0; i < length; i++)
                 {
                     outputText.AppendText(string.Format("{0:X2} ", data[i]));
