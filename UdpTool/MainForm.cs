@@ -180,21 +180,27 @@ namespace UdpTool
             } 
         }
 
-        private void CreateUdpClient() {
+        private void CreateUdpClient() 
+        {
+            IPAddress address = IPAddress.Any;
             IPEndPoint srcEndPoint = new IPEndPoint(IPAddress.Any, 0);
 
-            if (!string.Empty.Equals(sourceIPAddress.Text)
-                && !string.Empty.Equals(sourcePort.Text))
+            if(!string.Empty.Equals(sourceIPAddress.Text))
             {
                 try
                 {
-                    srcEndPoint = new IPEndPoint(IPAddress.Parse(sourceIPAddress.Text), int.Parse(sourcePort.Text));
+                    address = IPAddress.Parse(sourceIPAddress.Text);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(this, ex.Message, this.Text);
                     return;
                 }
+            }
+
+            if (!string.Empty.Equals(sourcePort.Text))
+            {
+                srcEndPoint = new IPEndPoint(address, int.Parse(sourcePort.Text));
             }
             else
             {
