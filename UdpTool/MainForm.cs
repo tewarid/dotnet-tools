@@ -209,6 +209,8 @@ namespace UdpTool
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, this.Text);
+                udpClient = null;
+                return;
             }
 
             receiverThread = new Thread(new ParameterizedThreadStart(DataReceiverThread));
