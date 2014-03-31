@@ -258,9 +258,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(8, 6);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(352, 13);
+            this.label6.Size = new System.Drawing.Size(349, 13);
             this.label6.TabIndex = 9;
-            this.label6.Text = "Data received (assumes UTF-8, special characters are replaced with a \'.\')";
+            this.label6.Text = "Data received (assumes ASCII, special characters are replaced with a \'.\')";
             // 
             // viewInHex
             // 

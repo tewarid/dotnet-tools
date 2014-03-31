@@ -98,36 +98,36 @@ namespace SerialTool
             sendButton.Enabled = true;
         }
 
-        private void ShowReceivedData(string data)
+        private void ShowReceivedData(byte[] data, int length)
         {
             if (InvokeRequired)
             {
                 Invoke((MethodInvoker)delegate {
-                    ShowReceivedData(data);
+                    ShowReceivedData(data, length);
                 });
                 return;
             }
 
             if (viewInHex.Checked)
             {
-                foreach (char c in data)
+                foreach (byte b in data)
                 {
-                    outputText.AppendText(string.Format("{0:X2} ", (byte)c));
+                    outputText.AppendText(string.Format("{0:X2} ", b));
                 }
                 outputText.AppendText("\r\n\r\n");
             }
             else
             {
                 StringBuilder output = new StringBuilder();
-                for (int i = 0; i < data.Length; i++)
+                for (int i = 0; i < length; i++)
                 {
                     switch (data[i])
                     {
-                        case '\r':
+                        case (byte)'\r':
                             output.Append("\r\n");
                             break;
 
-                        case '\n':
+                        case (byte)'\n':
                             if (i > 0 && data[i - 1] != '\r') output.Append("\r\n");
                             break;
 
@@ -147,7 +147,7 @@ namespace SerialTool
         private void CreateSerialPort()
         {
             port = new SerialPort(serialPortName.Text);
-            port.Encoding = UTF8Encoding.UTF8;
+            port.Encoding = ASCIIEncoding.ASCII;
             if (!baudRate.Text.Equals(string.Empty))
             {
                 port.BaudRate = int.Parse(baudRate.Text);
@@ -188,8 +188,9 @@ namespace SerialTool
         {
             try
             {
-                string data = port.ReadExisting();
-                ShowReceivedData(data);
+                byte[] data = new byte[port.BytesToRead];
+                int readLength = port.Read(data, 0, data.Length);
+                ShowReceivedData(data, readLength);
             }
             catch
             {
@@ -236,6 +237,7 @@ namespace SerialTool
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
+            serialPortName.Text = "";
             ShowSerialPorts();
             closeButton.Enabled = port!= null ? port.IsOpen : false;
         }
