@@ -136,7 +136,7 @@ namespace SerialTool
                             if (data[i] < ' ' || data[i] > '~')
                                 output.Append('.');
                             else
-                                output.Append(data[i]);
+                                output.Append((char)data[i]);
                             break;
                     }
                 }
