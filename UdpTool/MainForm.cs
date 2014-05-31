@@ -204,7 +204,7 @@ namespace UdpTool
             }
             else
             {
-                sourceIPAddress.Text = "";
+                srcEndPoint = new IPEndPoint(address, 0);
                 sourcePort.Text = "";
             }
 
