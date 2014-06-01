@@ -196,6 +196,7 @@ namespace TcpTool
             sourceIPAddress.Text = endPoint.Address.ToString();
             sourcePort.Enabled = false;
             sourcePort.Text = endPoint.Port.ToString();
+            listen.Enabled = false;
             destinationIPAddress.Enabled = false;
             destinationPort.Enabled = false;
         }
