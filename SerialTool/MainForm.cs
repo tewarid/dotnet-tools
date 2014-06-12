@@ -39,7 +39,8 @@ namespace SerialTool
         private async void SendAsync()
         {
             string text;
-            int tickcount = 0;
+            int startTickCount = 0;
+            int endTickCount = 0;
 
             sendButton.Enabled = false;
 
@@ -82,20 +83,24 @@ namespace SerialTool
                 {
                     // this will run in a worker thread
                     await Task.Run(delegate {
-                        tickcount = Environment.TickCount;
+                        startTickCount = Environment.TickCount;
                         port.Write(data, 0, length);
-                        tickcount = Environment.TickCount - tickcount;
+                        endTickCount = Environment.TickCount;
                     });
+
+                    // main thread gets resumed at this point
+                    // so invoke not required
+                    status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", length, endTickCount - startTickCount);
                 }
                 catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+                finally
+                {
+                    sendButton.Enabled = true;
+                }
             }
-            // main thread gets resumed at this point
-            // so invoke not required
-            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", length, tickcount);
-            sendButton.Enabled = true;
         }
 
         private void ShowReceivedData(byte[] data, int length)
@@ -160,6 +165,8 @@ namespace SerialTool
             try
             {
                 port.Open();
+                port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
+                    : SerialPort.InfiniteTimeout;
                 port.DataReceived += port_DataReceived;
                 port.ErrorReceived += port_ErrorReceived;
             }
@@ -263,11 +270,22 @@ namespace SerialTool
             refreshButton.Enabled = true;
             serialPortName.Enabled = true;
             baudRate.Enabled = true;
+            timeOut.Checked = false;
         }
 
         private void closeButton_Click(object sender, EventArgs e)
         {
             CloseSerialPort();
+        }
+
+        private void timeOut_CheckedChanged(object sender, EventArgs e)
+        {
+            timeOutValue.Enabled = timeOut.Checked;
+            if (port != null)
+            {
+                port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
+                    : SerialPort.InfiniteTimeout;
+            }
         }
     }
 }

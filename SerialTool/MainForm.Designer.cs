@@ -51,14 +51,21 @@
             this.outputText = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.timeOutValue = new System.Windows.Forms.NumericUpDown();
+            this.timeOut = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timeOutValue)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.timeOutValue);
+            this.panel1.Controls.Add(this.timeOut);
             this.panel1.Controls.Add(this.closeButton);
             this.panel1.Controls.Add(this.refreshButton);
             this.panel1.Controls.Add(this.label1);
@@ -73,7 +80,7 @@
             this.panel1.Controls.Add(this.sendButton);
             this.panel1.Location = new System.Drawing.Point(2, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(588, 241);
+            this.panel1.Size = new System.Drawing.Size(588, 261);
             this.panel1.TabIndex = 0;
             // 
             // closeButton
@@ -248,7 +255,7 @@
             this.panel2.Controls.Add(this.viewInHex);
             this.panel2.Controls.Add(this.clearButton);
             this.panel2.Controls.Add(this.outputText);
-            this.panel2.Location = new System.Drawing.Point(2, 248);
+            this.panel2.Location = new System.Drawing.Point(2, 268);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(588, 184);
             this.panel2.TabIndex = 1;
@@ -297,7 +304,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.status});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 433);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 455);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(593, 22);
             this.statusStrip1.TabIndex = 2;
@@ -308,11 +315,54 @@
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(154, 236);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "seconds";
+            // 
+            // timeOutValue
+            // 
+            this.timeOutValue.Enabled = false;
+            this.timeOutValue.Location = new System.Drawing.Point(97, 231);
+            this.timeOutValue.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.timeOutValue.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.timeOutValue.Name = "timeOutValue";
+            this.timeOutValue.Size = new System.Drawing.Size(51, 20);
+            this.timeOutValue.TabIndex = 18;
+            this.timeOutValue.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // timeOut
+            // 
+            this.timeOut.AutoSize = true;
+            this.timeOut.Location = new System.Drawing.Point(13, 232);
+            this.timeOut.Name = "timeOut";
+            this.timeOut.Size = new System.Drawing.Size(78, 17);
+            this.timeOut.TabIndex = 17;
+            this.timeOut.Text = "Time out in";
+            this.timeOut.UseVisualStyleBackColor = true;
+            this.timeOut.CheckedChanged += new System.EventHandler(this.timeOut_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 455);
+            this.ClientSize = new System.Drawing.Size(593, 477);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -332,6 +382,7 @@
             this.panel2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timeOutValue)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,6 +413,9 @@
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown timeOutValue;
+        private System.Windows.Forms.CheckBox timeOut;
     }
 }
 
