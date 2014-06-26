@@ -228,8 +228,6 @@ namespace SerialTool
 
         private void openButton_Click(object sender, EventArgs e)
         {
-            openButton.Enabled = false;
-
             if (string.Empty.Equals(serialPortName.Text))
             {
                 MessageBox.Show("Need a port name to Open.");
