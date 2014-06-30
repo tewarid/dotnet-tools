@@ -244,7 +244,10 @@ namespace SerialTool
         {
             serialPortName.Text = "";
             ShowSerialPorts();
-            closeButton.Enabled = port!= null ? port.IsOpen : false;
+            if (serialPortName.Items.Count > 0)
+            {
+                serialPortName.SelectedIndex = 0;
+            }
         }
 
         private void CloseSerialPort()
