@@ -158,6 +158,7 @@ namespace UdpTool
                 {
                     outputText.AppendText(string.Format("{0:X2} ", b));
                 }
+                outputText.AppendText("\r\n\r\n");
             }
             else
             {
