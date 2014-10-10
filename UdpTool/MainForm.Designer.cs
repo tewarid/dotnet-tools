@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.bind = new System.Windows.Forms.Button();
             this.inputInHex = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.sourcePort = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.endOfLineUnix = new System.Windows.Forms.RadioButton();
             this.endOfLineDos = new System.Windows.Forms.RadioButton();
             this.endOfLineMac = new System.Windows.Forms.RadioButton();
             this.inputText = new System.Windows.Forms.TextBox();
-            this.sourceIPAddress = new System.Windows.Forms.ComboBox();
             this.sendButton = new System.Windows.Forms.Button();
             this.destinationPort = new System.Windows.Forms.TextBox();
             this.destinationIPAddress = new System.Windows.Forms.TextBox();
+            this.bind = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.sourcePort = new System.Windows.Forms.TextBox();
+            this.sourceIPAddress = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.viewInHex = new System.Windows.Forms.CheckBox();
@@ -75,16 +76,6 @@
             this.panel1.Size = new System.Drawing.Size(393, 429);
             this.panel1.TabIndex = 0;
             // 
-            // bind
-            // 
-            this.bind.Location = new System.Drawing.Point(242, 26);
-            this.bind.Name = "bind";
-            this.bind.Size = new System.Drawing.Size(75, 23);
-            this.bind.TabIndex = 2;
-            this.bind.Text = "Bind";
-            this.bind.UseVisualStyleBackColor = true;
-            this.bind.Click += new System.EventHandler(this.bind_Click);
-            // 
             // inputInHex
             // 
             this.inputInHex.AutoSize = true;
@@ -95,15 +86,6 @@
             this.inputInHex.Text = "Send binary, text is a hexadecimal string (e.g. 0xDE 0xAD or DE AD)";
             this.inputInHex.UseVisualStyleBackColor = true;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(145, 12);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Port (optional)";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -113,15 +95,6 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Text to send (UTF-8)";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Interface (optional)";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -130,13 +103,6 @@
             this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Destination Port";
-            // 
-            // sourcePort
-            // 
-            this.sourcePort.Location = new System.Drawing.Point(148, 28);
-            this.sourcePort.Name = "sourcePort";
-            this.sourcePort.Size = new System.Drawing.Size(82, 20);
-            this.sourcePort.TabIndex = 1;
             // 
             // label1
             // 
@@ -202,14 +168,6 @@
             this.inputText.Size = new System.Drawing.Size(380, 236);
             this.inputText.TabIndex = 8;
             // 
-            // sourceIPAddress
-            // 
-            this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.Location = new System.Drawing.Point(10, 28);
-            this.sourceIPAddress.Name = "sourceIPAddress";
-            this.sourceIPAddress.Size = new System.Drawing.Size(119, 21);
-            this.sourceIPAddress.TabIndex = 0;
-            // 
             // sendButton
             // 
             this.sendButton.Location = new System.Drawing.Point(315, 403);
@@ -233,6 +191,49 @@
             this.destinationIPAddress.Name = "destinationIPAddress";
             this.destinationIPAddress.Size = new System.Drawing.Size(120, 20);
             this.destinationIPAddress.TabIndex = 6;
+            // 
+            // bind
+            // 
+            this.bind.Location = new System.Drawing.Point(242, 26);
+            this.bind.Name = "bind";
+            this.bind.Size = new System.Drawing.Size(75, 23);
+            this.bind.TabIndex = 2;
+            this.bind.Text = "Bind";
+            this.bind.UseVisualStyleBackColor = true;
+            this.bind.Click += new System.EventHandler(this.bind_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(145, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Port (optional)";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(95, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Interface (optional)";
+            // 
+            // sourcePort
+            // 
+            this.sourcePort.Location = new System.Drawing.Point(148, 28);
+            this.sourcePort.Name = "sourcePort";
+            this.sourcePort.Size = new System.Drawing.Size(82, 20);
+            this.sourcePort.TabIndex = 1;
+            // 
+            // sourceIPAddress
+            // 
+            this.sourceIPAddress.FormattingEnabled = true;
+            this.sourceIPAddress.Location = new System.Drawing.Point(10, 28);
+            this.sourceIPAddress.Name = "sourceIPAddress";
+            this.sourceIPAddress.Size = new System.Drawing.Size(119, 21);
+            this.sourceIPAddress.TabIndex = 0;
             // 
             // panel2
             // 
@@ -315,6 +316,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
