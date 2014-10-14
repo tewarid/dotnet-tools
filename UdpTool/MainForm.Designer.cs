@@ -71,15 +71,15 @@
             this.panel1.Controls.Add(this.sendButton);
             this.panel1.Controls.Add(this.destinationPort);
             this.panel1.Controls.Add(this.destinationIPAddress);
-            this.panel1.Location = new System.Drawing.Point(399, 1);
+            this.panel1.Location = new System.Drawing.Point(391, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(393, 429);
+            this.panel1.Size = new System.Drawing.Size(390, 435);
             this.panel1.TabIndex = 0;
             // 
             // inputInHex
             // 
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(10, 380);
+            this.inputInHex.Location = new System.Drawing.Point(8, 380);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(347, 17);
             this.inputInHex.TabIndex = 13;
@@ -89,7 +89,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 71);
+            this.label3.Location = new System.Drawing.Point(5, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 8;
@@ -98,18 +98,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(144, 12);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(164, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 13);
+            this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Destination Port";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 12);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(5, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 13);
+            this.label1.Size = new System.Drawing.Size(136, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Destination IP Address";
             // 
@@ -118,7 +120,7 @@
             this.groupBox1.Controls.Add(this.endOfLineUnix);
             this.groupBox1.Controls.Add(this.endOfLineDos);
             this.groupBox1.Controls.Add(this.endOfLineMac);
-            this.groupBox1.Location = new System.Drawing.Point(10, 329);
+            this.groupBox1.Location = new System.Drawing.Point(8, 329);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(254, 45);
             this.groupBox1.TabIndex = 9;
@@ -160,7 +162,7 @@
             // inputText
             // 
             this.inputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputText.Location = new System.Drawing.Point(10, 87);
+            this.inputText.Location = new System.Drawing.Point(8, 87);
             this.inputText.MaxLength = 1000000;
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
@@ -180,21 +182,21 @@
             // 
             // destinationPort
             // 
-            this.destinationPort.Location = new System.Drawing.Point(147, 29);
+            this.destinationPort.Location = new System.Drawing.Point(167, 29);
             this.destinationPort.Name = "destinationPort";
-            this.destinationPort.Size = new System.Drawing.Size(82, 20);
+            this.destinationPort.Size = new System.Drawing.Size(95, 20);
             this.destinationPort.TabIndex = 7;
             // 
             // destinationIPAddress
             // 
-            this.destinationIPAddress.Location = new System.Drawing.Point(10, 29);
+            this.destinationIPAddress.Location = new System.Drawing.Point(8, 29);
             this.destinationIPAddress.Name = "destinationIPAddress";
-            this.destinationIPAddress.Size = new System.Drawing.Size(120, 20);
+            this.destinationIPAddress.Size = new System.Drawing.Size(133, 20);
             this.destinationIPAddress.TabIndex = 6;
             // 
             // bind
             // 
-            this.bind.Location = new System.Drawing.Point(242, 26);
+            this.bind.Location = new System.Drawing.Point(239, 26);
             this.bind.Name = "bind";
             this.bind.Size = new System.Drawing.Size(75, 23);
             this.bind.TabIndex = 2;
@@ -205,24 +207,24 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(145, 12);
+            this.label5.Location = new System.Drawing.Point(142, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 13);
+            this.label5.Size = new System.Drawing.Size(26, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Port (optional)";
+            this.label5.Text = "Port";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 12);
+            this.label4.Location = new System.Drawing.Point(4, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 13);
+            this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Interface (optional)";
+            this.label4.Text = "Interface";
             // 
             // sourcePort
             // 
-            this.sourcePort.Location = new System.Drawing.Point(148, 28);
+            this.sourcePort.Location = new System.Drawing.Point(145, 28);
             this.sourcePort.Name = "sourcePort";
             this.sourcePort.Size = new System.Drawing.Size(82, 20);
             this.sourcePort.TabIndex = 1;
@@ -230,7 +232,7 @@
             // sourceIPAddress
             // 
             this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.Location = new System.Drawing.Point(10, 28);
+            this.sourceIPAddress.Location = new System.Drawing.Point(7, 28);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(119, 21);
             this.sourceIPAddress.TabIndex = 0;
@@ -248,13 +250,13 @@
             this.panel2.Controls.Add(this.sourcePort);
             this.panel2.Location = new System.Drawing.Point(0, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(393, 429);
+            this.panel2.Size = new System.Drawing.Size(390, 435);
             this.panel2.TabIndex = 1;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 71);
+            this.label6.Location = new System.Drawing.Point(4, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(352, 13);
             this.label6.TabIndex = 9;
@@ -263,7 +265,7 @@
             // viewInHex
             // 
             this.viewInHex.AutoSize = true;
-            this.viewInHex.Location = new System.Drawing.Point(10, 403);
+            this.viewInHex.Location = new System.Drawing.Point(7, 406);
             this.viewInHex.Name = "viewInHex";
             this.viewInHex.Size = new System.Drawing.Size(153, 17);
             this.viewInHex.TabIndex = 4;
@@ -272,7 +274,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(315, 403);
+            this.clearButton.Location = new System.Drawing.Point(312, 403);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
             this.clearButton.TabIndex = 5;
@@ -283,7 +285,7 @@
             // outputText
             // 
             this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputText.Location = new System.Drawing.Point(10, 87);
+            this.outputText.Location = new System.Drawing.Point(6, 87);
             this.outputText.MaxLength = 1000000;
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
@@ -296,9 +298,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.status});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 431);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 439);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(796, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -311,7 +313,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(796, 453);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
