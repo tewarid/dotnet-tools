@@ -28,7 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.timeOutValue = new System.Windows.Forms.NumericUpDown();
+            this.timeOut = new System.Windows.Forms.CheckBox();
             this.closeButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,14 +55,11 @@
             this.outputText = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.timeOutValue = new System.Windows.Forms.NumericUpDown();
-            this.timeOut = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timeOutValue)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.timeOutValue)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -66,27 +67,63 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.timeOutValue);
             this.panel1.Controls.Add(this.timeOut);
-            this.panel1.Controls.Add(this.closeButton);
-            this.panel1.Controls.Add(this.refreshButton);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.baudRate);
-            this.panel1.Controls.Add(this.openButton);
             this.panel1.Controls.Add(this.inputInHex);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.inputText);
-            this.panel1.Controls.Add(this.serialPortName);
             this.panel1.Controls.Add(this.sendButton);
-            this.panel1.Location = new System.Drawing.Point(2, 1);
+            this.panel1.Location = new System.Drawing.Point(395, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(588, 261);
+            this.panel1.Size = new System.Drawing.Size(389, 433);
             this.panel1.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(149, 377);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "seconds";
+            // 
+            // timeOutValue
+            // 
+            this.timeOutValue.Enabled = false;
+            this.timeOutValue.Location = new System.Drawing.Point(92, 372);
+            this.timeOutValue.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.timeOutValue.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.timeOutValue.Name = "timeOutValue";
+            this.timeOutValue.Size = new System.Drawing.Size(51, 20);
+            this.timeOutValue.TabIndex = 14;
+            this.timeOutValue.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // timeOut
+            // 
+            this.timeOut.AutoSize = true;
+            this.timeOut.Location = new System.Drawing.Point(8, 373);
+            this.timeOut.Name = "timeOut";
+            this.timeOut.Size = new System.Drawing.Size(78, 17);
+            this.timeOut.TabIndex = 13;
+            this.timeOut.Text = "Time out in";
+            this.timeOut.UseVisualStyleBackColor = true;
+            this.timeOut.CheckedChanged += new System.EventHandler(this.timeOut_CheckedChanged);
             // 
             // closeButton
             // 
             this.closeButton.Enabled = false;
-            this.closeButton.Location = new System.Drawing.Point(216, 67);
+            this.closeButton.Location = new System.Drawing.Point(213, 70);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 4;
@@ -96,7 +133,7 @@
             // 
             // refreshButton
             // 
-            this.refreshButton.Location = new System.Drawing.Point(135, 22);
+            this.refreshButton.Location = new System.Drawing.Point(132, 25);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 23);
             this.refreshButton.TabIndex = 1;
@@ -107,7 +144,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 53);
+            this.label1.Location = new System.Drawing.Point(3, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 13;
@@ -132,14 +169,15 @@
             "230400",
             "460800",
             "921600"});
-            this.baudRate.Location = new System.Drawing.Point(10, 69);
+            this.baudRate.Location = new System.Drawing.Point(7, 72);
             this.baudRate.Name = "baudRate";
             this.baudRate.Size = new System.Drawing.Size(119, 21);
             this.baudRate.TabIndex = 2;
+            this.baudRate.Text = "115200";
             // 
             // openButton
             // 
-            this.openButton.Location = new System.Drawing.Point(135, 67);
+            this.openButton.Location = new System.Drawing.Point(132, 70);
             this.openButton.Name = "openButton";
             this.openButton.Size = new System.Drawing.Size(75, 23);
             this.openButton.TabIndex = 3;
@@ -150,17 +188,17 @@
             // inputInHex
             // 
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(13, 207);
+            this.inputInHex.Location = new System.Drawing.Point(8, 348);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(347, 17);
-            this.inputInHex.TabIndex = 7;
+            this.inputInHex.TabIndex = 12;
             this.inputInHex.Text = "Send binary, text is a hexadecimal string (e.g. 0xDE 0xAD or DE AD)";
             this.inputInHex.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 111);
+            this.label3.Location = new System.Drawing.Point(5, 11);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 8;
@@ -169,7 +207,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 8);
+            this.label4.Location = new System.Drawing.Point(3, 11);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 7;
@@ -180,7 +218,7 @@
             this.groupBox1.Controls.Add(this.endOfLineUnix);
             this.groupBox1.Controls.Add(this.endOfLineDos);
             this.groupBox1.Controls.Add(this.endOfLineMac);
-            this.groupBox1.Location = new System.Drawing.Point(324, 76);
+            this.groupBox1.Location = new System.Drawing.Point(8, 297);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(247, 45);
             this.groupBox1.TabIndex = 5;
@@ -193,7 +231,7 @@
             this.endOfLineUnix.Location = new System.Drawing.Point(84, 19);
             this.endOfLineUnix.Name = "endOfLineUnix";
             this.endOfLineUnix.Size = new System.Drawing.Size(67, 17);
-            this.endOfLineUnix.TabIndex = 5;
+            this.endOfLineUnix.TabIndex = 10;
             this.endOfLineUnix.Text = "Unix (LF)";
             this.endOfLineUnix.UseVisualStyleBackColor = true;
             // 
@@ -203,7 +241,7 @@
             this.endOfLineDos.Location = new System.Drawing.Point(157, 19);
             this.endOfLineDos.Name = "endOfLineDos";
             this.endOfLineDos.Size = new System.Drawing.Size(87, 17);
-            this.endOfLineDos.TabIndex = 5;
+            this.endOfLineDos.TabIndex = 11;
             this.endOfLineDos.Text = "DOS (CR-LF)";
             this.endOfLineDos.UseVisualStyleBackColor = true;
             // 
@@ -214,7 +252,7 @@
             this.endOfLineMac.Location = new System.Drawing.Point(6, 19);
             this.endOfLineMac.Name = "endOfLineMac";
             this.endOfLineMac.Size = new System.Drawing.Size(72, 17);
-            this.endOfLineMac.TabIndex = 5;
+            this.endOfLineMac.TabIndex = 9;
             this.endOfLineMac.TabStop = true;
             this.endOfLineMac.Text = "MAC (CR)";
             this.endOfLineMac.UseVisualStyleBackColor = true;
@@ -222,18 +260,18 @@
             // inputText
             // 
             this.inputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputText.Location = new System.Drawing.Point(10, 127);
+            this.inputText.Location = new System.Drawing.Point(8, 27);
             this.inputText.MaxLength = 1000000;
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputText.Size = new System.Drawing.Size(561, 70);
-            this.inputText.TabIndex = 6;
+            this.inputText.Size = new System.Drawing.Size(378, 264);
+            this.inputText.TabIndex = 8;
             // 
             // serialPortName
             // 
             this.serialPortName.FormattingEnabled = true;
-            this.serialPortName.Location = new System.Drawing.Point(10, 24);
+            this.serialPortName.Location = new System.Drawing.Point(7, 27);
             this.serialPortName.Name = "serialPortName";
             this.serialPortName.Size = new System.Drawing.Size(119, 21);
             this.serialPortName.TabIndex = 0;
@@ -241,10 +279,10 @@
             // sendButton
             // 
             this.sendButton.Enabled = false;
-            this.sendButton.Location = new System.Drawing.Point(496, 203);
+            this.sendButton.Location = new System.Drawing.Point(311, 401);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
-            this.sendButton.TabIndex = 8;
+            this.sendButton.TabIndex = 15;
             this.sendButton.Text = "&Send";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
@@ -254,16 +292,23 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.viewInHex);
             this.panel2.Controls.Add(this.clearButton);
+            this.panel2.Controls.Add(this.closeButton);
+            this.panel2.Controls.Add(this.refreshButton);
             this.panel2.Controls.Add(this.outputText);
-            this.panel2.Location = new System.Drawing.Point(2, 268);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.serialPortName);
+            this.panel2.Controls.Add(this.baudRate);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.openButton);
+            this.panel2.Location = new System.Drawing.Point(0, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(588, 184);
+            this.panel2.Size = new System.Drawing.Size(391, 433);
             this.panel2.TabIndex = 1;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 6);
+            this.label6.Location = new System.Drawing.Point(3, 106);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(349, 13);
             this.label6.TabIndex = 9;
@@ -272,19 +317,19 @@
             // viewInHex
             // 
             this.viewInHex.AutoSize = true;
-            this.viewInHex.Location = new System.Drawing.Point(10, 158);
+            this.viewInHex.Location = new System.Drawing.Point(5, 405);
             this.viewInHex.Name = "viewInHex";
             this.viewInHex.Size = new System.Drawing.Size(153, 17);
-            this.viewInHex.TabIndex = 10;
+            this.viewInHex.TabIndex = 6;
             this.viewInHex.Text = "View as hexadecimal string";
             this.viewInHex.UseVisualStyleBackColor = true;
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(496, 154);
+            this.clearButton.Location = new System.Drawing.Point(313, 401);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 11;
+            this.clearButton.TabIndex = 7;
             this.clearButton.Text = "&Clear";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
@@ -292,21 +337,22 @@
             // outputText
             // 
             this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputText.Location = new System.Drawing.Point(11, 22);
+            this.outputText.Location = new System.Drawing.Point(6, 122);
             this.outputText.MaxLength = 1000000;
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
+            this.outputText.ReadOnly = true;
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(562, 126);
-            this.outputText.TabIndex = 9;
+            this.outputText.Size = new System.Drawing.Size(382, 270);
+            this.outputText.TabIndex = 5;
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.status});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 455);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 439);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(593, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -315,58 +361,16 @@
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(154, 236);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "seconds";
-            // 
-            // timeOutValue
-            // 
-            this.timeOutValue.Enabled = false;
-            this.timeOutValue.Location = new System.Drawing.Point(97, 231);
-            this.timeOutValue.Maximum = new decimal(new int[] {
-            120,
-            0,
-            0,
-            0});
-            this.timeOutValue.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.timeOutValue.Name = "timeOutValue";
-            this.timeOutValue.Size = new System.Drawing.Size(51, 20);
-            this.timeOutValue.TabIndex = 18;
-            this.timeOutValue.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // timeOut
-            // 
-            this.timeOut.AutoSize = true;
-            this.timeOut.Location = new System.Drawing.Point(13, 232);
-            this.timeOut.Name = "timeOut";
-            this.timeOut.Size = new System.Drawing.Size(78, 17);
-            this.timeOut.TabIndex = 17;
-            this.timeOut.Text = "Time out in";
-            this.timeOut.UseVisualStyleBackColor = true;
-            this.timeOut.CheckedChanged += new System.EventHandler(this.timeOut_CheckedChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 477);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
@@ -376,13 +380,13 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timeOutValue)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.timeOutValue)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
