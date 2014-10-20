@@ -14,7 +14,6 @@ namespace UdpTool
     {
         UdpClient udpClient;
         delegate void ShowReceivedDataDelegate(IPEndPoint endPoint, byte[] data);
-        Thread receiverThread;
 
         public MainForm()
         {
@@ -118,25 +117,6 @@ namespace UdpTool
             sendButton.Enabled = true;
         }
 
-        private void DataReceiverThread(object obj)
-        {
-            UdpClient udp = (UdpClient)obj;
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 0);
-
-            while (true)
-            {
-                try
-                {
-                    byte[] data = udp.Receive(ref endPoint);
-                    ShowReceivedData(endPoint, data);
-                }
-                catch (SocketException)
-                {
-                    break;
-                }
-            }
-        }
-
         private void ShowReceivedData(IPEndPoint endPoint, byte[] data)
         {
             if (InvokeRequired)
@@ -220,8 +200,7 @@ namespace UdpTool
                 return;
             }
 
-            receiverThread = new Thread(new ParameterizedThreadStart(DataReceiverThread));
-            receiverThread.Start(udpClient);
+            udpClient.BeginReceive(ReceiveCallback, null);
 
             sourceIPAddress.Enabled = false;
             IPEndPoint endPoint = (IPEndPoint)udpClient.Client.LocalEndPoint;
@@ -231,6 +210,21 @@ namespace UdpTool
             bind.Enabled = false;
         }
 
+        private void ReceiveCallback(IAsyncResult ar)
+        {
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 0);
+            try
+            {
+                byte[] data = udpClient.EndReceive(ar, ref endPoint);
+                udpClient.BeginReceive(ReceiveCallback, null);
+                ShowReceivedData(endPoint, data);
+            } 
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
         private void clearButton_Click(object sender, EventArgs e)
         {
             outputText.Clear();
@@ -238,14 +232,6 @@ namespace UdpTool
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (receiverThread != null)
-            {
-                // 
-            }
-            else
-            {
-                return;
-            }
             if (udpClient != null)
             {
                 udpClient.Close();
