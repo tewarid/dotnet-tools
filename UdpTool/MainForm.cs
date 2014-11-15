@@ -208,6 +208,8 @@ namespace UdpTool
             sourcePort.Enabled = false;
             sourcePort.Text = endPoint.Port.ToString();
             bind.Enabled = false;
+            add.Enabled = true;
+            multicastGroup.Enabled = true;
         }
 
         private void ReceiveCallback(IAsyncResult ar)
@@ -243,6 +245,29 @@ namespace UdpTool
             if (udpClient == null)
             {
                 CreateUdpClient();
+            }
+        }
+
+        private void add_Click(object sender, EventArgs e)
+        {
+            IPAddress groupIPAddress;
+            try
+            {
+                groupIPAddress = IPAddress.Parse(multicastGroup.Text);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            try
+            {
+                udpClient.JoinMulticastGroup(groupIPAddress);
+                MessageBox.Show("Membership to multicast group has been added.");
+            }
+            catch(SocketException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

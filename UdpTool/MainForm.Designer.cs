@@ -54,6 +54,9 @@
             this.outputText = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.add = new System.Windows.Forms.Button();
+            this.multicastGroup = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -82,7 +85,7 @@
             this.inputInHex.Location = new System.Drawing.Point(8, 380);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(347, 17);
-            this.inputInHex.TabIndex = 13;
+            this.inputInHex.TabIndex = 14;
             this.inputInHex.Text = "Send binary, text is a hexadecimal string (e.g. 0xDE 0xAD or DE AD)";
             this.inputInHex.UseVisualStyleBackColor = true;
             // 
@@ -99,7 +102,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(164, 12);
+            this.label2.Location = new System.Drawing.Point(149, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 7;
@@ -133,7 +136,7 @@
             this.endOfLineUnix.Location = new System.Drawing.Point(84, 19);
             this.endOfLineUnix.Name = "endOfLineUnix";
             this.endOfLineUnix.Size = new System.Drawing.Size(67, 17);
-            this.endOfLineUnix.TabIndex = 11;
+            this.endOfLineUnix.TabIndex = 12;
             this.endOfLineUnix.Text = "Unix (LF)";
             this.endOfLineUnix.UseVisualStyleBackColor = true;
             // 
@@ -143,7 +146,7 @@
             this.endOfLineDos.Location = new System.Drawing.Point(157, 19);
             this.endOfLineDos.Name = "endOfLineDos";
             this.endOfLineDos.Size = new System.Drawing.Size(87, 17);
-            this.endOfLineDos.TabIndex = 12;
+            this.endOfLineDos.TabIndex = 13;
             this.endOfLineDos.Text = "DOS (CR-LF)";
             this.endOfLineDos.UseVisualStyleBackColor = true;
             // 
@@ -154,7 +157,7 @@
             this.endOfLineMac.Location = new System.Drawing.Point(6, 19);
             this.endOfLineMac.Name = "endOfLineMac";
             this.endOfLineMac.Size = new System.Drawing.Size(72, 17);
-            this.endOfLineMac.TabIndex = 10;
+            this.endOfLineMac.TabIndex = 11;
             this.endOfLineMac.TabStop = true;
             this.endOfLineMac.Text = "MAC (CR)";
             this.endOfLineMac.UseVisualStyleBackColor = true;
@@ -168,35 +171,35 @@
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputText.Size = new System.Drawing.Size(380, 236);
-            this.inputText.TabIndex = 8;
+            this.inputText.TabIndex = 10;
             // 
             // sendButton
             // 
             this.sendButton.Location = new System.Drawing.Point(315, 403);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
-            this.sendButton.TabIndex = 14;
+            this.sendButton.TabIndex = 15;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
             // 
             // destinationPort
             // 
-            this.destinationPort.Location = new System.Drawing.Point(167, 29);
+            this.destinationPort.Location = new System.Drawing.Point(152, 29);
             this.destinationPort.Name = "destinationPort";
             this.destinationPort.Size = new System.Drawing.Size(95, 20);
-            this.destinationPort.TabIndex = 7;
+            this.destinationPort.TabIndex = 9;
             // 
             // destinationIPAddress
             // 
             this.destinationIPAddress.Location = new System.Drawing.Point(8, 29);
             this.destinationIPAddress.Name = "destinationIPAddress";
             this.destinationIPAddress.Size = new System.Drawing.Size(133, 20);
-            this.destinationIPAddress.TabIndex = 6;
+            this.destinationIPAddress.TabIndex = 8;
             // 
             // bind
             // 
-            this.bind.Location = new System.Drawing.Point(239, 26);
+            this.bind.Location = new System.Drawing.Point(220, 26);
             this.bind.Name = "bind";
             this.bind.Size = new System.Drawing.Size(75, 23);
             this.bind.TabIndex = 2;
@@ -207,7 +210,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(142, 12);
+            this.label5.Location = new System.Drawing.Point(133, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(26, 13);
             this.label5.TabIndex = 8;
@@ -224,9 +227,9 @@
             // 
             // sourcePort
             // 
-            this.sourcePort.Location = new System.Drawing.Point(145, 28);
+            this.sourcePort.Location = new System.Drawing.Point(136, 28);
             this.sourcePort.Name = "sourcePort";
-            this.sourcePort.Size = new System.Drawing.Size(82, 20);
+            this.sourcePort.Size = new System.Drawing.Size(75, 20);
             this.sourcePort.TabIndex = 1;
             // 
             // sourceIPAddress
@@ -239,6 +242,9 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.multicastGroup);
+            this.panel2.Controls.Add(this.add);
             this.panel2.Controls.Add(this.bind);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
@@ -251,12 +257,12 @@
             this.panel2.Location = new System.Drawing.Point(0, 1);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(390, 435);
-            this.panel2.TabIndex = 1;
+            this.panel2.TabIndex = 0;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 71);
+            this.label6.Location = new System.Drawing.Point(4, 99);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(352, 13);
             this.label6.TabIndex = 9;
@@ -268,7 +274,7 @@
             this.viewInHex.Location = new System.Drawing.Point(7, 406);
             this.viewInHex.Name = "viewInHex";
             this.viewInHex.Size = new System.Drawing.Size(153, 17);
-            this.viewInHex.TabIndex = 4;
+            this.viewInHex.TabIndex = 6;
             this.viewInHex.Text = "View as hexadecimal string";
             this.viewInHex.UseVisualStyleBackColor = true;
             // 
@@ -277,7 +283,7 @@
             this.clearButton.Location = new System.Drawing.Point(312, 403);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 5;
+            this.clearButton.TabIndex = 7;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
@@ -285,14 +291,14 @@
             // outputText
             // 
             this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputText.Location = new System.Drawing.Point(6, 87);
+            this.outputText.Location = new System.Drawing.Point(6, 115);
             this.outputText.MaxLength = 1000000;
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
             this.outputText.ReadOnly = true;
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(380, 310);
-            this.outputText.TabIndex = 3;
+            this.outputText.Size = new System.Drawing.Size(380, 282);
+            this.outputText.TabIndex = 5;
             // 
             // statusStrip1
             // 
@@ -308,6 +314,34 @@
             // 
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
+            // 
+            // add
+            // 
+            this.add.Enabled = false;
+            this.add.Location = new System.Drawing.Point(220, 69);
+            this.add.Name = "add";
+            this.add.Size = new System.Drawing.Size(75, 23);
+            this.add.TabIndex = 4;
+            this.add.Text = "Add";
+            this.add.UseVisualStyleBackColor = true;
+            this.add.Click += new System.EventHandler(this.add_Click);
+            // 
+            // multicastGroup
+            // 
+            this.multicastGroup.Enabled = false;
+            this.multicastGroup.Location = new System.Drawing.Point(7, 71);
+            this.multicastGroup.Name = "multicastGroup";
+            this.multicastGroup.Size = new System.Drawing.Size(119, 20);
+            this.multicastGroup.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 55);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(191, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Mutlicast Group Address e.g. 225.0.0.1";
             // 
             // MainForm
             // 
@@ -365,6 +399,9 @@
         private System.Windows.Forms.Button bind;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
+        private System.Windows.Forms.Button add;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox multicastGroup;
     }
 }
 
