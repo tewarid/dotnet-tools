@@ -52,13 +52,13 @@ namespace TcpTool
                 return;
             }
 
-            sendButton.Enabled = false;
-
             if (tcpClient == null || !tcpClient.Connected)
             {
                 CreateTcpClient();
                 if (tcpClient == null || !tcpClient.Connected) return;
             }
+
+            sendButton.Enabled = false;
 
             string text;
 
@@ -107,11 +107,12 @@ namespace TcpTool
             sendButton.Enabled = true;
         }
 
-        private void ShowReceivedData(byte [] data, int length)
+        private void ShowReceivedData(byte[] data, int length)
         {
             if (InvokeRequired)
             {
-                Invoke((MethodInvoker)delegate {
+                Invoke((MethodInvoker)delegate
+                {
                     ShowReceivedData(data, length);
                 });
                 return;
@@ -135,16 +136,17 @@ namespace TcpTool
                         continue;
                     }
                     else if (data[i] < (byte)' ' || data[i] > (byte)'~')
-                    { 
+                    {
                         data[i] = (byte)'.';
                     }
                 }
 
                 outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, length));
             }
-    }
+        }
 
-        private void CreateTcpClient() {
+        private void CreateTcpClient()
+        {
             if (tcpClient != null && tcpClient.Connected) return;
 
             try
@@ -199,6 +201,7 @@ namespace TcpTool
             listen.Enabled = false;
             destinationIPAddress.Enabled = false;
             destinationPort.Enabled = false;
+            close.Enabled = true;
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -227,7 +230,7 @@ namespace TcpTool
             {
                 IPEndPoint localEndPoint;
                 int port = 0;
-                if(!string.Empty.Equals(sourcePort.Text))
+                if (!string.Empty.Equals(sourcePort.Text))
                 {
                     port = int.Parse(sourcePort.Text);
                 }
@@ -262,13 +265,15 @@ namespace TcpTool
             sourcePort.Enabled = false;
             destinationIPAddress.Enabled = false;
             destinationPort.Enabled = false;
+            close.Enabled = true;
         }
 
         private void BeginAcceptCallback(IAsyncResult ar)
         {
-            if (InvokeRequired) 
+            if (InvokeRequired)
             {
-                Invoke((MethodInvoker)delegate {
+                Invoke((MethodInvoker)delegate
+                {
                     BeginAcceptCallback(ar);
                 });
                 return;
@@ -291,10 +296,37 @@ namespace TcpTool
                 ShowReceivedData(buffer, length);
                 tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            if (tcpClient != null)
+            {
+                tcpClient.Close();
+                tcpClient = null;
+                sourceIPAddress.Enabled = true;
+                sourcePort.Enabled = true;
+                sourcePort.Text = "";
+                destinationIPAddress.Enabled = true;
+                destinationPort.Enabled = true;
+                listen.Enabled = true;
+            }
+
+            if (listener != null)
+            {
+                listener.Stop();
+                listener = null;
+                listen.Enabled = true;
+                sourceIPAddress.Enabled = true;
+                sourcePort.Enabled = true;
+                destinationIPAddress.Enabled = true;
+                destinationPort.Enabled = true;
+            }
+            close.Enabled = false;
         }
     }
 }

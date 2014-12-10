@@ -30,23 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.listen = new System.Windows.Forms.Button();
             this.inputInHex = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.sourcePort = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.endOfLineUnix = new System.Windows.Forms.RadioButton();
             this.endOfLineDos = new System.Windows.Forms.RadioButton();
             this.endOfLineMac = new System.Windows.Forms.RadioButton();
             this.inputText = new System.Windows.Forms.TextBox();
-            this.sourceIPAddress = new System.Windows.Forms.ComboBox();
             this.sendButton = new System.Windows.Forms.Button();
             this.destinationPort = new System.Windows.Forms.TextBox();
             this.destinationIPAddress = new System.Windows.Forms.TextBox();
+            this.listen = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.sourcePort = new System.Windows.Forms.TextBox();
+            this.sourceIPAddress = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.viewInHex = new System.Windows.Forms.CheckBox();
@@ -54,6 +54,7 @@
             this.outputText = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.close = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -62,6 +63,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.close);
             this.panel1.Controls.Add(this.inputInHex);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -76,16 +78,6 @@
             this.panel1.Size = new System.Drawing.Size(389, 434);
             this.panel1.TabIndex = 0;
             // 
-            // listen
-            // 
-            this.listen.Location = new System.Drawing.Point(238, 25);
-            this.listen.Name = "listen";
-            this.listen.Size = new System.Drawing.Size(75, 23);
-            this.listen.TabIndex = 2;
-            this.listen.Text = "Listen";
-            this.listen.UseVisualStyleBackColor = true;
-            this.listen.Click += new System.EventHandler(this.listen_Click);
-            // 
             // inputInHex
             // 
             this.inputInHex.AutoSize = true;
@@ -96,15 +88,6 @@
             this.inputInHex.Text = "Send binary, text is a hexadecimal string (e.g. 0xDE 0xAD or DE AD)";
             this.inputInHex.UseVisualStyleBackColor = true;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(141, 11);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(26, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Port";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -113,15 +96,6 @@
             this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Text to send (UTF-8)";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 11);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Interface";
             // 
             // label2
             // 
@@ -132,13 +106,6 @@
             this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Destination Port";
-            // 
-            // sourcePort
-            // 
-            this.sourcePort.Location = new System.Drawing.Point(144, 27);
-            this.sourcePort.Name = "sourcePort";
-            this.sourcePort.Size = new System.Drawing.Size(82, 20);
-            this.sourcePort.TabIndex = 1;
             // 
             // label1
             // 
@@ -205,14 +172,6 @@
             this.inputText.Size = new System.Drawing.Size(374, 234);
             this.inputText.TabIndex = 8;
             // 
-            // sourceIPAddress
-            // 
-            this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.Location = new System.Drawing.Point(6, 27);
-            this.sourceIPAddress.Name = "sourceIPAddress";
-            this.sourceIPAddress.Size = new System.Drawing.Size(119, 21);
-            this.sourceIPAddress.TabIndex = 0;
-            // 
             // sendButton
             // 
             this.sendButton.Location = new System.Drawing.Point(309, 397);
@@ -236,6 +195,49 @@
             this.destinationIPAddress.Name = "destinationIPAddress";
             this.destinationIPAddress.Size = new System.Drawing.Size(134, 20);
             this.destinationIPAddress.TabIndex = 6;
+            // 
+            // listen
+            // 
+            this.listen.Location = new System.Drawing.Point(238, 25);
+            this.listen.Name = "listen";
+            this.listen.Size = new System.Drawing.Size(75, 23);
+            this.listen.TabIndex = 2;
+            this.listen.Text = "Listen";
+            this.listen.UseVisualStyleBackColor = true;
+            this.listen.Click += new System.EventHandler(this.listen_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(141, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(26, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Port";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 11);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Interface";
+            // 
+            // sourcePort
+            // 
+            this.sourcePort.Location = new System.Drawing.Point(144, 27);
+            this.sourcePort.Name = "sourcePort";
+            this.sourcePort.Size = new System.Drawing.Size(82, 20);
+            this.sourcePort.TabIndex = 1;
+            // 
+            // sourceIPAddress
+            // 
+            this.sourceIPAddress.FormattingEnabled = true;
+            this.sourceIPAddress.Location = new System.Drawing.Point(6, 27);
+            this.sourceIPAddress.Name = "sourceIPAddress";
+            this.sourceIPAddress.Size = new System.Drawing.Size(119, 21);
+            this.sourceIPAddress.TabIndex = 0;
             // 
             // panel2
             // 
@@ -309,6 +311,17 @@
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
             // 
+            // close
+            // 
+            this.close.Enabled = false;
+            this.close.Location = new System.Drawing.Point(272, 27);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(75, 23);
+            this.close.TabIndex = 14;
+            this.close.Text = "Close";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,6 +379,7 @@
         private System.Windows.Forms.Button listen;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
+        private System.Windows.Forms.Button close;
     }
 }
 
