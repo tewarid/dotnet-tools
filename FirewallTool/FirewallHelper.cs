@@ -9,29 +9,10 @@ namespace Connection
 {
     public class FirewallHelper
     {
-        private static FirewallHelper instance = null;
         private INetFwMgr mgr = null;
         private string applicationFullPath;
         private string appName;
    
-        //public static FirewallHelper Instance
-        //{
-        //    get
-        //    {
-        //        lock (typeof(FirewallHelper))
-        //        {
-        //            if (instance == null)
-        //            {
-        //                instance = new FirewallHelper();
-        //                applicationFullPath = Environment.GetCommandLineArgs()[0];
-        //                //To find the name of the executable
-        //                appName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
-        //            }
-        //            return instance;
-        //        }
-        //    }
-        //}
-
         public FirewallHelper()
         {
             Type netFwMgrType = Type.GetTypeFromProgID("HNetCfg.FwMgr", false);
@@ -90,7 +71,7 @@ namespace Connection
             if (!File.Exists(applicationFullPath))
                 throw new FileNotFoundException("File does not exist.", applicationFullPath);
             if (!IsFirewallInstalled)
-                throw new FirewallHelperException("Cannot remove authorization: Firewall is not installed.");
+                throw new FirewallHelperException("Cannot remove authorization, firewall is not enabled.");
 
             foreach (string appName in GetAuthorizedAppPaths())
             {
@@ -107,7 +88,7 @@ namespace Connection
         {
             // State checking
             if (!IsFirewallInstalled)
-                throw new FirewallHelperException("Cannot remove authorization: Firewall is not installed.");
+                throw new FirewallHelperException("Cannot remove authorization, firewall is not enabled.");
 
             ArrayList list = new ArrayList();
             //  Collect the paths of all authorized applications
@@ -239,9 +220,9 @@ namespace Connection
         #region Ports
 
         /// 
-        /// create authorization rule to especific port 
+        /// Create authorization rule for a specific  port 
         /// 
-        /// To verify app permissions with cmd prompt use command:
+        /// To view app permissions from command line use:
         /// "netsh advfirewall firewall show rule name=udptool.vshost.exe"
         /// 
         public void GrantPortAuthorization(string applicationFullPath, string usedPort, NET_FW_IP_PROTOCOL_ protocol)
@@ -251,11 +232,11 @@ namespace Connection
             if (usedPort == null)
                 throw new ArgumentNullException("usedPort");
             if (!IsFirewallInstalled)
-                throw new FirewallHelperException("Cannot grant authorization: Firewall is not installed.");
+                throw new FirewallHelperException("Cannot grant authorization, firewall is not enabled.");
             if (!AppAuthorizationsAllowed)
-                throw new FirewallHelperException("Application exemptions are not allowed.");
-            /*other properties like Protocol, IP Version can also be set accordingly
-            now add this to the GloballyOpenPorts collection */
+                throw new FirewallHelperException("Application exceptions are not allowed.");
+            // Other properties like Protocol, IP Version can also be set accordingly
+            // Now add this to the GloballyOpenPorts collection
             INetFwProfile profile = mgr.LocalPolicy.GetProfileByType(NET_FW_PROFILE_TYPE_.NET_FW_PROFILE_CURRENT);
 
             profile.GloballyOpenPorts.Add(GetPortObj(usedPort, protocol));
@@ -291,9 +272,9 @@ namespace Connection
         {
             Type tpResult = Type.GetTypeFromCLSID(new Guid("{0CA545C6-37AD-4A6C-BF92-9F7610067EF5}"));
             INetFwOpenPort port = (INetFwOpenPort)Activator.CreateInstance(tpResult);
-            port.Port = Int32.Parse(portNumber); /* port no */
-            port.Name = appName; /*name of the application using the port */
-            port.Enabled = true; /* enable the port */
+            port.Port = Int32.Parse(portNumber); // port number
+            port.Name = appName; // name of the application using the port
+            port.Enabled = true; // enable the port
             port.Protocol = ipProtocol;
             return port;
         }
