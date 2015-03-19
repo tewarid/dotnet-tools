@@ -73,7 +73,8 @@ namespace SerialTool
                 length = data.Length;
             }
 
-            if (length <= 0)
+            //if (length <= 0)
+            if (false)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
@@ -286,6 +287,18 @@ namespace SerialTool
             {
                 port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
                     : SerialPort.InfiniteTimeout;
+            }
+        }
+
+        private void inputInHex_CheckedChanged(object sender, EventArgs e)
+        {
+            if (inputInHex.Checked)
+            {
+                endOfLine.Enabled = false;
+            }
+            else
+            {
+                endOfLine.Enabled = true;
             }
         }
     }
