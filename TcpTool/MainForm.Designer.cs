@@ -30,11 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.close = new System.Windows.Forms.Button();
             this.inputInHex = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.endOfLine = new System.Windows.Forms.GroupBox();
             this.endOfLineUnix = new System.Windows.Forms.RadioButton();
             this.endOfLineDos = new System.Windows.Forms.RadioButton();
             this.endOfLineMac = new System.Windows.Forms.RadioButton();
@@ -54,9 +55,8 @@
             this.outputText = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.close = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.endOfLine.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +68,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.endOfLine);
             this.panel1.Controls.Add(this.inputText);
             this.panel1.Controls.Add(this.sendButton);
             this.panel1.Controls.Add(this.destinationPort);
@@ -78,15 +78,27 @@
             this.panel1.Size = new System.Drawing.Size(389, 434);
             this.panel1.TabIndex = 0;
             // 
+            // close
+            // 
+            this.close.Enabled = false;
+            this.close.Location = new System.Drawing.Point(272, 27);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(75, 23);
+            this.close.TabIndex = 14;
+            this.close.Text = "Close";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
+            // 
             // inputInHex
             // 
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(10, 373);
+            this.inputInHex.Location = new System.Drawing.Point(10, 325);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(347, 17);
-            this.inputInHex.TabIndex = 12;
+            this.inputInHex.TabIndex = 9;
             this.inputInHex.Text = "Send binary, text is a hexadecimal string (e.g. 0xDE 0xAD or DE AD)";
             this.inputInHex.UseVisualStyleBackColor = true;
+            this.inputInHex.CheckedChanged += new System.EventHandler(this.inputInHex_CheckedChanged);
             // 
             // label3
             // 
@@ -117,17 +129,17 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Destination IP Address";
             // 
-            // groupBox1
+            // endOfLine
             // 
-            this.groupBox1.Controls.Add(this.endOfLineUnix);
-            this.groupBox1.Controls.Add(this.endOfLineDos);
-            this.groupBox1.Controls.Add(this.endOfLineMac);
-            this.groupBox1.Location = new System.Drawing.Point(10, 320);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(247, 45);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "End of Line";
+            this.endOfLine.Controls.Add(this.endOfLineUnix);
+            this.endOfLine.Controls.Add(this.endOfLineDos);
+            this.endOfLine.Controls.Add(this.endOfLineMac);
+            this.endOfLine.Location = new System.Drawing.Point(10, 348);
+            this.endOfLine.Name = "endOfLine";
+            this.endOfLine.Size = new System.Drawing.Size(247, 45);
+            this.endOfLine.TabIndex = 9;
+            this.endOfLine.TabStop = false;
+            this.endOfLine.Text = "End of Line";
             // 
             // endOfLineUnix
             // 
@@ -311,17 +323,6 @@
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
             // 
-            // close
-            // 
-            this.close.Enabled = false;
-            this.close.Location = new System.Drawing.Point(272, 27);
-            this.close.Name = "close";
-            this.close.Size = new System.Drawing.Size(75, 23);
-            this.close.TabIndex = 14;
-            this.close.Text = "Close";
-            this.close.UseVisualStyleBackColor = true;
-            this.close.Click += new System.EventHandler(this.close_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,8 +342,8 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.endOfLine.ResumeLayout(false);
+            this.endOfLine.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -355,7 +356,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox endOfLine;
         private System.Windows.Forms.RadioButton endOfLineUnix;
         private System.Windows.Forms.RadioButton endOfLineDos;
         private System.Windows.Forms.RadioButton endOfLineMac;
