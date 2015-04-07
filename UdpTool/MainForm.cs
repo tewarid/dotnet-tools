@@ -270,5 +270,17 @@ namespace UdpTool
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void inputInHex_CheckedChanged(object sender, EventArgs e)
+        {
+            if (inputInHex.Checked)
+            {
+                endOfLine.Enabled = false;
+            }
+            else
+            {
+                endOfLine.Enabled = true;
+            }
+        }
     }
 }

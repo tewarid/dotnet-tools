@@ -34,7 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.endOfLine = new System.Windows.Forms.GroupBox();
             this.endOfLineUnix = new System.Windows.Forms.RadioButton();
             this.endOfLineDos = new System.Windows.Forms.RadioButton();
             this.endOfLineMac = new System.Windows.Forms.RadioButton();
@@ -48,17 +48,17 @@
             this.sourcePort = new System.Windows.Forms.TextBox();
             this.sourceIPAddress = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.multicastGroup = new System.Windows.Forms.TextBox();
+            this.add = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.viewInHex = new System.Windows.Forms.CheckBox();
             this.clearButton = new System.Windows.Forms.Button();
             this.outputText = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.add = new System.Windows.Forms.Button();
-            this.multicastGroup = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.endOfLine.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +69,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.endOfLine);
             this.panel1.Controls.Add(this.inputText);
             this.panel1.Controls.Add(this.sendButton);
             this.panel1.Controls.Add(this.destinationPort);
@@ -82,12 +82,13 @@
             // inputInHex
             // 
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(8, 380);
+            this.inputInHex.Location = new System.Drawing.Point(8, 329);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(347, 17);
-            this.inputInHex.TabIndex = 14;
+            this.inputInHex.TabIndex = 9;
             this.inputInHex.Text = "Send binary, text is a hexadecimal string (e.g. 0xDE 0xAD or DE AD)";
             this.inputInHex.UseVisualStyleBackColor = true;
+            this.inputInHex.CheckedChanged += new System.EventHandler(this.inputInHex_CheckedChanged);
             // 
             // label3
             // 
@@ -118,17 +119,17 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Destination IP Address";
             // 
-            // groupBox1
+            // endOfLine
             // 
-            this.groupBox1.Controls.Add(this.endOfLineUnix);
-            this.groupBox1.Controls.Add(this.endOfLineDos);
-            this.groupBox1.Controls.Add(this.endOfLineMac);
-            this.groupBox1.Location = new System.Drawing.Point(8, 329);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(254, 45);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "End of Line";
+            this.endOfLine.Controls.Add(this.endOfLineUnix);
+            this.endOfLine.Controls.Add(this.endOfLineDos);
+            this.endOfLine.Controls.Add(this.endOfLineMac);
+            this.endOfLine.Location = new System.Drawing.Point(8, 352);
+            this.endOfLine.Name = "endOfLine";
+            this.endOfLine.Size = new System.Drawing.Size(254, 45);
+            this.endOfLine.TabIndex = 9;
+            this.endOfLine.TabStop = false;
+            this.endOfLine.Text = "End of Line";
             // 
             // endOfLineUnix
             // 
@@ -259,6 +260,34 @@
             this.panel2.Size = new System.Drawing.Size(390, 435);
             this.panel2.TabIndex = 0;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 55);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(191, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Mutlicast Group Address e.g. 225.0.0.1";
+            // 
+            // multicastGroup
+            // 
+            this.multicastGroup.Enabled = false;
+            this.multicastGroup.Location = new System.Drawing.Point(7, 71);
+            this.multicastGroup.Name = "multicastGroup";
+            this.multicastGroup.Size = new System.Drawing.Size(119, 20);
+            this.multicastGroup.TabIndex = 3;
+            // 
+            // add
+            // 
+            this.add.Enabled = false;
+            this.add.Location = new System.Drawing.Point(220, 69);
+            this.add.Name = "add";
+            this.add.Size = new System.Drawing.Size(75, 23);
+            this.add.TabIndex = 4;
+            this.add.Text = "Add";
+            this.add.UseVisualStyleBackColor = true;
+            this.add.Click += new System.EventHandler(this.add_Click);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -315,34 +344,6 @@
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
             // 
-            // add
-            // 
-            this.add.Enabled = false;
-            this.add.Location = new System.Drawing.Point(220, 69);
-            this.add.Name = "add";
-            this.add.Size = new System.Drawing.Size(75, 23);
-            this.add.TabIndex = 4;
-            this.add.Text = "Add";
-            this.add.UseVisualStyleBackColor = true;
-            this.add.Click += new System.EventHandler(this.add_Click);
-            // 
-            // multicastGroup
-            // 
-            this.multicastGroup.Enabled = false;
-            this.multicastGroup.Location = new System.Drawing.Point(7, 71);
-            this.multicastGroup.Name = "multicastGroup";
-            this.multicastGroup.Size = new System.Drawing.Size(119, 20);
-            this.multicastGroup.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 55);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(191, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Mutlicast Group Address e.g. 225.0.0.1";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,8 +362,8 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.endOfLine.ResumeLayout(false);
+            this.endOfLine.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -375,7 +376,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox endOfLine;
         private System.Windows.Forms.RadioButton endOfLineUnix;
         private System.Windows.Forms.RadioButton endOfLineDos;
         private System.Windows.Forms.RadioButton endOfLineMac;
