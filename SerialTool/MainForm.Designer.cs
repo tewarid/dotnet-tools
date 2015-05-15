@@ -259,7 +259,6 @@
             this.baudRate.Name = "baudRate";
             this.baudRate.Size = new System.Drawing.Size(119, 21);
             this.baudRate.TabIndex = 2;
-            this.baudRate.Text = "115200";
             // 
             // openButton
             // 

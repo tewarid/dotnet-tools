@@ -46,7 +46,7 @@ namespace SerialTool
 
             if (endOfLineMac.Checked) // MAC - CR
             {
-                text = inputText.Text.Replace("\r\n", "\r");
+                text = inputText.Text.Replace(Environment.NewLine, "\r");
             }
             else if (endOfLineDos.Checked) // DOS - CR/LF
             {
@@ -54,7 +54,7 @@ namespace SerialTool
             }
             else // Unix - LF
             {
-                text = inputText.Text.Replace("\r\n", "\n");
+                text = inputText.Text.Replace(Environment.NewLine, "\n");
             }
 
             byte[] data;
@@ -73,8 +73,7 @@ namespace SerialTool
                 length = data.Length;
             }
 
-            //if (length <= 0)
-            if (false)
+            if (length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
@@ -97,11 +96,8 @@ namespace SerialTool
                 {
                     MessageBox.Show(ex.Message);
                 }
-                finally
-                {
-                    sendButton.Enabled = true;
-                }
             }
+            sendButton.Enabled = true;
         }
 
         private void ShowReceivedData(byte[] data, int length)
@@ -116,11 +112,14 @@ namespace SerialTool
 
             if (viewInHex.Checked)
             {
+                StringBuilder sb = new StringBuilder(length);
                 foreach (byte b in data)
                 {
-                    outputText.AppendText(string.Format("{0:X2} ", b));
+                    sb.Append(string.Format("{0:X2} ", b));
                 }
-                outputText.AppendText("\r\n\r\n");
+                outputText.AppendText(sb.ToString());
+                outputText.AppendText(Environment.NewLine);
+                outputText.AppendText(Environment.NewLine);
             }
             else
             {
@@ -130,11 +129,11 @@ namespace SerialTool
                     switch (data[i])
                     {
                         case (byte)'\r':
-                            output.Append("\r\n");
+                            output.Append(Environment.NewLine);
                             break;
 
                         case (byte)'\n':
-                            if (i > 0 && data[i - 1] != '\r') output.Append("\r\n");
+                            if (i > 0 && data[i - 1] != '\r') output.Append(Environment.NewLine);
                             break;
 
                         default:
