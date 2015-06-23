@@ -125,7 +125,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\HexToBin\HexToBinLib\HexToBinLib.csproj">
+    <ProjectReference Include="..\HexToBin\HexToBinLib\HexToBinLib.csproj">
       <Project>{78e37ab9-1a85-4e08-8f72-fa3bc098a4af}</Project>
       <Name>HexToBinLib</Name>
     </ProjectReference>
