@@ -98,9 +98,16 @@ namespace TcpTool
             }
             else
             {
-                tickcount = Environment.TickCount;
-                tcpClient.GetStream().Write(data, 0, length);
-                tickcount = Environment.TickCount - tickcount;
+                try
+                {
+                    tickcount = Environment.TickCount;
+                    tcpClient.GetStream().Write(data, 0, length);
+                    tickcount = Environment.TickCount - tickcount;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
+                }
             }
 
             status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", length, tickcount);
