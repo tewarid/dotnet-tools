@@ -48,7 +48,7 @@ namespace TcpTool
         {
             if (listener != null && tcpClient == null)
             {
-                MessageBox.Show("Listening for incoming TCP connection. Try again after a client has connected.");
+                MessageBox.Show(this, "Listening for incoming TCP connection. Try again after a client has connected.", this.Text);
                 return;
             }
 
@@ -290,15 +290,11 @@ namespace TcpTool
 
         private void ReadCallback(IAsyncResult ar)
         {
-            try
+            int length = tcpClient.GetStream().EndRead(ar);
+            if (length > 0)
             {
-                int length = tcpClient.GetStream().EndRead(ar);
                 ShowReceivedData(buffer, length);
                 tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
             }
         }
 
