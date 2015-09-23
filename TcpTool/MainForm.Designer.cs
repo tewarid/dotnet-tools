@@ -47,7 +47,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.sourcePort = new System.Windows.Forms.TextBox();
-            this.sourceIPAddress = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.viewInHex = new System.Windows.Forms.CheckBox();
@@ -55,6 +54,7 @@
             this.outputText = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sourceIPAddress = new Common.InterfaceSelectorComboBox();
             this.panel1.SuspendLayout();
             this.endOfLine.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -243,16 +243,9 @@
             this.sourcePort.Size = new System.Drawing.Size(82, 20);
             this.sourcePort.TabIndex = 1;
             // 
-            // sourceIPAddress
-            // 
-            this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.Location = new System.Drawing.Point(6, 27);
-            this.sourceIPAddress.Name = "sourceIPAddress";
-            this.sourceIPAddress.Size = new System.Drawing.Size(119, 21);
-            this.sourceIPAddress.TabIndex = 0;
-            // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.sourceIPAddress);
             this.panel2.Controls.Add(this.listen);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
@@ -260,7 +253,6 @@
             this.panel2.Controls.Add(this.clearButton);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.outputText);
-            this.panel2.Controls.Add(this.sourceIPAddress);
             this.panel2.Controls.Add(this.sourcePort);
             this.panel2.Location = new System.Drawing.Point(2, 2);
             this.panel2.Name = "panel2";
@@ -323,6 +315,14 @@
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
             // 
+            // sourceIPAddress
+            // 
+            this.sourceIPAddress.FormattingEnabled = true;
+            this.sourceIPAddress.Location = new System.Drawing.Point(6, 25);
+            this.sourceIPAddress.Name = "sourceIPAddress";
+            this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
+            this.sourceIPAddress.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,7 +367,6 @@
         private System.Windows.Forms.TextBox destinationIPAddress;
         private System.Windows.Forms.TextBox outputText;
         private System.Windows.Forms.TextBox sourcePort;
-        private System.Windows.Forms.ComboBox sourceIPAddress;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.CheckBox viewInHex;
         private System.Windows.Forms.Label label3;
@@ -381,6 +380,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.Button close;
+        private Common.InterfaceSelectorComboBox sourceIPAddress;
     }
 }
 

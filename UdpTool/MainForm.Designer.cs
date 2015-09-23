@@ -46,8 +46,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.sourcePort = new System.Windows.Forms.TextBox();
-            this.sourceIPAddress = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.sourceIPAddress = new Common.InterfaceSelectorComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.multicastGroup = new System.Windows.Forms.TextBox();
             this.add = new System.Windows.Forms.Button();
@@ -233,16 +233,9 @@
             this.sourcePort.Size = new System.Drawing.Size(75, 20);
             this.sourcePort.TabIndex = 1;
             // 
-            // sourceIPAddress
-            // 
-            this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.Location = new System.Drawing.Point(7, 28);
-            this.sourceIPAddress.Name = "sourceIPAddress";
-            this.sourceIPAddress.Size = new System.Drawing.Size(119, 21);
-            this.sourceIPAddress.TabIndex = 0;
-            // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.sourceIPAddress);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.multicastGroup);
             this.panel2.Controls.Add(this.add);
@@ -253,12 +246,19 @@
             this.panel2.Controls.Add(this.clearButton);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.outputText);
-            this.panel2.Controls.Add(this.sourceIPAddress);
             this.panel2.Controls.Add(this.sourcePort);
             this.panel2.Location = new System.Drawing.Point(0, 1);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(390, 435);
             this.panel2.TabIndex = 0;
+            // 
+            // sourceIPAddress
+            // 
+            this.sourceIPAddress.FormattingEnabled = true;
+            this.sourceIPAddress.Location = new System.Drawing.Point(7, 27);
+            this.sourceIPAddress.Name = "sourceIPAddress";
+            this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
+            this.sourceIPAddress.TabIndex = 0;
             // 
             // label7
             // 
@@ -359,7 +359,6 @@
             this.Name = "MainForm";
             this.Text = "UDP Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.endOfLine.ResumeLayout(false);
@@ -387,7 +386,6 @@
         private System.Windows.Forms.TextBox destinationIPAddress;
         private System.Windows.Forms.TextBox outputText;
         private System.Windows.Forms.TextBox sourcePort;
-        private System.Windows.Forms.ComboBox sourceIPAddress;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.CheckBox viewInHex;
         private System.Windows.Forms.Label label3;
@@ -403,6 +401,7 @@
         private System.Windows.Forms.Button add;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox multicastGroup;
+        private Common.InterfaceSelectorComboBox sourceIPAddress;
     }
 }
 
