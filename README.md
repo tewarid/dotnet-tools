@@ -1,9 +1,21 @@
-TcpTool
-=======
+Set of tools for network communications written primarily for Windows in .NET.
 
-A simple tool to send/receive data over TCP. Built with Visual Studio .NET. To check build status and download latest binary head to https://ci.appveyor.com/project/tewarid/tcptool/build/artifacts.
+Firewall Tool
+=============
+Simple tool to add/remove exceptions to Windows Firewall.
 
-UdpTool
-=======
+ICMP Tool
+=========
+A simple tool to send/receive ICMP messages.
 
-A simple tool to send/receive data using UDP/IP. Check build status and download latest working build from https://ci.appveyor.com/project/tewarid/udptool/build/artifacts.
+Serial Tool
+===========
+A simple tool to send/receive data using a serial port.
+
+TCP Tool
+========
+A simple tool to send/receive data over TCP/IP.
+
+UDP Tool
+========
+A simple tool to send/receive data using UDP/IP.
