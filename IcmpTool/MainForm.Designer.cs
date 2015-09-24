@@ -39,8 +39,8 @@
             this.destinationIPAddress = new System.Windows.Forms.TextBox();
             this.bind = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.sourceIPAddress = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.sourceIPAddress = new Common.InterfaceSelectorComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.clearButton = new System.Windows.Forms.Button();
             this.outputText = new System.Windows.Forms.TextBox();
@@ -148,26 +148,26 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Interface (optional)";
             // 
-            // sourceIPAddress
-            // 
-            this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.Location = new System.Drawing.Point(9, 24);
-            this.sourceIPAddress.Name = "sourceIPAddress";
-            this.sourceIPAddress.Size = new System.Drawing.Size(119, 21);
-            this.sourceIPAddress.TabIndex = 0;
-            // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.sourceIPAddress);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.clearButton);
             this.panel2.Controls.Add(this.bind);
             this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.sourceIPAddress);
             this.panel2.Location = new System.Drawing.Point(1, 1);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(384, 439);
             this.panel2.TabIndex = 0;
+            // 
+            // sourceIPAddress
+            // 
+            this.sourceIPAddress.FormattingEnabled = true;
+            this.sourceIPAddress.Location = new System.Drawing.Point(10, 24);
+            this.sourceIPAddress.Name = "sourceIPAddress";
+            this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
+            this.sourceIPAddress.TabIndex = 0;
             // 
             // label6
             // 
@@ -211,6 +211,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ICMP Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -230,7 +231,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox destinationIPAddress;
         private System.Windows.Forms.TextBox outputText;
-        private System.Windows.Forms.ComboBox sourceIPAddress;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
@@ -239,6 +239,7 @@
         private System.Windows.Forms.Button bind;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox requestType;
+        private Common.InterfaceSelectorComboBox sourceIPAddress;
     }
 }
 

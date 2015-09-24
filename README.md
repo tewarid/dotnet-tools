@@ -19,3 +19,5 @@ A simple tool to send/receive data over TCP/IP.
 UDP Tool
 ========
 A simple tool to send/receive data using UDP/IP.
+
+To get the latest working build binary package head to https://ci.appveyor.com/project/tewarid/nettools/build/artifacts.

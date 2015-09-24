@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexToBinLib", "HexToBin\Hex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdpTool", "UdpTool\UdpTool.csproj", "{3455D706-1959-442A-A53F-0B4479D94F16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.csproj", "{E1FEE78B-CBEC-4A3E-9252-581406417CE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{E1FEE78B-CBEC-4A3E-9252-581406417CE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirewallTool", "FirewallTool\FirewallTool.csproj", "{BF6B0BF8-9FC0-4701-A7CE-FA66EA86C95E}"
 EndProject

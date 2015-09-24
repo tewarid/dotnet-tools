@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Text;
 using System.Windows.Forms;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
 using System.Net;
-using System.Globalization;
 using System.IO;
 using HexToBinLib;
 
@@ -20,25 +16,9 @@ namespace IcmpTool
             InitializeComponent();
         }
 
-        private void ShowInterfaceAddresses()
-        {
-            NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
-            foreach (NetworkInterface iface in interfaces)
-            {
-                UnicastIPAddressInformationCollection addresses = iface.GetIPProperties().UnicastAddresses;
-                foreach (UnicastIPAddressInformation address in addresses)
-                {
-                    if (address.Address.AddressFamily == AddressFamily.InterNetwork)
-                        sourceIPAddress.Items.Add(address.Address);
-                }
-            }
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ShowInterfaceAddresses();
         }
-
 
         private void sendButton_Click(object sender, EventArgs e)
         {
