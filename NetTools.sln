@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirewallTool", "FirewallTool\FirewallTool.csproj", "{BF6B0BF8-9FC0-4701-A7CE-FA66EA86C95E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IcmpTool", "IcmpTool\IcmpTool.csproj", "{5E693A9D-F2FF-4740-A95B-CB08B5EF2C8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BF6B0BF8-9FC0-4701-A7CE-FA66EA86C95E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF6B0BF8-9FC0-4701-A7CE-FA66EA86C95E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF6B0BF8-9FC0-4701-A7CE-FA66EA86C95E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E693A9D-F2FF-4740-A95B-CB08B5EF2C8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E693A9D-F2FF-4740-A95B-CB08B5EF2C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E693A9D-F2FF-4740-A95B-CB08B5EF2C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E693A9D-F2FF-4740-A95B-CB08B5EF2C8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
