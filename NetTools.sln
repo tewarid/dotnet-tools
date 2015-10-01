@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IcmpTool", "IcmpTool\IcmpTo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialTool", "SerialTool\SerialTool.csproj", "{74FAAD3B-B66C-40BD-ACD3-C8BAEA47B8A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketTool", "WebSocketTool\WebSocketTool.csproj", "{23B1ADCA-39FF-4FBF-B336-770FB124C9F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{74FAAD3B-B66C-40BD-ACD3-C8BAEA47B8A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74FAAD3B-B66C-40BD-ACD3-C8BAEA47B8A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74FAAD3B-B66C-40BD-ACD3-C8BAEA47B8A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23B1ADCA-39FF-4FBF-B336-770FB124C9F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23B1ADCA-39FF-4FBF-B336-770FB124C9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23B1ADCA-39FF-4FBF-B336-770FB124C9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B1ADCA-39FF-4FBF-B336-770FB124C9F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

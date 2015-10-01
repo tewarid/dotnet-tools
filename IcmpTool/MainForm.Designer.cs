@@ -65,7 +65,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 52);
+            this.label2.Location = new System.Drawing.Point(2, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(311, 13);
             this.label2.TabIndex = 13;
@@ -164,6 +164,10 @@
             // sourceIPAddress
             // 
             this.sourceIPAddress.FormattingEnabled = true;
+            this.sourceIPAddress.Items.AddRange(new object[] {
+            ((object)(resources.GetObject("sourceIPAddress.Items"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items1"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items2")))});
             this.sourceIPAddress.Location = new System.Drawing.Point(10, 24);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
