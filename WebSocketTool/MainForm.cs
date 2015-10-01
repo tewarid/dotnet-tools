@@ -14,10 +14,9 @@ namespace WebSocketTool
 {
     public partial class MainForm : Form
     {
-        ClientWebSocket wsClient;
-
         delegate void ShowReceivedDataDelegate(byte[] data, int length);
-        byte[] buffer = new byte[100];
+        private ClientWebSocket wsClient;
+        private byte[] buffer = new byte[100];
 
         public MainForm()
         {
@@ -30,10 +29,10 @@ namespace WebSocketTool
 
         private async void sendButton_Click(object sender, EventArgs e)
         {
-            if (wsClient == null || wsClient.State == WebSocketState.Closed)
+            await CreateWebSocketClient();
+            if (wsClient == null || wsClient.State != WebSocketState.Open)
             {
-                await CreateWebSocketClient();
-                if (wsClient == null || wsClient.State == WebSocketState.Closed) return;
+                return;
             }
 
             sendButton.Enabled = false;
@@ -134,6 +133,7 @@ namespace WebSocketTool
 
         private async Task CreateWebSocketClient()
         {
+            if (wsClient != null && wsClient.State == WebSocketState.Open) return;
             wsClient = new ClientWebSocket();
             connect.Enabled = false;
             location.ReadOnly = true;
@@ -145,9 +145,9 @@ namespace WebSocketTool
                 await wsClient.ConnectAsync(uri, token);
                 ReadCallback();
             }
-            catch (WebSocketException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, this.Text);
                 connect.Enabled = true;
                 location.ReadOnly = false;
             }
@@ -158,17 +158,12 @@ namespace WebSocketTool
             outputText.Clear();
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (wsClient != null && wsClient.State != WebSocketState.Closed)
-            {
-                CancellationTokenSource source = new CancellationTokenSource();
-                CancellationToken token = source.Token;
-                wsClient.CloseAsync(WebSocketCloseStatus.NormalClosure, "bye", token);
-            }
+            await CloseWebSocketClient();
         }
 
-        private async Task ReadCallback()
+        private async void ReadCallback()
         {
             CancellationTokenSource source = new CancellationTokenSource();
             CancellationToken token = source.Token;
@@ -176,6 +171,14 @@ namespace WebSocketTool
             if (result.Count > 0)
             {
                 ShowReceivedData(buffer, result.Count);
+            }
+            if (wsClient.State != WebSocketState.Open)
+            {
+                connect.Enabled = true;
+                location.ReadOnly = false;
+                MessageBox.Show(string.Format("WebSocket closed due to {0}.", 
+                    wsClient.CloseStatus), this.Text);
+                return;
             }
             ReadCallback();
         }
@@ -194,9 +197,23 @@ namespace WebSocketTool
 
         private async void connect_Click(object sender, EventArgs e)
         {
-            if (wsClient == null || wsClient.State == WebSocketState.Closed)
+            await CreateWebSocketClient();
+        }
+
+        private async void closeButton_Click(object sender, EventArgs e)
+        {
+            await CloseWebSocketClient();
+        }
+
+        private async Task CloseWebSocketClient()
+        {
+            if (wsClient != null && wsClient.State == WebSocketState.Open)
             {
-                await CreateWebSocketClient();
+                CancellationTokenSource source = new CancellationTokenSource();
+                CancellationToken token = source.Token;
+                await wsClient.CloseAsync(WebSocketCloseStatus.NormalClosure, "bye", token);
+                connect.Enabled = true;
+                location.ReadOnly = false;
             }
         }
     }
