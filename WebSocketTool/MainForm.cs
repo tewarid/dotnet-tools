@@ -1,9 +1,6 @@
 ﻿using HexToBinLib;
 using System;
 using System.IO;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
@@ -143,7 +140,7 @@ namespace WebSocketTool
                 CancellationTokenSource source = new CancellationTokenSource();
                 CancellationToken token = source.Token;
                 await wsClient.ConnectAsync(uri, token);
-                ReadCallback();
+                Task task = ReadCallback();
             }
             catch (Exception ex)
             {
@@ -163,7 +160,7 @@ namespace WebSocketTool
             await CloseWebSocketClient();
         }
 
-        private async void ReadCallback()
+        private async Task ReadCallback()
         {
             CancellationTokenSource source = new CancellationTokenSource();
             CancellationToken token = source.Token;
@@ -176,11 +173,12 @@ namespace WebSocketTool
             {
                 connect.Enabled = true;
                 location.ReadOnly = false;
-                MessageBox.Show(string.Format("WebSocket closed due to {0}.", 
-                    wsClient.CloseStatus), this.Text);
+                if (wsClient.CloseStatus != WebSocketCloseStatus.NormalClosure)
+                    MessageBox.Show(string.Format("WebSocket closed due to {0}.", 
+                        wsClient.CloseStatus), this.Text);
                 return;
             }
-            ReadCallback();
+            Task task = ReadCallback();
         }
 
         private void inputInHex_CheckedChanged(object sender, EventArgs e)
