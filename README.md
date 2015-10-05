@@ -20,6 +20,6 @@ UDP Tool
 ========
 A simple tool to send/receive data using UDP/IP.
 
-WebScoket Tool
+WebSocket Tool
 ==============
 Connect and send/receive binary data using WebSocket.
