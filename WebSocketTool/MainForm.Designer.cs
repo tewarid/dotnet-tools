@@ -41,6 +41,7 @@
             this.connect = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.closeButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.viewInHex = new System.Windows.Forms.CheckBox();
             this.clearButton = new System.Windows.Forms.Button();
@@ -48,7 +49,6 @@
             this.location = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.closeButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.endOfLine.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -70,7 +70,7 @@
             // inputInHex
             // 
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(10, 325);
+            this.inputInHex.Location = new System.Drawing.Point(10, 361);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(347, 17);
             this.inputInHex.TabIndex = 9;
@@ -92,7 +92,7 @@
             this.endOfLine.Controls.Add(this.endOfLineUnix);
             this.endOfLine.Controls.Add(this.endOfLineDos);
             this.endOfLine.Controls.Add(this.endOfLineMac);
-            this.endOfLine.Location = new System.Drawing.Point(10, 348);
+            this.endOfLine.Location = new System.Drawing.Point(10, 384);
             this.endOfLine.Name = "endOfLine";
             this.endOfLine.Size = new System.Drawing.Size(247, 45);
             this.endOfLine.TabIndex = 9;
@@ -139,12 +139,12 @@
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputText.Size = new System.Drawing.Size(374, 287);
+            this.inputText.Size = new System.Drawing.Size(374, 328);
             this.inputText.TabIndex = 8;
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(309, 397);
+            this.sendButton.Location = new System.Drawing.Point(311, 406);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 13;
@@ -154,7 +154,7 @@
             // 
             // connect
             // 
-            this.connect.Location = new System.Drawing.Point(230, 75);
+            this.connect.Location = new System.Drawing.Point(230, 93);
             this.connect.Name = "connect";
             this.connect.Size = new System.Drawing.Size(75, 23);
             this.connect.TabIndex = 1;
@@ -186,10 +186,20 @@
             this.panel2.Size = new System.Drawing.Size(389, 434);
             this.panel2.TabIndex = 1;
             // 
+            // closeButton
+            // 
+            this.closeButton.Location = new System.Drawing.Point(311, 93);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 2;
+            this.closeButton.Text = "Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 101);
+            this.label6.Location = new System.Drawing.Point(3, 119);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(352, 13);
             this.label6.TabIndex = 9;
@@ -198,7 +208,7 @@
             // viewInHex
             // 
             this.viewInHex.AutoSize = true;
-            this.viewInHex.Location = new System.Drawing.Point(6, 403);
+            this.viewInHex.Location = new System.Drawing.Point(6, 412);
             this.viewInHex.Name = "viewInHex";
             this.viewInHex.Size = new System.Drawing.Size(153, 17);
             this.viewInHex.TabIndex = 4;
@@ -207,7 +217,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(311, 399);
+            this.clearButton.Location = new System.Drawing.Point(311, 408);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
             this.clearButton.TabIndex = 5;
@@ -218,13 +228,13 @@
             // outputText
             // 
             this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputText.Location = new System.Drawing.Point(6, 117);
+            this.outputText.Location = new System.Drawing.Point(6, 135);
             this.outputText.MaxLength = 1000000;
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
             this.outputText.ReadOnly = true;
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(380, 276);
+            this.outputText.Size = new System.Drawing.Size(380, 267);
             this.outputText.TabIndex = 3;
             // 
             // location
@@ -232,7 +242,7 @@
             this.location.Location = new System.Drawing.Point(6, 27);
             this.location.Multiline = true;
             this.location.Name = "location";
-            this.location.Size = new System.Drawing.Size(380, 42);
+            this.location.Size = new System.Drawing.Size(380, 60);
             this.location.TabIndex = 0;
             this.location.Text = "wss://echo.websocket.org";
             // 
@@ -250,16 +260,6 @@
             // 
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
-            // 
-            // closeButton
-            // 
-            this.closeButton.Location = new System.Drawing.Point(311, 75);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 2;
-            this.closeButton.Text = "Close";
-            this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // MainForm
             // 

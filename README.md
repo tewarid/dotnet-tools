@@ -1,23 +1,25 @@
-Set of tools for network communications written primarily for Windows in .NET.
+Set of tools for network communications written primarily for Windows in .NET. To get the latest working build binary package head to https://ci.appveyor.com/project/tewarid/nettools/build/artifacts.
 
 Firewall Tool
 =============
-Simple tool to add/remove exceptions to Windows Firewall.
+Add/remove exceptions to Windows Firewall.
 
 ICMP Tool
 =========
-A simple tool to send/receive ICMP messages.
+Send/receive ICMP messages using raw sockets (requires admin privilege).
 
 Serial Tool
 ===========
-A simple tool to send/receive data using a serial port.
+Send/receive data using a serial port.
 
 TCP Tool
 ========
-A simple tool to send/receive data over TCP/IP.
+Send/receive data over TCP/IP.
 
 UDP Tool
 ========
 A simple tool to send/receive data using UDP/IP.
 
-To get the latest working build binary package head to https://ci.appveyor.com/project/tewarid/nettools/build/artifacts.
+WebScoket Tool
+==============
+Connect and send/receive binary data using WebSocket.
