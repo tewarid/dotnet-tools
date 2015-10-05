@@ -14,6 +14,7 @@ namespace WebSocketTool
         delegate void ShowReceivedDataDelegate(byte[] data, int length);
         private ClientWebSocket wsClient;
         private byte[] buffer = new byte[100];
+        private bool newMessage = true;
 
         public MainForm()
         {
@@ -77,7 +78,8 @@ namespace WebSocketTool
                     tickcount = Environment.TickCount;
                     CancellationTokenSource source = new CancellationTokenSource();
                     CancellationToken token = source.Token;
-                    await wsClient.SendAsync(new ArraySegment<byte>(data, 0, length), WebSocketMessageType.Binary, true, token);
+                    await wsClient.SendAsync(new ArraySegment<byte>(data, 0, length), 
+                        WebSocketMessageType.Binary, true, token);
                     tickcount = Environment.TickCount - tickcount;
                 }
                 catch (Exception ex)
@@ -86,19 +88,26 @@ namespace WebSocketTool
                 }
             }
 
-            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", length, tickcount);
+            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", 
+                length, tickcount);
             sendButton.Enabled = true;
         }
 
-        private void ShowReceivedData(byte[] data, int length)
+        private void ShowReceivedData(byte[] data, int length, bool lastMessage)
         {
             if (InvokeRequired)
             {
                 Invoke((MethodInvoker)delegate
                 {
-                    ShowReceivedData(data, length);
+                    ShowReceivedData(data, length, lastMessage);
                 });
                 return;
+            }
+
+            if (newMessage)
+            {
+                outputText.AppendText(string.Format("Message Received on {0}:{1}", 
+                    DateTime.Now, Environment.NewLine));
             }
 
             if (viewInHex.Checked)
@@ -126,6 +135,14 @@ namespace WebSocketTool
 
                 outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, length));
             }
+
+            if (lastMessage)
+            {
+                outputText.AppendText(Environment.NewLine);
+                outputText.AppendText(Environment.NewLine);
+            }
+
+            newMessage = lastMessage;
         }
 
         private async Task CreateWebSocketClient()
@@ -167,7 +184,7 @@ namespace WebSocketTool
             WebSocketReceiveResult result = await wsClient.ReceiveAsync(new ArraySegment<byte>(buffer), token);
             if (result.Count > 0)
             {
-                ShowReceivedData(buffer, result.Count);
+                ShowReceivedData(buffer, result.Count, result.EndOfMessage);
             }
             if (wsClient.State != WebSocketState.Open)
             {
@@ -210,9 +227,9 @@ namespace WebSocketTool
                 CancellationTokenSource source = new CancellationTokenSource();
                 CancellationToken token = source.Token;
                 await wsClient.CloseAsync(WebSocketCloseStatus.NormalClosure, "bye", token);
-                connect.Enabled = true;
-                location.ReadOnly = false;
             }
+            connect.Enabled = true;
+            location.ReadOnly = false;
         }
     }
 }
