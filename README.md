@@ -16,4 +16,4 @@ Send/receive data over TCP/IP.
 Send/receive data using UDP/IP.
 
 ### WebSocket Tool
-Connect and send/receive binary data using WebSocket.
+Connect and send/receive binary data using WebSocket. Requires Windows 8 or better.
