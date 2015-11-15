@@ -85,7 +85,7 @@
             this.inputInHex.Location = new System.Drawing.Point(8, 329);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(347, 17);
-            this.inputInHex.TabIndex = 9;
+            this.inputInHex.TabIndex = 11;
             this.inputInHex.Text = "Send binary, text is a hexadecimal string (e.g. 0xDE 0xAD or DE AD)";
             this.inputInHex.UseVisualStyleBackColor = true;
             this.inputInHex.CheckedChanged += new System.EventHandler(this.inputInHex_CheckedChanged);
@@ -127,7 +127,7 @@
             this.endOfLine.Location = new System.Drawing.Point(8, 352);
             this.endOfLine.Name = "endOfLine";
             this.endOfLine.Size = new System.Drawing.Size(254, 45);
-            this.endOfLine.TabIndex = 9;
+            this.endOfLine.TabIndex = 12;
             this.endOfLine.TabStop = false;
             this.endOfLine.Text = "End of Line";
             // 
@@ -147,7 +147,7 @@
             this.endOfLineDos.Location = new System.Drawing.Point(157, 19);
             this.endOfLineDos.Name = "endOfLineDos";
             this.endOfLineDos.Size = new System.Drawing.Size(87, 17);
-            this.endOfLineDos.TabIndex = 13;
+            this.endOfLineDos.TabIndex = 12;
             this.endOfLineDos.Text = "DOS (CR-LF)";
             this.endOfLineDos.UseVisualStyleBackColor = true;
             // 
@@ -158,7 +158,7 @@
             this.endOfLineMac.Location = new System.Drawing.Point(6, 19);
             this.endOfLineMac.Name = "endOfLineMac";
             this.endOfLineMac.Size = new System.Drawing.Size(72, 17);
-            this.endOfLineMac.TabIndex = 11;
+            this.endOfLineMac.TabIndex = 12;
             this.endOfLineMac.TabStop = true;
             this.endOfLineMac.Text = "MAC (CR)";
             this.endOfLineMac.UseVisualStyleBackColor = true;
