@@ -84,7 +84,7 @@
       <Project>{e1fee78b-cbec-4a3e-9252-581406417ce0}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HexToBin\HexToBinLib\HexToBinLib.csproj">
+    <ProjectReference Include="..\NetHexToBin\HexToBinLib\HexToBinLib.csproj">
       <Project>{78e37ab9-1a85-4e08-8f72-fa3bc098a4af}</Project>
       <Name>HexToBinLib</Name>
     </ProjectReference>
