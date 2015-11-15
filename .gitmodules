@@ -1,6 +1,3 @@
-[submodule "HexToBin"]
-	path = HexToBin
-	url = https://github.com/tewarid/HexToBin
 [submodule "NetHexToBin"]
 	path = NetHexToBin
 	url = https://github.com/tewarid/NetHexToBin.git
