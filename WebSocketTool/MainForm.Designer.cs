@@ -49,6 +49,7 @@
             this.location = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.setHeaders = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.endOfLine.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -73,7 +74,7 @@
             this.inputInHex.Location = new System.Drawing.Point(10, 361);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(347, 17);
-            this.inputInHex.TabIndex = 9;
+            this.inputInHex.TabIndex = 18;
             this.inputInHex.Text = "Send binary, text is a hexadecimal string (e.g. 0xDE 0xAD or DE AD)";
             this.inputInHex.UseVisualStyleBackColor = true;
             this.inputInHex.CheckedChanged += new System.EventHandler(this.inputInHex_CheckedChanged);
@@ -95,7 +96,7 @@
             this.endOfLine.Location = new System.Drawing.Point(10, 384);
             this.endOfLine.Name = "endOfLine";
             this.endOfLine.Size = new System.Drawing.Size(247, 45);
-            this.endOfLine.TabIndex = 9;
+            this.endOfLine.TabIndex = 20;
             this.endOfLine.TabStop = false;
             this.endOfLine.Text = "End of Line";
             // 
@@ -105,7 +106,7 @@
             this.endOfLineUnix.Location = new System.Drawing.Point(84, 19);
             this.endOfLineUnix.Name = "endOfLineUnix";
             this.endOfLineUnix.Size = new System.Drawing.Size(67, 17);
-            this.endOfLineUnix.TabIndex = 10;
+            this.endOfLineUnix.TabIndex = 20;
             this.endOfLineUnix.Text = "Unix (LF)";
             this.endOfLineUnix.UseVisualStyleBackColor = true;
             // 
@@ -115,7 +116,7 @@
             this.endOfLineDos.Location = new System.Drawing.Point(157, 19);
             this.endOfLineDos.Name = "endOfLineDos";
             this.endOfLineDos.Size = new System.Drawing.Size(87, 17);
-            this.endOfLineDos.TabIndex = 11;
+            this.endOfLineDos.TabIndex = 20;
             this.endOfLineDos.Text = "DOS (CR-LF)";
             this.endOfLineDos.UseVisualStyleBackColor = true;
             // 
@@ -126,7 +127,7 @@
             this.endOfLineMac.Location = new System.Drawing.Point(6, 19);
             this.endOfLineMac.Name = "endOfLineMac";
             this.endOfLineMac.Size = new System.Drawing.Size(72, 17);
-            this.endOfLineMac.TabIndex = 9;
+            this.endOfLineMac.TabIndex = 20;
             this.endOfLineMac.TabStop = true;
             this.endOfLineMac.Text = "MAC (CR)";
             this.endOfLineMac.UseVisualStyleBackColor = true;
@@ -140,14 +141,14 @@
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputText.Size = new System.Drawing.Size(374, 328);
-            this.inputText.TabIndex = 8;
+            this.inputText.TabIndex = 14;
             // 
             // sendButton
             // 
             this.sendButton.Location = new System.Drawing.Point(311, 406);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
-            this.sendButton.TabIndex = 13;
+            this.sendButton.TabIndex = 24;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
@@ -157,7 +158,7 @@
             this.connect.Location = new System.Drawing.Point(230, 93);
             this.connect.Name = "connect";
             this.connect.Size = new System.Drawing.Size(75, 23);
-            this.connect.TabIndex = 1;
+            this.connect.TabIndex = 3;
             this.connect.Text = "Connect";
             this.connect.UseVisualStyleBackColor = true;
             this.connect.Click += new System.EventHandler(this.connect_Click);
@@ -173,6 +174,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.setHeaders);
             this.panel2.Controls.Add(this.closeButton);
             this.panel2.Controls.Add(this.connect);
             this.panel2.Controls.Add(this.label6);
@@ -191,7 +193,7 @@
             this.closeButton.Location = new System.Drawing.Point(311, 93);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 2;
+            this.closeButton.TabIndex = 4;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
@@ -211,7 +213,7 @@
             this.viewInHex.Location = new System.Drawing.Point(6, 412);
             this.viewInHex.Name = "viewInHex";
             this.viewInHex.Size = new System.Drawing.Size(153, 17);
-            this.viewInHex.TabIndex = 4;
+            this.viewInHex.TabIndex = 8;
             this.viewInHex.Text = "View as hexadecimal string";
             this.viewInHex.UseVisualStyleBackColor = true;
             // 
@@ -220,7 +222,7 @@
             this.clearButton.Location = new System.Drawing.Point(311, 408);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 5;
+            this.clearButton.TabIndex = 10;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
@@ -235,7 +237,8 @@
             this.outputText.ReadOnly = true;
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.outputText.Size = new System.Drawing.Size(380, 267);
-            this.outputText.TabIndex = 3;
+            this.outputText.TabIndex = 6;
+            this.outputText.TextChanged += new System.EventHandler(this.outputText_TextChanged);
             // 
             // location
             // 
@@ -244,7 +247,7 @@
             this.location.Name = "location";
             this.location.Size = new System.Drawing.Size(380, 60);
             this.location.TabIndex = 0;
-            this.location.Text = "wss://echo.websocket.org";
+            this.location.Text = "wss://echo.websocket.org?foo=bar";
             // 
             // statusStrip1
             // 
@@ -260,6 +263,16 @@
             // 
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
+            // 
+            // setHeaders
+            // 
+            this.setHeaders.Location = new System.Drawing.Point(6, 93);
+            this.setHeaders.Name = "setHeaders";
+            this.setHeaders.Size = new System.Drawing.Size(129, 23);
+            this.setHeaders.TabIndex = 1;
+            this.setHeaders.Text = "Set Request Headers...";
+            this.setHeaders.UseVisualStyleBackColor = true;
+            this.setHeaders.Click += new System.EventHandler(this.setHeaders_Click);
             // 
             // MainForm
             // 
@@ -313,6 +326,7 @@
         private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.TextBox location;
         private System.Windows.Forms.Button closeButton;
+        private System.Windows.Forms.Button setHeaders;
     }
 }
 

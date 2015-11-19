@@ -1,5 +1,6 @@
 ﻿using HexToBinLib;
 using System;
+using System.Collections.Specialized;
 using System.IO;
 using System.Net.WebSockets;
 using System.Text;
@@ -15,6 +16,7 @@ namespace WebSocketTool
         private ClientWebSocket wsClient;
         private byte[] buffer = new byte[100];
         private bool newMessage = true;
+        HeaderForm headerForm = new HeaderForm();
 
         public MainForm()
         {
@@ -149,7 +151,13 @@ namespace WebSocketTool
         {
             if (wsClient != null && wsClient.State == WebSocketState.Open) return;
             wsClient = new ClientWebSocket();
+            NameValueCollection headers = headerForm.Headers;
+            foreach(string name in headers)
+            {
+                wsClient.Options.SetRequestHeader(name, headers.Get(name));
+            }
             connect.Enabled = false;
+            setHeaders.Enabled = false;
             location.ReadOnly = true;
             try
             {
@@ -163,6 +171,7 @@ namespace WebSocketTool
             {
                 MessageBox.Show(ex.Message, this.Text);
                 connect.Enabled = true;
+                setHeaders.Enabled = true;
                 location.ReadOnly = false;
             }
         }
@@ -189,6 +198,7 @@ namespace WebSocketTool
             if (wsClient.State != WebSocketState.Open)
             {
                 connect.Enabled = true;
+                setHeaders.Enabled = true;
                 location.ReadOnly = false;
                 if (wsClient.CloseStatus != WebSocketCloseStatus.NormalClosure)
                     MessageBox.Show(string.Format("WebSocket closed due to {0}.", 
@@ -229,7 +239,18 @@ namespace WebSocketTool
                 await wsClient.CloseAsync(WebSocketCloseStatus.NormalClosure, "bye", token);
             }
             connect.Enabled = true;
+            setHeaders.Enabled = true;
             location.ReadOnly = false;
+        }
+
+        private void setHeaders_Click(object sender, EventArgs e)
+        {
+            headerForm.ShowDialog();
+        }
+
+        private void outputText_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
