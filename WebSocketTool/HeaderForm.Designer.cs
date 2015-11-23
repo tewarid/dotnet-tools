@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.headers = new System.Windows.Forms.DataGridView();
-            this.done = new System.Windows.Forms.Button();
-            this.remove = new System.Windows.Forms.Button();
             this.headerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.headerValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.done = new System.Windows.Forms.Button();
+            this.remove = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.headers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,6 +47,17 @@
             this.headers.Name = "headers";
             this.headers.Size = new System.Drawing.Size(394, 218);
             this.headers.TabIndex = 0;
+            // 
+            // headerName
+            // 
+            this.headerName.HeaderText = "Name";
+            this.headerName.Name = "headerName";
+            // 
+            // headerValue
+            // 
+            this.headerValue.HeaderText = "Value";
+            this.headerValue.Name = "headerValue";
+            this.headerValue.Width = 200;
             // 
             // done
             // 
@@ -68,17 +79,6 @@
             this.remove.UseVisualStyleBackColor = true;
             this.remove.Click += new System.EventHandler(this.remove_Click);
             // 
-            // headerName
-            // 
-            this.headerName.HeaderText = "Name";
-            this.headerName.Name = "headerName";
-            // 
-            // headerValue
-            // 
-            this.headerValue.HeaderText = "Value";
-            this.headerValue.Name = "headerValue";
-            this.headerValue.Width = 200;
-            // 
             // HeaderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -95,7 +95,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Set Request Headers";
-            this.Load += new System.EventHandler(this.HeaderForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.headers)).EndInit();
             this.ResumeLayout(false);
 

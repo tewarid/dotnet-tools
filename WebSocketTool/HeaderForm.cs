@@ -6,24 +6,20 @@ namespace WebSocketTool
 {
     public partial class HeaderForm : Form
     {
+        NameValueCollection collection = new NameValueCollection();
+
         public NameValueCollection Headers
         {
             get
             {
-                NameValueCollection collection = new NameValueCollection();
-                foreach (DataGridViewRow row in headers.Rows)
-                {
-                    string name = (string)row.Cells[0].Value;
-                    string value = (string)row.Cells[1].Value;
-                    if (!string.IsNullOrWhiteSpace(name))
-                        collection.Add(name, value);
-                }
                 return collection;
             }
         }
+
         public HeaderForm()
         {
             InitializeComponent();
+            headers.Rows.Add("Authorization", "Bearer token");
         }
 
         private void remove_Click(object sender, EventArgs e)
@@ -34,12 +30,15 @@ namespace WebSocketTool
 
         private void done_Click(object sender, EventArgs e)
         {
+            collection = new NameValueCollection();
+            foreach (DataGridViewRow row in headers.Rows)
+            {
+                string name = (string)row.Cells[0].Value;
+                string value = (string)row.Cells[1].Value;
+                if (!string.IsNullOrWhiteSpace(name))
+                    collection.Add(name, value);
+            }
             this.Hide();
-        }
-
-        private void HeaderForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
