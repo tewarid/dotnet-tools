@@ -101,7 +101,7 @@
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(306, 397);
+            this.sendButton.Location = new System.Drawing.Point(309, 399);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 13;
@@ -190,7 +190,10 @@
             ((object)(resources.GetObject("sourceIPAddress.Items2"))),
             ((object)(resources.GetObject("sourceIPAddress.Items3"))),
             ((object)(resources.GetObject("sourceIPAddress.Items4"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items5")))});
+            ((object)(resources.GetObject("sourceIPAddress.Items5"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items6"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items7"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items8")))});
             this.sourceIPAddress.Location = new System.Drawing.Point(6, 25);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);

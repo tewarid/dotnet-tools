@@ -35,6 +35,7 @@
             this.sendButton = new System.Windows.Forms.Button();
             this.destinationPort = new System.Windows.Forms.TextBox();
             this.destinationIPAddress = new System.Windows.Forms.TextBox();
+            this.input = new Common.SendTextBox();
             this.bind = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.outputText = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.input = new Common.SendTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -91,7 +91,7 @@
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(312, 403);
+            this.sendButton.Location = new System.Drawing.Point(310, 403);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 15;
@@ -112,6 +112,13 @@
             this.destinationIPAddress.Name = "destinationIPAddress";
             this.destinationIPAddress.Size = new System.Drawing.Size(133, 20);
             this.destinationIPAddress.TabIndex = 8;
+            // 
+            // input
+            // 
+            this.input.Location = new System.Drawing.Point(8, 56);
+            this.input.Name = "input";
+            this.input.Size = new System.Drawing.Size(379, 376);
+            this.input.TabIndex = 10;
             // 
             // bind
             // 
@@ -173,7 +180,10 @@
             this.sourceIPAddress.Items.AddRange(new object[] {
             ((object)(resources.GetObject("sourceIPAddress.Items"))),
             ((object)(resources.GetObject("sourceIPAddress.Items1"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items2")))});
+            ((object)(resources.GetObject("sourceIPAddress.Items2"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items3"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items4"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items5")))});
             this.sourceIPAddress.Location = new System.Drawing.Point(7, 27);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
@@ -262,13 +272,6 @@
             // 
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
-            // 
-            // input
-            // 
-            this.input.Location = new System.Drawing.Point(8, 56);
-            this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(379, 376);
-            this.input.TabIndex = 10;
             // 
             // MainForm
             // 

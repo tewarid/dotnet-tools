@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.input = new Common.SendTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.timeOutValue = new System.Windows.Forms.NumericUpDown();
             this.timeOut = new System.Windows.Forms.CheckBox();
@@ -48,7 +49,6 @@
             this.outputText = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.input = new Common.SendTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeOutValue)).BeginInit();
             this.panel2.SuspendLayout();
@@ -57,15 +57,22 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.input);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.timeOutValue);
             this.panel1.Controls.Add(this.timeOut);
             this.panel1.Controls.Add(this.sendButton);
+            this.panel1.Controls.Add(this.input);
             this.panel1.Location = new System.Drawing.Point(395, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(389, 433);
             this.panel1.TabIndex = 0;
+            // 
+            // input
+            // 
+            this.input.Location = new System.Drawing.Point(3, 4);
+            this.input.Name = "input";
+            this.input.Size = new System.Drawing.Size(383, 392);
+            this.input.TabIndex = 12;
             // 
             // label2
             // 
@@ -113,7 +120,7 @@
             // sendButton
             // 
             this.sendButton.Enabled = false;
-            this.sendButton.Location = new System.Drawing.Point(304, 401);
+            this.sendButton.Location = new System.Drawing.Point(308, 401);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 15;
@@ -188,9 +195,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(3, 11);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.Size = new System.Drawing.Size(66, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Serial Port";
             // 
@@ -275,13 +283,6 @@
             // 
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
-            // 
-            // input
-            // 
-            this.input.Location = new System.Drawing.Point(3, 4);
-            this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(383, 392);
-            this.input.TabIndex = 12;
             // 
             // MainForm
             // 

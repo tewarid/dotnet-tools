@@ -98,13 +98,10 @@ namespace Common
 
         private void SendTextBox_Resize(object sender, EventArgs e)
         {
-            int padding = 5;
-            inputInHex.Top = padding;
-            inputTextLabel.Top = inputInHex.Bottom + padding;
-            inputText.Top = inputTextLabel.Bottom + padding;
-            endOfLine.Top = this.Height - padding - endOfLine.Height;
-            inputText.Height = endOfLine.Top - inputTextLabel.Bottom - 2 * padding;
-            inputText.Width = this.Width - 2 * padding;
+            inputText.Width = this.Width - flowLayoutPanel.Margin.Vertical;
+            inputText.Height = this.Height - inputInHex.Height 
+                - inputTextLabel.Height - endOfLine.Height 
+                - 3 * flowLayoutPanel.Margin.Vertical;
         }
     }
 }

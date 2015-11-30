@@ -60,7 +60,7 @@
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(305, 406);
+            this.sendButton.Location = new System.Drawing.Point(308, 406);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 24;
@@ -72,7 +72,7 @@
             // 
             this.sendTextBox1.Location = new System.Drawing.Point(3, 4);
             this.sendTextBox1.Name = "sendTextBox1";
-            this.sendTextBox1.Size = new System.Drawing.Size(383, 430);
+            this.sendTextBox1.Size = new System.Drawing.Size(381, 425);
             this.sendTextBox1.TabIndex = 0;
             // 
             // connect
@@ -88,9 +88,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(3, 11);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(234, 13);
+            this.label4.Size = new System.Drawing.Size(283, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Location (e.g. ws://localhost or wss://localhost)";
             // 
@@ -122,6 +123,7 @@
             // 
             // closeButton
             // 
+            this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.closeButton.Location = new System.Drawing.Point(311, 93);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
@@ -198,8 +200,10 @@
             // 
             // MainForm
             // 
+            this.AcceptButton = this.connect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.closeButton;
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel2);

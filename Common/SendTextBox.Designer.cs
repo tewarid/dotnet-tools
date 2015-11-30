@@ -35,13 +35,15 @@
             this.endOfLineDos = new System.Windows.Forms.RadioButton();
             this.endOfLineMac = new System.Windows.Forms.RadioButton();
             this.inputText = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.endOfLine.SuspendLayout();
+            this.flowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // inputInHex
             // 
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(3, 6);
+            this.inputInHex.Location = new System.Drawing.Point(3, 3);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(340, 17);
             this.inputInHex.TabIndex = 0;
@@ -52,7 +54,7 @@
             // inputTextLabel
             // 
             this.inputTextLabel.AutoSize = true;
-            this.inputTextLabel.Location = new System.Drawing.Point(0, 26);
+            this.inputTextLabel.Location = new System.Drawing.Point(3, 23);
             this.inputTextLabel.Name = "inputTextLabel";
             this.inputTextLabel.Size = new System.Drawing.Size(105, 13);
             this.inputTextLabel.TabIndex = 21;
@@ -63,7 +65,7 @@
             this.endOfLine.Controls.Add(this.endOfLineUnix);
             this.endOfLine.Controls.Add(this.endOfLineDos);
             this.endOfLine.Controls.Add(this.endOfLineMac);
-            this.endOfLine.Location = new System.Drawing.Point(3, 376);
+            this.endOfLine.Location = new System.Drawing.Point(3, 373);
             this.endOfLine.Name = "endOfLine";
             this.endOfLine.Size = new System.Drawing.Size(247, 45);
             this.endOfLine.TabIndex = 2;
@@ -111,7 +113,7 @@
             this.inputText.AcceptsTab = true;
             this.inputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputText.HideSelection = false;
-            this.inputText.Location = new System.Drawing.Point(3, 42);
+            this.inputText.Location = new System.Drawing.Point(3, 39);
             this.inputText.MaxLength = 1000000;
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
@@ -123,21 +125,32 @@
             this.inputText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputText_KeyPress);
             this.inputText.Leave += new System.EventHandler(this.inputText_Leave);
             // 
+            // flowLayoutPanel
+            // 
+            this.flowLayoutPanel.Controls.Add(this.inputInHex);
+            this.flowLayoutPanel.Controls.Add(this.inputTextLabel);
+            this.flowLayoutPanel.Controls.Add(this.inputText);
+            this.flowLayoutPanel.Controls.Add(this.endOfLine);
+            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(367, 441);
+            this.flowLayoutPanel.TabIndex = 22;
+            // 
             // SendTextBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.inputInHex);
-            this.Controls.Add(this.inputTextLabel);
-            this.Controls.Add(this.endOfLine);
-            this.Controls.Add(this.inputText);
+            this.Controls.Add(this.flowLayoutPanel);
             this.Name = "SendTextBox";
-            this.Size = new System.Drawing.Size(379, 425);
+            this.Size = new System.Drawing.Size(367, 441);
             this.Resize += new System.EventHandler(this.SendTextBox_Resize);
             this.endOfLine.ResumeLayout(false);
             this.endOfLine.PerformLayout();
+            this.flowLayoutPanel.ResumeLayout(false);
+            this.flowLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -150,5 +163,6 @@
         private System.Windows.Forms.RadioButton endOfLineDos;
         private System.Windows.Forms.RadioButton endOfLineMac;
         private System.Windows.Forms.TextBox inputText;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
     }
 }
