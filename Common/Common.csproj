@@ -49,6 +49,23 @@
       <DependentUpon>InterfaceSelectorComboBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SendTextBox.Designer.cs">
+      <DependentUpon>SendTextBox.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SendTextBox.resx">
+      <DependentUpon>SendTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetHexToBin\HexToBinLib\HexToBinLib.csproj">
+      <Project>{78e37ab9-1a85-4e08-8f72-fa3bc098a4af}</Project>
+      <Name>HexToBinLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,11 +1,7 @@
-﻿using HexToBinLib;
-using System;
-using System.IO;
+﻿using System;
 using System.Net;
-using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace UdpTool
@@ -42,40 +38,9 @@ namespace UdpTool
 
             sendButton.Enabled = false;
 
-            string text;
-
-            if (endOfLineMac.Checked) // MAC - CR
-            {
-                text = inputText.Text.Replace("\r\n", "\r");
-            }
-            else if (endOfLineDos.Checked) // DOS - CR/LF
-            {
-                text = inputText.Text;
-            }
-            else // Unix - LF
-            {
-                text = inputText.Text.Replace("\r\n", "\n");
-            }
-
-            byte[] data;
-            int length;
-
-            if (inputInHex.Checked)
-            {
-                MemoryStream output = new MemoryStream();
-                TextReader input = new StringReader(text);
-                length = HexToBin.Convert(input, output);
-                data = output.GetBuffer();
-            }
-            else
-            {
-                data = ASCIIEncoding.ASCII.GetBytes(text);
-                length = data.Length;
-            }
-
             int tickcount = 0;
 
-            if (length <= 0)
+            if (input.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
@@ -84,7 +49,7 @@ namespace UdpTool
                 try
                 {
                     tickcount = Environment.TickCount;
-                    udpClient.Send(data, length, endPoint);
+                    udpClient.Send(input.Bytes, input.Length, endPoint);
                     tickcount = Environment.TickCount - tickcount;
                 }
                 catch (Exception ex)
@@ -93,7 +58,9 @@ namespace UdpTool
                 }
             }
 
-            status.Text = String.Format("Sent {0} bytes in {1} milliseconds", length, tickcount);
+            status.Text = String.Format("Sent {0} bytes in {1} milliseconds", 
+                input.Length, tickcount);
+
             sendButton.Enabled = true;
         }
 
@@ -248,18 +215,6 @@ namespace UdpTool
             catch(SocketException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void inputInHex_CheckedChanged(object sender, EventArgs e)
-        {
-            if (inputInHex.Checked)
-            {
-                endOfLine.Enabled = false;
-            }
-            else
-            {
-                endOfLine.Enabled = true;
             }
         }
     }

@@ -1,8 +1,5 @@
-﻿using HexToBinLib;
-using System;
-using System.IO;
+﻿using System;
 using System.Net;
-using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
@@ -41,39 +38,8 @@ namespace TcpTool
 
             sendButton.Enabled = false;
 
-            string text;
-
-            if (endOfLineMac.Checked) // MAC - CR
-            {
-                text = inputText.Text.Replace("\r\n", "\r");
-            }
-            else if (endOfLineDos.Checked) // DOS - CR/LF
-            {
-                text = inputText.Text;
-            }
-            else // Unix - LF
-            {
-                text = inputText.Text.Replace("\r\n", "\n");
-            }
-
-            byte[] data;
-            int length;
-
-            if (inputInHex.Checked)
-            {
-                MemoryStream output = new MemoryStream();
-                TextReader input = new StringReader(text);
-                length = HexToBin.Convert(input, output);
-                data = output.GetBuffer();
-            }
-            else
-            {
-                data = UTF8Encoding.UTF8.GetBytes(text);
-                length = data.Length;
-            }
-
             int tickcount = 0;
-            if (length <= 0)
+            if (input.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
@@ -82,7 +48,7 @@ namespace TcpTool
                 try
                 {
                     tickcount = Environment.TickCount;
-                    tcpClient.GetStream().Write(data, 0, length);
+                    tcpClient.GetStream().Write(input.Bytes, 0, input.Length);
                     tickcount = Environment.TickCount - tickcount;
                 }
                 catch (Exception ex)
@@ -91,7 +57,8 @@ namespace TcpTool
                 }
             }
 
-            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", length, tickcount);
+            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", 
+                input.Length, tickcount);
             sendButton.Enabled = true;
         }
 
@@ -311,18 +278,6 @@ namespace TcpTool
                 destinationPort.Enabled = true;
             }
             close.Enabled = false;
-        }
-
-        private void inputInHex_CheckedChanged(object sender, EventArgs e)
-        {
-            if (inputInHex.Checked)
-            {
-                endOfLine.Enabled = false;
-            }
-            else
-            {
-                endOfLine.Enabled = true;
-            }
         }
     }
 }

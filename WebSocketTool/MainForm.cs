@@ -37,39 +37,8 @@ namespace WebSocketTool
 
             sendButton.Enabled = false;
 
-            string text;
-
-            if (endOfLineMac.Checked) // MAC - CR
-            {
-                text = inputText.Text.Replace("\r\n", "\r");
-            }
-            else if (endOfLineDos.Checked) // DOS - CR/LF
-            {
-                text = inputText.Text;
-            }
-            else // Unix - LF
-            {
-                text = inputText.Text.Replace("\r\n", "\n");
-            }
-
-            byte[] data;
-            int length;
-
-            if (inputInHex.Checked)
-            {
-                MemoryStream output = new MemoryStream();
-                TextReader input = new StringReader(text);
-                length = HexToBin.Convert(input, output);
-                data = output.GetBuffer();
-            }
-            else
-            {
-                data = UTF8Encoding.UTF8.GetBytes(text);
-                length = data.Length;
-            }
-
             int tickcount = 0;
-            if (length <= 0)
+            if (sendTextBox1.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
@@ -80,7 +49,7 @@ namespace WebSocketTool
                     tickcount = Environment.TickCount;
                     CancellationTokenSource source = new CancellationTokenSource();
                     CancellationToken token = source.Token;
-                    await wsClient.SendAsync(new ArraySegment<byte>(data, 0, length), 
+                    await wsClient.SendAsync(new ArraySegment<byte>(sendTextBox1.Bytes, 0, sendTextBox1.Length), 
                         WebSocketMessageType.Binary, true, token);
                     tickcount = Environment.TickCount - tickcount;
                 }
@@ -91,7 +60,7 @@ namespace WebSocketTool
             }
 
             status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", 
-                length, tickcount);
+                sendTextBox1.Length, tickcount);
             sendButton.Enabled = true;
         }
 
@@ -206,18 +175,6 @@ namespace WebSocketTool
                 return;
             }
             Task task = ReadCallback();
-        }
-
-        private void inputInHex_CheckedChanged(object sender, EventArgs e)
-        {
-            if (inputInHex.Checked)
-            {
-                endOfLine.Enabled = false;
-            }
-            else
-            {
-                endOfLine.Enabled = true;
-            }
         }
 
         private async void connect_Click(object sender, EventArgs e)

@@ -1,6 +1,4 @@
-﻿using HexToBinLib;
-using System;
-using System.IO;
+﻿using System;
 using System.IO.Ports;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,42 +36,12 @@ namespace SerialTool
 
         private async void SendAsync()
         {
-            string text;
             int startTickCount = 0;
             int endTickCount = 0;
 
             sendButton.Enabled = false;
 
-            if (endOfLineMac.Checked) // MAC - CR
-            {
-                text = inputText.Text.Replace(Environment.NewLine, "\r");
-            }
-            else if (endOfLineDos.Checked) // DOS - CR/LF
-            {
-                text = inputText.Text;
-            }
-            else // Unix - LF
-            {
-                text = inputText.Text.Replace(Environment.NewLine, "\n");
-            }
-
-            byte[] data;
-            int length;
-
-            if (inputInHex.Checked)
-            {
-                MemoryStream output = new MemoryStream();
-                TextReader input = new StringReader(text);
-                length = HexToBin.Convert(input, output);
-                data = output.GetBuffer();
-            }
-            else
-            {
-                data = UTF8Encoding.UTF8.GetBytes(text);
-                length = data.Length;
-            }
-
-            if (length <= 0)
+            if (input.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
@@ -84,13 +52,14 @@ namespace SerialTool
                     // this will run in a worker thread
                     await Task.Run(delegate {
                         startTickCount = Environment.TickCount;
-                        port.Write(data, 0, length);
+                        port.Write(input.Bytes, 0, input.Length);
                         endTickCount = Environment.TickCount;
                     });
 
                     // main thread gets resumed at this point
                     // so invoke not required
-                    status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", length, endTickCount - startTickCount);
+                    status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", 
+                        input.Length, endTickCount - startTickCount);
                 }
                 catch(Exception ex)
                 {
@@ -286,18 +255,6 @@ namespace SerialTool
             {
                 port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
                     : SerialPort.InfiniteTimeout;
-            }
-        }
-
-        private void inputInHex_CheckedChanged(object sender, EventArgs e)
-        {
-            if (inputInHex.Checked)
-            {
-                endOfLine.Enabled = false;
-            }
-            else
-            {
-                endOfLine.Enabled = true;
             }
         }
     }
