@@ -183,7 +183,10 @@
             ((object)(resources.GetObject("sourceIPAddress.Items2"))),
             ((object)(resources.GetObject("sourceIPAddress.Items3"))),
             ((object)(resources.GetObject("sourceIPAddress.Items4"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items5")))});
+            ((object)(resources.GetObject("sourceIPAddress.Items5"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items6"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items7"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items8")))});
             this.sourceIPAddress.Location = new System.Drawing.Point(7, 27);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
@@ -286,6 +289,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UDP Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.panel1.ResumeLayout(false);
