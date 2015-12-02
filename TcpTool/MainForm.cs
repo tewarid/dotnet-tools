@@ -73,31 +73,9 @@ namespace TcpTool
                 return;
             }
 
-            if (viewInHex.Checked)
-            {
-                for (int i = 0; i < length; i++)
-                {
-                    outputText.AppendText(string.Format("{0:X2} ", data[i]));
-                }
-            }
-            else
-            {
-                for (int i = 0; i < length; i++)
-                {
-                    // remove special chars
-                    if (data[i] == '\r' && data[i == length - 1 ? i : i + 1] == '\n')
-                    {
-                        i++; // maintain DOS end of line
-                        continue;
-                    }
-                    else if (data[i] < (byte)' ' || data[i] > (byte)'~')
-                    {
-                        data[i] = (byte)'.';
-                    }
-                }
-
-                outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, length));
-            }
+            outputText.Append(data, length);
+            outputText.AppendText(Environment.NewLine, true);
+            outputText.AppendText(Environment.NewLine, true);
         }
 
         private void CreateTcpClient()
@@ -157,11 +135,6 @@ namespace TcpTool
             destinationIPAddress.Enabled = false;
             destinationPort.Enabled = false;
             close.Enabled = true;
-        }
-
-        private void clearButton_Click(object sender, EventArgs e)
-        {
-            outputText.Clear();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -245,12 +218,17 @@ namespace TcpTool
 
         private void ReadCallback(IAsyncResult ar)
         {
-            int length = tcpClient.GetStream().EndRead(ar);
-            if (length > 0)
+            if (tcpClient == null) return;
+            try
             {
-                ShowReceivedData(buffer, length);
-                tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
+                int length = tcpClient.GetStream().EndRead(ar);
+                if (length > 0)
+                {
+                    ShowReceivedData(buffer, length);
+                    tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
+                }
             }
+            catch { }
         }
 
         private void close_Click(object sender, EventArgs e)

@@ -45,12 +45,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.multicastGroup = new System.Windows.Forms.TextBox();
             this.add = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.viewInHex = new System.Windows.Forms.CheckBox();
-            this.clearButton = new System.Windows.Forms.Button();
-            this.outputText = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.outputText = new Common.ReceiveTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -93,7 +90,7 @@
             // 
             this.sendButton.Location = new System.Drawing.Point(310, 403);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(75, 23);
+            this.sendButton.Size = new System.Drawing.Size(75, 30);
             this.sendButton.TabIndex = 15;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
@@ -157,17 +154,14 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.sourceIPAddress);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.multicastGroup);
             this.panel2.Controls.Add(this.add);
             this.panel2.Controls.Add(this.bind);
-            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.viewInHex);
-            this.panel2.Controls.Add(this.clearButton);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.sourcePort);
             this.panel2.Location = new System.Drawing.Point(0, 1);
             this.panel2.Name = "panel2";
@@ -177,16 +171,6 @@
             // sourceIPAddress
             // 
             this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.Items.AddRange(new object[] {
-            ((object)(resources.GetObject("sourceIPAddress.Items"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items1"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items2"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items3"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items4"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items5"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items6"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items7"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items8")))});
             this.sourceIPAddress.Location = new System.Drawing.Point(7, 27);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
@@ -220,47 +204,6 @@
             this.add.UseVisualStyleBackColor = true;
             this.add.Click += new System.EventHandler(this.add_Click);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 99);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(352, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Data received (assumes UTF-8, special characters are replaced with a \'.\')";
-            // 
-            // viewInHex
-            // 
-            this.viewInHex.AutoSize = true;
-            this.viewInHex.Location = new System.Drawing.Point(7, 406);
-            this.viewInHex.Name = "viewInHex";
-            this.viewInHex.Size = new System.Drawing.Size(153, 17);
-            this.viewInHex.TabIndex = 6;
-            this.viewInHex.Text = "View as hexadecimal string";
-            this.viewInHex.UseVisualStyleBackColor = true;
-            // 
-            // clearButton
-            // 
-            this.clearButton.Location = new System.Drawing.Point(312, 403);
-            this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 7;
-            this.clearButton.Text = "Clear";
-            this.clearButton.UseVisualStyleBackColor = true;
-            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
-            // 
-            // outputText
-            // 
-            this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputText.Location = new System.Drawing.Point(6, 115);
-            this.outputText.MaxLength = 1000000;
-            this.outputText.Multiline = true;
-            this.outputText.Name = "outputText";
-            this.outputText.ReadOnly = true;
-            this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(380, 282);
-            this.outputText.TabIndex = 5;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -275,6 +218,13 @@
             // 
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
+            // 
+            // outputText
+            // 
+            this.outputText.Location = new System.Drawing.Point(7, 98);
+            this.outputText.Name = "outputText";
+            this.outputText.Size = new System.Drawing.Size(387, 337);
+            this.outputText.TabIndex = 5;
             // 
             // MainForm
             // 
@@ -310,13 +260,9 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox destinationPort;
         private System.Windows.Forms.TextBox destinationIPAddress;
-        private System.Windows.Forms.TextBox outputText;
         private System.Windows.Forms.TextBox sourcePort;
-        private System.Windows.Forms.Button clearButton;
-        private System.Windows.Forms.CheckBox viewInHex;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button bind;
@@ -327,6 +273,7 @@
         private System.Windows.Forms.TextBox multicastGroup;
         private Common.InterfaceSelectorComboBox sourceIPAddress;
         private Common.SendTextBox input;
+        private Common.ReceiveTextBox outputText;
     }
 }
 

@@ -79,43 +79,9 @@ namespace SerialTool
                 return;
             }
 
-            if (viewInHex.Checked)
-            {
-                StringBuilder sb = new StringBuilder(length);
-                foreach (byte b in data)
-                {
-                    sb.Append(string.Format("{0:X2} ", b));
-                }
-                outputText.AppendText(sb.ToString());
-                outputText.AppendText(Environment.NewLine);
-                outputText.AppendText(Environment.NewLine);
-            }
-            else
-            {
-                StringBuilder output = new StringBuilder();
-                for (int i = 0; i < length; i++)
-                {
-                    switch (data[i])
-                    {
-                        case (byte)'\r':
-                            output.Append(Environment.NewLine);
-                            break;
-
-                        case (byte)'\n':
-                            if (i > 0 && data[i - 1] != '\r') output.Append(Environment.NewLine);
-                            break;
-
-                        default:
-                            // remove special char
-                            if (data[i] < ' ' || data[i] > '~')
-                                output.Append('.');
-                            else
-                                output.Append((char)data[i]);
-                            break;
-                    }
-                }
-                outputText.AppendText(output.ToString());
-            }
+            outputText.Append(data, length);
+            outputText.AppendText(Environment.NewLine, true);
+            outputText.AppendText(Environment.NewLine, true);
         }
 
         private void CreateSerialPort()
@@ -172,11 +138,6 @@ namespace SerialTool
             {
                 return;
             }
-        }
-
-        private void clearButton_Click(object sender, EventArgs e)
-        {
-            outputText.Clear();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

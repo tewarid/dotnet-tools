@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.input = new Common.SendTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.timeOutValue = new System.Windows.Forms.NumericUpDown();
             this.timeOut = new System.Windows.Forms.CheckBox();
             this.sendButton = new System.Windows.Forms.Button();
+            this.input = new Common.SendTextBox();
             this.closeButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,10 +43,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.serialPortName = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.viewInHex = new System.Windows.Forms.CheckBox();
-            this.clearButton = new System.Windows.Forms.Button();
-            this.outputText = new System.Windows.Forms.TextBox();
+            this.outputText = new Common.ReceiveTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
@@ -66,13 +63,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(389, 433);
             this.panel1.TabIndex = 0;
-            // 
-            // input
-            // 
-            this.input.Location = new System.Drawing.Point(3, 4);
-            this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(383, 392);
-            this.input.TabIndex = 12;
             // 
             // label2
             // 
@@ -120,13 +110,20 @@
             // sendButton
             // 
             this.sendButton.Enabled = false;
-            this.sendButton.Location = new System.Drawing.Point(308, 401);
+            this.sendButton.Location = new System.Drawing.Point(308, 397);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(75, 23);
+            this.sendButton.Size = new System.Drawing.Size(75, 30);
             this.sendButton.TabIndex = 15;
             this.sendButton.Text = "&Send";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
+            // 
+            // input
+            // 
+            this.input.Location = new System.Drawing.Point(3, 4);
+            this.input.Name = "input";
+            this.input.Size = new System.Drawing.Size(383, 392);
+            this.input.TabIndex = 12;
             // 
             // closeButton
             // 
@@ -212,12 +209,9 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.viewInHex);
-            this.panel2.Controls.Add(this.clearButton);
+            this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.closeButton);
             this.panel2.Controls.Add(this.refreshButton);
-            this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.serialPortName);
             this.panel2.Controls.Add(this.baudRate);
@@ -228,45 +222,11 @@
             this.panel2.Size = new System.Drawing.Size(391, 433);
             this.panel2.TabIndex = 1;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 106);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(349, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Data received (assumes ASCII, special characters are replaced with a \'.\')";
-            // 
-            // viewInHex
-            // 
-            this.viewInHex.AutoSize = true;
-            this.viewInHex.Location = new System.Drawing.Point(5, 405);
-            this.viewInHex.Name = "viewInHex";
-            this.viewInHex.Size = new System.Drawing.Size(153, 17);
-            this.viewInHex.TabIndex = 6;
-            this.viewInHex.Text = "View as hexadecimal string";
-            this.viewInHex.UseVisualStyleBackColor = true;
-            // 
-            // clearButton
-            // 
-            this.clearButton.Location = new System.Drawing.Point(313, 401);
-            this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 7;
-            this.clearButton.Text = "&Clear";
-            this.clearButton.UseVisualStyleBackColor = true;
-            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
-            // 
             // outputText
             // 
-            this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputText.Location = new System.Drawing.Point(6, 122);
-            this.outputText.MaxLength = 1000000;
-            this.outputText.Multiline = true;
+            this.outputText.Location = new System.Drawing.Point(6, 99);
             this.outputText.Name = "outputText";
-            this.outputText.ReadOnly = true;
-            this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(382, 270);
+            this.outputText.Size = new System.Drawing.Size(383, 331);
             this.outputText.TabIndex = 5;
             // 
             // statusStrip1
@@ -317,11 +277,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox outputText;
         private System.Windows.Forms.ComboBox serialPortName;
-        private System.Windows.Forms.Button clearButton;
-        private System.Windows.Forms.CheckBox viewInHex;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button openButton;
         private System.Windows.Forms.Label label1;
@@ -334,6 +290,7 @@
         private System.Windows.Forms.NumericUpDown timeOutValue;
         private System.Windows.Forms.CheckBox timeOut;
         private Common.SendTextBox input;
+        private Common.ReceiveTextBox outputText;
     }
 }
 

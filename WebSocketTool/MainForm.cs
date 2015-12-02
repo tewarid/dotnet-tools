@@ -81,31 +81,7 @@ namespace WebSocketTool
                     DateTime.Now, Environment.NewLine));
             }
 
-            if (viewInHex.Checked)
-            {
-                for (int i = 0; i < length; i++)
-                {
-                    outputText.AppendText(string.Format("{0:X2} ", data[i]));
-                }
-            }
-            else
-            {
-                for (int i = 0; i < length; i++)
-                {
-                    // remove special chars
-                    if (data[i] == '\r' && data[i == length - 1 ? i : i + 1] == '\n')
-                    {
-                        i++; // maintain DOS end of line
-                        continue;
-                    }
-                    else if (data[i] < (byte)' ' || data[i] > (byte)'~')
-                    {
-                        data[i] = (byte)'.';
-                    }
-                }
-
-                outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, length));
-            }
+            outputText.Append(data, length);
 
             if (lastMessage)
             {
@@ -143,11 +119,6 @@ namespace WebSocketTool
                 setHeaders.Enabled = true;
                 location.ReadOnly = false;
             }
-        }
-
-        private void clearButton_Click(object sender, EventArgs e)
-        {
-            outputText.Clear();
         }
 
         private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)

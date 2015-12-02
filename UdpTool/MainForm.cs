@@ -77,35 +77,12 @@ namespace UdpTool
 
             destinationIPAddress.Text = endPoint.Address.ToString();
             destinationPort.Text = endPoint.Port.ToString();
+
             outputText.AppendText(string.Format("{0} sent {1} bytes(s):\r\n", endPoint.ToString(), data.Length));
             status.Text = string.Format("Received {0} byte(s) from {1}", data.Length, endPoint.ToString());
-            if (viewInHex.Checked)
-            {
-                foreach (byte b in data)
-                {
-                    outputText.AppendText(string.Format("{0:X2} ", b));
-                }
-                outputText.AppendText("\r\n\r\n");
-            }
-            else
-            {
-                for (int i = 0; i < data.Length; i++)
-                {
-                    // remove special chars
-                    if (data[i] == '\r' && data[i == data.Length - 1 ? i : i + 1] == '\n')
-                    {
-                        i++;
-                        continue; // leave DOS CR LF as is
-                    }
-                    else if (data[i] < (byte)' ' || data[i] > (byte)'~')
-                    {
-                        data[i] = (byte)'.';
-                    }
-                }
-
-                outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, data.Length));
-                outputText.AppendText("\r\n\r\n");
-            } 
+            outputText.Append(data, data.Length);
+            outputText.AppendText(Environment.NewLine);
+            outputText.AppendText(Environment.NewLine);
         }
 
         private void CreateUdpClient() 
@@ -172,11 +149,6 @@ namespace UdpTool
             {
                 MessageBox.Show(e.Message);
             }
-        }
-
-        private void clearButton_Click(object sender, EventArgs e)
-        {
-            outputText.Clear();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

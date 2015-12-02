@@ -35,12 +35,9 @@
             this.connect = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.outputText = new Common.ReceiveTextBox();
             this.setHeaders = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.viewInHex = new System.Windows.Forms.CheckBox();
-            this.clearButton = new System.Windows.Forms.Button();
-            this.outputText = new System.Windows.Forms.TextBox();
             this.location = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
@@ -60,10 +57,10 @@
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(308, 406);
+            this.sendButton.Location = new System.Drawing.Point(307, 397);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(75, 23);
-            this.sendButton.TabIndex = 24;
+            this.sendButton.Size = new System.Drawing.Size(75, 30);
+            this.sendButton.TabIndex = 7;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
@@ -73,7 +70,7 @@
             this.sendTextBox1.Location = new System.Drawing.Point(3, 4);
             this.sendTextBox1.Name = "sendTextBox1";
             this.sendTextBox1.Size = new System.Drawing.Size(381, 425);
-            this.sendTextBox1.TabIndex = 0;
+            this.sendTextBox1.TabIndex = 6;
             // 
             // connect
             // 
@@ -97,19 +94,23 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.setHeaders);
             this.panel2.Controls.Add(this.closeButton);
             this.panel2.Controls.Add(this.connect);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.viewInHex);
-            this.panel2.Controls.Add(this.clearButton);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.location);
             this.panel2.Location = new System.Drawing.Point(2, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(389, 434);
             this.panel2.TabIndex = 1;
+            // 
+            // outputText
+            // 
+            this.outputText.Location = new System.Drawing.Point(6, 123);
+            this.outputText.Name = "outputText";
+            this.outputText.Size = new System.Drawing.Size(387, 311);
+            this.outputText.TabIndex = 5;
             // 
             // setHeaders
             // 
@@ -131,48 +132,6 @@
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 119);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(352, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Data received (assumes UTF-8, special characters are replaced with a \'.\')";
-            // 
-            // viewInHex
-            // 
-            this.viewInHex.AutoSize = true;
-            this.viewInHex.Location = new System.Drawing.Point(6, 412);
-            this.viewInHex.Name = "viewInHex";
-            this.viewInHex.Size = new System.Drawing.Size(153, 17);
-            this.viewInHex.TabIndex = 8;
-            this.viewInHex.Text = "View as hexadecimal string";
-            this.viewInHex.UseVisualStyleBackColor = true;
-            // 
-            // clearButton
-            // 
-            this.clearButton.Location = new System.Drawing.Point(311, 408);
-            this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(75, 23);
-            this.clearButton.TabIndex = 10;
-            this.clearButton.Text = "Clear";
-            this.clearButton.UseVisualStyleBackColor = true;
-            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
-            // 
-            // outputText
-            // 
-            this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputText.Location = new System.Drawing.Point(6, 135);
-            this.outputText.MaxLength = 1000000;
-            this.outputText.Multiline = true;
-            this.outputText.Name = "outputText";
-            this.outputText.ReadOnly = true;
-            this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(380, 267);
-            this.outputText.TabIndex = 6;
-            this.outputText.TextChanged += new System.EventHandler(this.outputText_TextChanged);
             // 
             // location
             // 
@@ -232,10 +191,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox outputText;
-        private System.Windows.Forms.Button clearButton;
-        private System.Windows.Forms.CheckBox viewInHex;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button connect;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -244,6 +199,7 @@
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.Button setHeaders;
         private Common.SendTextBox sendTextBox1;
+        private Common.ReceiveTextBox outputText;
     }
 }
 
