@@ -180,10 +180,6 @@
             // sourceIPAddress
             // 
             this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.Items.AddRange(new object[] {
-            ((object)(resources.GetObject("sourceIPAddress.Items"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items1"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items2")))});
             this.sourceIPAddress.Location = new System.Drawing.Point(7, 27);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);

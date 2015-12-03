@@ -71,7 +71,7 @@
             this.close.Location = new System.Drawing.Point(272, 26);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(75, 23);
-            this.close.TabIndex = 14;
+            this.close.TabIndex = 8;
             this.close.Text = "Close";
             this.close.UseVisualStyleBackColor = true;
             this.close.Click += new System.EventHandler(this.close_Click);
@@ -125,7 +125,7 @@
             this.input.Location = new System.Drawing.Point(7, 54);
             this.input.Name = "input";
             this.input.Size = new System.Drawing.Size(379, 380);
-            this.input.TabIndex = 15;
+            this.input.TabIndex = 9;
             // 
             // listen
             // 
