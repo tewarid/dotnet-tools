@@ -41,13 +41,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.sourcePort = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.outputText = new Common.ReceiveTextBox();
             this.sourceIPAddress = new Common.InterfaceSelectorComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.multicastGroup = new System.Windows.Forms.TextBox();
             this.add = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.outputText = new Common.ReceiveTextBox();
+            this.close = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -154,6 +155,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.close);
             this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.sourceIPAddress);
             this.panel2.Controls.Add(this.label7);
@@ -168,9 +170,20 @@
             this.panel2.Size = new System.Drawing.Size(390, 435);
             this.panel2.TabIndex = 0;
             // 
+            // outputText
+            // 
+            this.outputText.Location = new System.Drawing.Point(7, 98);
+            this.outputText.Name = "outputText";
+            this.outputText.Size = new System.Drawing.Size(380, 337);
+            this.outputText.TabIndex = 6;
+            // 
             // sourceIPAddress
             // 
             this.sourceIPAddress.FormattingEnabled = true;
+            this.sourceIPAddress.Items.AddRange(new object[] {
+            ((object)(resources.GetObject("sourceIPAddress.Items"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items1"))),
+            ((object)(resources.GetObject("sourceIPAddress.Items2")))});
             this.sourceIPAddress.Location = new System.Drawing.Point(7, 27);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
@@ -191,7 +204,7 @@
             this.multicastGroup.Location = new System.Drawing.Point(7, 71);
             this.multicastGroup.Name = "multicastGroup";
             this.multicastGroup.Size = new System.Drawing.Size(119, 20);
-            this.multicastGroup.TabIndex = 3;
+            this.multicastGroup.TabIndex = 4;
             // 
             // add
             // 
@@ -199,7 +212,7 @@
             this.add.Location = new System.Drawing.Point(220, 69);
             this.add.Name = "add";
             this.add.Size = new System.Drawing.Size(75, 23);
-            this.add.TabIndex = 4;
+            this.add.TabIndex = 5;
             this.add.Text = "Add";
             this.add.UseVisualStyleBackColor = true;
             this.add.Click += new System.EventHandler(this.add_Click);
@@ -219,12 +232,16 @@
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
             // 
-            // outputText
+            // close
             // 
-            this.outputText.Location = new System.Drawing.Point(7, 98);
-            this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(387, 337);
-            this.outputText.TabIndex = 5;
+            this.close.Enabled = false;
+            this.close.Location = new System.Drawing.Point(301, 26);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(75, 23);
+            this.close.TabIndex = 3;
+            this.close.Text = "Close";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // MainForm
             // 
@@ -274,6 +291,7 @@
         private Common.InterfaceSelectorComboBox sourceIPAddress;
         private Common.SendTextBox input;
         private Common.ReceiveTextBox outputText;
+        private System.Windows.Forms.Button close;
     }
 }
 

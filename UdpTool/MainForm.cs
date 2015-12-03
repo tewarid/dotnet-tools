@@ -134,6 +134,7 @@ namespace UdpTool
             bind.Enabled = false;
             add.Enabled = true;
             multicastGroup.Enabled = true;
+            close.Enabled = true;
         }
 
         private void ReceiveCallback(IAsyncResult ar)
@@ -141,6 +142,7 @@ namespace UdpTool
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 0);
             try
             {
+                if (udpClient == null) return;
                 byte[] data = udpClient.EndReceive(ar, ref endPoint);
                 udpClient.BeginReceive(ReceiveCallback, null);
                 ShowReceivedData(endPoint, data);
@@ -188,6 +190,18 @@ namespace UdpTool
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            udpClient.Close();
+            udpClient = null;
+            sourceIPAddress.Enabled = true;
+            sourcePort.Enabled = true;
+            bind.Enabled = true;
+            add.Enabled = false;
+            multicastGroup.Enabled = false;
+            close.Enabled = false;
         }
     }
 }
