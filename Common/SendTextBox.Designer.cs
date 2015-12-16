@@ -45,9 +45,9 @@
             this.inputInHex.AutoSize = true;
             this.inputInHex.Location = new System.Drawing.Point(3, 3);
             this.inputInHex.Name = "inputInHex";
-            this.inputInHex.Size = new System.Drawing.Size(340, 17);
+            this.inputInHex.Size = new System.Drawing.Size(277, 17);
             this.inputInHex.TabIndex = 0;
-            this.inputInHex.Text = "Send binary, text is hexadecimal ASCII (e.g. 0xDE 0xAD or DE AD)";
+            this.inputInHex.Text = "Send binary, text is hexadecimal ASCII (e.g. BE 0xad)";
             this.inputInHex.UseVisualStyleBackColor = true;
             this.inputInHex.CheckedChanged += new System.EventHandler(this.inputInHex_CheckedChanged);
             // 
