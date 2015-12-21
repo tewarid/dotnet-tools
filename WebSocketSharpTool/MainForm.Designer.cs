@@ -31,12 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.sendButton = new System.Windows.Forms.Button();
-            this.sendTextBox = new Common.SendTextBox();
+            this.sendTextBox1 = new Common.SendTextBox();
             this.connect = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.outputText = new Common.ReceiveTextBox();
-            this.setHeaders = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.location = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -49,7 +48,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.sendButton);
-            this.panel1.Controls.Add(this.sendTextBox);
+            this.panel1.Controls.Add(this.sendTextBox1);
             this.panel1.Location = new System.Drawing.Point(395, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(389, 434);
@@ -67,10 +66,10 @@
             // 
             // sendTextBox1
             // 
-            this.sendTextBox.Location = new System.Drawing.Point(3, 4);
-            this.sendTextBox.Name = "sendTextBox1";
-            this.sendTextBox.Size = new System.Drawing.Size(381, 425);
-            this.sendTextBox.TabIndex = 6;
+            this.sendTextBox1.Location = new System.Drawing.Point(3, 4);
+            this.sendTextBox1.Name = "sendTextBox1";
+            this.sendTextBox1.Size = new System.Drawing.Size(381, 425);
+            this.sendTextBox1.TabIndex = 6;
             // 
             // connect
             // 
@@ -95,7 +94,6 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.outputText);
-            this.panel2.Controls.Add(this.setHeaders);
             this.panel2.Controls.Add(this.closeButton);
             this.panel2.Controls.Add(this.connect);
             this.panel2.Controls.Add(this.label4);
@@ -111,16 +109,6 @@
             this.outputText.Name = "outputText";
             this.outputText.Size = new System.Drawing.Size(387, 311);
             this.outputText.TabIndex = 5;
-            // 
-            // setHeaders
-            // 
-            this.setHeaders.Location = new System.Drawing.Point(6, 93);
-            this.setHeaders.Name = "setHeaders";
-            this.setHeaders.Size = new System.Drawing.Size(129, 23);
-            this.setHeaders.TabIndex = 1;
-            this.setHeaders.Text = "Set Request Headers...";
-            this.setHeaders.UseVisualStyleBackColor = true;
-            this.setHeaders.Click += new System.EventHandler(this.setHeaders_Click);
             // 
             // closeButton
             // 
@@ -173,7 +161,7 @@
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WebSocket Tool";
+            this.Text = "WebSocketSharp Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
@@ -197,8 +185,7 @@
         private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.TextBox location;
         private System.Windows.Forms.Button closeButton;
-        private System.Windows.Forms.Button setHeaders;
-        private Common.SendTextBox sendTextBox;
+        private Common.SendTextBox sendTextBox1;
         private Common.ReceiveTextBox outputText;
     }
 }

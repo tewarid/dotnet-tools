@@ -1,4 +1,4 @@
-﻿namespace WebSocketTool
+﻿namespace WebSocketSharpTool
 {
     partial class HeaderForm
     {

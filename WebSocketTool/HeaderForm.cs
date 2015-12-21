@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using System.Windows.Forms;
 
-namespace WebSocketTool
+namespace WebSocketSharpTool
 {
     public partial class HeaderForm : Form
     {

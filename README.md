@@ -15,5 +15,8 @@ Send/receive data over TCP/IP.
 ### UDP Tool
 Send/receive data using UDP/IP.
 
+### WebSocketSharp Tool
+Send/receive data using WebSockets. Uses [WebSocketSharp](https://github.com/sta/websocket-sharp) and  works with Windows 7 or better.
+
 ### WebSocket Tool
 Send/receive data using [WebSockets](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx). Requires Windows 8 or better.

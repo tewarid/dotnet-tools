@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WebSocketTool
+namespace WebSocketSharpTool
 {
     public partial class MainForm : Form
     {
@@ -38,7 +38,7 @@ namespace WebSocketTool
             sendButton.Enabled = false;
 
             int tickcount = 0;
-            if (sendTextBox1.Length <= 0)
+            if (sendTextBox.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
@@ -49,7 +49,7 @@ namespace WebSocketTool
                     tickcount = Environment.TickCount;
                     CancellationTokenSource source = new CancellationTokenSource();
                     CancellationToken token = source.Token;
-                    await wsClient.SendAsync(new ArraySegment<byte>(sendTextBox1.Bytes, 0, sendTextBox1.Length), 
+                    await wsClient.SendAsync(new ArraySegment<byte>(sendTextBox.Bytes, 0, sendTextBox.Length), 
                         WebSocketMessageType.Binary, true, token);
                     tickcount = Environment.TickCount - tickcount;
                 }
@@ -60,7 +60,7 @@ namespace WebSocketTool
             }
 
             status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", 
-                sendTextBox1.Length, tickcount);
+                sendTextBox.Length, tickcount);
             sendButton.Enabled = true;
         }
 
