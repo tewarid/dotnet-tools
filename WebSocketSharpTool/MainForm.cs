@@ -23,42 +23,62 @@ namespace WebSocketSharpTool
 
         private void sendButton_Click(object sender, EventArgs e)
         {
+            sendButton.Enabled = false;
+
             CreateWebSocketClient();
 
             if (ws == null || !ws.IsAlive)
             {
+                sendButton.Enabled = true;
                 return;
             }
 
-            sendButton.Enabled = false;
-
-            int tickcount = 0;
-            if (sendTextBox1.Length <= 0)
+            if (sendTextBox.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
+                sendButton.Enabled = true;
             }
             else
             {
                 try
                 {
-                    tickcount = Environment.TickCount;
-                    CancellationTokenSource source = new CancellationTokenSource();
-                    CancellationToken token = source.Token;
-                    ws.SendAsync(sendTextBox1.Bytes, delegate(bool completed) {
-                        tickcount = Environment.TickCount - tickcount;
+                    int tickcount = Environment.TickCount;
 
-                        BeginInvoke((MethodInvoker)delegate ()
-                        {
-                            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
-                                sendTextBox1.Length, tickcount);
-                            sendButton.Enabled = true;
-
+                    if (sendTextBox.Binary)
+                    {
+                        ws.SendAsync(sendTextBox.Bytes, delegate (bool completed) {
+                            if (completed)
+                            {
+                                tickcount = Environment.TickCount - tickcount;
+                                BeginInvoke((MethodInvoker)delegate ()
+                                {
+                                    status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
+                                    sendTextBox.Length, tickcount);
+                                    sendButton.Enabled = true;
+                                });
+                            }
                         });
-                    });
+                    }
+                    else
+                    {
+                        ws.SendAsync(sendTextBox.Text, delegate (bool completed) {
+                            if (completed)
+                            {
+                                tickcount = Environment.TickCount - tickcount;
+                                BeginInvoke((MethodInvoker)delegate ()
+                                {
+                                    status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
+                                    sendTextBox.Length, tickcount);
+                                    sendButton.Enabled = true;
+                                });
+                            }
+                        });
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(this, ex.Message, this.Text);
+                    sendButton.Enabled = true;
                 }
             }
         }

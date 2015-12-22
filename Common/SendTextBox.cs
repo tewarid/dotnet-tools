@@ -9,12 +9,30 @@ namespace Common
     public partial class SendTextBox : UserControl
     {
         private bool changed = false;
+
         public int Length { get; private set; }
+
         public byte[] Bytes { get; private set; }
+
+        public bool Binary { get; private set; }
+
+        public override string Text
+        {
+            get
+            {
+                return inputText.Text;
+            }
+
+            set
+            {
+                inputText.Text = value;
+            }
+        }
 
         public SendTextBox()
         {
             InitializeComponent();
+            Binary = false;
         }
 
         private void Evaluate()
@@ -39,13 +57,15 @@ namespace Common
 
             if (inputInHex.Checked)
             {
+                Binary = true;
                 MemoryStream output = new MemoryStream();
                 TextReader input = new StringReader(text);
                 length = HexToBin.Convert(input, output);
-                buffer = output.GetBuffer();
+                buffer = output.ToArray();
             }
             else
             {
+                Binary = false;
                 buffer = UTF8Encoding.UTF8.GetBytes(text);
                 length = buffer.Length;
             }

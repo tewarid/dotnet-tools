@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.sendButton = new System.Windows.Forms.Button();
-            this.sendTextBox1 = new Common.SendTextBox();
+            this.sendTextBox = new Common.SendTextBox();
             this.connect = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -48,7 +48,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.sendButton);
-            this.panel1.Controls.Add(this.sendTextBox1);
+            this.panel1.Controls.Add(this.sendTextBox);
             this.panel1.Location = new System.Drawing.Point(395, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(389, 434);
@@ -66,10 +66,10 @@
             // 
             // sendTextBox1
             // 
-            this.sendTextBox1.Location = new System.Drawing.Point(3, 4);
-            this.sendTextBox1.Name = "sendTextBox1";
-            this.sendTextBox1.Size = new System.Drawing.Size(381, 425);
-            this.sendTextBox1.TabIndex = 6;
+            this.sendTextBox.Location = new System.Drawing.Point(3, 4);
+            this.sendTextBox.Name = "sendTextBox1";
+            this.sendTextBox.Size = new System.Drawing.Size(381, 425);
+            this.sendTextBox.TabIndex = 6;
             // 
             // connect
             // 
@@ -185,7 +185,7 @@
         private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.TextBox location;
         private System.Windows.Forms.Button closeButton;
-        private Common.SendTextBox sendTextBox1;
+        private Common.SendTextBox sendTextBox;
         private Common.ReceiveTextBox outputText;
     }
 }

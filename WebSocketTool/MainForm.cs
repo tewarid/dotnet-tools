@@ -50,7 +50,8 @@ namespace WebSocketSharpTool
                     CancellationTokenSource source = new CancellationTokenSource();
                     CancellationToken token = source.Token;
                     await wsClient.SendAsync(new ArraySegment<byte>(sendTextBox.Bytes, 0, sendTextBox.Length), 
-                        WebSocketMessageType.Binary, true, token);
+                        sendTextBox.Binary ? WebSocketMessageType.Binary : WebSocketMessageType.Text, 
+                        true, token);
                     tickcount = Environment.TickCount - tickcount;
                 }
                 catch (Exception ex)
