@@ -3,4 +3,4 @@
 	url = https://github.com/tewarid/NetHexToBin.git
 [submodule "websocket-sharp"]
 	path = websocket-sharp
-	url = https://github.com/sta/websocket-sharp.git
+	url = https://github.com/tewarid/websocket-sharp.git
