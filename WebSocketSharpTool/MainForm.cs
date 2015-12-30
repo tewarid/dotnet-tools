@@ -119,7 +119,9 @@ namespace WebSocketSharpTool
             
             connect.Enabled = false;
             location.ReadOnly = true;
+            bearerToken.ReadOnly = true;
 
+            ws.SetBearerToken(bearerToken.Text);
             ws.OnError += Ws_OnError;
             ws.OnClose += Ws_OnClose;
             ws.OnMessage += Ws_OnMessage;
@@ -150,6 +152,7 @@ namespace WebSocketSharpTool
                 MessageBox.Show(e.Message, this.Text);
                 connect.Enabled = true;
                 location.ReadOnly = false;
+                bearerToken.ReadOnly = false;
             });
         }
 
@@ -179,6 +182,7 @@ namespace WebSocketSharpTool
             }
             connect.Enabled = true;
             location.ReadOnly = false;
+            bearerToken.ReadOnly = false;
         }
 
         private void outputText_TextChanged(object sender, EventArgs e)

@@ -40,6 +40,8 @@
             this.location = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.bearerToken = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -64,16 +66,16 @@
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
             // 
-            // sendTextBox1
+            // sendTextBox
             // 
             this.sendTextBox.Location = new System.Drawing.Point(3, 4);
-            this.sendTextBox.Name = "sendTextBox1";
+            this.sendTextBox.Name = "sendTextBox";
             this.sendTextBox.Size = new System.Drawing.Size(381, 425);
             this.sendTextBox.TabIndex = 6;
             // 
             // connect
             // 
-            this.connect.Location = new System.Drawing.Point(230, 93);
+            this.connect.Location = new System.Drawing.Point(230, 108);
             this.connect.Name = "connect";
             this.connect.Size = new System.Drawing.Size(75, 23);
             this.connect.TabIndex = 3;
@@ -93,6 +95,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.bearerToken);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.closeButton);
             this.panel2.Controls.Add(this.connect);
@@ -105,15 +109,15 @@
             // 
             // outputText
             // 
-            this.outputText.Location = new System.Drawing.Point(6, 123);
+            this.outputText.Location = new System.Drawing.Point(6, 137);
             this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(387, 311);
+            this.outputText.Size = new System.Drawing.Size(387, 297);
             this.outputText.TabIndex = 5;
             // 
             // closeButton
             // 
             this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeButton.Location = new System.Drawing.Point(311, 93);
+            this.closeButton.Location = new System.Drawing.Point(311, 108);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 4;
@@ -126,7 +130,7 @@
             this.location.Location = new System.Drawing.Point(6, 27);
             this.location.Multiline = true;
             this.location.Name = "location";
-            this.location.Size = new System.Drawing.Size(380, 60);
+            this.location.Size = new System.Drawing.Size(380, 36);
             this.location.TabIndex = 0;
             this.location.Text = "wss://echo.websocket.org?foo=bar";
             // 
@@ -144,6 +148,22 @@
             // 
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "OAUTH2 Bearer Token";
+            // 
+            // bearerToken
+            // 
+            this.bearerToken.Location = new System.Drawing.Point(6, 82);
+            this.bearerToken.Name = "bearerToken";
+            this.bearerToken.Size = new System.Drawing.Size(380, 20);
+            this.bearerToken.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -187,6 +207,8 @@
         private System.Windows.Forms.Button closeButton;
         private Common.SendTextBox sendTextBox;
         private Common.ReceiveTextBox outputText;
+        private System.Windows.Forms.TextBox bearerToken;
+        private System.Windows.Forms.Label label1;
     }
 }
 
