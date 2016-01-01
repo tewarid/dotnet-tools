@@ -1,6 +1,6 @@
 ﻿namespace WebSocketSharpTool
 {
-    partial class HeaderForm
+    partial class NameValueDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -79,7 +79,7 @@
             this.remove.UseVisualStyleBackColor = true;
             this.remove.Click += new System.EventHandler(this.remove_Click);
             // 
-            // HeaderForm
+            // NameValueDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,11 +90,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "HeaderForm";
+            this.Name = "NameValueDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Set Request Headers";
+            this.Text = "Name Value Dialog";
             ((System.ComponentModel.ISupportInitialize)(this.headers)).EndInit();
             this.ResumeLayout(false);
 

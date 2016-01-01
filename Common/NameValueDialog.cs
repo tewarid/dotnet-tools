@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace WebSocketSharpTool
 {
-    public partial class HeaderForm : Form
+    public partial class NameValueDialog : Form
     {
-        NameValueCollection collection = new NameValueCollection();
+        NameValueCollection collection;
 
-        public NameValueCollection Headers
+        public NameValueCollection NameValues
         {
             get
             {
@@ -16,10 +16,21 @@ namespace WebSocketSharpTool
             }
         }
 
-        public HeaderForm()
+        public NameValueDialog()
         {
             InitializeComponent();
-            headers.Rows.Add("Authorization", "Bearer token");
+            collection = new NameValueCollection();
+        }
+
+        public NameValueDialog(string title, 
+            NameValueCollection initialValues) : this()
+        {
+            this.Text = title;
+            this.collection.Add(initialValues);
+            foreach(string key in this.collection)
+            {
+                headers.Rows.Add(key, this.collection[key]);
+            }
         }
 
         private void remove_Click(object sender, EventArgs e)

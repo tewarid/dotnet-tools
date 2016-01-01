@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Threading;
 using System.Windows.Forms;
 using WebSocketSharp;
@@ -11,10 +12,14 @@ namespace WebSocketSharpTool
         private WebSocket ws;
         private byte[] buffer = new byte[100];
         private bool newMessage = true;
+        NameValueDialog headerForm;
 
         public MainForm()
         {
             InitializeComponent();
+            NameValueCollection initialValues = new NameValueCollection();
+            initialValues.Add("Authorization", "Bearer token");
+            headerForm = new NameValueDialog("Request Headers", initialValues);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -118,16 +123,16 @@ namespace WebSocketSharpTool
             ws = new WebSocket(location.Text);
             
             connect.Enabled = false;
+            setHeaders.Enabled = false;
             location.ReadOnly = true;
-            bearerToken.ReadOnly = true;
 
-            ws.SetBearerToken(bearerToken.Text);
+            ws.SetHeaders(headerForm.NameValues);
             ws.OnError += Ws_OnError;
             ws.OnClose += Ws_OnClose;
             ws.OnMessage += Ws_OnMessage;
             ws.OnOpen += Ws_OnOpen;
 
-            ws.ConnectAsync();
+            ws.Connect();
         }
 
         private void Ws_OnOpen(object sender, EventArgs e)
@@ -151,8 +156,8 @@ namespace WebSocketSharpTool
             {
                 MessageBox.Show(e.Message, this.Text);
                 connect.Enabled = true;
+                setHeaders.Enabled = true;
                 location.ReadOnly = false;
-                bearerToken.ReadOnly = false;
             });
         }
 
@@ -181,13 +186,13 @@ namespace WebSocketSharpTool
                 ws = null;
             }
             connect.Enabled = true;
+            setHeaders.Enabled = true;
             location.ReadOnly = false;
-            bearerToken.ReadOnly = false;
         }
 
-        private void outputText_TextChanged(object sender, EventArgs e)
+        private void setHeaders_Click(object sender, EventArgs e)
         {
-
+            headerForm.ShowDialog();
         }
     }
 }

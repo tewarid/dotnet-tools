@@ -16,11 +16,14 @@ namespace WebSocketSharpTool
         private ClientWebSocket wsClient;
         private byte[] buffer = new byte[100];
         private bool newMessage = true;
-        HeaderForm headerForm = new HeaderForm();
+        NameValueDialog headerForm;
 
         public MainForm()
         {
             InitializeComponent();
+            NameValueCollection initialValues = new NameValueCollection();
+            initialValues.Add("Authorization", "Bearer token");
+            headerForm = new NameValueDialog("Request Headers", initialValues);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -97,7 +100,7 @@ namespace WebSocketSharpTool
         {
             if (wsClient != null && wsClient.State == WebSocketState.Open) return;
             wsClient = new ClientWebSocket();
-            NameValueCollection headers = headerForm.Headers;
+            NameValueCollection headers = headerForm.NameValues;
             foreach(string name in headers)
             {
                 wsClient.Options.SetRequestHeader(name, headers.Get(name));
@@ -175,11 +178,6 @@ namespace WebSocketSharpTool
         private void setHeaders_Click(object sender, EventArgs e)
         {
             headerForm.ShowDialog();
-        }
-
-        private void outputText_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
