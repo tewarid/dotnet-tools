@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HeaderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HeaderForm.Designer.cs">
+      <DependentUpon>HeaderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="InterfaceSelectorComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -63,6 +69,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="HeaderForm.resx">
+      <DependentUpon>HeaderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReceiveTextBox.resx">
       <DependentUpon>ReceiveTextBox.cs</DependentUpon>
     </EmbeddedResource>
