@@ -12,15 +12,12 @@ namespace WebSocketSharpTool
         private WebSocket ws;
         private byte[] buffer = new byte[100];
         private bool newMessage = true;
-        NameValueDialog headerForm;
+        NameValueCollection headers;
         private string proxyUrl;
 
         public MainForm()
         {
             InitializeComponent();
-            NameValueCollection initialValues = new NameValueCollection();
-            initialValues.Add("Authorization", "Bearer token");
-            headerForm = new NameValueDialog("Request Headers", initialValues);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -128,7 +125,7 @@ namespace WebSocketSharpTool
             proxyButton.Enabled = false;
             location.ReadOnly = true;
 
-            ws.SetHeaders(headerForm.NameValues);
+            ws.SetHeaders(headers);
             ws.SetProxy(proxyUrl, string.Empty, string.Empty);
             ws.OnError += Ws_OnError;
             ws.OnClose += Ws_OnClose;
@@ -197,7 +194,19 @@ namespace WebSocketSharpTool
 
         private void setHeaders_Click(object sender, EventArgs e)
         {
+            NameValueCollection initialValues = new NameValueCollection();
+            if (headers == null || headers.Count == 0)
+            {
+                initialValues.Add("Authorization", "Bearer token");
+            }
+            else
+            {
+                initialValues.Add(headers);
+            }
+            NameValueDialog headerForm = 
+                new NameValueDialog("Request Headers", initialValues);
             headerForm.ShowDialog();
+            headers = headerForm.NameValues;
         }
 
         private void proxyButton_Click(object sender, EventArgs e)

@@ -16,14 +16,11 @@ namespace WebSocketSharpTool
         private ClientWebSocket wsClient;
         private byte[] buffer = new byte[100];
         private bool newMessage = true;
-        NameValueDialog headerForm;
+        NameValueCollection headers;
 
         public MainForm()
         {
             InitializeComponent();
-            NameValueCollection initialValues = new NameValueCollection();
-            initialValues.Add("Authorization", "Bearer token");
-            headerForm = new NameValueDialog("Request Headers", initialValues);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -100,10 +97,12 @@ namespace WebSocketSharpTool
         {
             if (wsClient != null && wsClient.State == WebSocketState.Open) return;
             wsClient = new ClientWebSocket();
-            NameValueCollection headers = headerForm.NameValues;
-            foreach(string name in headers)
-            {
-                wsClient.Options.SetRequestHeader(name, headers.Get(name));
+            if (headers != null)
+            { 
+                foreach(string name in headers)
+                {
+                    wsClient.Options.SetRequestHeader(name, headers.Get(name));
+                }
             }
             connect.Enabled = false;
             setHeaders.Enabled = false;
@@ -177,7 +176,19 @@ namespace WebSocketSharpTool
 
         private void setHeaders_Click(object sender, EventArgs e)
         {
+            NameValueCollection initialValues = new NameValueCollection();
+            if (headers == null || headers.Count == 0)
+            {
+                initialValues.Add("Authorization", "Bearer token");
+            }
+            else
+            {
+                initialValues.Add(headers);
+            }
+            NameValueDialog headerForm = 
+                new NameValueDialog("Request Headers", initialValues);
             headerForm.ShowDialog();
+            headers = headerForm.NameValues;
         }
     }
 }
