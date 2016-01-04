@@ -35,12 +35,13 @@
             this.connect = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.setHeaders = new System.Windows.Forms.Button();
             this.outputText = new Common.ReceiveTextBox();
             this.closeButton = new System.Windows.Forms.Button();
             this.location = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.setHeaders = new System.Windows.Forms.Button();
+            this.proxyButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -94,6 +95,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.proxyButton);
             this.panel2.Controls.Add(this.setHeaders);
             this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.closeButton);
@@ -104,6 +106,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(389, 434);
             this.panel2.TabIndex = 1;
+            // 
+            // setHeaders
+            // 
+            this.setHeaders.Location = new System.Drawing.Point(6, 93);
+            this.setHeaders.Name = "setHeaders";
+            this.setHeaders.Size = new System.Drawing.Size(97, 23);
+            this.setHeaders.TabIndex = 1;
+            this.setHeaders.Text = "HTTP Headers...";
+            this.setHeaders.UseVisualStyleBackColor = true;
+            this.setHeaders.Click += new System.EventHandler(this.setHeaders_Click);
             // 
             // outputText
             // 
@@ -147,15 +159,15 @@
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
             // 
-            // setHeaders
+            // proxyButton
             // 
-            this.setHeaders.Location = new System.Drawing.Point(6, 93);
-            this.setHeaders.Name = "setHeaders";
-            this.setHeaders.Size = new System.Drawing.Size(129, 23);
-            this.setHeaders.TabIndex = 1;
-            this.setHeaders.Text = "Set Request Headers...";
-            this.setHeaders.UseVisualStyleBackColor = true;
-            this.setHeaders.Click += new System.EventHandler(this.setHeaders_Click);
+            this.proxyButton.Location = new System.Drawing.Point(109, 93);
+            this.proxyButton.Name = "proxyButton";
+            this.proxyButton.Size = new System.Drawing.Size(82, 23);
+            this.proxyButton.TabIndex = 2;
+            this.proxyButton.Text = "HTTP Proxy...";
+            this.proxyButton.UseVisualStyleBackColor = true;
+            this.proxyButton.Click += new System.EventHandler(this.proxyButton_Click);
             // 
             // MainForm
             // 
@@ -200,6 +212,7 @@
         private Common.SendTextBox sendTextBox;
         private Common.ReceiveTextBox outputText;
         private System.Windows.Forms.Button setHeaders;
+        private System.Windows.Forms.Button proxyButton;
     }
 }
 

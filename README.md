@@ -16,7 +16,7 @@ Send/receive data over TCP/IP.
 Send/receive data using UDP/IP.
 
 ### WebSocketSharp Tool
-Send/receive data using WebSockets. Uses [WebSocketSharp](https://github.com/sta/websocket-sharp) and works with Windows 7 or better. One downside is that since WebSocketSharp uses a TCP socket, [Fiddler](http://www.telerik.com/fiddler) is unable to record the session. Use Wireshark instead.
+Send/receive data using WebSockets. Uses [WebSocketSharp](https://github.com/sta/websocket-sharp) and works with Windows 7 or better. WebSocketSharp uses TCP sockets. [Fiddler](http://www.telerik.com/fiddler) is only able to capture session with HTTP proxy setting.
 
 ### WebSocket Tool
 Send/receive data using [WebSockets](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx). Requires Windows 8 or better.

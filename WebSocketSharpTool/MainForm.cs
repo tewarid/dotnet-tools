@@ -13,6 +13,7 @@ namespace WebSocketSharpTool
         private byte[] buffer = new byte[100];
         private bool newMessage = true;
         NameValueDialog headerForm;
+        private string proxyUrl;
 
         public MainForm()
         {
@@ -124,9 +125,11 @@ namespace WebSocketSharpTool
             
             connect.Enabled = false;
             setHeaders.Enabled = false;
+            proxyButton.Enabled = false;
             location.ReadOnly = true;
 
             ws.SetHeaders(headerForm.NameValues);
+            ws.SetProxy(proxyUrl, string.Empty, string.Empty);
             ws.OnError += Ws_OnError;
             ws.OnClose += Ws_OnClose;
             ws.OnMessage += Ws_OnMessage;
@@ -157,6 +160,7 @@ namespace WebSocketSharpTool
                 MessageBox.Show(e.Message, this.Text);
                 connect.Enabled = true;
                 setHeaders.Enabled = true;
+                proxyButton.Enabled = true;
                 location.ReadOnly = false;
             });
         }
@@ -187,12 +191,23 @@ namespace WebSocketSharpTool
             }
             connect.Enabled = true;
             setHeaders.Enabled = true;
+            proxyButton.Enabled = true;
             location.ReadOnly = false;
         }
 
         private void setHeaders_Click(object sender, EventArgs e)
         {
             headerForm.ShowDialog();
+        }
+
+        private void proxyButton_Click(object sender, EventArgs e)
+        {
+            HttpProxy form = new HttpProxy();
+            form.ShowDialog();
+            if (form.Result == DialogResult.OK)
+            {
+                proxyUrl = form.Proxy.AbsoluteUri;
+            }
         }
     }
 }
