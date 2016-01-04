@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Net;
+using System.Net.Security;
 using System.Net.Sockets;
-using System.Text;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace TcpTool
@@ -9,6 +11,7 @@ namespace TcpTool
     public partial class MainForm : Form
     {
         TcpClient tcpClient;
+        Stream stream;
         delegate void ShowReceivedDataDelegate(byte[] data, int length);
         TcpListener listener;
         byte[] buffer = new byte[100];
@@ -48,7 +51,7 @@ namespace TcpTool
                 try
                 {
                     tickcount = Environment.TickCount;
-                    tcpClient.GetStream().Write(input.Bytes, 0, input.Length);
+                    stream.Write(input.Bytes, 0, input.Length);
                     tickcount = Environment.TickCount - tickcount;
                 }
                 catch (Exception ex)
@@ -118,10 +121,24 @@ namespace TcpTool
                 IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Parse(destinationIPAddress.Text),
                     int.Parse(destinationPort.Text));
                 tcpClient.Connect(remoteEndPoint);
-                tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
+                stream = tcpClient.GetStream();
+                if (useSSL.Checked)
+                {
+                    SslStream ssls = new SslStream(tcpClient.GetStream(), 
+                        true, ValidateCertificate);
+                    ssls.AuthenticateAsClient(string.Empty);
+                    stream = ssls;
+                }
+                stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
             }
             catch (Exception e)
             {
+                if (tcpClient != null && tcpClient.Connected == true)
+                {
+                    tcpClient.Close();
+                    tcpClient = null;
+                    stream = null;
+                }
                 MessageBox.Show(this, e.Message, this.Text);
                 return;
             }
@@ -134,7 +151,15 @@ namespace TcpTool
             listen.Enabled = false;
             destinationIPAddress.Enabled = false;
             destinationPort.Enabled = false;
+            useSSL.Enabled = false;
             close.Enabled = true;
+        }
+
+        private bool ValidateCertificate(object sender, 
+            X509Certificate certificate, X509Chain chain, 
+            SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -193,6 +218,7 @@ namespace TcpTool
             sourcePort.Enabled = false;
             destinationIPAddress.Enabled = false;
             destinationPort.Enabled = false;
+            useSSL.Enabled = false;
             close.Enabled = true;
         }
 
@@ -209,7 +235,7 @@ namespace TcpTool
 
             tcpClient = listener.EndAcceptTcpClient(ar);
 
-            tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
+            stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
 
             IPEndPoint ipEndPoint = (IPEndPoint)tcpClient.Client.RemoteEndPoint;
             destinationIPAddress.Text = ipEndPoint.Address.ToString();
@@ -218,14 +244,16 @@ namespace TcpTool
 
         private void ReadCallback(IAsyncResult ar)
         {
-            if (tcpClient == null) return;
+            if (tcpClient == null)
+                return;
+
             try
             {
-                int length = tcpClient.GetStream().EndRead(ar);
+                int length = stream.EndRead(ar);
                 if (length > 0)
                 {
                     ShowReceivedData(buffer, length);
-                    tcpClient.GetStream().BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
+                    stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
                 }
             }
             catch { }
@@ -256,6 +284,7 @@ namespace TcpTool
                 destinationPort.Enabled = true;
             }
             close.Enabled = false;
+            useSSL.Enabled = true;
         }
     }
 }

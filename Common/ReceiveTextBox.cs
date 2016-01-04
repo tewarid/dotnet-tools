@@ -18,7 +18,7 @@ namespace Common
 
         private void ReceiveTextBox_Resize(object sender, EventArgs e)
         {
-            panel.Width = this.Width - flowLayoutPanel.Margin.Vertical;
+            panel.Width = this.Width - flowLayoutPanel.Margin.Horizontal;
             outputText.Width = this.Width - flowLayoutPanel.Margin.Vertical;
             outputText.Height = this.Height - label.Height - panel.Height
                 - 2 * flowLayoutPanel.Margin.Vertical;

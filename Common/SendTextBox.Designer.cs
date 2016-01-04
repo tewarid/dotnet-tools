@@ -43,7 +43,7 @@
             // inputInHex
             // 
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(3, 3);
+            this.inputInHex.Location = new System.Drawing.Point(3, 350);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(277, 17);
             this.inputInHex.TabIndex = 0;
@@ -54,7 +54,7 @@
             // inputTextLabel
             // 
             this.inputTextLabel.AutoSize = true;
-            this.inputTextLabel.Location = new System.Drawing.Point(3, 23);
+            this.inputTextLabel.Location = new System.Drawing.Point(3, 0);
             this.inputTextLabel.Name = "inputTextLabel";
             this.inputTextLabel.Size = new System.Drawing.Size(105, 13);
             this.inputTextLabel.TabIndex = 21;
@@ -113,12 +113,12 @@
             this.inputText.AcceptsTab = true;
             this.inputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputText.HideSelection = false;
-            this.inputText.Location = new System.Drawing.Point(3, 39);
+            this.inputText.Location = new System.Drawing.Point(3, 16);
             this.inputText.MaxLength = 1000000;
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputText.Size = new System.Drawing.Size(374, 328);
+            this.inputText.Size = new System.Drawing.Size(361, 328);
             this.inputText.TabIndex = 1;
             this.inputText.TextChanged += new System.EventHandler(this.inputText_TextChanged);
             this.inputText.Enter += new System.EventHandler(this.inputText_Enter);
@@ -127,9 +127,9 @@
             // 
             // flowLayoutPanel
             // 
-            this.flowLayoutPanel.Controls.Add(this.inputInHex);
             this.flowLayoutPanel.Controls.Add(this.inputTextLabel);
             this.flowLayoutPanel.Controls.Add(this.inputText);
+            this.flowLayoutPanel.Controls.Add(this.inputInHex);
             this.flowLayoutPanel.Controls.Add(this.endOfLine);
             this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;

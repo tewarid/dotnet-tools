@@ -118,7 +118,7 @@ namespace Common
 
         private void SendTextBox_Resize(object sender, EventArgs e)
         {
-            inputText.Width = this.Width - flowLayoutPanel.Margin.Vertical;
+            inputText.Width = this.Width - flowLayoutPanel.Margin.Horizontal;
             inputText.Height = this.Height - inputInHex.Height 
                 - inputTextLabel.Height - endOfLine.Height 
                 - 3 * flowLayoutPanel.Margin.Vertical;

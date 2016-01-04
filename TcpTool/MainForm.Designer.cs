@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.useSSL = new System.Windows.Forms.CheckBox();
             this.close = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.useSSL);
             this.panel1.Controls.Add(this.close);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -64,6 +66,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(389, 434);
             this.panel1.TabIndex = 0;
+            // 
+            // useSSL
+            // 
+            this.useSSL.AutoSize = true;
+            this.useSSL.Location = new System.Drawing.Point(9, 54);
+            this.useSSL.Name = "useSSL";
+            this.useSSL.Size = new System.Drawing.Size(68, 17);
+            this.useSSL.TabIndex = 9;
+            this.useSSL.Text = "Use SSL";
+            this.useSSL.UseVisualStyleBackColor = true;
             // 
             // close
             // 
@@ -98,7 +110,7 @@
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(309, 399);
+            this.sendButton.Location = new System.Drawing.Point(309, 397);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 30);
             this.sendButton.TabIndex = 13;
@@ -122,10 +134,10 @@
             // 
             // input
             // 
-            this.input.Location = new System.Drawing.Point(7, 54);
+            this.input.Location = new System.Drawing.Point(7, 77);
             this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(379, 380);
-            this.input.TabIndex = 9;
+            this.input.Size = new System.Drawing.Size(377, 354);
+            this.input.TabIndex = 12;
             // 
             // listen
             // 
@@ -252,6 +264,7 @@
         private Common.InterfaceSelectorComboBox sourceIPAddress;
         private Common.SendTextBox input;
         private Common.ReceiveTextBox outputText;
+        private System.Windows.Forms.CheckBox useSSL;
     }
 }
 
