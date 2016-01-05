@@ -65,10 +65,10 @@
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
             // 
-            // sendTextBox1
+            // sendTextBox
             // 
             this.sendTextBox.Location = new System.Drawing.Point(3, 4);
-            this.sendTextBox.Name = "sendTextBox1";
+            this.sendTextBox.Name = "sendTextBox";
             this.sendTextBox.Size = new System.Drawing.Size(381, 425);
             this.sendTextBox.TabIndex = 6;
             // 
@@ -173,7 +173,7 @@
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WebSocket Tool";
+            this.Text = "WebSocket Tool (requires Windows 8 or better)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);

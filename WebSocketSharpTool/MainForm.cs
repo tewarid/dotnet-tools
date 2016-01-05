@@ -211,11 +211,11 @@ namespace WebSocketSharpTool
 
         private void proxyButton_Click(object sender, EventArgs e)
         {
-            HttpProxy form = new HttpProxy();
+            HttpProxy form = new HttpProxy(proxyUrl);
             form.ShowDialog();
             if (form.Result == DialogResult.OK)
             {
-                proxyUrl = form.Proxy.AbsoluteUri;
+                proxyUrl = form.Proxy == null ? null : form.Proxy.AbsoluteUri;
             }
         }
     }

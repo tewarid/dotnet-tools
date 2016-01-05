@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace WebSocketSharpTool
@@ -14,10 +8,11 @@ namespace WebSocketSharpTool
         public DialogResult Result { get; private set; }
         public Uri Proxy { get; set; }
 
-        public HttpProxy()
+        public HttpProxy(string proxy)
         {
             InitializeComponent();
             Result = DialogResult.None;
+            url.Text = proxy == null ? "http://127.0.0.1:8888" : proxy;
         }
 
         private void cancel_Click(object sender, EventArgs e)

@@ -49,7 +49,6 @@
             this.url.Name = "url";
             this.url.Size = new System.Drawing.Size(389, 20);
             this.url.TabIndex = 1;
-            this.url.Text = "http://127.0.0.1:8888";
             // 
             // ok
             // 
