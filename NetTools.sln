@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketSharpTool", "WebSo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketTool", "WebSocketTool\WebSocketTool.csproj", "{23B1ADCA-39FF-4FBF-B336-770FB124C9F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketServerTool", "WebSocketServerTool\WebSocketServerTool.csproj", "{4846204E-E40A-4ABE-AB71-8CFED0CB1567}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Ubuntu|Any CPU = Debug_Ubuntu|Any CPU
@@ -111,6 +113,14 @@ Global
 		{23B1ADCA-39FF-4FBF-B336-770FB124C9F8}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
 		{23B1ADCA-39FF-4FBF-B336-770FB124C9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23B1ADCA-39FF-4FBF-B336-770FB124C9F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4846204E-E40A-4ABE-AB71-8CFED0CB1567}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{4846204E-E40A-4ABE-AB71-8CFED0CB1567}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{4846204E-E40A-4ABE-AB71-8CFED0CB1567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4846204E-E40A-4ABE-AB71-8CFED0CB1567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4846204E-E40A-4ABE-AB71-8CFED0CB1567}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{4846204E-E40A-4ABE-AB71-8CFED0CB1567}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{4846204E-E40A-4ABE-AB71-8CFED0CB1567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4846204E-E40A-4ABE-AB71-8CFED0CB1567}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
