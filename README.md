@@ -20,3 +20,6 @@ Send/receive data using WebSockets. Uses [WebSocketSharp](https://github.com/sta
 
 ### WebSocket Tool
 Send/receive data using [WebSockets](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx). Requires Windows 8 or better.
+
+### WebSocket Server Tool
+Self-hosted WCF service that echoes back whatever message is sent to it. Supports SSL. Requires Windows 8 or better.
