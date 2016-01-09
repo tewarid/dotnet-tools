@@ -35,15 +35,14 @@
             this.endOfLineDos = new System.Windows.Forms.RadioButton();
             this.endOfLineMac = new System.Windows.Forms.RadioButton();
             this.inputText = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.endOfLine.SuspendLayout();
-            this.flowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // inputInHex
             // 
+            this.inputInHex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(3, 350);
+            this.inputInHex.Location = new System.Drawing.Point(3, 312);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(277, 17);
             this.inputInHex.TabIndex = 0;
@@ -62,10 +61,11 @@
             // 
             // endOfLine
             // 
+            this.endOfLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.endOfLine.Controls.Add(this.endOfLineUnix);
             this.endOfLine.Controls.Add(this.endOfLineDos);
             this.endOfLine.Controls.Add(this.endOfLineMac);
-            this.endOfLine.Location = new System.Drawing.Point(3, 373);
+            this.endOfLine.Location = new System.Drawing.Point(3, 335);
             this.endOfLine.Name = "endOfLine";
             this.endOfLine.Size = new System.Drawing.Size(247, 45);
             this.endOfLine.TabIndex = 2;
@@ -111,6 +111,9 @@
             // 
             this.inputText.AcceptsReturn = true;
             this.inputText.AcceptsTab = true;
+            this.inputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.inputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputText.HideSelection = false;
             this.inputText.Location = new System.Drawing.Point(3, 16);
@@ -118,39 +121,28 @@
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputText.Size = new System.Drawing.Size(361, 328);
+            this.inputText.Size = new System.Drawing.Size(402, 290);
             this.inputText.TabIndex = 1;
             this.inputText.TextChanged += new System.EventHandler(this.inputText_TextChanged);
             this.inputText.Enter += new System.EventHandler(this.inputText_Enter);
             this.inputText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputText_KeyPress);
             this.inputText.Leave += new System.EventHandler(this.inputText_Leave);
             // 
-            // flowLayoutPanel
-            // 
-            this.flowLayoutPanel.Controls.Add(this.inputTextLabel);
-            this.flowLayoutPanel.Controls.Add(this.inputText);
-            this.flowLayoutPanel.Controls.Add(this.inputInHex);
-            this.flowLayoutPanel.Controls.Add(this.endOfLine);
-            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(367, 441);
-            this.flowLayoutPanel.TabIndex = 22;
-            // 
             // SendTextBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.flowLayoutPanel);
+            this.Controls.Add(this.inputTextLabel);
+            this.Controls.Add(this.inputText);
+            this.Controls.Add(this.inputInHex);
+            this.Controls.Add(this.endOfLine);
+            this.MinimumSize = new System.Drawing.Size(280, 130);
             this.Name = "SendTextBox";
-            this.Size = new System.Drawing.Size(367, 441);
-            this.Resize += new System.EventHandler(this.SendTextBox_Resize);
+            this.Size = new System.Drawing.Size(407, 382);
             this.endOfLine.ResumeLayout(false);
             this.endOfLine.PerformLayout();
-            this.flowLayoutPanel.ResumeLayout(false);
-            this.flowLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -163,6 +155,5 @@
         private System.Windows.Forms.RadioButton endOfLineDos;
         private System.Windows.Forms.RadioButton endOfLineMac;
         private System.Windows.Forms.TextBox inputText;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
     }
 }

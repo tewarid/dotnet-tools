@@ -35,25 +35,25 @@
             this.connect = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.proxyButton = new System.Windows.Forms.Button();
-            this.setHeaders = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.outputText = new Common.ReceiveTextBox();
-            this.closeButton = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.proxyButton = new System.Windows.Forms.Button();
             this.location = new System.Windows.Forms.TextBox();
+            this.setHeaders = new System.Windows.Forms.Button();
+            this.closeButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -70,7 +70,7 @@
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendButton.Location = new System.Drawing.Point(311, 403);
+            this.sendButton.Location = new System.Drawing.Point(310, 402);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 30);
             this.sendButton.TabIndex = 7;
@@ -118,6 +118,39 @@
             this.panel2.Size = new System.Drawing.Size(392, 439);
             this.panel2.TabIndex = 1;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.outputText);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 124);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(3);
+            this.panel4.Size = new System.Drawing.Size(392, 312);
+            this.panel4.TabIndex = 9;
+            // 
+            // outputText
+            // 
+            this.outputText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputText.Location = new System.Drawing.Point(3, 3);
+            this.outputText.Name = "outputText";
+            this.outputText.Size = new System.Drawing.Size(386, 306);
+            this.outputText.TabIndex = 5;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.proxyButton);
+            this.panel3.Controls.Add(this.location);
+            this.panel3.Controls.Add(this.setHeaders);
+            this.panel3.Controls.Add(this.connect);
+            this.panel3.Controls.Add(this.closeButton);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(3);
+            this.panel3.Size = new System.Drawing.Size(392, 121);
+            this.panel3.TabIndex = 8;
+            // 
             // proxyButton
             // 
             this.proxyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -128,37 +161,6 @@
             this.proxyButton.Text = "HTTP Proxy...";
             this.proxyButton.UseVisualStyleBackColor = true;
             this.proxyButton.Click += new System.EventHandler(this.proxyButton_Click);
-            // 
-            // setHeaders
-            // 
-            this.setHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.setHeaders.Location = new System.Drawing.Point(6, 90);
-            this.setHeaders.Name = "setHeaders";
-            this.setHeaders.Size = new System.Drawing.Size(97, 23);
-            this.setHeaders.TabIndex = 1;
-            this.setHeaders.Text = "HTTP Headers...";
-            this.setHeaders.UseVisualStyleBackColor = true;
-            this.setHeaders.Click += new System.EventHandler(this.setHeaders_Click);
-            // 
-            // outputText
-            // 
-            this.outputText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.outputText.Location = new System.Drawing.Point(3, 3);
-            this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(386, 306);
-            this.outputText.TabIndex = 5;
-            // 
-            // closeButton
-            // 
-            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeButton.Location = new System.Drawing.Point(311, 90);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 4;
-            this.closeButton.Text = "Close";
-            this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // location
             // 
@@ -171,6 +173,29 @@
             this.location.Size = new System.Drawing.Size(380, 65);
             this.location.TabIndex = 0;
             this.location.Text = "wss://echo.websocket.org?foo=bar";
+            // 
+            // setHeaders
+            // 
+            this.setHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.setHeaders.Location = new System.Drawing.Point(6, 90);
+            this.setHeaders.Name = "setHeaders";
+            this.setHeaders.Size = new System.Drawing.Size(97, 23);
+            this.setHeaders.TabIndex = 1;
+            this.setHeaders.Text = "HTTP Headers...";
+            this.setHeaders.UseVisualStyleBackColor = true;
+            this.setHeaders.Click += new System.EventHandler(this.setHeaders_Click);
+            // 
+            // closeButton
+            // 
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.closeButton.Location = new System.Drawing.Point(311, 90);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 4;
+            this.closeButton.Text = "Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // statusStrip1
             // 
@@ -207,31 +232,6 @@
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 8;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.proxyButton);
-            this.panel3.Controls.Add(this.location);
-            this.panel3.Controls.Add(this.setHeaders);
-            this.panel3.Controls.Add(this.connect);
-            this.panel3.Controls.Add(this.closeButton);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(3);
-            this.panel3.Size = new System.Drawing.Size(392, 121);
-            this.panel3.TabIndex = 8;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.outputText);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 124);
-            this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(3);
-            this.panel4.Size = new System.Drawing.Size(392, 312);
-            this.panel4.TabIndex = 9;
-            // 
             // MainForm
             // 
             this.AcceptButton = this.connect;
@@ -249,15 +249,15 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
