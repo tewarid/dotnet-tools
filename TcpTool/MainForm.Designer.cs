@@ -47,9 +47,14 @@
             this.sourceIPAddress = new Common.InterfaceSelectorComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -62,15 +67,16 @@
             this.panel1.Controls.Add(this.destinationPort);
             this.panel1.Controls.Add(this.destinationIPAddress);
             this.panel1.Controls.Add(this.input);
-            this.panel1.Location = new System.Drawing.Point(395, 2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(389, 434);
+            this.panel1.Size = new System.Drawing.Size(388, 439);
             this.panel1.TabIndex = 0;
             // 
             // useSSL
             // 
             this.useSSL.AutoSize = true;
-            this.useSSL.Location = new System.Drawing.Point(9, 54);
+            this.useSSL.Location = new System.Drawing.Point(4, 52);
             this.useSSL.Name = "useSSL";
             this.useSSL.Size = new System.Drawing.Size(68, 17);
             this.useSSL.TabIndex = 9;
@@ -80,7 +86,7 @@
             // close
             // 
             this.close.Enabled = false;
-            this.close.Location = new System.Drawing.Point(272, 26);
+            this.close.Location = new System.Drawing.Point(260, 24);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(75, 23);
             this.close.TabIndex = 8;
@@ -92,7 +98,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(157, 11);
+            this.label2.Location = new System.Drawing.Point(152, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 7;
@@ -102,7 +108,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 11);
+            this.label1.Location = new System.Drawing.Point(2, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(136, 13);
             this.label1.TabIndex = 6;
@@ -110,7 +116,8 @@
             // 
             // sendButton
             // 
-            this.sendButton.Location = new System.Drawing.Point(309, 397);
+            this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sendButton.Location = new System.Drawing.Point(308, 406);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 30);
             this.sendButton.TabIndex = 13;
@@ -120,28 +127,32 @@
             // 
             // destinationPort
             // 
-            this.destinationPort.Location = new System.Drawing.Point(160, 28);
+            this.destinationPort.Location = new System.Drawing.Point(155, 26);
             this.destinationPort.Name = "destinationPort";
             this.destinationPort.Size = new System.Drawing.Size(94, 20);
             this.destinationPort.TabIndex = 7;
             // 
             // destinationIPAddress
             // 
-            this.destinationIPAddress.Location = new System.Drawing.Point(9, 28);
+            this.destinationIPAddress.Location = new System.Drawing.Point(4, 26);
             this.destinationIPAddress.Name = "destinationIPAddress";
             this.destinationIPAddress.Size = new System.Drawing.Size(134, 20);
             this.destinationIPAddress.TabIndex = 6;
             // 
             // input
             // 
-            this.input.Location = new System.Drawing.Point(7, 77);
+            this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.input.Location = new System.Drawing.Point(2, 77);
+            this.input.MinimumSize = new System.Drawing.Size(280, 130);
             this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(377, 354);
+            this.input.Size = new System.Drawing.Size(381, 359);
             this.input.TabIndex = 12;
             // 
             // listen
             // 
-            this.listen.Location = new System.Drawing.Point(238, 25);
+            this.listen.Location = new System.Drawing.Point(237, 23);
             this.listen.Name = "listen";
             this.listen.Size = new System.Drawing.Size(75, 23);
             this.listen.TabIndex = 2;
@@ -152,7 +163,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(141, 11);
+            this.label5.Location = new System.Drawing.Point(141, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(26, 13);
             this.label5.TabIndex = 8;
@@ -161,7 +172,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 11);
+            this.label4.Location = new System.Drawing.Point(3, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 7;
@@ -169,35 +180,40 @@
             // 
             // sourcePort
             // 
-            this.sourcePort.Location = new System.Drawing.Point(144, 27);
+            this.sourcePort.Location = new System.Drawing.Point(144, 25);
             this.sourcePort.Name = "sourcePort";
             this.sourcePort.Size = new System.Drawing.Size(82, 20);
             this.sourcePort.TabIndex = 1;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.sourcePort);
+            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.sourceIPAddress);
             this.panel2.Controls.Add(this.listen);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.sourcePort);
-            this.panel2.Location = new System.Drawing.Point(2, 2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(389, 434);
+            this.panel2.Size = new System.Drawing.Size(392, 439);
             this.panel2.TabIndex = 1;
             // 
             // outputText
             // 
-            this.outputText.Location = new System.Drawing.Point(6, 54);
+            this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.outputText.Location = new System.Drawing.Point(6, 61);
+            this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(380, 380);
+            this.outputText.Size = new System.Drawing.Size(384, 378);
             this.outputText.TabIndex = 3;
             // 
             // sourceIPAddress
             // 
             this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.Location = new System.Drawing.Point(6, 25);
+            this.sourceIPAddress.Location = new System.Drawing.Point(6, 23);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
             this.sourceIPAddress.TabIndex = 0;
@@ -217,18 +233,31 @@
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.panel2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Size = new System.Drawing.Size(784, 439);
+            this.splitContainer1.SplitterDistance = 392;
+            this.splitContainer1.TabIndex = 14;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TCP Tool";
@@ -240,6 +269,10 @@
             this.panel2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,6 +298,7 @@
         private Common.SendTextBox input;
         private Common.ReceiveTextBox outputText;
         private System.Windows.Forms.CheckBox useSSL;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 

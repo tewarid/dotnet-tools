@@ -42,7 +42,7 @@
             // 
             // open
             // 
-            this.open.Location = new System.Drawing.Point(61, 308);
+            this.open.Location = new System.Drawing.Point(58, 353);
             this.open.Name = "open";
             this.open.Size = new System.Drawing.Size(75, 23);
             this.open.TabIndex = 8;
@@ -75,14 +75,14 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(756, 143);
+            this.textBox1.Size = new System.Drawing.Size(456, 180);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 211);
+            this.label3.Location = new System.Drawing.Point(13, 256);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(163, 13);
             this.label3.TabIndex = 4;
@@ -90,7 +90,7 @@
             // 
             // subjectName
             // 
-            this.subjectName.Location = new System.Drawing.Point(16, 228);
+            this.subjectName.Location = new System.Drawing.Point(13, 273);
             this.subjectName.Name = "subjectName";
             this.subjectName.Size = new System.Drawing.Size(201, 20);
             this.subjectName.TabIndex = 5;
@@ -98,7 +98,7 @@
             // 
             // url
             // 
-            this.url.Location = new System.Drawing.Point(16, 268);
+            this.url.Location = new System.Drawing.Point(13, 313);
             this.url.Name = "url";
             this.url.Size = new System.Drawing.Size(201, 20);
             this.url.TabIndex = 7;
@@ -107,7 +107,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 251);
+            this.label4.Location = new System.Drawing.Point(13, 296);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 13);
             this.label4.TabIndex = 6;
@@ -116,7 +116,7 @@
             // close
             // 
             this.close.Enabled = false;
-            this.close.Location = new System.Drawing.Point(142, 308);
+            this.close.Location = new System.Drawing.Point(139, 353);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(75, 23);
             this.close.TabIndex = 9;
@@ -129,7 +129,7 @@
             this.AcceptButton = this.open;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(484, 411);
             this.Controls.Add(this.close);
             this.Controls.Add(this.url);
             this.Controls.Add(this.label4);
@@ -142,6 +142,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "WebSocket Server Tool (Requires Windows 8 or better)";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

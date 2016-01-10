@@ -99,5 +99,10 @@ namespace WebSocketServerTool
             subjectName.ReadOnly = false;
             url.ReadOnly = false;
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

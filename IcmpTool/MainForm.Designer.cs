@@ -44,8 +44,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.clearButton = new System.Windows.Forms.Button();
             this.outputText = new System.Windows.Forms.TextBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -57,9 +62,10 @@
             this.panel1.Controls.Add(this.inputText);
             this.panel1.Controls.Add(this.sendButton);
             this.panel1.Controls.Add(this.destinationIPAddress);
-            this.panel1.Location = new System.Drawing.Point(386, 1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(398, 439);
+            this.panel1.Size = new System.Drawing.Size(388, 461);
             this.panel1.TabIndex = 0;
             // 
             // label2
@@ -67,26 +73,29 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(2, 52);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(311, 13);
+            this.label2.Size = new System.Drawing.Size(309, 13);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Message to send (hexadecimal string e.g. 0xDE 0xAD or DE AD)";
+            this.label2.Text = "Message to send (hexadecimal string e.g. 0xBE 0xAD or BE AD)";
             // 
             // requestType
             // 
+            this.requestType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.requestType.FormattingEnabled = true;
             this.requestType.Items.AddRange(new object[] {
             "ICMP Echo Request (Ping)"});
-            this.requestType.Location = new System.Drawing.Point(5, 407);
+            this.requestType.Location = new System.Drawing.Point(5, 429);
             this.requestType.Name = "requestType";
-            this.requestType.Size = new System.Drawing.Size(385, 21);
+            this.requestType.Size = new System.Drawing.Size(375, 21);
             this.requestType.TabIndex = 6;
             this.requestType.SelectedIndexChanged += new System.EventHandler(this.requestType_SelectedIndexChanged);
             this.requestType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.requestType_KeyPress);
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 391);
+            this.label3.Location = new System.Drawing.Point(3, 413);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 13);
             this.label3.TabIndex = 8;
@@ -103,18 +112,22 @@
             // 
             // inputText
             // 
+            this.inputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.inputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputText.Location = new System.Drawing.Point(5, 68);
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputText.Size = new System.Drawing.Size(385, 302);
+            this.inputText.Size = new System.Drawing.Size(375, 324);
             this.inputText.TabIndex = 4;
             // 
             // sendButton
             // 
+            this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.sendButton.Enabled = false;
-            this.sendButton.Location = new System.Drawing.Point(315, 376);
+            this.sendButton.Location = new System.Drawing.Point(305, 398);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 5;
@@ -131,7 +144,7 @@
             // 
             // bind
             // 
-            this.bind.Location = new System.Drawing.Point(134, 23);
+            this.bind.Location = new System.Drawing.Point(130, 22);
             this.bind.Name = "bind";
             this.bind.Size = new System.Drawing.Size(75, 23);
             this.bind.TabIndex = 1;
@@ -142,7 +155,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 8);
+            this.label4.Location = new System.Drawing.Point(3, 8);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 13);
             this.label4.TabIndex = 7;
@@ -156,19 +169,16 @@
             this.panel2.Controls.Add(this.bind);
             this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(1, 1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(384, 439);
+            this.panel2.Size = new System.Drawing.Size(392, 461);
             this.panel2.TabIndex = 0;
             // 
             // sourceIPAddress
             // 
             this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.Items.AddRange(new object[] {
-            ((object)(resources.GetObject("sourceIPAddress.Items"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items1"))),
-            ((object)(resources.GetObject("sourceIPAddress.Items2")))});
-            this.sourceIPAddress.Location = new System.Drawing.Point(10, 24);
+            this.sourceIPAddress.Location = new System.Drawing.Point(3, 24);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
             this.sourceIPAddress.TabIndex = 0;
@@ -184,7 +194,8 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(301, 405);
+            this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearButton.Location = new System.Drawing.Point(314, 427);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
             this.clearButton.TabIndex = 8;
@@ -194,27 +205,44 @@
             // 
             // outputText
             // 
+            this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputText.Location = new System.Drawing.Point(9, 68);
+            this.outputText.Location = new System.Drawing.Point(3, 68);
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
             this.outputText.ReadOnly = true;
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(367, 331);
+            this.outputText.Size = new System.Drawing.Size(386, 353);
             this.outputText.TabIndex = 2;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.panel2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Size = new System.Drawing.Size(784, 461);
+            this.splitContainer1.SplitterDistance = 392;
+            this.splitContainer1.TabIndex = 6;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 441);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "MainForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ICMP Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -223,6 +251,10 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -244,6 +276,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox requestType;
         private Common.InterfaceSelectorComboBox sourceIPAddress;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 

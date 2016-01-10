@@ -46,10 +46,15 @@
             this.outputText = new Common.ReceiveTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeOutValue)).BeginInit();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -59,15 +64,17 @@
             this.panel1.Controls.Add(this.timeOut);
             this.panel1.Controls.Add(this.sendButton);
             this.panel1.Controls.Add(this.input);
-            this.panel1.Location = new System.Drawing.Point(395, 3);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(389, 433);
+            this.panel1.Size = new System.Drawing.Size(388, 439);
             this.panel1.TabIndex = 0;
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(149, 406);
+            this.label2.Location = new System.Drawing.Point(149, 412);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 19;
@@ -75,8 +82,9 @@
             // 
             // timeOutValue
             // 
+            this.timeOutValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.timeOutValue.Enabled = false;
-            this.timeOutValue.Location = new System.Drawing.Point(92, 401);
+            this.timeOutValue.Location = new System.Drawing.Point(92, 407);
             this.timeOutValue.Maximum = new decimal(new int[] {
             120,
             0,
@@ -98,8 +106,9 @@
             // 
             // timeOut
             // 
+            this.timeOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.timeOut.AutoSize = true;
-            this.timeOut.Location = new System.Drawing.Point(8, 402);
+            this.timeOut.Location = new System.Drawing.Point(8, 408);
             this.timeOut.Name = "timeOut";
             this.timeOut.Size = new System.Drawing.Size(78, 17);
             this.timeOut.TabIndex = 13;
@@ -109,8 +118,9 @@
             // 
             // sendButton
             // 
+            this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.sendButton.Enabled = false;
-            this.sendButton.Location = new System.Drawing.Point(308, 397);
+            this.sendButton.Location = new System.Drawing.Point(306, 403);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 30);
             this.sendButton.TabIndex = 15;
@@ -120,15 +130,19 @@
             // 
             // input
             // 
+            this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.input.Location = new System.Drawing.Point(3, 4);
+            this.input.MinimumSize = new System.Drawing.Size(280, 130);
             this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(383, 392);
+            this.input.Size = new System.Drawing.Size(378, 398);
             this.input.TabIndex = 12;
             // 
             // closeButton
             // 
             this.closeButton.Enabled = false;
-            this.closeButton.Location = new System.Drawing.Point(213, 70);
+            this.closeButton.Location = new System.Drawing.Point(213, 72);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 4;
@@ -138,7 +152,7 @@
             // 
             // refreshButton
             // 
-            this.refreshButton.Location = new System.Drawing.Point(132, 25);
+            this.refreshButton.Location = new System.Drawing.Point(132, 27);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 23);
             this.refreshButton.TabIndex = 1;
@@ -181,7 +195,7 @@
             // 
             // openButton
             // 
-            this.openButton.Location = new System.Drawing.Point(132, 70);
+            this.openButton.Location = new System.Drawing.Point(132, 72);
             this.openButton.Name = "openButton";
             this.openButton.Size = new System.Drawing.Size(75, 23);
             this.openButton.TabIndex = 3;
@@ -193,7 +207,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 11);
+            this.label4.Location = new System.Drawing.Point(4, 11);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 13);
             this.label4.TabIndex = 7;
@@ -217,16 +231,21 @@
             this.panel2.Controls.Add(this.baudRate);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.openButton);
-            this.panel2.Location = new System.Drawing.Point(0, 3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(391, 433);
+            this.panel2.Size = new System.Drawing.Size(392, 439);
             this.panel2.TabIndex = 1;
             // 
             // outputText
             // 
+            this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.outputText.Location = new System.Drawing.Point(6, 99);
+            this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(383, 331);
+            this.outputText.Size = new System.Drawing.Size(384, 337);
             this.outputText.TabIndex = 5;
             // 
             // statusStrip1
@@ -244,17 +263,31 @@
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 17);
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.panel2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Size = new System.Drawing.Size(784, 439);
+            this.splitContainer1.SplitterDistance = 392;
+            this.splitContainer1.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Serial Tool";
@@ -267,6 +300,10 @@
             this.panel2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,6 +328,7 @@
         private System.Windows.Forms.CheckBox timeOut;
         private Common.SendTextBox input;
         private Common.ReceiveTextBox outputText;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 

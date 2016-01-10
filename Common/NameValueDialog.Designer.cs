@@ -38,6 +38,9 @@
             // 
             // headers
             // 
+            this.headers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.headers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.headers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.headerName,
@@ -61,6 +64,7 @@
             // 
             // done
             // 
+            this.done.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.done.Location = new System.Drawing.Point(317, 226);
             this.done.Name = "done";
             this.done.Size = new System.Drawing.Size(75, 23);
@@ -71,6 +75,7 @@
             // 
             // remove
             // 
+            this.remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.remove.Location = new System.Drawing.Point(236, 226);
             this.remove.Name = "remove";
             this.remove.Size = new System.Drawing.Size(75, 23);
@@ -87,7 +92,7 @@
             this.Controls.Add(this.remove);
             this.Controls.Add(this.done);
             this.Controls.Add(this.headers);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NameValueDialog";
