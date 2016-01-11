@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.open = new System.Windows.Forms.Button();
+            this.start = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -37,18 +37,18 @@
             this.thumbprint = new System.Windows.Forms.TextBox();
             this.url = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.close = new System.Windows.Forms.Button();
+            this.stop = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // open
+            // start
             // 
-            this.open.Location = new System.Drawing.Point(58, 353);
-            this.open.Name = "open";
-            this.open.Size = new System.Drawing.Size(75, 23);
-            this.open.TabIndex = 8;
-            this.open.Text = "Open";
-            this.open.UseVisualStyleBackColor = true;
-            this.open.Click += new System.EventHandler(this.open_Click);
+            this.start.Location = new System.Drawing.Point(167, 348);
+            this.start.Name = "start";
+            this.start.Size = new System.Drawing.Size(75, 23);
+            this.start.TabIndex = 8;
+            this.start.Text = "Start";
+            this.start.UseVisualStyleBackColor = true;
+            this.start.Click += new System.EventHandler(this.open_Click);
             // 
             // label1
             // 
@@ -113,24 +113,24 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Service URL";
             // 
-            // close
+            // stop
             // 
-            this.close.Enabled = false;
-            this.close.Location = new System.Drawing.Point(139, 353);
-            this.close.Name = "close";
-            this.close.Size = new System.Drawing.Size(75, 23);
-            this.close.TabIndex = 9;
-            this.close.Text = "Close";
-            this.close.UseVisualStyleBackColor = true;
-            this.close.Click += new System.EventHandler(this.close_Click);
+            this.stop.Enabled = false;
+            this.stop.Location = new System.Drawing.Point(248, 348);
+            this.stop.Name = "stop";
+            this.stop.Size = new System.Drawing.Size(75, 23);
+            this.stop.TabIndex = 9;
+            this.stop.Text = "Stop";
+            this.stop.UseVisualStyleBackColor = true;
+            this.stop.Click += new System.EventHandler(this.close_Click);
             // 
             // MainForm
             // 
-            this.AcceptButton = this.open;
+            this.AcceptButton = this.start;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 411);
-            this.Controls.Add(this.close);
+            this.Controls.Add(this.stop);
             this.Controls.Add(this.url);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.thumbprint);
@@ -138,12 +138,12 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.open);
+            this.Controls.Add(this.start);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "WebSocket Server Tool (Requires Windows 8 or better)";
+            this.Text = "WebSocketSharp Server Tool";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -152,7 +152,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button open;
+        private System.Windows.Forms.Button start;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
@@ -160,7 +160,7 @@
         private System.Windows.Forms.TextBox thumbprint;
         private System.Windows.Forms.TextBox url;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button close;
+        private System.Windows.Forms.Button stop;
     }
 }
 

@@ -42,8 +42,8 @@ namespace WebSocketServerTool
             {
                 CreateServer(new Uri(url.Text), this.thumbprint.Text);
 
-                open.Enabled = false;
-                close.Enabled = true;
+                start.Enabled = false;
+                stop.Enabled = true;
                 thumbprint.ReadOnly = true;
                 url.ReadOnly = true;
             }
@@ -65,8 +65,8 @@ namespace WebSocketServerTool
             server.Stop();
             server = null;
 
-            open.Enabled = true;
-            close.Enabled = false;
+            start.Enabled = true;
+            stop.Enabled = false;
             thumbprint.ReadOnly = false;
             url.ReadOnly = false;
         }
