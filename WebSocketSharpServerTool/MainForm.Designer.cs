@@ -34,7 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.subjectName = new System.Windows.Forms.TextBox();
+            this.thumbprint = new System.Windows.Forms.TextBox();
             this.url = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.close = new System.Windows.Forms.Button();
@@ -84,17 +84,17 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(13, 256);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(163, 13);
+            this.label3.Size = new System.Drawing.Size(150, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Subject Name in X509 Certificate";
+            this.label3.Text = "Thumbprint of X509 Certificate";
             // 
-            // subjectName
+            // thumbprint
             // 
-            this.subjectName.Location = new System.Drawing.Point(13, 273);
-            this.subjectName.Name = "subjectName";
-            this.subjectName.Size = new System.Drawing.Size(201, 20);
-            this.subjectName.TabIndex = 5;
-            this.subjectName.Text = "mycompany.com";
+            this.thumbprint.Location = new System.Drawing.Point(13, 273);
+            this.thumbprint.Name = "thumbprint";
+            this.thumbprint.Size = new System.Drawing.Size(310, 20);
+            this.thumbprint.TabIndex = 5;
+            this.thumbprint.Text = "3228f47d6f0a56c47f62d96b9d0e8580049389a0";
             // 
             // url
             // 
@@ -133,7 +133,7 @@
             this.Controls.Add(this.close);
             this.Controls.Add(this.url);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.subjectName);
+            this.Controls.Add(this.thumbprint);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
@@ -157,7 +157,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox subjectName;
+        private System.Windows.Forms.TextBox thumbprint;
         private System.Windows.Forms.TextBox url;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button close;
