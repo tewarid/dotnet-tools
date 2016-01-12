@@ -10,7 +10,6 @@ namespace WebSocketSharpTool
     {
         delegate void ShowReceivedDataDelegate(byte[] data, int length);
         private WebSocket ws;
-        private byte[] buffer = new byte[100];
         private bool newMessage = true;
         NameValueCollection headers;
         private string proxyUrl;
