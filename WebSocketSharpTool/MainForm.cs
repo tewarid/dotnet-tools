@@ -145,7 +145,7 @@ namespace WebSocketSharpTool
 
         private void Ws_OnClose(object sender, CloseEventArgs e)
         {
-            MessageBox.Show(string.Format("WebSocket closed due to {0}.",
+            MessageBox.Show(string.Format("WebSocket closed. {0}",
                 e.Reason), this.Text);
         }
 

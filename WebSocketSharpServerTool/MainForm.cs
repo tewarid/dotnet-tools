@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using WebSocketSharp.Server;
@@ -14,38 +15,50 @@ namespace WebSocketServerTool
             InitializeComponent();
         }
 
-        private void CreateServer(Uri uri, string thumbprint = null)
+        private void CreateServer(Uri uri, string thumbprint = null, string pfxPath = null, string pfxPassword = null)
         {
-            server = new WebSocketServer(uri.ToString());
+            server = new WebSocketServer(uri.GetLeftPart(System.UriPartial.Authority));
 
-            X509Store store = new X509Store(StoreName.My, StoreLocation.LocalMachine);
-            store.Open(OpenFlags.ReadOnly);
-            X509Certificate2Collection certificates = 
-                store.Certificates.Find(X509FindType.FindByThumbprint,
-                thumbprint, false);
-            if (certificates.Count > 0)
+            if (!string.IsNullOrEmpty(pfxPath))
             {
-                server.SslConfiguration.ServerCertificate = certificates[0];
-            };
-            store.Close();
+                server.SslConfiguration.ServerCertificate = 
+                    new X509Certificate2(pfxPath, pfxPassword);
+            }
+            else
+            {
+                X509Store store = new X509Store(StoreName.My, StoreLocation.LocalMachine);
+                store.Open(OpenFlags.ReadOnly);
+                X509Certificate2Collection certificates =
+                    store.Certificates.Find(X509FindType.FindByThumbprint,
+                    thumbprint, false);
+                if (certificates.Count > 0)
+                {
+                    server.SslConfiguration.ServerCertificate = certificates[0];
+                };
+                store.Close();
+            }
 
-            server.AddWebSocketService<ServiceBehavior>("/");
+            server.AddWebSocketService<ServiceBehavior>(uri.AbsolutePath);
 
             server.Start();
         }
 
-        private void open_Click(object sender, System.EventArgs e)
+        private void start_Click(object sender, System.EventArgs e)
         {
             if (server != null) return;
 
             try
             {
-                CreateServer(new Uri(url.Text), this.thumbprint.Text);
-
-                start.Enabled = false;
-                stop.Enabled = true;
-                thumbprint.ReadOnly = true;
-                url.ReadOnly = true;
+                if (pfxFileOption.Checked)
+                {
+                    CreateServer(new Uri(url.Text), pfxPath: this.pfxPath.Text, 
+                        pfxPassword: this.pfxPassword.Text);
+                }
+                else
+                {
+                    CreateServer(new Uri(url.Text), this.thumbprint.Text);
+                }
+                LockControls(true);
             }
             catch (Exception ex)
             {
@@ -58,22 +71,46 @@ namespace WebSocketServerTool
             }
         }
 
-        private void close_Click(object sender, EventArgs e)
+        private void stop_Click(object sender, EventArgs e)
         {
             if (server == null) return;
 
             server.Stop();
             server = null;
-
-            start.Enabled = true;
-            stop.Enabled = false;
-            thumbprint.ReadOnly = false;
-            url.ReadOnly = false;
+            LockControls(false);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void browseForPfx_Click(object sender, EventArgs e)
         {
+            DialogResult r = openFileDialog.ShowDialog();
+            if (r == DialogResult.OK)
+            {
+                pfxPath.Text = openFileDialog.FileName;
+            }
+        }
 
+        private void pfxFileOption_CheckedChanged(object sender, EventArgs e)
+        {
+            EnablePfxControls(pfxFileOption.Checked);
+        }
+
+        private void EnablePfxControls(bool enabled)
+        {
+            pfxPath.Enabled = enabled;
+            browseForPfx.Enabled = enabled;
+            pfxPassword.Enabled = enabled;
+            thumbprint.Enabled = !enabled;
+        }
+
+        private void LockControls(bool locked)
+        {
+            start.Enabled = !locked;
+            stop.Enabled = locked;
+            thumbprint.ReadOnly = locked;
+            url.ReadOnly = locked;
+            browseForPfx.Enabled = !locked;
+            pfxPassword.ReadOnly = locked;
+            privateKeyOption.Enabled = !locked;
         }
     }
 }
