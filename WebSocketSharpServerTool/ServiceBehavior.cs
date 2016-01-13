@@ -7,7 +7,10 @@ namespace WebSocketServerTool
     {
         protected override void OnMessage(MessageEventArgs e)
         {
-            base.Send(e.RawData);
+            if (e.IsBinary)
+                base.Send(e.RawData);
+            else
+                base.Send(e.Data);
         }
 
         protected override void OnClose(CloseEventArgs e)
