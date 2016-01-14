@@ -15,28 +15,38 @@ namespace WebSocketServerTool
             InitializeComponent();
         }
 
-        private void CreateServer(Uri uri, string thumbprint = null, string pfxPath = null, string pfxPassword = null)
+        private void CreateServer(Uri uri, string thumbprint = null, 
+            string pfxPath = null, string pfxPassword = null)
         {
             server = new WebSocketServer(uri.GetLeftPart(System.UriPartial.Authority));
 
+            X509Certificate2 cert = null;
             if (!string.IsNullOrEmpty(pfxPath))
             {
-                server.SslConfiguration.ServerCertificate = 
-                    new X509Certificate2(pfxPath, pfxPassword);
+                cert = new X509Certificate2(pfxPath, pfxPassword);
             }
-            else
+            else if (!string.IsNullOrEmpty(thumbprint))
             {
                 X509Store store = new X509Store(StoreName.My, StoreLocation.LocalMachine);
                 store.Open(OpenFlags.ReadOnly);
                 X509Certificate2Collection certificates =
                     store.Certificates.Find(X509FindType.FindByThumbprint,
-                    thumbprint, false);
+                        thumbprint, false);
                 if (certificates.Count > 0)
                 {
-                    server.SslConfiguration.ServerCertificate = certificates[0];
+                    cert = certificates[0];
                 };
                 store.Close();
             }
+
+            if (uri.Scheme.Equals("wss") && cert == null)
+            {
+                MessageBox.Show(this, "Certificate not found.", this.Text);
+                server = null;
+                return;
+            }
+
+            server.SslConfiguration.ServerCertificate = cert;
 
             server.AddWebSocketService<ServiceBehavior>(uri.AbsolutePath);
 
@@ -58,6 +68,10 @@ namespace WebSocketServerTool
                 {
                     CreateServer(new Uri(url.Text), this.thumbprint.Text);
                 }
+
+                if (server == null)
+                    return;
+
                 LockControls(true);
             }
             catch (Exception ex)

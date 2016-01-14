@@ -52,7 +52,7 @@
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(248, 376);
+            this.start.Location = new System.Drawing.Point(316, 426);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(75, 23);
             this.start.TabIndex = 7;
@@ -81,19 +81,20 @@
             // 
             // textBox1
             // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(16, 51);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(456, 103);
+            this.textBox1.Size = new System.Drawing.Size(456, 126);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 209);
+            this.label3.Location = new System.Drawing.Point(14, 258);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(149, 13);
             this.label3.TabIndex = 4;
@@ -101,7 +102,7 @@
             // 
             // thumbprint
             // 
-            this.thumbprint.Location = new System.Drawing.Point(13, 225);
+            this.thumbprint.Location = new System.Drawing.Point(14, 274);
             this.thumbprint.Name = "thumbprint";
             this.thumbprint.Size = new System.Drawing.Size(310, 20);
             this.thumbprint.TabIndex = 2;
@@ -109,7 +110,7 @@
             // 
             // url
             // 
-            this.url.Location = new System.Drawing.Point(13, 348);
+            this.url.Location = new System.Drawing.Point(14, 397);
             this.url.Name = "url";
             this.url.Size = new System.Drawing.Size(310, 20);
             this.url.TabIndex = 6;
@@ -118,7 +119,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 332);
+            this.label4.Location = new System.Drawing.Point(14, 381);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 13);
             this.label4.TabIndex = 6;
@@ -127,7 +128,7 @@
             // stop
             // 
             this.stop.Enabled = false;
-            this.stop.Location = new System.Drawing.Point(329, 376);
+            this.stop.Location = new System.Drawing.Point(397, 426);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(75, 23);
             this.stop.TabIndex = 8;
@@ -139,9 +140,10 @@
             // 
             this.privateKeyOption.Controls.Add(this.pfxFileOption);
             this.privateKeyOption.Controls.Add(this.keystoreOption);
-            this.privateKeyOption.Location = new System.Drawing.Point(16, 165);
+            this.privateKeyOption.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.privateKeyOption.Location = new System.Drawing.Point(17, 183);
             this.privateKeyOption.Name = "privateKeyOption";
-            this.privateKeyOption.Size = new System.Drawing.Size(307, 39);
+            this.privateKeyOption.Size = new System.Drawing.Size(307, 65);
             this.privateKeyOption.TabIndex = 0;
             this.privateKeyOption.TabStop = false;
             this.privateKeyOption.Text = "Private Key";
@@ -149,7 +151,7 @@
             // pfxFileOption
             // 
             this.pfxFileOption.AutoSize = true;
-            this.pfxFileOption.Location = new System.Drawing.Point(232, 16);
+            this.pfxFileOption.Location = new System.Drawing.Point(8, 39);
             this.pfxFileOption.Name = "pfxFileOption";
             this.pfxFileOption.Size = new System.Drawing.Size(64, 17);
             this.pfxFileOption.TabIndex = 1;
@@ -163,16 +165,16 @@
             this.keystoreOption.Checked = true;
             this.keystoreOption.Location = new System.Drawing.Point(7, 16);
             this.keystoreOption.Name = "keystoreOption";
-            this.keystoreOption.Size = new System.Drawing.Size(198, 17);
+            this.keystoreOption.Size = new System.Drawing.Size(269, 17);
             this.keystoreOption.TabIndex = 0;
             this.keystoreOption.TabStop = true;
-            this.keystoreOption.Text = "Obtain from Keystore (Windows only)";
+            this.keystoreOption.Text = "Use Keystore (Windows only, may require elevation)";
             this.keystoreOption.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 250);
+            this.label5.Location = new System.Drawing.Point(14, 299);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 11;
@@ -181,7 +183,7 @@
             // pfxPath
             // 
             this.pfxPath.Enabled = false;
-            this.pfxPath.Location = new System.Drawing.Point(13, 266);
+            this.pfxPath.Location = new System.Drawing.Point(14, 315);
             this.pfxPath.Name = "pfxPath";
             this.pfxPath.ReadOnly = true;
             this.pfxPath.Size = new System.Drawing.Size(310, 20);
@@ -191,7 +193,7 @@
             // browseForPfx
             // 
             this.browseForPfx.Enabled = false;
-            this.browseForPfx.Location = new System.Drawing.Point(329, 264);
+            this.browseForPfx.Location = new System.Drawing.Point(330, 313);
             this.browseForPfx.Name = "browseForPfx";
             this.browseForPfx.Size = new System.Drawing.Size(75, 23);
             this.browseForPfx.TabIndex = 4;
@@ -208,7 +210,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 291);
+            this.label6.Location = new System.Drawing.Point(14, 340);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 13);
             this.label6.TabIndex = 14;
@@ -217,7 +219,7 @@
             // pfxPassword
             // 
             this.pfxPassword.Enabled = false;
-            this.pfxPassword.Location = new System.Drawing.Point(13, 307);
+            this.pfxPassword.Location = new System.Drawing.Point(14, 356);
             this.pfxPassword.Name = "pfxPassword";
             this.pfxPassword.PasswordChar = '*';
             this.pfxPassword.Size = new System.Drawing.Size(107, 20);
@@ -228,7 +230,7 @@
             this.AcceptButton = this.start;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 411);
+            this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.pfxPassword);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.browseForPfx);
