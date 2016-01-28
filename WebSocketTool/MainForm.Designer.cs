@@ -35,8 +35,8 @@
             this.connect = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.outputText = new Common.ReceiveTextBox();
             this.location = new System.Windows.Forms.TextBox();
+            this.outputText = new Common.ReceiveTextBox();
             this.setHeaders = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -118,6 +118,17 @@
             this.panel2.Size = new System.Drawing.Size(391, 439);
             this.panel2.TabIndex = 1;
             // 
+            // location
+            // 
+            this.location.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.location.Location = new System.Drawing.Point(3, 25);
+            this.location.Multiline = true;
+            this.location.Name = "location";
+            this.location.Size = new System.Drawing.Size(382, 63);
+            this.location.TabIndex = 0;
+            this.location.Text = "wss://localhost:8088";
+            // 
             // outputText
             // 
             this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -128,17 +139,6 @@
             this.outputText.Name = "outputText";
             this.outputText.Size = new System.Drawing.Size(385, 316);
             this.outputText.TabIndex = 5;
-            // 
-            // location
-            // 
-            this.location.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.location.Location = new System.Drawing.Point(3, 25);
-            this.location.Multiline = true;
-            this.location.Name = "location";
-            this.location.Size = new System.Drawing.Size(382, 63);
-            this.location.TabIndex = 0;
-            this.location.Text = "wss://echo.websocket.org?foo=bar";
             // 
             // setHeaders
             // 

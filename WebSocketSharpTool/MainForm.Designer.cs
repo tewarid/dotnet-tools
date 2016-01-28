@@ -139,7 +139,7 @@
             this.location.Name = "location";
             this.location.Size = new System.Drawing.Size(386, 64);
             this.location.TabIndex = 0;
-            this.location.Text = "wss://echo.websocket.org?foo=bar";
+            this.location.Text = "wss://localhost:8088";
             // 
             // setHeaders
             // 
