@@ -45,7 +45,7 @@
             this.inputInHex.Location = new System.Drawing.Point(3, 312);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(277, 17);
-            this.inputInHex.TabIndex = 0;
+            this.inputInHex.TabIndex = 1;
             this.inputInHex.Text = "Send binary, text is hexadecimal ASCII (e.g. BE 0xad)";
             this.inputInHex.UseVisualStyleBackColor = true;
             this.inputInHex.CheckedChanged += new System.EventHandler(this.inputInHex_CheckedChanged);
@@ -122,7 +122,7 @@
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputText.Size = new System.Drawing.Size(402, 290);
-            this.inputText.TabIndex = 1;
+            this.inputText.TabIndex = 0;
             this.inputText.TextChanged += new System.EventHandler(this.inputText_TextChanged);
             this.inputText.Enter += new System.EventHandler(this.inputText_Enter);
             this.inputText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputText_KeyPress);
