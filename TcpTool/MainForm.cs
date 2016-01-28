@@ -133,9 +133,12 @@ namespace TcpTool
             }
             catch (Exception e)
             {
-                if (tcpClient != null && tcpClient.Connected == true)
+                if (tcpClient != null)
                 {
-                    tcpClient.Close();
+                    if (tcpClient.Connected)
+                    {
+                        tcpClient.Close();
+                    }
                     tcpClient = null;
                     stream = null;
                 }
@@ -153,6 +156,7 @@ namespace TcpTool
             destinationPort.Enabled = false;
             useSSL.Enabled = false;
             close.Enabled = true;
+            open.Enabled = false;
         }
 
         private bool ValidateCertificate(object sender, 
@@ -214,12 +218,13 @@ namespace TcpTool
             sourcePort.Text = ipEndPoint.Port.ToString();
 
             listen.Enabled = false;
+            stopListener.Enabled = true;
             sourceIPAddress.Enabled = false;
             sourcePort.Enabled = false;
             destinationIPAddress.Enabled = false;
             destinationPort.Enabled = false;
             useSSL.Enabled = false;
-            close.Enabled = true;
+            open.Enabled = false;
         }
 
         private void BeginAcceptCallback(IAsyncResult ar)
@@ -233,13 +238,35 @@ namespace TcpTool
                 return;
             }
 
-            tcpClient = listener.EndAcceptTcpClient(ar);
+            try
+            {
+                tcpClient = listener.EndAcceptTcpClient(ar);
+            }
+            catch
+            {
+                return;
+            }
+
+            if (useSSLListener.Checked)
+            {
+                SslStream ssls = new SslStream(tcpClient.GetStream(),
+                    true, ValidateCertificate);
+                X509Certificate2 cert = new X509Certificate2(pfxPath.Text, "");
+                ssls.AuthenticateAsServer(cert);
+                stream = ssls;
+            }
+            else
+            {
+                stream = tcpClient.GetStream();
+            }
 
             stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
 
             IPEndPoint ipEndPoint = (IPEndPoint)tcpClient.Client.RemoteEndPoint;
             destinationIPAddress.Text = ipEndPoint.Address.ToString();
             destinationPort.Text = ipEndPoint.Port.ToString();
+
+            listener.BeginAcceptTcpClient(BeginAcceptCallback, null);
         }
 
         private void ReadCallback(IAsyncResult ar)
@@ -259,7 +286,7 @@ namespace TcpTool
             catch { }
         }
 
-        private void close_Click(object sender, EventArgs e)
+        private void CloseTcpClient()
         {
             if (tcpClient != null)
             {
@@ -272,19 +299,55 @@ namespace TcpTool
                 destinationPort.Enabled = true;
                 listen.Enabled = true;
             }
+            open.Enabled = true;
+            close.Enabled = false;
+            useSSL.Enabled = true;
+        }
 
+        private void close_Click(object sender, EventArgs e)
+        {
+            CloseTcpClient();
+        }
+
+        private void useSSLListener_CheckedChanged(object sender, EventArgs e)
+        {
+            pfxPath.Enabled = useSSLListener.Checked;
+            browseForPfx.Enabled = useSSLListener.Checked;
+        }
+
+        private void browseForPfx_Click(object sender, EventArgs e)
+        {
+            DialogResult r = openFileDialog.ShowDialog();
+            if (r == DialogResult.OK)
+            {
+                pfxPath.Text = openFileDialog.FileName;
+            }
+        }
+
+        private void stopListener_Click(object sender, EventArgs e)
+        {
             if (listener != null)
             {
                 listener.Stop();
                 listener = null;
                 listen.Enabled = true;
+                stopListener.Enabled = false;
                 sourceIPAddress.Enabled = true;
                 sourcePort.Enabled = true;
                 destinationIPAddress.Enabled = true;
                 destinationPort.Enabled = true;
+                open.Enabled = true;
             }
-            close.Enabled = false;
-            useSSL.Enabled = true;
+
+            CloseTcpClient();
+        }
+
+        private void open_Click(object sender, EventArgs e)
+        {
+            if (tcpClient == null || !tcpClient.Connected)
+            {
+                CreateTcpClient();
+            }
         }
     }
 }
