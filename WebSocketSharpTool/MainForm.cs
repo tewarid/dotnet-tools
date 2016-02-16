@@ -27,7 +27,15 @@ namespace WebSocketSharpTool
         {
             sendButton.Enabled = false;
 
-            CreateWebSocketClient();
+            try
+            {
+                CreateWebSocketClient();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text);
+                sendButton.Enabled = true;
+            }
 
             if (ws == null || !ws.IsAlive)
             {
@@ -169,7 +177,14 @@ namespace WebSocketSharpTool
 
         private void connect_Click(object sender, EventArgs e)
         {
-            CreateWebSocketClient();
+            try
+            {
+                CreateWebSocketClient();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text);
+            }
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -215,6 +230,15 @@ namespace WebSocketSharpTool
             if (form.Result == DialogResult.OK)
             {
                 proxyUrl = form.Proxy == null ? null : form.Proxy.AbsoluteUri;
+            }
+        }
+
+        private void location_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 1) // Control+A
+            {
+                location.SelectAll();
+                e.Handled = true;
             }
         }
     }

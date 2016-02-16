@@ -140,6 +140,7 @@
             this.location.Size = new System.Drawing.Size(386, 64);
             this.location.TabIndex = 0;
             this.location.Text = "wss://localhost:8088";
+            this.location.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.location_KeyPress);
             // 
             // setHeaders
             // 
