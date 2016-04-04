@@ -153,8 +153,12 @@ namespace WebSocketSharpTool
 
         private void Ws_OnClose(object sender, CloseEventArgs e)
         {
-            MessageBox.Show(string.Format("WebSocket closed. {0}",
-                e.Reason), this.Text);
+            BeginInvoke((MethodInvoker)delegate ()
+            {
+                MessageBox.Show(string.Format("WebSocket closed. {0}",
+                    e.Reason), this.Text);
+                CloseWebSocketClient();
+            });
         }
 
         private void Ws_OnError(object sender, ErrorEventArgs e)
@@ -162,10 +166,7 @@ namespace WebSocketSharpTool
             BeginInvoke((MethodInvoker)delegate ()
             {
                 MessageBox.Show(e.Message, this.Text);
-                connect.Enabled = true;
-                setHeaders.Enabled = true;
-                proxyButton.Enabled = true;
-                location.ReadOnly = false;
+                CloseWebSocketClient();
             });
         }
 
@@ -198,8 +199,8 @@ namespace WebSocketSharpTool
             {
                 ws.OnClose -= Ws_OnClose;
                 ws.Close();
-                ws = null;
             }
+            ws = null;
             connect.Enabled = true;
             setHeaders.Enabled = true;
             proxyButton.Enabled = true;
