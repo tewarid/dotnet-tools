@@ -25,4 +25,4 @@ Self-hosted WCF service that echoes back whatever message is sent to it. Support
 Send/receive data using WebSockets. Uses [WebSocketSharp](https://github.com/sta/websocket-sharp), so works with Windows 7 or better. WebSocketSharp uses TCP sockets, need to use HTTP proxy so that [Fiddler](http://www.telerik.com/fiddler) is able to capture session.
 
 #### WebSocketSharp Server Tool
-Self-hosted service that echoes back whatever message is sent to it. Uses [WebSocketSharp](https://github.com/sta/websocket-sharp), so works with Windows 7 or better.
+Self-hosted service that uses [WebSocketSharp](https://github.com/sta/websocket-sharp), so works with Windows 7 or better.

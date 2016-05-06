@@ -16,6 +16,11 @@ namespace Common
             outputText.Clear();
         }
 
+        /// <summary>
+        /// Appends data to text box.
+        /// </summary>
+        /// <param name="data">Zero indexed array of bytes.</param>
+        /// <param name="length">Length of data to append, starting at index 0.</param>
         public void Append(byte [] data, int length)
         {
             if (viewInHex.Checked)

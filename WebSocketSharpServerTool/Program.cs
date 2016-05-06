@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace WebSocketServerTool
+namespace WebSocketSharpServerTool
 {
     static class Program
     {

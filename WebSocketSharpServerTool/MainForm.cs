@@ -1,18 +1,32 @@
 ﻿using System;
-using System.Security;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using System.Windows.Forms;
 using WebSocketSharp.Server;
 
-namespace WebSocketServerTool
+namespace WebSocketSharpServerTool
 {
     public partial class MainForm : Form
     {
         WebSocketServer server;
+        static int counter = 0;
 
         public MainForm()
         {
             InitializeComponent();
+            ServiceBehavior.Open += ServiceBehavior_Open;
+        }
+
+        private void ServiceBehavior_Open(ServiceBehavior client)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                ClientForm form = new ClientForm(client);
+                Interlocked.Increment(ref counter);
+                form.Text = "Client " + counter;
+                form.Owner = this;
+                form.Show(this);
+            });
         }
 
         private void CreateServer(Uri uri, string thumbprint = null, 

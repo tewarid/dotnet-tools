@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebSocketServerTool.Properties {
+namespace WebSocketSharpServerTool.Properties {
     using System;
     
     
