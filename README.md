@@ -9,6 +9,9 @@ Send/receive ICMP messages using raw sockets. Requires admin privilege.
 #### Serial Tool
 Send/receive data using a serial port.
 
+#### Sniffer Tool
+Elementary tool that sniffs IPv4 packets using raw sockets. Requires admin privilege.
+
 #### TCP Tool
 Send/receive data over TCP/IP.
 

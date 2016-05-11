@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 14 for Windows Desktop
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpTool", "TcpTool\TcpTool.csproj", "{1A80778F-B6B5-442E-9E1B-C6216A24F8C0}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketServerTool", "WebSocketServerTool\WebSocketServerTool.csproj", "{4846204E-E40A-4ABE-AB71-8CFED0CB1567}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketSharpServerTool", "WebSocketSharpServerTool\WebSocketSharpServerTool.csproj", "{5AC4DD03-DAAF-4572-BF5D-8D2B024645CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnifferTool", "SnifferTool\SnifferTool.csproj", "{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -131,6 +133,14 @@ Global
 		{5AC4DD03-DAAF-4572-BF5D-8D2B024645CD}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
 		{5AC4DD03-DAAF-4572-BF5D-8D2B024645CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AC4DD03-DAAF-4572-BF5D-8D2B024645CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,7 +16,7 @@ namespace Common
                 foreach (UnicastIPAddressInformation address in addresses)
                 {
                     if (address.Address.AddressFamily == AddressFamily.InterNetwork)
-                        Items.Add(address.Address);
+                        Items.Add(address.Address.ToString());
                 }
             }
         }
