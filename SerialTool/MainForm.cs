@@ -123,7 +123,6 @@ namespace SerialTool
 
         void port_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            CloseSerialPort();
         }
 
         void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -182,17 +181,22 @@ namespace SerialTool
 
         private void CloseSerialPort()
         {
+            if (InvokeRequired)
+            {
+                BeginInvoke((MethodInvoker)CloseSerialPort);
+                return;
+            }
+
             try
             {
-                if (port.IsOpen)
+                if (port != null && port.IsOpen)
                 {
-                        port.Close();
-                        port = null;
+                    port.Close();
                 }
+                port = null;
             }
             catch
             {
-                port = null;
             }
 
             closeButton.Enabled = false;
