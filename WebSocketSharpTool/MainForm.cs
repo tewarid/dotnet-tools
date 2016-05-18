@@ -153,21 +153,33 @@ namespace WebSocketSharpTool
 
         private void Ws_OnClose(object sender, CloseEventArgs e)
         {
-            BeginInvoke((MethodInvoker)delegate ()
+            if (InvokeRequired)
             {
-                MessageBox.Show(string.Format("WebSocket closed. {0}",
-                    e.Reason), this.Text);
-                CloseWebSocketClient();
-            });
+                BeginInvoke((MethodInvoker)delegate()
+                {
+                    Ws_OnClose(sender, e);
+                });
+                return;
+            }
+
+            MessageBox.Show(string.Format("WebSocket closed. {0}",
+                e.Reason), this.Text);
+            CloseWebSocketClient();
         }
 
         private void Ws_OnError(object sender, ErrorEventArgs e)
         {
-            BeginInvoke((MethodInvoker)delegate ()
+            if (InvokeRequired)
             {
-                MessageBox.Show(e.Message, this.Text);
-                CloseWebSocketClient();
-            });
+                BeginInvoke((MethodInvoker)delegate ()
+                {
+                    Ws_OnError(sender, e);
+                });
+                return;
+            }
+
+            MessageBox.Show(e.Message, this.Text);
+            CloseWebSocketClient();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
