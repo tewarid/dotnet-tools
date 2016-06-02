@@ -77,20 +77,24 @@ namespace SnifferTool
             {
                 return;
             }
-            ShowMessage(data, length);
+            ShowMessage(data, length, remoteEndPoint);
             BeginReceiveFrom();
         }
 
-        private void ShowMessage(byte[] data, int length)
+        private void ShowMessage(byte[] data, int length, EndPoint remoteEndPoint)
         {
             if (InvokeRequired)
             {
                 BeginInvoke((MethodInvoker)delegate ()
                 {
-                    ShowMessage(data, length);
+                    ShowMessage(data, length, remoteEndPoint);
                 });
                 return;
             }
+            string dateTime = string.Format("{0:yyyyMMddTHH:mm:ssZ}", DateTime.UtcNow);
+            output.AppendText(string.Format("Received {0} bytes from {1} on {2}:{3}",
+                length, remoteEndPoint.ToString(), dateTime, 
+                Environment.NewLine));
             output.Append(data, length);
             output.AppendText(Environment.NewLine);
             output.AppendText(Environment.NewLine);
