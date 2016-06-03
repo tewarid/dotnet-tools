@@ -13,6 +13,18 @@ namespace SnifferTool
         public MainForm()
         {
             InitializeComponent();
+            interfaceSelector.InterfaceDeleted += InterfaceSelector_InterfaceDeleted;
+        }
+
+        private void InterfaceSelector_InterfaceDeleted(string address)
+        {
+            interfaceSelector.SelectedIndex =
+                interfaceSelector.SelectedIndex > 0 ? interfaceSelector.SelectedIndex - 1 : -1;
+            if (socket != null)
+            {
+                CloseRawSocket();
+                MessageBox.Show(this, "Socket closed.", this.Text);
+            }
         }
 
         private void bind_Click(object sender, EventArgs e)
@@ -58,12 +70,19 @@ namespace SnifferTool
         {
             byte[] data = new byte[MTU];
             EndPoint remoteEndPoint = new IPEndPoint(0, 0);
-            socket.BeginReceiveFrom(data, 0, data.Length, SocketFlags.None,
-                ref remoteEndPoint,
-                delegate(IAsyncResult ar) 
-                {
-                    ReceiveCallback(ar, remoteEndPoint, data);
-                }, null);
+            try
+            {
+                socket.BeginReceiveFrom(data, 0, data.Length, SocketFlags.None,
+                    ref remoteEndPoint,
+                    delegate (IAsyncResult ar)
+                    {
+                        ReceiveCallback(ar, remoteEndPoint, data);
+                    }, null);
+            }
+            catch
+            {
+
+            }
         }
 
         private void ReceiveCallback(IAsyncResult ar, EndPoint remoteEndPoint, byte[] data)
@@ -85,7 +104,7 @@ namespace SnifferTool
         {
             if (InvokeRequired)
             {
-                BeginInvoke((MethodInvoker)delegate ()
+                Invoke((MethodInvoker)delegate ()
                 {
                     ShowMessage(data, length, remoteEndPoint);
                 });
@@ -102,7 +121,21 @@ namespace SnifferTool
 
         private void close_Click(object sender, EventArgs e)
         {
+            CloseRawSocket();
+        }
+
+        private void CloseRawSocket()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((Action)delegate
+                {
+                    CloseRawSocket();
+                });
+                return;
+            }
             socket.Close();
+            socket = null;
             bind.Enabled = true;
             close.Enabled = false;
             interfaceSelector.Enabled = true;
