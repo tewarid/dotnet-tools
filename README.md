@@ -6,6 +6,9 @@ Add/remove exceptions to/from Windows Firewall.
 #### ICMP Tool
 Interactive client that uses raw sockets to send and receive ICMP messages. Requires admin privilege.
 
+#### Route Tool
+Interactive client to add, view, and delete IP v4 routes on Windows. Requires PowerShell, which is available by default on Windows 7 and beyond. Requires admin privilege.
+
 #### Serial Tool
 Interactive client that may be used to open a serial port, and send and receive data.
 
