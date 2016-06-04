@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketSharpServerTool", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnifferTool", "SnifferTool\SnifferTool.csproj", "{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteTool", "RouteTool\RouteTool.csproj", "{F0D291A0-D1C7-4148-BF1A-407396510C06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Ubuntu|Any CPU = Debug_Ubuntu|Any CPU
@@ -141,6 +143,14 @@ Global
 		{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
 		{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0D291A0-D1C7-4148-BF1A-407396510C06}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0D291A0-D1C7-4148-BF1A-407396510C06}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{F0D291A0-D1C7-4148-BF1A-407396510C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0D291A0-D1C7-4148-BF1A-407396510C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0D291A0-D1C7-4148-BF1A-407396510C06}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{F0D291A0-D1C7-4148-BF1A-407396510C06}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{F0D291A0-D1C7-4148-BF1A-407396510C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0D291A0-D1C7-4148-BF1A-407396510C06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
