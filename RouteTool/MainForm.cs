@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Linq;
 using System.Management.Automation;
-using System.Threading;
+using System.Windows.Forms;
 
 namespace RouteTool
 {
@@ -42,7 +36,7 @@ namespace RouteTool
                                DestinationPrefix = item.DestinationPrefix,
                                NextHop = item.NextHop,
                                RouteMetric = item.RouteMetric,
-                               //Persistent = item.Store == 0,
+                               Persistent = item.Store == 0,
                                InterfaceIndex = item.InterfaceIndex,
                                InterfaceAlias = item.InterfaceAlias
                            };
@@ -65,7 +59,8 @@ namespace RouteTool
                 {
                     foreach (DataGridViewRow row in routes.SelectedRows)
                     {
-                        string script = "Remove-NetRoute -Confirm:$false -DestinationPrefix " + row.Cells[0].Value;
+                        string script = string.Format("Remove-NetRoute -Confirm:$false -DestinationPrefix {0} -InterfaceIndex {1}", 
+                            ((dynamic)row.DataBoundItem).DestinationPrefix, ((dynamic)row.DataBoundItem).InterfaceIndex);
                         PowerShellInstance.AddScript(script);
                     }
                     PowerShellInstance.Invoke();

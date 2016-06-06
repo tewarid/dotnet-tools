@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Management.Automation;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RouteTool
@@ -70,11 +65,12 @@ namespace RouteTool
                     PowerShellInstance.Invoke<PSObject>(null);
 
                 var data = from dynamic item in outputCollection
+                           where item.IPv4DefaultGateway != null
                            select new
                            {
                                InterfaceIndex = item.InterfaceIndex,
                                InterfaceAlias = item.InterfaceAlias,
-                               IPv4Address = item.IPv4Address[0].CimInstanceProperties["IPv4Address"].Value,
+                               IPv4DefaultGateway = item.IPv4DefaultGateway[0].CimInstanceProperties["NextHop"].Value
                            };
                 bs = new BindingSource();
                 bs.DataSource = data;
@@ -85,7 +81,7 @@ namespace RouteTool
         private void AddRoute_Load(object sender, EventArgs e)
         {
             interfaces.DataSource = GetNetIPConfiguration();
-            interfaces.DisplayMember = "IPv4Address";
+            interfaces.DisplayMember = "IPv4DefaultGateway";
             interfaces.ValueMember = "InterfaceIndex";
         }
 
