@@ -35,7 +35,12 @@ namespace Common
             NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
             foreach (NetworkInterface iface in interfaces)
             {
-                UnicastIPAddressInformationCollection addresses = iface.GetIPProperties().UnicastAddresses;
+                if (!iface.Supports(NetworkInterfaceComponent.IPv4) 
+                    || iface.OperationalStatus != OperationalStatus.Up)
+                    continue;
+
+                IPInterfaceProperties ipProperties = iface.GetIPProperties();
+                UnicastIPAddressInformationCollection addresses = ipProperties.UnicastAddresses;
                 foreach (UnicastIPAddressInformation address in addresses)
                 {
                     if (address.Address.AddressFamily == AddressFamily.InterNetwork)
@@ -71,6 +76,10 @@ namespace Common
                         {
                             addresses.RemoveAt(i);
                         }
+                    }
+                    else
+                    {
+                        addresses.RemoveAt(i);
                     }
 
                     refresh = true;
