@@ -63,9 +63,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Next Hop";
+            this.label2.Text = "Interface";
             // 
             // interfaces
             // 

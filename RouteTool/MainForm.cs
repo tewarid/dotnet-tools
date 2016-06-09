@@ -77,19 +77,21 @@ namespace RouteTool
             {
                 using (PowerShell PowerShellInstance = PowerShell.Create())
                 {
-                    foreach (DataGridViewRow row in routes.SelectedRows)
+                    string nextHop = string.Empty;
+                    if (!string.IsNullOrEmpty(form.NextHop))
                     {
-                        string persistent = string.Empty;
-                        if (!form.Persistent)
-                        {
-                            // Do not specify PolicyStore for PersistentStore
-                            persistent = "-PolicyStore ActiveStore";
-                        }
-                        string format = "New-NetRoute -DestinationPrefix {0} -InterfaceIndex {1} -NextHop {2} {3} -RouteMetric {4}";
-                        string script = string.Format(format, form.DestinationPrefix,
-                            form.InterfaceIndex, form.NextHop, persistent, form.RouteMetric);
-                        PowerShellInstance.AddScript(script);
+                        nextHop = "-NextHop " + form.NextHop;
                     }
+                    string persistent = string.Empty;
+                    if (!form.Persistent)
+                    {
+                        // Do not specify PolicyStore for PersistentStore
+                        persistent = "-PolicyStore ActiveStore";
+                    }
+                    string format = "New-NetRoute -DestinationPrefix {0} -InterfaceIndex {1} {2} {3} -RouteMetric {4}";
+                    string script = string.Format(format, form.DestinationPrefix,
+                        form.InterfaceIndex, nextHop, persistent, form.RouteMetric);
+                    PowerShellInstance.AddScript(script);
                     PowerShellInstance.Invoke();
                 }
                 RefreshRoutes();
