@@ -15,8 +15,11 @@ Interactive client that may be used to open a serial port, and send and receive 
 #### Sniffer Tool
 Elementary tool that sniffs IPv4 packets using raw sockets. Requires admin privilege.
 
-#### TCP Tool
+#### TCP Client Tool
 Interactive TCP/IP client that may be used to establish IPv4 TCP sessions, and send and receive data. It can also be used as a rudimentary listener/server.
+
+#### TCP Listener Tool
+Interactive TCP/IP client that may be used as a rudimentary listener/server.
 
 #### UDP Tool
 Interactive UDP/IP client that may be used to establish IPv4 UDP sockets, and send and receive datagrams.

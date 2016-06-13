@@ -6,19 +6,34 @@ using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
-namespace TcpTool
+namespace TcpClientTool
 {
     public partial class MainForm : Form
     {
         TcpClient tcpClient;
         Stream stream;
         delegate void ShowReceivedDataDelegate(byte[] data, int length);
-        TcpListener listener;
         byte[] buffer = new byte[100];
 
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        public MainForm(TcpClient tcpClient, Stream stream = null) : this()
+        {
+            if (stream == null)
+            {
+                this.stream = tcpClient.GetStream();
+            }
+            else
+            {
+                this.stream = stream;
+            }
+            this.tcpClient = tcpClient;
+            this.stream.BeginRead(buffer, 0, buffer.Length, this.ReadCallback, null);
+            useSSL.Checked = stream is SslStream;
+            EnableDisable(true);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -27,12 +42,6 @@ namespace TcpTool
 
         private void sendButton_Click(object sender, EventArgs e)
         {
-            if (listener != null && tcpClient == null)
-            {
-                MessageBox.Show(this, "Listening for incoming TCP connection. Try again after a client has connected.", this.Text);
-                return;
-            }
-
             if (tcpClient == null || !tcpClient.Connected)
             {
                 CreateTcpClient();
@@ -124,7 +133,7 @@ namespace TcpTool
                 stream = tcpClient.GetStream();
                 if (useSSL.Checked)
                 {
-                    SslStream ssls = new SslStream(tcpClient.GetStream(), 
+                    SslStream ssls = new SslStream(tcpClient.GetStream(),
                         true, ValidateCertificate);
                     ssls.AuthenticateAsClient(string.Empty);
                     stream = ssls;
@@ -146,17 +155,30 @@ namespace TcpTool
                 return;
             }
 
-            sourceIPAddress.Enabled = false;
-            IPEndPoint endPoint = (IPEndPoint)tcpClient.Client.LocalEndPoint;
-            sourceIPAddress.Text = endPoint.Address.ToString();
-            sourcePort.Enabled = false;
-            sourcePort.Text = endPoint.Port.ToString();
-            listen.Enabled = false;
-            destinationIPAddress.Enabled = false;
-            destinationPort.Enabled = false;
-            useSSL.Enabled = false;
-            close.Enabled = true;
-            open.Enabled = false;
+            EnableDisable(true);
+        }
+
+        private void EnableDisable(bool connected)
+        {
+            IPEndPoint localEndPoint = connected ? 
+                (IPEndPoint)tcpClient.Client.LocalEndPoint : null;
+            sourceIPAddress.Text = connected ? 
+                localEndPoint.Address.ToString() : sourceIPAddress.Text;
+            sourcePort.Text = connected ? 
+                localEndPoint.Port.ToString() : sourcePort.Text;
+            sourceIPAddress.Enabled = !connected;
+            sourcePort.Enabled = !connected;
+            IPEndPoint remoteEndPoint = connected ? 
+                (IPEndPoint)tcpClient.Client.RemoteEndPoint : null;
+            destinationIPAddress.Text = connected ? 
+                remoteEndPoint.Address.ToString() : destinationIPAddress.Text;
+            destinationPort.Text = connected ? 
+                remoteEndPoint.Port.ToString() : destinationPort.Text;
+            destinationIPAddress.Enabled = !connected;
+            destinationPort.Enabled = !connected;
+            useSSL.Enabled = !connected;
+            close.Enabled = connected;
+            open.Enabled = !connected;
         }
 
         private bool ValidateCertificate(object sender, 
@@ -174,101 +196,6 @@ namespace TcpTool
             }
         }
 
-        private void listen_Click(object sender, EventArgs e)
-        {
-            CreateTcpListener();
-        }
-
-        private void CreateTcpListener()
-        {
-            if (listener != null) return;
-
-            try
-            {
-                IPEndPoint localEndPoint;
-                int port = 0;
-                if (!string.Empty.Equals(sourcePort.Text))
-                {
-                    port = int.Parse(sourcePort.Text);
-                }
-                if (!string.Empty.Equals(sourceIPAddress.Text))
-                {
-                    localEndPoint = new IPEndPoint(IPAddress.Parse(sourceIPAddress.Text),
-                        port);
-                }
-                else
-                {
-                    localEndPoint = new IPEndPoint(IPAddress.Any, port);
-                }
-                if (listener == null)
-                {
-                    listener = new TcpListener(localEndPoint);
-                }
-                listener.Start();
-                listener.BeginAcceptTcpClient(BeginAcceptCallback, null);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(this, e.Message, this.Text);
-                return;
-            }
-
-            IPEndPoint ipEndPoint = (IPEndPoint)listener.LocalEndpoint;
-            sourceIPAddress.Text = ipEndPoint.Address.ToString();
-            sourcePort.Text = ipEndPoint.Port.ToString();
-
-            listen.Enabled = false;
-            stopListener.Enabled = true;
-            sourceIPAddress.Enabled = false;
-            sourcePort.Enabled = false;
-            destinationIPAddress.Enabled = false;
-            destinationPort.Enabled = false;
-            useSSL.Enabled = false;
-            open.Enabled = false;
-        }
-
-        private void BeginAcceptCallback(IAsyncResult ar)
-        {
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    BeginAcceptCallback(ar);
-                });
-                return;
-            }
-
-            try
-            {
-                tcpClient = listener.EndAcceptTcpClient(ar);
-            }
-            catch
-            {
-                return;
-            }
-
-            if (useSSLListener.Checked)
-            {
-                SslStream ssls = new SslStream(tcpClient.GetStream(),
-                    true, ValidateCertificate);
-                X509Certificate2 cert = new X509Certificate2(pfxPath.Text, "");
-                ssls.AuthenticateAsServer(cert);
-                stream = ssls;
-            }
-            else
-            {
-                stream = tcpClient.GetStream();
-            }
-
-            stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
-
-            IPEndPoint ipEndPoint = (IPEndPoint)tcpClient.Client.RemoteEndPoint;
-            destinationIPAddress.Text = ipEndPoint.Address.ToString();
-            destinationPort.Text = ipEndPoint.Port.ToString();
-
-            listener.BeginAcceptTcpClient(BeginAcceptCallback, null);
-        }
-
         private void ReadCallback(IAsyncResult ar)
         {
             if (tcpClient == null)
@@ -280,8 +207,8 @@ namespace TcpTool
                 if (length > 0)
                 {
                     ShowReceivedData(buffer, length);
-                    stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
                 }
+                stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
             }
             catch { }
         }
@@ -292,53 +219,12 @@ namespace TcpTool
             {
                 tcpClient.Close();
                 tcpClient = null;
-                sourceIPAddress.Enabled = true;
-                sourcePort.Enabled = true;
-                sourcePort.Text = "";
-                destinationIPAddress.Enabled = true;
-                destinationPort.Enabled = true;
-                listen.Enabled = true;
             }
-            open.Enabled = true;
-            close.Enabled = false;
-            useSSL.Enabled = true;
+            EnableDisable(false);
         }
 
         private void close_Click(object sender, EventArgs e)
         {
-            CloseTcpClient();
-        }
-
-        private void useSSLListener_CheckedChanged(object sender, EventArgs e)
-        {
-            pfxPath.Enabled = useSSLListener.Checked;
-            browseForPfx.Enabled = useSSLListener.Checked;
-        }
-
-        private void browseForPfx_Click(object sender, EventArgs e)
-        {
-            DialogResult r = openFileDialog.ShowDialog();
-            if (r == DialogResult.OK)
-            {
-                pfxPath.Text = openFileDialog.FileName;
-            }
-        }
-
-        private void stopListener_Click(object sender, EventArgs e)
-        {
-            if (listener != null)
-            {
-                listener.Stop();
-                listener = null;
-                listen.Enabled = true;
-                stopListener.Enabled = false;
-                sourceIPAddress.Enabled = true;
-                sourcePort.Enabled = true;
-                destinationIPAddress.Enabled = true;
-                destinationPort.Enabled = true;
-                open.Enabled = true;
-            }
-
             CloseTcpClient();
         }
 

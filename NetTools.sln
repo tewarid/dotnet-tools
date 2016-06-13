@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 14 for Windows Desktop
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpTool", "TcpTool\TcpTool.csproj", "{1A80778F-B6B5-442E-9E1B-C6216A24F8C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpClientTool", "TcpClientTool\TcpClientTool.csproj", "{1A80778F-B6B5-442E-9E1B-C6216A24F8C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdpTool", "UdpTool\UdpTool.csproj", "{3455D706-1959-442A-A53F-0B4479D94F16}"
 EndProject
@@ -30,6 +30,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnifferTool", "SnifferTool\SnifferTool.csproj", "{5D3B68EB-0764-49D9-A5D4-1216AEDEFEAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteTool", "RouteTool\RouteTool.csproj", "{F0D291A0-D1C7-4148-BF1A-407396510C06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpListenerTool", "TcpListenerTool\TcpListenerTool.csproj", "{0AA07A12-6361-4BD7-9A24-87690A3AEACE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -151,6 +153,14 @@ Global
 		{F0D291A0-D1C7-4148-BF1A-407396510C06}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
 		{F0D291A0-D1C7-4148-BF1A-407396510C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0D291A0-D1C7-4148-BF1A-407396510C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA07A12-6361-4BD7-9A24-87690A3AEACE}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA07A12-6361-4BD7-9A24-87690A3AEACE}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{0AA07A12-6361-4BD7-9A24-87690A3AEACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA07A12-6361-4BD7-9A24-87690A3AEACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA07A12-6361-4BD7-9A24-87690A3AEACE}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA07A12-6361-4BD7-9A24-87690A3AEACE}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{0AA07A12-6361-4BD7-9A24-87690A3AEACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA07A12-6361-4BD7-9A24-87690A3AEACE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
