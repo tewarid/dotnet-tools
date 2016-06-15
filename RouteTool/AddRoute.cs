@@ -69,8 +69,12 @@ namespace RouteTool
                            {
                                InterfaceIndex = item.InterfaceIndex,
                                InterfaceAlias = item.InterfaceAlias,
+                               InterfaceDescription = item.InterfaceDescription,
                                IPv4Address = item.IPv4Address[0].CimInstanceProperties["IPv4Address"].Value,
-                               IPv4DefaultGateway = item.IPv4DefaultGateway != null? item.IPv4DefaultGateway[0].CimInstanceProperties["NextHop"].Value: ""
+                               IPv4DefaultGateway = item.IPv4DefaultGateway != null? item.IPv4DefaultGateway[0].CimInstanceProperties["NextHop"].Value: "",
+                               DisplayText = string.Format("{0} ({1})", 
+                                   item.IPv4Address[0].CimInstanceProperties["IPv4Address"].Value, 
+                                   item.InterfaceDescription)
                            };
                 bs = new BindingSource();
                 bs.DataSource = data;
@@ -81,7 +85,7 @@ namespace RouteTool
         private void AddRoute_Load(object sender, EventArgs e)
         {
             interfaces.DataSource = GetNetIPConfiguration();
-            interfaces.DisplayMember = "IPv4Address";
+            interfaces.DisplayMember = "DisplayText";
             interfaces.ValueMember = "InterfaceIndex";
         }
 

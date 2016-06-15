@@ -74,7 +74,7 @@
             this.interfaces.FormattingEnabled = true;
             this.interfaces.Location = new System.Drawing.Point(16, 74);
             this.interfaces.Name = "interfaces";
-            this.interfaces.Size = new System.Drawing.Size(170, 24);
+            this.interfaces.Size = new System.Drawing.Size(351, 24);
             this.interfaces.TabIndex = 3;
             // 
             // label3
