@@ -13,7 +13,7 @@ namespace TcpClientTool
         TcpClient tcpClient;
         Stream stream;
         delegate void ShowReceivedDataDelegate(byte[] data, int length);
-        byte[] buffer = new byte[100];
+        byte[] buffer = new byte[10000];
 
         public MainForm()
         {
@@ -31,13 +31,16 @@ namespace TcpClientTool
                 this.stream = stream;
             }
             this.tcpClient = tcpClient;
-            this.stream.BeginRead(buffer, 0, buffer.Length, this.ReadCallback, null);
-            useSSL.Checked = stream is SslStream;
-            EnableDisable(true);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            if (stream != null)
+            {
+                useSSL.Checked = stream is SslStream;
+                EnableDisable(true);
+                stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
+            }
         }
 
         private void sendButton_Click(object sender, EventArgs e)

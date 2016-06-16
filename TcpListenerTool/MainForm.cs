@@ -77,16 +77,6 @@ namespace TcpListenerTool
         private void BeginAcceptCallback(IAsyncResult ar)
         {
             TcpClient tcpClient;
-            Stream stream;
-
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    BeginAcceptCallback(ar);
-                });
-                return;
-            }
 
             try
             {
@@ -96,6 +86,24 @@ namespace TcpListenerTool
             {
                 return;
             }
+
+            listener.BeginAcceptTcpClient(BeginAcceptCallback, null);
+
+            ShowClientForm(tcpClient);
+        }
+
+        private void ShowClientForm(TcpClient tcpClient)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke((MethodInvoker)delegate
+                {
+                    ShowClientForm(tcpClient);
+                });
+                return;
+            }
+
+            Stream stream;
 
             if (useSSLListener.Checked)
             {
@@ -113,8 +121,6 @@ namespace TcpListenerTool
             Form newForm = new TcpClientTool.MainForm(tcpClient, stream);
             newForm.Text = "TCP Client " + (++clientNum);
             newForm.Show(this);
-
-            listener.BeginAcceptTcpClient(BeginAcceptCallback, null);
         }
 
         private void browseForPfx_Click(object sender, EventArgs e)
