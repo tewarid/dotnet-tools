@@ -121,15 +121,15 @@ namespace TcpClientTool
                 return;
             }
 
+            if (string.Empty.Equals(destinationIPAddress.Text)
+                || string.Empty.Equals(destinationPort.Text))
+            {
+                MessageBox.Show(this, "Please specify the destination IP address and/or port.", this.Text);
+                return;
+            }
+
             try
             {
-                if (string.Empty.Equals(destinationIPAddress.Text)
-                    || string.Empty.Equals(destinationPort.Text))
-                {
-                    MessageBox.Show(this, "Please specify the destination IP address and/or port.", this.Text);
-                    return;
-                }
-
                 IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Parse(destinationIPAddress.Text),
                     int.Parse(destinationPort.Text));
                 tcpClient.Connect(remoteEndPoint);
@@ -213,7 +213,16 @@ namespace TcpClientTool
                 }
                 stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
             }
-            catch { }
+            catch(IOException e)
+            {
+                BeginInvoke((MethodInvoker)delegate () {
+                    CloseTcpClient();
+                    MessageBox.Show(this, e.Message, this.Text);
+                });
+            }
+            catch
+            {
+            }
         }
 
         private void CloseTcpClient()
