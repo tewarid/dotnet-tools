@@ -31,24 +31,7 @@ namespace Common
             }
 
             // Get all IP v4 addresses
-            List<string> newList = new List<string>();
-            NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
-            foreach (NetworkInterface iface in interfaces)
-            {
-                if (!iface.Supports(NetworkInterfaceComponent.IPv4) 
-                    || iface.OperationalStatus != OperationalStatus.Up)
-                    continue;
-
-                IPInterfaceProperties ipProperties = iface.GetIPProperties();
-                UnicastIPAddressInformationCollection addresses = ipProperties.UnicastAddresses;
-                foreach (UnicastIPAddressInformation address in addresses)
-                {
-                    if (address.Address.AddressFamily == AddressFamily.InterNetwork)
-                    {
-                        newList.Add(address.Address.ToString());
-                    }
-                }
-            }
+            List<string> newList = GetIPv4Addresses();
 
             bool refresh = false;
 
@@ -71,23 +54,50 @@ namespace Common
                     // Removed
                     if (SelectedIndex == i)
                     {
-                        InterfaceDeleted.Invoke(addresses[i]);
+                        InterfaceDeleted?.Invoke(addresses[i]);
                         if (SelectedIndex != i)
                         {
                             addresses.RemoveAt(i);
+                            refresh = true;
                         }
                     }
                     else
                     {
                         addresses.RemoveAt(i);
+                        refresh = true;
                     }
-
-                    refresh = true;
                 }
             }
 
-            if (refresh)
-                RefreshItems();
+            try
+            {
+                if (refresh)
+                    RefreshItems();
+            }
+            catch { }
+        }
+
+        private List<string> GetIPv4Addresses()
+        {
+            List<string> newList = new List<string>();
+            NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface iface in interfaces)
+            {
+                if (!iface.Supports(NetworkInterfaceComponent.IPv4)
+                    || iface.OperationalStatus != OperationalStatus.Up)
+                    continue;
+
+                IPInterfaceProperties ipProperties = iface.GetIPProperties();
+                UnicastIPAddressInformationCollection addresses = ipProperties.UnicastAddresses;
+                foreach (UnicastIPAddressInformation address in addresses)
+                {
+                    if (address.Address.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        newList.Add(address.Address.ToString());
+                    }
+                }
+            }
+            return newList;
         }
 
         private void NetworkChange_NetworkAddressChanged(object sender, System.EventArgs e)
