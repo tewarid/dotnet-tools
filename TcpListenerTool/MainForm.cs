@@ -140,6 +140,11 @@ namespace TcpListenerTool
 
         private void stopListener_Click(object sender, EventArgs e)
         {
+            StopListener();
+        }
+
+        private void StopListener()
+        {
             if (listener != null)
             {
                 listener.Stop();
@@ -148,6 +153,20 @@ namespace TcpListenerTool
                 stopListener.Enabled = false;
                 sourceIPAddress.Enabled = true;
                 sourcePort.Enabled = true;
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
+        }
+
+        private void SourceIPAddress_InterfaceDeleted(string address)
+        {
+            if (sourceIPAddress.Text.Equals(address))
+            {
+                StopListener();
+                sourceIPAddress.Text = string.Empty;
             }
         }
     }
