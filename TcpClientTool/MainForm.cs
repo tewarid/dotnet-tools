@@ -35,11 +35,21 @@ namespace TcpClientTool
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
             if (stream != null)
             {
                 useSSL.Checked = stream is SslStream;
                 EnableDisable(true);
                 stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
+            }
+        }
+
+        private void SourceIPAddress_InterfaceDeleted(string address)
+        {
+            if (sourceIPAddress.Text.Equals(address))
+            {
+                CloseTcpClient();
+                sourceIPAddress.Text = string.Empty;
             }
         }
 
