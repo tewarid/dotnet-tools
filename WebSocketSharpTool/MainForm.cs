@@ -162,8 +162,9 @@ namespace WebSocketSharpTool
                 return;
             }
 
-            MessageBox.Show(string.Format("WebSocket closed. {0}",
+            MessageBox.Show(this, string.Format("WebSocket closed. {0}",
                 e.Reason), this.Text);
+
             CloseWebSocketClient();
         }
 
