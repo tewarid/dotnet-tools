@@ -34,12 +34,14 @@
             this.bind = new System.Windows.Forms.Button();
             this.close = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.protocolType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // interfaceSelector
             // 
             this.interfaceSelector.FormattingEnabled = true;
-            this.interfaceSelector.Location = new System.Drawing.Point(110, 12);
+            this.interfaceSelector.Location = new System.Drawing.Point(15, 31);
             this.interfaceSelector.Name = "interfaceSelector";
             this.interfaceSelector.Size = new System.Drawing.Size(121, 21);
             this.interfaceSelector.TabIndex = 0;
@@ -49,15 +51,15 @@
             this.output.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.output.Location = new System.Drawing.Point(12, 41);
+            this.output.Location = new System.Drawing.Point(12, 58);
             this.output.MinimumSize = new System.Drawing.Size(355, 95);
             this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(560, 308);
+            this.output.Size = new System.Drawing.Size(560, 291);
             this.output.TabIndex = 1;
             // 
             // bind
             // 
-            this.bind.Location = new System.Drawing.Point(248, 12);
+            this.bind.Location = new System.Drawing.Point(276, 29);
             this.bind.Name = "bind";
             this.bind.Size = new System.Drawing.Size(75, 23);
             this.bind.TabIndex = 2;
@@ -67,7 +69,7 @@
             // 
             // close
             // 
-            this.close.Location = new System.Drawing.Point(329, 12);
+            this.close.Location = new System.Drawing.Point(357, 29);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(75, 23);
             this.close.TabIndex = 3;
@@ -84,11 +86,31 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Network Interface";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(143, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Protocol Type";
+            // 
+            // protocolType
+            // 
+            this.protocolType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.protocolType.FormattingEnabled = true;
+            this.protocolType.Location = new System.Drawing.Point(146, 31);
+            this.protocolType.Name = "protocolType";
+            this.protocolType.Size = new System.Drawing.Size(121, 21);
+            this.protocolType.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.protocolType);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.close);
             this.Controls.Add(this.bind);
@@ -98,6 +120,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sniffer Tool";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,6 +133,8 @@
         private System.Windows.Forms.Button bind;
         private System.Windows.Forms.Button close;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox protocolType;
     }
 }
 

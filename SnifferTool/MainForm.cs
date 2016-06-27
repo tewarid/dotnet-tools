@@ -9,10 +9,24 @@ namespace SnifferTool
     {
         private const int MTU = 65535;
         private Socket socket;
+        private object [] protocolTypes = new []
+        {
+            new { id = ProtocolType.Icmp, text = "ICMP" },
+            new { id = ProtocolType.IP, text = "IP" },
+            new { id = ProtocolType.Udp, text = "UDP" }
+        };
 
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            protocolType.DataSource = protocolTypes;
+            protocolType.ValueMember = "id";
+            protocolType.DisplayMember = "text";
+            protocolType.SelectedValue = ProtocolType.IP;
             interfaceSelector.InterfaceDeleted += InterfaceSelector_InterfaceDeleted;
         }
 
@@ -51,7 +65,8 @@ namespace SnifferTool
 
         private void CreateRawSocket(IPEndPoint endPoint)
         {
-            socket = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.IP);
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Raw, 
+                (ProtocolType)protocolType.SelectedValue);
             socket.Bind(endPoint);
             PlatformID p = Environment.OSVersion.Platform;
             if (p == PlatformID.Win32NT && !endPoint.Address.Equals(IPAddress.Any))
