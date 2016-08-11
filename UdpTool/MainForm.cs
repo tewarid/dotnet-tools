@@ -88,7 +88,7 @@ namespace UdpTool
         private void CreateUdpClient() 
         {
             IPAddress address = IPAddress.Any;
-            IPEndPoint srcEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Any, 0);
 
             if(!string.Empty.Equals(sourceIPAddress.Text))
             {
@@ -105,17 +105,24 @@ namespace UdpTool
 
             if (!string.Empty.Equals(sourcePort.Text))
             {
-                srcEndPoint = new IPEndPoint(address, int.Parse(sourcePort.Text));
+                localEndPoint = new IPEndPoint(address, int.Parse(sourcePort.Text));
             }
             else
             {
-                srcEndPoint = new IPEndPoint(address, 0);
+                localEndPoint = new IPEndPoint(address, 0);
                 sourcePort.Text = "";
             }
 
             try
             {
-                udpClient = new UdpClient(srcEndPoint);
+                udpClient = new UdpClient();
+                if (reuseAddress.Checked)
+                {
+                    udpClient.ExclusiveAddressUse = false;
+                    udpClient.Client.SetSocketOption(SocketOptionLevel.Socket,
+                        SocketOptionName.ReuseAddress, true);
+                }
+                udpClient.Client.Bind(localEndPoint);
             }
             catch (Exception ex)
             {
@@ -132,7 +139,7 @@ namespace UdpTool
             sourcePort.Enabled = false;
             sourcePort.Text = endPoint.Port.ToString();
             bind.Enabled = false;
-            add.Enabled = true;
+            join.Enabled = true;
             multicastGroup.Enabled = true;
             close.Enabled = true;
         }
@@ -169,7 +176,7 @@ namespace UdpTool
             }
         }
 
-        private void add_Click(object sender, EventArgs e)
+        private void join_Click(object sender, EventArgs e)
         {
             IPAddress groupIPAddress;
             try
@@ -199,7 +206,7 @@ namespace UdpTool
             sourceIPAddress.Enabled = true;
             sourcePort.Enabled = true;
             bind.Enabled = true;
-            add.Enabled = false;
+            join.Enabled = false;
             multicastGroup.Enabled = false;
             close.Enabled = false;
         }

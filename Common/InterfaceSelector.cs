@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Windows.Forms;
@@ -12,14 +13,38 @@ namespace Common
 
         public event Action<string> InterfaceDeleted;
 
+        bool _includeIPAddressAny = false;
+        public bool IncludeIPAddressAny
+        {
+            get
+            {
+                return _includeIPAddressAny;
+            }
+            set
+            {
+                _includeIPAddressAny = value;
+                if (value)
+                {
+                    string any = IPAddress.Any.ToString();
+                    if (!addresses.Contains(any))
+                    {
+                        addresses.Add(any);
+                    }
+                }
+            }
+        }
+
         public InterfaceSelectorComboBox()
         {
             InitializeComponent();
 
-            DataSource = addresses;
-            RefreshNetworkInterfaces();
+            if (!DesignMode)
+            {
+                DataSource = addresses;
+                RefreshNetworkInterfaces();
 
-            NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
+                NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
+            }
         }
 
         private void RefreshNetworkInterfaces()
