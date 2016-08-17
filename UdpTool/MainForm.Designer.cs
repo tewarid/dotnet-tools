@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,18 +42,23 @@
             this.label4 = new System.Windows.Forms.Label();
             this.sourcePort = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.reuseAddress = new System.Windows.Forms.CheckBox();
-            this.close = new System.Windows.Forms.Button();
-            this.outputText = new Common.ReceiveTextBox();
-            this.multicastGroup = new System.Windows.Forms.TextBox();
-            this.sourceIPAddress = new Common.InterfaceSelectorComboBox();
+            this.multicastGroupBox = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.join = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.multicastGroupAddress = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.sourceIPAddress = new Common.InterfaceSelectorComboBox();
+            this.close = new System.Windows.Forms.Button();
+            this.reuseAddress = new System.Windows.Forms.CheckBox();
+            this.outputText = new Common.ReceiveTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.multicastGroupBox.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -132,7 +138,7 @@
             // 
             // bind
             // 
-            this.bind.Location = new System.Drawing.Point(135, 51);
+            this.bind.Location = new System.Drawing.Point(9, 84);
             this.bind.Name = "bind";
             this.bind.Size = new System.Drawing.Size(75, 23);
             this.bind.TabIndex = 3;
@@ -143,7 +149,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(132, 9);
+            this.label5.Location = new System.Drawing.Point(135, 19);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(26, 13);
             this.label5.TabIndex = 8;
@@ -152,7 +158,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 9);
+            this.label4.Location = new System.Drawing.Point(6, 19);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 7;
@@ -160,83 +166,48 @@
             // 
             // sourcePort
             // 
-            this.sourcePort.Location = new System.Drawing.Point(135, 25);
+            this.sourcePort.Location = new System.Drawing.Point(138, 35);
             this.sourcePort.Name = "sourcePort";
             this.sourcePort.Size = new System.Drawing.Size(75, 20);
             this.sourcePort.TabIndex = 1;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.reuseAddress);
-            this.panel2.Controls.Add(this.close);
+            this.panel2.Controls.Add(this.multicastGroupBox);
+            this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.outputText);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.bind);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.multicastGroup);
-            this.panel2.Controls.Add(this.sourceIPAddress);
-            this.panel2.Controls.Add(this.sourcePort);
-            this.panel2.Controls.Add(this.join);
-            this.panel2.Controls.Add(this.label7);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(392, 439);
             this.panel2.TabIndex = 0;
             // 
-            // reuseAddress
+            // multicastGroupBox
             // 
-            this.reuseAddress.AutoSize = true;
-            this.reuseAddress.Location = new System.Drawing.Point(219, 27);
-            this.reuseAddress.Name = "reuseAddress";
-            this.reuseAddress.Size = new System.Drawing.Size(98, 17);
-            this.reuseAddress.TabIndex = 2;
-            this.reuseAddress.Text = "Reuse Address";
-            this.reuseAddress.UseVisualStyleBackColor = true;
+            multicastGroupBox.Enabled = false;
+            this.multicastGroupBox.Controls.Add(this.label3);
+            this.multicastGroupBox.Controls.Add(this.join);
+            this.multicastGroupBox.Controls.Add(this.multicastGroupAddress);
+            this.multicastGroupBox.Location = new System.Drawing.Point(236, 3);
+            this.multicastGroupBox.Name = "multicastGroupBox";
+            this.multicastGroupBox.Size = new System.Drawing.Size(144, 90);
+            this.multicastGroupBox.TabIndex = 14;
+            this.multicastGroupBox.TabStop = false;
+            this.multicastGroupBox.Text = "Multicast Groups";
             // 
-            // close
+            // label3
             // 
-            this.close.Enabled = false;
-            this.close.Location = new System.Drawing.Point(216, 51);
-            this.close.Name = "close";
-            this.close.Size = new System.Drawing.Size(75, 23);
-            this.close.TabIndex = 4;
-            this.close.Text = "Close";
-            this.close.UseVisualStyleBackColor = true;
-            this.close.Click += new System.EventHandler(this.close_Click);
-            // 
-            // outputText
-            // 
-            this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputText.Location = new System.Drawing.Point(6, 122);
-            this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
-            this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(386, 317);
-            this.outputText.TabIndex = 6;
-            // 
-            // multicastGroup
-            // 
-            this.multicastGroup.Enabled = false;
-            this.multicastGroup.Location = new System.Drawing.Point(6, 96);
-            this.multicastGroup.Name = "multicastGroup";
-            this.multicastGroup.Size = new System.Drawing.Size(119, 20);
-            this.multicastGroup.TabIndex = 5;
-            // 
-            // sourceIPAddress
-            // 
-            this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.IncludeIPAddressAny = true;
-            this.sourceIPAddress.Location = new System.Drawing.Point(6, 24);
-            this.sourceIPAddress.Name = "sourceIPAddress";
-            this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
-            this.sourceIPAddress.TabIndex = 0;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Multicast IP Address";
             // 
             // join
             // 
-            this.join.Enabled = false;
-            this.join.Location = new System.Drawing.Point(131, 94);
+            this.join.Enabled = true;
+            this.join.Location = new System.Drawing.Point(10, 60);
             this.join.Name = "join";
             this.join.Size = new System.Drawing.Size(75, 23);
             this.join.TabIndex = 6;
@@ -244,14 +215,71 @@
             this.join.UseVisualStyleBackColor = true;
             this.join.Click += new System.EventHandler(this.join_Click);
             // 
-            // label7
+            // multicastGroupAddress
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 80);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(225, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Mutlicast Group Address to Join e.g. 225.0.0.1";
+            this.multicastGroupAddress.Enabled = true;
+            this.multicastGroupAddress.Location = new System.Drawing.Point(10, 34);
+            this.multicastGroupAddress.Name = "multicastGroupAddress";
+            this.multicastGroupAddress.Size = new System.Drawing.Size(126, 20);
+            this.multicastGroupAddress.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.multicastGroupAddress, "Multicast IP Address");
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.sourceIPAddress);
+            this.groupBox1.Controls.Add(this.sourcePort);
+            this.groupBox1.Controls.Add(this.close);
+            this.groupBox1.Controls.Add(this.reuseAddress);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.bind);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Location = new System.Drawing.Point(6, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(224, 115);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Bind";
+            // 
+            // sourceIPAddress
+            // 
+            this.sourceIPAddress.FormattingEnabled = true;
+            this.sourceIPAddress.IncludeIPAddressAny = true;
+            this.sourceIPAddress.Location = new System.Drawing.Point(9, 35);
+            this.sourceIPAddress.Name = "sourceIPAddress";
+            this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
+            this.sourceIPAddress.TabIndex = 9;
+            // 
+            // close
+            // 
+            this.close.Enabled = false;
+            this.close.Location = new System.Drawing.Point(138, 84);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(75, 23);
+            this.close.TabIndex = 4;
+            this.close.Text = "Close";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
+            // 
+            // reuseAddress
+            // 
+            this.reuseAddress.AutoSize = true;
+            this.reuseAddress.Location = new System.Drawing.Point(9, 61);
+            this.reuseAddress.Name = "reuseAddress";
+            this.reuseAddress.Size = new System.Drawing.Size(98, 17);
+            this.reuseAddress.TabIndex = 2;
+            this.reuseAddress.Text = "Reuse Address";
+            this.reuseAddress.UseVisualStyleBackColor = true;
+            // 
+            // outputText
+            // 
+            this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.outputText.Location = new System.Drawing.Point(6, 124);
+            this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
+            this.outputText.Name = "outputText";
+            this.outputText.Size = new System.Drawing.Size(383, 312);
+            this.outputText.TabIndex = 6;
             // 
             // statusStrip1
             // 
@@ -300,7 +328,10 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.multicastGroupBox.ResumeLayout(false);
+            this.multicastGroupBox.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -328,14 +359,17 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.Button join;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox multicastGroup;
-        private Common.InterfaceSelectorComboBox sourceIPAddress;
+        private System.Windows.Forms.TextBox multicastGroupAddress;
         private Common.SendTextBox input;
         private Common.ReceiveTextBox outputText;
         private System.Windows.Forms.Button close;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.CheckBox reuseAddress;
+        private System.Windows.Forms.GroupBox multicastGroupBox;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private Common.InterfaceSelectorComboBox sourceIPAddress;
+        private System.Windows.Forms.Label label3;
     }
 }
 

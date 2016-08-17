@@ -122,6 +122,12 @@ namespace UdpTool
                     udpClient.Client.SetSocketOption(SocketOptionLevel.Socket,
                         SocketOptionName.ReuseAddress, true);
                 }
+                else
+                {
+                    udpClient.ExclusiveAddressUse = true;
+                    udpClient.Client.SetSocketOption(SocketOptionLevel.Socket,
+                        SocketOptionName.ReuseAddress, false);
+                }
                 udpClient.Client.Bind(localEndPoint);
             }
             catch (Exception ex)
@@ -139,8 +145,8 @@ namespace UdpTool
             sourcePort.Enabled = false;
             sourcePort.Text = endPoint.Port.ToString();
             bind.Enabled = false;
-            join.Enabled = true;
-            multicastGroup.Enabled = true;
+            reuseAddress.Enabled = false;
+            multicastGroupBox.Enabled = true;
             close.Enabled = true;
         }
 
@@ -181,7 +187,7 @@ namespace UdpTool
             IPAddress groupIPAddress;
             try
             {
-                groupIPAddress = IPAddress.Parse(multicastGroup.Text);
+                groupIPAddress = IPAddress.Parse(multicastGroupAddress.Text);
             }
             catch (FormatException ex)
             {
@@ -206,8 +212,8 @@ namespace UdpTool
             sourceIPAddress.Enabled = true;
             sourcePort.Enabled = true;
             bind.Enabled = true;
-            join.Enabled = false;
-            multicastGroup.Enabled = false;
+            reuseAddress.Enabled = true;
+            multicastGroupBox.Enabled = false;
             close.Enabled = false;
         }
     }
