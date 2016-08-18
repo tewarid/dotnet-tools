@@ -118,13 +118,13 @@ namespace UdpTool
                 udpClient = new UdpClient();
                 if (reuseAddress.Checked)
                 {
-                    udpClient.ExclusiveAddressUse = false;
+                    // See also, udpClient.ExclusiveAddressUse 
+                    // which allows just the port number to be reused
                     udpClient.Client.SetSocketOption(SocketOptionLevel.Socket,
                         SocketOptionName.ReuseAddress, true);
                 }
                 else
                 {
-                    udpClient.ExclusiveAddressUse = true;
                     udpClient.Client.SetSocketOption(SocketOptionLevel.Socket,
                         SocketOptionName.ReuseAddress, false);
                 }
@@ -159,8 +159,9 @@ namespace UdpTool
                 byte[] data = udpClient.EndReceive(ar, ref endPoint);
                 udpClient.BeginReceive(ReceiveCallback, null);
                 ShowReceivedData(endPoint, data);
-            } 
-            catch(Exception e)
+            }
+            catch (ObjectDisposedException) { }
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
