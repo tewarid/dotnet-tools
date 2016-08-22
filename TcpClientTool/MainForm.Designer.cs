@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.open = new System.Windows.Forms.Button();
             this.sendButton = new System.Windows.Forms.Button();
             this.input = new Common.SendTextBox();
-            this.open = new System.Windows.Forms.Button();
             this.useSSL = new System.Windows.Forms.CheckBox();
             this.close = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.destinationPort = new System.Windows.Forms.TextBox();
             this.destinationIPAddress = new System.Windows.Forms.TextBox();
+            this.destinationPort = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.sourcePort = new System.Windows.Forms.TextBox();
@@ -49,6 +49,7 @@
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.reuseAddress = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -75,6 +76,16 @@
             this.panel1.Size = new System.Drawing.Size(388, 439);
             this.panel1.TabIndex = 0;
             // 
+            // open
+            // 
+            this.open.Location = new System.Drawing.Point(6, 50);
+            this.open.Name = "open";
+            this.open.Size = new System.Drawing.Size(75, 23);
+            this.open.TabIndex = 18;
+            this.open.Text = "Open";
+            this.open.UseVisualStyleBackColor = true;
+            this.open.Click += new System.EventHandler(this.open_Click);
+            // 
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -97,16 +108,6 @@
             this.input.Size = new System.Drawing.Size(381, 361);
             this.input.TabIndex = 20;
             // 
-            // open
-            // 
-            this.open.Location = new System.Drawing.Point(6, 50);
-            this.open.Name = "open";
-            this.open.Size = new System.Drawing.Size(75, 23);
-            this.open.TabIndex = 18;
-            this.open.Text = "Open";
-            this.open.UseVisualStyleBackColor = true;
-            this.open.Click += new System.EventHandler(this.open_Click);
-            // 
             // useSSL
             // 
             this.useSSL.AutoSize = true;
@@ -128,15 +129,19 @@
             this.close.UseVisualStyleBackColor = true;
             this.close.Click += new System.EventHandler(this.close_Click);
             // 
-            // label2
+            // destinationIPAddress
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(154, 7);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Destination Port";
+            this.destinationIPAddress.Location = new System.Drawing.Point(6, 24);
+            this.destinationIPAddress.Name = "destinationIPAddress";
+            this.destinationIPAddress.Size = new System.Drawing.Size(145, 20);
+            this.destinationIPAddress.TabIndex = 15;
+            // 
+            // destinationPort
+            // 
+            this.destinationPort.Location = new System.Drawing.Point(157, 24);
+            this.destinationPort.Name = "destinationPort";
+            this.destinationPort.Size = new System.Drawing.Size(94, 20);
+            this.destinationPort.TabIndex = 16;
             // 
             // label1
             // 
@@ -148,22 +153,19 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Destination IP Address";
             // 
-            // destinationPort
+            // label2
             // 
-            this.destinationPort.Location = new System.Drawing.Point(157, 24);
-            this.destinationPort.Name = "destinationPort";
-            this.destinationPort.Size = new System.Drawing.Size(94, 20);
-            this.destinationPort.TabIndex = 16;
-            // 
-            // destinationIPAddress
-            // 
-            this.destinationIPAddress.Location = new System.Drawing.Point(6, 24);
-            this.destinationIPAddress.Name = "destinationIPAddress";
-            this.destinationIPAddress.Size = new System.Drawing.Size(145, 20);
-            this.destinationIPAddress.TabIndex = 15;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(154, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Destination Port";
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.reuseAddress);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.sourcePort);
             this.panel2.Controls.Add(this.label5);
@@ -214,6 +216,7 @@
             // sourceIPAddress
             // 
             this.sourceIPAddress.FormattingEnabled = true;
+            this.sourceIPAddress.IncludeIPAddressAny = true;
             this.sourceIPAddress.Location = new System.Drawing.Point(6, 23);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(144, 21);
@@ -255,6 +258,16 @@
             this.openFileDialog.DefaultExt = "pfx";
             this.openFileDialog.Filter = "PFX files|*.pfx";
             this.openFileDialog.Title = "Pick PFX file";
+            // 
+            // reuseAddress
+            // 
+            this.reuseAddress.AutoSize = true;
+            this.reuseAddress.Location = new System.Drawing.Point(256, 25);
+            this.reuseAddress.Name = "reuseAddress";
+            this.reuseAddress.Size = new System.Drawing.Size(98, 17);
+            this.reuseAddress.TabIndex = 3;
+            this.reuseAddress.Text = "Reuse Address";
+            this.reuseAddress.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -307,6 +320,7 @@
         private System.Windows.Forms.TextBox sourcePort;
         private System.Windows.Forms.Label label5;
         private Common.InterfaceSelectorComboBox sourceIPAddress;
+        private System.Windows.Forms.CheckBox reuseAddress;
     }
 }
 

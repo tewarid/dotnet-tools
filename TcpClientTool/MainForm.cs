@@ -109,21 +109,24 @@ namespace TcpClientTool
 
             try
             {
-                IPEndPoint localEndPoint;
-                if (!string.Empty.Equals(sourceIPAddress.Text)
-                    && !string.Empty.Equals(sourcePort.Text))
+                int port = 0;
+                IPAddress ipAddress = IPAddress.Any;
+                if (!string.Empty.Equals(sourceIPAddress.Text))
                 {
-                    localEndPoint = new IPEndPoint(IPAddress.Parse(sourceIPAddress.Text),
-                        int.Parse(sourcePort.Text));
+                    ipAddress = IPAddress.Parse(sourceIPAddress.Text);
                 }
-                else
+                if(!string.Empty.Equals(sourcePort.Text))
                 {
-                    localEndPoint = new IPEndPoint(IPAddress.Any, 0);
+                    port = int.Parse(sourcePort.Text);
                 }
-                if (tcpClient == null)
+                IPEndPoint localEndPoint = new IPEndPoint(ipAddress, port);
+                tcpClient = new TcpClient();
+                if (reuseAddress.Checked)
                 {
-                    tcpClient = new TcpClient(localEndPoint);
+                    tcpClient.Client.SetSocketOption(SocketOptionLevel.Socket,
+                        SocketOptionName.ReuseAddress, true);
                 }
+                tcpClient.Client.Bind(localEndPoint);
             }
             catch (Exception e)
             {
@@ -181,6 +184,7 @@ namespace TcpClientTool
                 localEndPoint.Port.ToString() : sourcePort.Text;
             sourceIPAddress.Enabled = !connected;
             sourcePort.Enabled = !connected;
+            reuseAddress.Enabled = !connected;
             IPEndPoint remoteEndPoint = connected ? 
                 (IPEndPoint)tcpClient.Client.RemoteEndPoint : null;
             destinationIPAddress.Text = connected ? 

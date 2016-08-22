@@ -40,12 +40,13 @@
             this.sourceIPAddress = new Common.InterfaceSelectorComboBox();
             this.listen = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.reuseAddress = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // stopListener
             // 
             this.stopListener.Enabled = false;
-            this.stopListener.Location = new System.Drawing.Point(93, 88);
+            this.stopListener.Location = new System.Drawing.Point(305, 115);
             this.stopListener.Name = "stopListener";
             this.stopListener.Size = new System.Drawing.Size(75, 23);
             this.stopListener.TabIndex = 25;
@@ -56,7 +57,7 @@
             // useSSLListener
             // 
             this.useSSLListener.AutoSize = true;
-            this.useSSLListener.Location = new System.Drawing.Point(238, 20);
+            this.useSSLListener.Location = new System.Drawing.Point(12, 45);
             this.useSSLListener.Name = "useSSLListener";
             this.useSSLListener.Size = new System.Drawing.Size(68, 17);
             this.useSSLListener.TabIndex = 18;
@@ -67,7 +68,7 @@
             // browseForPfx
             // 
             this.browseForPfx.Enabled = false;
-            this.browseForPfx.Location = new System.Drawing.Point(305, 60);
+            this.browseForPfx.Location = new System.Drawing.Point(305, 79);
             this.browseForPfx.Name = "browseForPfx";
             this.browseForPfx.Size = new System.Drawing.Size(75, 23);
             this.browseForPfx.TabIndex = 20;
@@ -78,7 +79,7 @@
             // pfxPath
             // 
             this.pfxPath.Enabled = false;
-            this.pfxPath.Location = new System.Drawing.Point(12, 62);
+            this.pfxPath.Location = new System.Drawing.Point(12, 81);
             this.pfxPath.Name = "pfxPath";
             this.pfxPath.ReadOnly = true;
             this.pfxPath.Size = new System.Drawing.Size(287, 20);
@@ -88,7 +89,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 46);
+            this.label3.Location = new System.Drawing.Point(9, 65);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 24;
@@ -122,6 +123,7 @@
             // sourceIPAddress
             // 
             this.sourceIPAddress.FormattingEnabled = true;
+            this.sourceIPAddress.IncludeIPAddressAny = true;
             this.sourceIPAddress.Location = new System.Drawing.Point(12, 18);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(132, 21);
@@ -129,7 +131,7 @@
             // 
             // listen
             // 
-            this.listen.Location = new System.Drawing.Point(12, 88);
+            this.listen.Location = new System.Drawing.Point(224, 115);
             this.listen.Name = "listen";
             this.listen.Size = new System.Drawing.Size(75, 23);
             this.listen.TabIndex = 21;
@@ -143,11 +145,22 @@
             this.openFileDialog.Filter = "PFX files|*.pfx";
             this.openFileDialog.Title = "Pick PFX file";
             // 
+            // reuseAddress
+            // 
+            this.reuseAddress.AutoSize = true;
+            this.reuseAddress.Location = new System.Drawing.Point(238, 21);
+            this.reuseAddress.Name = "reuseAddress";
+            this.reuseAddress.Size = new System.Drawing.Size(98, 17);
+            this.reuseAddress.TabIndex = 26;
+            this.reuseAddress.Text = "Reuse Address";
+            this.reuseAddress.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 126);
+            this.ClientSize = new System.Drawing.Size(394, 150);
+            this.Controls.Add(this.reuseAddress);
             this.Controls.Add(this.stopListener);
             this.Controls.Add(this.useSSLListener);
             this.Controls.Add(this.browseForPfx);
@@ -183,6 +196,7 @@
         private Common.InterfaceSelectorComboBox sourceIPAddress;
         private System.Windows.Forms.Button listen;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.CheckBox reuseAddress;
     }
 }
 

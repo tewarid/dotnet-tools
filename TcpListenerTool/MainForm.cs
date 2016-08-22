@@ -48,12 +48,17 @@ namespace TcpListenerTool
                 {
                     listener = new TcpListener(localEndPoint);
                 }
+                if(reuseAddress.Checked)
+                {
+                    listener.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                }
                 listener.Start();
                 listener.BeginAcceptTcpClient(BeginAcceptCallback, null);
             }
             catch (Exception e)
             {
                 MessageBox.Show(this, e.Message, this.Text);
+                listener = null;
                 return;
             }
 
@@ -65,6 +70,8 @@ namespace TcpListenerTool
             stopListener.Enabled = true;
             sourceIPAddress.Enabled = false;
             sourcePort.Enabled = false;
+            reuseAddress.Enabled = false;
+            useSSLListener.Enabled = false;
         }
 
         private bool ValidateCertificate(object sender,
@@ -152,7 +159,9 @@ namespace TcpListenerTool
                 listen.Enabled = true;
                 stopListener.Enabled = false;
                 sourceIPAddress.Enabled = true;
+                reuseAddress.Enabled = true;
                 sourcePort.Enabled = true;
+                useSSLListener.Enabled = true;
             }
         }
 
