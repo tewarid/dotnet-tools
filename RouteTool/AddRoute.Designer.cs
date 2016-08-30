@@ -37,6 +37,8 @@
             this.add = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.persistent = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nextHopIPAddress = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.routeMetric)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +63,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 58);
+            this.label2.Location = new System.Drawing.Point(13, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 2;
@@ -72,15 +74,16 @@
             this.interfaces.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.interfaces.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.interfaces.FormattingEnabled = true;
-            this.interfaces.Location = new System.Drawing.Point(16, 74);
+            this.interfaces.Location = new System.Drawing.Point(16, 71);
             this.interfaces.Name = "interfaces";
             this.interfaces.Size = new System.Drawing.Size(351, 24);
             this.interfaces.TabIndex = 3;
+            this.interfaces.SelectedIndexChanged += new System.EventHandler(this.interfaces_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 102);
+            this.label3.Location = new System.Drawing.Point(13, 140);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 4;
@@ -88,7 +91,7 @@
             // 
             // routeMetric
             // 
-            this.routeMetric.Location = new System.Drawing.Point(16, 118);
+            this.routeMetric.Location = new System.Drawing.Point(16, 156);
             this.routeMetric.Maximum = new decimal(new int[] {
             256,
             0,
@@ -132,7 +135,7 @@
             // persistent
             // 
             this.persistent.AutoSize = true;
-            this.persistent.Location = new System.Drawing.Point(16, 144);
+            this.persistent.Location = new System.Drawing.Point(16, 182);
             this.persistent.Name = "persistent";
             this.persistent.Size = new System.Drawing.Size(72, 17);
             this.persistent.TabIndex = 6;
@@ -140,13 +143,31 @@
             this.persistent.UseVisualStyleBackColor = true;
             this.persistent.Visible = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 98);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Next Hop";
+            // 
+            // nextHopIPAddress
+            // 
+            this.nextHopIPAddress.Location = new System.Drawing.Point(16, 115);
+            this.nextHopIPAddress.Name = "nextHopIPAddress";
+            this.nextHopIPAddress.Size = new System.Drawing.Size(120, 20);
+            this.nextHopIPAddress.TabIndex = 4;
+            // 
             // AddRoute
             // 
             this.AcceptButton = this.add;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancel;
-            this.ClientSize = new System.Drawing.Size(379, 227);
+            this.ClientSize = new System.Drawing.Size(379, 244);
+            this.Controls.Add(this.nextHopIPAddress);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.persistent);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.add);
@@ -180,5 +201,7 @@
         private System.Windows.Forms.Button add;
         private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.CheckBox persistent;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox nextHopIPAddress;
     }
 }

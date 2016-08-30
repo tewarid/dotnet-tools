@@ -29,7 +29,7 @@ namespace RouteTool
         {
             get
             {
-                return ((dynamic)interfaces.SelectedItem).IPv4DefaultGateway;
+                return nextHopIPAddress.Text;
             }
         }
 
@@ -57,6 +57,7 @@ namespace RouteTool
         private BindingSource GetNetIPConfiguration()
         {
             BindingSource bs;
+
             using (PowerShell PowerShellInstance = PowerShell.Create())
             {
                 PowerShellInstance.AddScript("Get-NetIPConfiguration");
@@ -92,6 +93,12 @@ namespace RouteTool
         private void add_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void interfaces_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dynamic control = sender;
+            nextHopIPAddress.Text = control.SelectedItem.IPv4DefaultGateway;
         }
     }
 }
