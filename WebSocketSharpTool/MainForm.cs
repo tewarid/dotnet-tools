@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Specialized;
-using System.Threading;
 using System.Windows.Forms;
 using WebSocketSharp;
 
@@ -31,65 +30,74 @@ namespace WebSocketSharpTool
             {
                 CreateWebSocketClient();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, this.Text);
-                sendButton.Enabled = true;
-            }
-
-            if (ws == null || !ws.IsAlive)
-            {
-                sendButton.Enabled = true;
                 return;
             }
-
-            if (sendTextBox.Length <= 0)
+            finally
             {
-                MessageBox.Show(this, "Nothing to send.", this.Text);
                 sendButton.Enabled = true;
             }
-            else
-            {
-                try
-                {
-                    int tickcount = Environment.TickCount;
 
-                    if (sendTextBox.Binary)
+            try
+            {
+                if (sendTextBox.Binary)
+                {
+                    byte[] data = sendTextBox.Bytes;
+
+                    if (data.Length <= 0)
                     {
-                        ws.SendAsync(sendTextBox.Bytes, delegate (bool completed) {
-                            if (completed)
-                            {
-                                tickcount = Environment.TickCount - tickcount;
-                                BeginInvoke((MethodInvoker)delegate ()
-                                {
-                                    status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
-                                    sendTextBox.Length, tickcount);
-                                    sendButton.Enabled = true;
-                                });
-                            }
-                        });
+                        MessageBox.Show(this, "Nothing to send.", this.Text);
                     }
                     else
                     {
-                        ws.SendAsync(sendTextBox.Text, delegate (bool completed) {
+                        ws.SendAsync(data, delegate (bool completed) {
                             if (completed)
                             {
+                                int tickcount = Environment.TickCount;
                                 tickcount = Environment.TickCount - tickcount;
                                 BeginInvoke((MethodInvoker)delegate ()
                                 {
                                     status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
-                                    sendTextBox.Length, tickcount);
-                                    sendButton.Enabled = true;
+                                    data.Length, tickcount);
                                 });
                             }
                         });
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(this, ex.Message, this.Text);
-                    sendButton.Enabled = true;
+                    string text = sendTextBox.Text;
+                    if (text.Length <= 0)
+                    {
+                        MessageBox.Show(this, "Nothing to send.", this.Text);
+                    }
+                    else
+                    {
+                        ws.SendAsync(text, delegate (bool completed)
+                        {
+                            if (completed)
+                            {
+                                int tickcount = Environment.TickCount;
+                                tickcount = Environment.TickCount - tickcount;
+                                BeginInvoke((MethodInvoker)delegate ()
+                                {
+                                    status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
+                                        text.Length, tickcount);
+                                });
+                            }
+                        });
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, this.Text);
+            }
+            finally
+            {
+                sendButton.Enabled = true;
             }
         }
 
@@ -123,7 +131,8 @@ namespace WebSocketSharpTool
 
         private void CreateWebSocketClient()
         {
-            if (ws != null && ws.IsAlive) return;
+            if (ws != null && ws.IsAlive)
+                return;
 
             ws = new WebSocket(location.Text);
             
@@ -212,8 +221,8 @@ namespace WebSocketSharpTool
             {
                 ws.OnClose -= Ws_OnClose;
                 ws.Close();
+                ws = null;
             }
-            ws = null;
             connect.Enabled = true;
             setHeaders.Enabled = true;
             proxyButton.Enabled = true;

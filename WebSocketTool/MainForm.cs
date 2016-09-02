@@ -38,7 +38,9 @@ namespace WebSocketSharpTool
             sendButton.Enabled = false;
 
             int tickcount = 0;
-            if (sendTextBox.Length <= 0)
+
+            byte[] data = sendTextBox.Bytes;
+            if (data.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
@@ -49,7 +51,7 @@ namespace WebSocketSharpTool
                     tickcount = Environment.TickCount;
                     CancellationTokenSource source = new CancellationTokenSource();
                     CancellationToken token = source.Token;
-                    await wsClient.SendAsync(new ArraySegment<byte>(sendTextBox.Bytes, 0, sendTextBox.Length), 
+                    await wsClient.SendAsync(new ArraySegment<byte>(data, 0, data.Length), 
                         sendTextBox.Binary ? WebSocketMessageType.Binary : WebSocketMessageType.Text, 
                         true, token);
                     tickcount = Environment.TickCount - tickcount;
@@ -60,8 +62,8 @@ namespace WebSocketSharpTool
                 }
             }
 
-            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", 
-                sendTextBox.Length, tickcount);
+            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
+                data.Length, tickcount);
             sendButton.Enabled = true;
         }
 

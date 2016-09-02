@@ -64,7 +64,8 @@ namespace TcpClientTool
             sendButton.Enabled = false;
 
             int tickcount = 0;
-            if (input.Length <= 0)
+            byte[] data = input.Bytes;
+            if (data.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
@@ -73,7 +74,7 @@ namespace TcpClientTool
                 try
                 {
                     tickcount = Environment.TickCount;
-                    stream.Write(input.Bytes, 0, input.Length);
+                    stream.Write(data, 0, data.Length);
                     tickcount = Environment.TickCount - tickcount;
                 }
                 catch (Exception ex)
@@ -82,8 +83,8 @@ namespace TcpClientTool
                 }
             }
 
-            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", 
-                input.Length, tickcount);
+            status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
+                data.Length, tickcount);
             sendButton.Enabled = true;
         }
 

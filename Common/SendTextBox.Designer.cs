@@ -81,7 +81,6 @@
             this.endOfLineUnix.TabIndex = 2;
             this.endOfLineUnix.Text = "Unix (LF)";
             this.endOfLineUnix.UseVisualStyleBackColor = true;
-            this.endOfLineUnix.CheckedChanged += new System.EventHandler(this.endOfLine_CheckedChanged);
             // 
             // endOfLineDos
             // 
@@ -92,7 +91,6 @@
             this.endOfLineDos.TabIndex = 2;
             this.endOfLineDos.Text = "DOS (CR-LF)";
             this.endOfLineDos.UseVisualStyleBackColor = true;
-            this.endOfLineDos.CheckedChanged += new System.EventHandler(this.endOfLine_CheckedChanged);
             // 
             // endOfLineMac
             // 
@@ -105,7 +103,6 @@
             this.endOfLineMac.TabStop = true;
             this.endOfLineMac.Text = "MAC (CR)";
             this.endOfLineMac.UseVisualStyleBackColor = true;
-            this.endOfLineMac.CheckedChanged += new System.EventHandler(this.endOfLine_CheckedChanged);
             // 
             // inputText
             // 
@@ -123,10 +120,7 @@
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputText.Size = new System.Drawing.Size(402, 290);
             this.inputText.TabIndex = 0;
-            this.inputText.TextChanged += new System.EventHandler(this.inputText_TextChanged);
-            this.inputText.Enter += new System.EventHandler(this.inputText_Enter);
             this.inputText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputText_KeyPress);
-            this.inputText.Leave += new System.EventHandler(this.inputText_Leave);
             // 
             // SendTextBox
             // 

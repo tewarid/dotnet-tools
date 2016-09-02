@@ -41,7 +41,8 @@ namespace SerialTool
 
             sendButton.Enabled = false;
 
-            if (input.Length <= 0)
+            byte[] data = input.Bytes;
+            if (data.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
             }
@@ -52,14 +53,14 @@ namespace SerialTool
                     // this will run in a worker thread
                     await Task.Run(delegate {
                         startTickCount = Environment.TickCount;
-                        port.Write(input.Bytes, 0, input.Length);
+                        port.Write(data, 0, data.Length);
                         endTickCount = Environment.TickCount;
                     });
 
                     // main thread gets resumed at this point
                     // so invoke not required
-                    status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds", 
-                        input.Length, endTickCount - startTickCount);
+                    status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
+                        data.Length, endTickCount - startTickCount);
                 }
                 catch(Exception ex)
                 {
