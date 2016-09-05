@@ -75,7 +75,7 @@
             // endOfLineUnix
             // 
             this.endOfLineUnix.AutoSize = true;
-            this.endOfLineUnix.Location = new System.Drawing.Point(84, 19);
+            this.endOfLineUnix.Location = new System.Drawing.Point(174, 19);
             this.endOfLineUnix.Name = "endOfLineUnix";
             this.endOfLineUnix.Size = new System.Drawing.Size(67, 17);
             this.endOfLineUnix.TabIndex = 2;
@@ -85,22 +85,22 @@
             // endOfLineDos
             // 
             this.endOfLineDos.AutoSize = true;
-            this.endOfLineDos.Location = new System.Drawing.Point(157, 19);
+            this.endOfLineDos.Checked = true;
+            this.endOfLineDos.Location = new System.Drawing.Point(6, 19);
             this.endOfLineDos.Name = "endOfLineDos";
             this.endOfLineDos.Size = new System.Drawing.Size(87, 17);
             this.endOfLineDos.TabIndex = 2;
+            this.endOfLineDos.TabStop = true;
             this.endOfLineDos.Text = "DOS (CR-LF)";
             this.endOfLineDos.UseVisualStyleBackColor = true;
             // 
             // endOfLineMac
             // 
             this.endOfLineMac.AutoSize = true;
-            this.endOfLineMac.Checked = true;
-            this.endOfLineMac.Location = new System.Drawing.Point(6, 19);
+            this.endOfLineMac.Location = new System.Drawing.Point(96, 19);
             this.endOfLineMac.Name = "endOfLineMac";
             this.endOfLineMac.Size = new System.Drawing.Size(72, 17);
             this.endOfLineMac.TabIndex = 2;
-            this.endOfLineMac.TabStop = true;
             this.endOfLineMac.Text = "MAC (CR)";
             this.endOfLineMac.UseVisualStyleBackColor = true;
             // 
