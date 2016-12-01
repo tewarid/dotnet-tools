@@ -9,7 +9,7 @@ install:
   - ps: Set-Content c:\users\appveyor\.ssh\id_rsa $fileContent
   - git submodule update --init --recursive
 before_build:
-  - nuget restore
+  - nuget restore NetTools.sln
 build:
   project: NetTools.sln
   verbosity: minimal
