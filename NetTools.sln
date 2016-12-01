@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 14 for Windows Desktop
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpClientTool", "TcpClientTool\TcpClientTool.csproj", "{1A80778F-B6B5-442E-9E1B-C6216A24F8C0}"
 EndProject
@@ -32,6 +32,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteTool", "RouteTool\RouteTool.csproj", "{F0D291A0-D1C7-4148-BF1A-407396510C06}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpListenerTool", "TcpListenerTool\TcpListenerTool.csproj", "{0AA07A12-6361-4BD7-9A24-87690A3AEACE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluetoothSppServerTool", "BluetoothSppServerTool\BluetoothSppServerTool.csproj", "{93C2A8EA-73D2-43C4-BED7-362C650C709A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,6 +163,14 @@ Global
 		{0AA07A12-6361-4BD7-9A24-87690A3AEACE}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
 		{0AA07A12-6361-4BD7-9A24-87690A3AEACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AA07A12-6361-4BD7-9A24-87690A3AEACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93C2A8EA-73D2-43C4-BED7-362C650C709A}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C2A8EA-73D2-43C4-BED7-362C650C709A}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{93C2A8EA-73D2-43C4-BED7-362C650C709A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C2A8EA-73D2-43C4-BED7-362C650C709A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C2A8EA-73D2-43C4-BED7-362C650C709A}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{93C2A8EA-73D2-43C4-BED7-362C650C709A}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{93C2A8EA-73D2-43C4-BED7-362C650C709A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C2A8EA-73D2-43C4-BED7-362C650C709A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
