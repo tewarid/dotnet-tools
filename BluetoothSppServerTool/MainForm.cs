@@ -1,8 +1,6 @@
-﻿using InTheHand.Net.Bluetooth;
-using InTheHand.Net.Sockets;
+﻿using InTheHand.Net.Sockets;
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BluetoothSppServerTool
@@ -47,6 +45,7 @@ namespace BluetoothSppServerTool
 
         private void acceptBluetoothClient(IAsyncResult ar)
         {
+            if (listener == null) return;
             client = listener.EndAcceptBluetoothClient(ar);
             stream = client.GetStream();
             ReadAsync(stream);
@@ -72,10 +71,12 @@ namespace BluetoothSppServerTool
                 }
                 catch
                 {
-                    BeginInvoke(new MethodInvoker(delegate
-                    {
-                        Stop();
-                    }));
+                    if (this.Visible) { // we're not being closed
+                        BeginInvoke(new MethodInvoker(delegate
+                        {
+                            Stop();
+                        }));
+                    }
                     break;
                 }
             }
@@ -100,8 +101,9 @@ namespace BluetoothSppServerTool
             }
             if (listener != null)
             {
-                listener.Stop();
-                listener = null;
+                BluetoothListener l = listener;
+                listener = null; // We want AsyncCallback to know we're done,
+                l.Stop();        // it gets invoked when we Stops.
             }
             startButton.Enabled = true;
             stopButton.Enabled = false;
