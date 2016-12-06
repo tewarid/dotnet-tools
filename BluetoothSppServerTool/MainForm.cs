@@ -1,4 +1,5 @@
-﻿using InTheHand.Net.Sockets;
+﻿using InTheHand.Net.Bluetooth;
+using InTheHand.Net.Sockets;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -28,7 +29,7 @@ namespace BluetoothSppServerTool
         {
             try
             {
-                listener = new BluetoothListener(MyServiceUuid);
+                listener = new BluetoothListener(MyServiceUuid); // Listen on primary radio
                 listener.Start();
                 listener.BeginAcceptBluetoothClient(acceptBluetoothClient, null);
             }
@@ -38,7 +39,8 @@ namespace BluetoothSppServerTool
                 return;
             }
 
-            status.Text = string.Format("Listening...");
+            status.Text = string.Format("Listening at {0}, HCI version {1}...", 
+                BluetoothRadio.PrimaryRadio.Name, BluetoothRadio.PrimaryRadio.HciVersion);
             startButton.Enabled = false;
             stopButton.Enabled = true;
         }
@@ -103,7 +105,11 @@ namespace BluetoothSppServerTool
             {
                 BluetoothListener l = listener;
                 listener = null; // We want AsyncCallback to know we're done,
-                l.Stop();        // it gets invoked when we Stops.
+                try
+                {
+                    l.Stop();    // because it gets invoked when we call Stop.
+                }
+                catch { }
             }
             startButton.Enabled = true;
             stopButton.Enabled = false;
