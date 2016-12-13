@@ -48,24 +48,25 @@ namespace SerialTool
             }
             else
             {
-                try
-                {
-                    // this will run in a worker thread
-                    await Task.Run(delegate {
+                // this will run in a worker thread
+                await Task.Run(delegate {
+                    try
+                    {
                         startTickCount = Environment.TickCount;
                         port.Write(data, 0, data.Length);
                         endTickCount = Environment.TickCount;
-                    });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                });
 
-                    // main thread gets resumed at this point
-                    // so invoke not required
+                // main thread gets resumed at this point
+                // so invoke not required
+                if (endTickCount != 0)
                     status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
                         data.Length, endTickCount - startTickCount);
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
             }
             sendButton.Enabled = true;
         }
