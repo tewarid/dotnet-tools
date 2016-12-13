@@ -2,6 +2,7 @@
 using InTheHand.Net.Sockets;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BluetoothSppServerTool
@@ -47,15 +48,26 @@ namespace BluetoothSppServerTool
 
         private void acceptBluetoothClient(IAsyncResult ar)
         {
-            if (listener == null) return;
+            if (client != null)
+                Stop(false);
+
+            if (listener == null)
+            {
+                Stop(true);
+                return;
+            }
+
             client = listener.EndAcceptBluetoothClient(ar);
             stream = client.GetStream();
             ReadAsync(stream);
-            BeginInvoke(new MethodInvoker(delegate
+
+            Invoke(new MethodInvoker(delegate
             {
                 status.Text = string.Format("Connected to {0}.", client.RemoteMachineName);
                 sendButton.Enabled = true;
             }));
+
+            listener.BeginAcceptBluetoothClient(acceptBluetoothClient, null);
         }
 
         private async void ReadAsync(Stream stream)
@@ -66,7 +78,7 @@ namespace BluetoothSppServerTool
                 try
                 {
                     int length = await stream.ReadAsync(buffer, 0, buffer.Length);
-                    BeginInvoke(new MethodInvoker(delegate
+                    Invoke(new MethodInvoker(delegate
                     {
                         outputText.Append(buffer, length);
                     }));
@@ -74,9 +86,9 @@ namespace BluetoothSppServerTool
                 catch
                 {
                     if (this.Visible) { // we're not being closed
-                        BeginInvoke(new MethodInvoker(delegate
+                        Invoke(new MethodInvoker(delegate
                         {
-                            Stop();
+                            Stop(false);
                         }));
                     }
                     break;
@@ -86,11 +98,20 @@ namespace BluetoothSppServerTool
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            Stop();
+            Stop(true);
         }
 
-        private void Stop()
+        private void Stop(bool stopListener)
         {
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate() 
+                {
+                    Stop(stopListener);
+                }));
+                return;
+            }
+
             if (stream != null)
             {
                 stream.Close();
@@ -101,7 +122,7 @@ namespace BluetoothSppServerTool
                 client.Close();
                 client = null;
             }
-            if (listener != null)
+            if (stopListener && listener != null)
             {
                 BluetoothListener l = listener;
                 listener = null; // We want AsyncCallback to know we're done,
@@ -110,24 +131,44 @@ namespace BluetoothSppServerTool
                     l.Stop();    // because it gets invoked when we call Stop.
                 }
                 catch { }
+                startButton.Enabled = true;
+                stopButton.Enabled = false;
+                sendButton.Enabled = false;
+                status.Text = string.Format("Stopped.");
             }
-            startButton.Enabled = true;
-            stopButton.Enabled = false;
-            sendButton.Enabled = false;
-            status.Text = string.Format("Stopped.");
+        }
+
+        private async void SendAsync(byte[] buffer)
+        {
+            int startTickCount = 0;
+            int endTickCount = 0;
+
+            // this will run in a worker thread
+            await Task.Run(delegate 
+            {
+                try
+                {
+                    startTickCount = Environment.TickCount;
+                    stream.Write(buffer, 0, buffer.Length);
+                    endTickCount = Environment.TickCount;
+                }
+                catch (Exception ex)
+                {
+                    Stop(false);
+                    MessageBox.Show(ex.Message);
+                }
+            });
+
+            // main thread gets resumed at this point
+            // so invoke not required
+            if (endTickCount != 0)
+                status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
+                    buffer.Length, endTickCount - startTickCount);
         }
 
         private void sendButton_Click(object sender, EventArgs e)
         {
-            byte[] buffer = input.Bytes;
-            try
-            {
-                stream.WriteAsync(buffer, 0, buffer.Length);
-            }
-            catch
-            {
-                Stop();
-            }
+            SendAsync(input.Bytes);
         }
     }
 }
