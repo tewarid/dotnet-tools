@@ -52,6 +52,8 @@ namespace SerialTool
                 await Task.Run(delegate {
                     try
                     {
+                        port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
+                            : SerialPort.InfiniteTimeout;
                         startTickCount = Environment.TickCount;
                         port.Write(data, 0, data.Length);
                         endTickCount = Environment.TickCount;
@@ -102,8 +104,6 @@ namespace SerialTool
             try
             {
                 port.Open();
-                port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
-                    : SerialPort.InfiniteTimeout;
                 port.DataReceived += port_DataReceived;
                 port.ErrorReceived += port_ErrorReceived;
             }
