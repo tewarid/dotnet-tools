@@ -133,9 +133,9 @@ namespace BluetoothSppServerTool
                 catch { }
                 startButton.Enabled = true;
                 stopButton.Enabled = false;
-                sendButton.Enabled = false;
                 status.Text = string.Format("Stopped.");
             }
+            sendButton.Enabled = false;
         }
 
         private async void SendAsync(byte[] buffer)
