@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpListenerTool", "TcpListe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluetoothSerialServerTool", "BluetoothSerialServerTool\BluetoothSerialServerTool.csproj", "{93C2A8EA-73D2-43C4-BED7-362C650C709A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluetoothSerialClientTool", "BluetoothSerialClientTool\BluetoothSerialClientTool.csproj", "{3BFFB6BF-138D-4809-AA3B-F67B5FDC57C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Ubuntu|Any CPU = Debug_Ubuntu|Any CPU
@@ -171,6 +173,14 @@ Global
 		{93C2A8EA-73D2-43C4-BED7-362C650C709A}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
 		{93C2A8EA-73D2-43C4-BED7-362C650C709A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93C2A8EA-73D2-43C4-BED7-362C650C709A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BFFB6BF-138D-4809-AA3B-F67B5FDC57C4}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BFFB6BF-138D-4809-AA3B-F67B5FDC57C4}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{3BFFB6BF-138D-4809-AA3B-F67B5FDC57C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BFFB6BF-138D-4809-AA3B-F67B5FDC57C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BFFB6BF-138D-4809-AA3B-F67B5FDC57C4}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{3BFFB6BF-138D-4809-AA3B-F67B5FDC57C4}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{3BFFB6BF-138D-4809-AA3B-F67B5FDC57C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BFFB6BF-138D-4809-AA3B-F67B5FDC57C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
