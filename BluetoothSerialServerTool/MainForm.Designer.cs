@@ -122,7 +122,7 @@
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.sendButton.Enabled = false;
-            this.sendButton.Location = new System.Drawing.Point(287, 400);
+            this.sendButton.Location = new System.Drawing.Point(287, 401);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 30);
             this.sendButton.TabIndex = 15;
@@ -138,7 +138,7 @@
             this.input.Location = new System.Drawing.Point(3, 4);
             this.input.MinimumSize = new System.Drawing.Size(280, 130);
             this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(359, 395);
+            this.input.Size = new System.Drawing.Size(359, 429);
             this.input.TabIndex = 12;
             // 
             // statusStrip1
