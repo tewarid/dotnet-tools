@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 14 for Windows Desktop
+# Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpClientTool", "TcpClientTool\TcpClientTool.csproj", "{1A80778F-B6B5-442E-9E1B-C6216A24F8C0}"
@@ -33,7 +33,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteTool", "RouteTool\Rout
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpListenerTool", "TcpListenerTool\TcpListenerTool.csproj", "{0AA07A12-6361-4BD7-9A24-87690A3AEACE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluetoothSppServerTool", "BluetoothSppServerTool\BluetoothSppServerTool.csproj", "{93C2A8EA-73D2-43C4-BED7-362C650C709A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluetoothSerialServerTool", "BluetoothSerialServerTool\BluetoothSerialServerTool.csproj", "{93C2A8EA-73D2-43C4-BED7-362C650C709A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
