@@ -184,10 +184,10 @@
             // 
             // multicastGroupBox
             // 
-            multicastGroupBox.Enabled = false;
             this.multicastGroupBox.Controls.Add(this.label3);
             this.multicastGroupBox.Controls.Add(this.join);
             this.multicastGroupBox.Controls.Add(this.multicastGroupAddress);
+            this.multicastGroupBox.Enabled = false;
             this.multicastGroupBox.Location = new System.Drawing.Point(236, 3);
             this.multicastGroupBox.Name = "multicastGroupBox";
             this.multicastGroupBox.Size = new System.Drawing.Size(144, 90);
@@ -206,7 +206,6 @@
             // 
             // join
             // 
-            this.join.Enabled = true;
             this.join.Location = new System.Drawing.Point(10, 60);
             this.join.Name = "join";
             this.join.Size = new System.Drawing.Size(75, 23);
@@ -217,7 +216,6 @@
             // 
             // multicastGroupAddress
             // 
-            this.multicastGroupAddress.Enabled = true;
             this.multicastGroupAddress.Location = new System.Drawing.Point(10, 34);
             this.multicastGroupAddress.Name = "multicastGroupAddress";
             this.multicastGroupAddress.Size = new System.Drawing.Size(126, 20);
@@ -242,6 +240,7 @@
             // 
             // sourceIPAddress
             // 
+            this.sourceIPAddress.DataSource = ((object)(resources.GetObject("sourceIPAddress.DataSource")));
             this.sourceIPAddress.FormattingEnabled = true;
             this.sourceIPAddress.IncludeIPAddressAny = true;
             this.sourceIPAddress.Location = new System.Drawing.Point(9, 35);

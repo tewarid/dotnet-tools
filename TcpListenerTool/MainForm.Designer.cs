@@ -122,6 +122,7 @@
             // 
             // sourceIPAddress
             // 
+            this.sourceIPAddress.DataSource = ((object)(resources.GetObject("sourceIPAddress.DataSource")));
             this.sourceIPAddress.FormattingEnabled = true;
             this.sourceIPAddress.IncludeIPAddressAny = true;
             this.sourceIPAddress.Location = new System.Drawing.Point(12, 18);

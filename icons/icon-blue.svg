@@ -15,10 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="icon.svg"
-   inkscape:export-filename="Z:\git\github\net-tools\icon-blue.png"
-   inkscape:export-xdpi="97.166756"
-   inkscape:export-ydpi="97.166756">
+   sodipodi:docname="icon-blue.svg"
+   inkscape:export-filename="Z:\git\github\net-tools\icons\icon-blue.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="73.647297"
+     inkscape:cx="121.07097"
      inkscape:cy="123.07643"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -38,8 +38,8 @@
      width="256px"
      inkscape:window-width="1452"
      inkscape:window-height="802"
-     inkscape:window-x="255"
-     inkscape:window-y="292"
+     inkscape:window-x="222"
+     inkscape:window-y="313"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata7">
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -59,7 +59,7 @@
      id="layer1"
      transform="translate(0,-796.3622)">
     <ellipse
-       style="fill:#0000ff;fill-rule:evenodd;stroke:#000000;stroke-width:16;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1"
+       style="fill:#0064ff;fill-rule:evenodd;stroke:#000000;stroke-width:16;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1"
        id="path3346"
        cx="191.67645"
        cy="858.66547"
@@ -71,7 +71,7 @@
        cy="991.50061"
        cx="190.16122"
        id="ellipse3348"
-       style="fill:#0000ff;fill-rule:evenodd;stroke:#000000;stroke-width:16;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1" />
+       style="fill:#0064ff;fill-rule:evenodd;stroke:#000000;stroke-width:16;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1" />
     <ellipse
        ry="47.224632"
        rx="48.234783"
@@ -81,12 +81,12 @@
        style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:16;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:16;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 108.07423,911.19784 46.22114,-29.66699 0,0"
+       d="m 113.34819,907.43004 35.17271,-21.10212 0,0"
        id="path4152"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:12.90238094;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 106.76012,954.36452 42.22749,23.563 0,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:16;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 110.45734,958.07136 33.82544,17.14487 0,0"
        id="path4154"
        inkscape:connector-curvature="0" />
   </g>

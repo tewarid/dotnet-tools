@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.reuseAddress = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.sourcePort = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.reuseAddress = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -177,6 +177,16 @@
             this.panel2.Size = new System.Drawing.Size(392, 439);
             this.panel2.TabIndex = 1;
             // 
+            // reuseAddress
+            // 
+            this.reuseAddress.AutoSize = true;
+            this.reuseAddress.Location = new System.Drawing.Point(256, 25);
+            this.reuseAddress.Name = "reuseAddress";
+            this.reuseAddress.Size = new System.Drawing.Size(98, 17);
+            this.reuseAddress.TabIndex = 3;
+            this.reuseAddress.Text = "Reuse Address";
+            this.reuseAddress.UseVisualStyleBackColor = true;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -215,6 +225,7 @@
             // 
             // sourceIPAddress
             // 
+            this.sourceIPAddress.DataSource = ((object)(resources.GetObject("sourceIPAddress.DataSource")));
             this.sourceIPAddress.FormattingEnabled = true;
             this.sourceIPAddress.IncludeIPAddressAny = true;
             this.sourceIPAddress.Location = new System.Drawing.Point(6, 23);
@@ -258,16 +269,6 @@
             this.openFileDialog.DefaultExt = "pfx";
             this.openFileDialog.Filter = "PFX files|*.pfx";
             this.openFileDialog.Title = "Pick PFX file";
-            // 
-            // reuseAddress
-            // 
-            this.reuseAddress.AutoSize = true;
-            this.reuseAddress.Location = new System.Drawing.Point(256, 25);
-            this.reuseAddress.Name = "reuseAddress";
-            this.reuseAddress.Size = new System.Drawing.Size(98, 17);
-            this.reuseAddress.TabIndex = 3;
-            this.reuseAddress.Text = "Reuse Address";
-            this.reuseAddress.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
