@@ -2,9 +2,13 @@
 
 Simple tools for experimenting with network communications written primarily for Windows in .NET. To get the latest working build head to https://ci.appveyor.com/project/tewarid/nettools/build/artifacts. To build them yourselves, clone the repository, and use the free Visual Studio Express for Desktop. I recommend having around the excellent [Sysinternals Suite](https://technet.microsoft.com/en-us/sysinternals/bb842062) of utilities.
 
-## Bluetooth SPP Server Tool
+## Bluetooth Serial Client Tool
 
-This tools allows Windows to act as a Bluetooth SPP server, using [32feet.NET](https://www.nuget.org/packages/32feet.NET).
+Interactive client that may be used to open a Bluetooth serial socket, and send/receive data. It is built with [32feet.NET](https://www.nuget.org/packages/32feet.NET), a .NET library layered over Windows Bluetooth socket API.
+
+## Bluetooth Serial Server Tool
+
+Simulate a Bluetooth serial listener/server on Windows. It is built with [32feet.NET](https://www.nuget.org/packages/32feet.NET), a .NET library layered over Windows Bluetooth socket API.
 
 ## Firewall Tool
 
