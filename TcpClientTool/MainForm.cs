@@ -46,7 +46,7 @@ namespace TcpClientTool
 
         private void SourceIPAddress_InterfaceDeleted(string address)
         {
-            if (sourceIPAddress.Text.Equals(address))
+            if (tcpClient != null)
             {
                 CloseTcpClient();
                 sourceIPAddress.Text = string.Empty;

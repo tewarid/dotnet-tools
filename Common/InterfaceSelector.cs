@@ -9,10 +9,9 @@ namespace Common
 {
     public partial class InterfaceSelectorComboBox : ComboBox
     {
-        List<string> addresses = new List<string>();
-
         public event Action<string> InterfaceDeleted;
 
+        private readonly string any = IPAddress.Any.ToString();
         bool _includeIPAddressAny = false;
         public bool IncludeIPAddressAny
         {
@@ -25,10 +24,9 @@ namespace Common
                 _includeIPAddressAny = value;
                 if (value)
                 {
-                    string any = IPAddress.Any.ToString();
-                    if (!addresses.Contains(any))
+                    if (!Items.Contains(any))
                     {
-                        addresses.Add(any);
+                        Items.Add(any);
                     }
                 }
             }
@@ -40,7 +38,6 @@ namespace Common
 
             if (!DesignMode)
             {
-                DataSource = addresses;
                 RefreshNetworkInterfaces();
 
                 NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
@@ -58,48 +55,29 @@ namespace Common
             // Get all IP v4 addresses
             List<string> newList = GetIPv4Addresses();
 
-            bool refresh = false;
-
             // Add
             foreach (string address in newList)
             {
-                if (!addresses.Contains(address))
+                if (!Items.Contains(address))
                 {
                     // Added
-                    addresses.Add(address);
-                    refresh = true;
+                    Items.Add(address);
                 }
             }
 
             // Delete
-            for (int i = 0; i < addresses.Count; i++)
+            for (int i = 0; i < Items.Count; i++)
             {
-                if (!newList.Contains(addresses[i]))
+                if (!any.Equals(Items[i]) && !newList.Contains((String)Items[i]))
                 {
                     // Removed
                     if (SelectedIndex == i)
                     {
-                        InterfaceDeleted?.Invoke(addresses[i]);
-                        if (SelectedIndex != i)
-                        {
-                            addresses.RemoveAt(i);
-                            refresh = true;
-                        }
+                        InterfaceDeleted?.Invoke((String)Items[i]);
                     }
-                    else
-                    {
-                        addresses.RemoveAt(i);
-                        refresh = true;
-                    }
+                    Items.RemoveAt(i);
                 }
             }
-
-            try
-            {
-                if (refresh)
-                    RefreshItems();
-            }
-            catch { }
         }
 
         private List<string> GetIPv4Addresses()

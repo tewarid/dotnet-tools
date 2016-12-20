@@ -16,6 +16,7 @@ namespace TcpListenerTool
         public MainForm()
         {
             InitializeComponent();
+            sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
         }
 
         private void listen_Click(object sender, EventArgs e)
@@ -167,12 +168,11 @@ namespace TcpListenerTool
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
         }
 
         private void SourceIPAddress_InterfaceDeleted(string address)
         {
-            if (sourceIPAddress.Text.Equals(address))
+            if (listener != null)
             {
                 StopListener();
                 sourceIPAddress.Text = string.Empty;

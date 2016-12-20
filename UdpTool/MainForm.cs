@@ -14,6 +14,16 @@ namespace UdpTool
         public MainForm()
         {
             InitializeComponent();
+            sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
+        }
+
+        private void SourceIPAddress_InterfaceDeleted(string obj)
+        {
+            // selected interface has ceased to exist
+            if (udpClient != null)
+            {
+                Close();
+            }
         }
 
         private void sendButton_Click(object sender, EventArgs e)
@@ -207,7 +217,7 @@ namespace UdpTool
             }
         }
 
-        private void close_Click(object sender, EventArgs e)
+        private void Close()
         {
             udpClient.Close();
             udpClient = null;
@@ -217,6 +227,11 @@ namespace UdpTool
             reuseAddress.Enabled = true;
             multicastGroupBox.Enabled = false;
             close.Enabled = false;
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
