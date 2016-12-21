@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
+using HexToBinLib;
 
 namespace IcmpTool
 {
