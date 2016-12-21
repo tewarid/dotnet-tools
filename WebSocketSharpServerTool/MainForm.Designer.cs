@@ -119,7 +119,7 @@
             this.url.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.url.Location = new System.Drawing.Point(14, 377);
             this.url.Name = "url";
-            this.url.Size = new System.Drawing.Size(310, 20);
+            this.url.Size = new System.Drawing.Size(598, 20);
             this.url.TabIndex = 6;
             this.url.Text = "wss://localhost:8088";
             // 
@@ -199,7 +199,7 @@
             this.pfxPath.Location = new System.Drawing.Point(14, 295);
             this.pfxPath.Name = "pfxPath";
             this.pfxPath.ReadOnly = true;
-            this.pfxPath.Size = new System.Drawing.Size(310, 20);
+            this.pfxPath.Size = new System.Drawing.Size(517, 20);
             this.pfxPath.TabIndex = 3;
             this.pfxPath.Text = "mycompany.pfx";
             // 
@@ -207,7 +207,7 @@
             // 
             this.browseForPfx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.browseForPfx.Enabled = false;
-            this.browseForPfx.Location = new System.Drawing.Point(330, 293);
+            this.browseForPfx.Location = new System.Drawing.Point(537, 292);
             this.browseForPfx.Name = "browseForPfx";
             this.browseForPfx.Size = new System.Drawing.Size(75, 23);
             this.browseForPfx.TabIndex = 4;

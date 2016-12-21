@@ -1,13 +1,14 @@
-﻿using System.ServiceModel;
+﻿using System.Net.WebSockets;
+using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 
 namespace WebSocketServerTool
 {
     [ServiceContract]
-    interface IServiceCallback
+    public interface IServiceCallback
     {
         [OperationContract(IsOneWay = true, Action = "*")]
-        Task ReceiveMessage(Message message);
+        Task Callback(Message message);
     }
 }

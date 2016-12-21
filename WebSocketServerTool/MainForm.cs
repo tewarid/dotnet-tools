@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.WebSockets;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -43,7 +44,7 @@ namespace WebSocketServerTool
             transport.WebSocketSettings = new WebSocketTransportSettings()
             {
                 TransportUsage = WebSocketTransportUsage.Always,
-                CreateNotificationOnConnection = false
+                CreateNotificationOnConnection = true
             };
             binding.Elements.Add(transport);
 
@@ -61,6 +62,11 @@ namespace WebSocketServerTool
                 host.Description.Behaviors.Add(behavior);
 
             host.Open();
+        }
+
+        private void MessageHandler(Tuple<IServiceCallback,
+            WebSocketMessageType, byte[]> message)
+        {
         }
 
         private void open_Click(object sender, System.EventArgs e)

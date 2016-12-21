@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 namespace WebSocketServerTool
 {
     [ServiceContract(CallbackContract = typeof(IServiceCallback))]
-    interface IService
+    public interface IService
     {
         [OperationContract(IsOneWay = true, Action = "*")]
-        Task SendMessage(Message message);
+        Task Send(Message message);
     }
 }
