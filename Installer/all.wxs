@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix 
+    xmlns="http://schemas.microsoft.com/wix/2006/wi" 
+    xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Product Id="*" UpgradeCode="7f7f2eab-8b95-42b2-825d-1bea5d37c982" Version="$(env.Version)" Language="1033" Name="Networking Tools" Manufacturer="github.com/tewarid">
+        <Package InstallerVersion="300" Compressed="yes"/>
+        <Media Id="1" Cabinet="out.cab" EmbedCab="yes" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="DesktopFolder" Name="Desktop" />
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLDIR" Name="Networking Tools"/></Directory>
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationStartMenuDirectory" Name="Networking Tools"/></Directory>
+        </Directory>
+        <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+        <PropertyRef Id="NETFRAMEWORK45" />
+        <DirectoryRef Id="INSTALLDIR">
+            <!-- component -->
+        </DirectoryRef>
+        <Icon Id="icon.ico" SourceFile="icons\icon.ico"/>
+        <DirectoryRef Id="ApplicationStartMenuDirectory">
+            <Component Id="ApplicationShortcuts" Guid="60fe21e0-74ed-473b-a64d-b226beda883c">
+                <Shortcut Id="ApplicationStartMenuShortcut" Directory="ApplicationStartMenuDirectory" Name="TODO" Target="[INSTALLDIR]TODO" WorkingDirectory="INSTALLDIR" Icon="icon.ico"/>
+                <RemoveFolder Id="ApplicationStartMenuDirectory" On="uninstall"/>
+                <RegistryValue Root="HKCU" Key="Software\Networking Tools" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+            </Component>
+        </DirectoryRef>
+        <Feature Id="MainApplication" Title="Main Application" Level="1">
+            <ComponentRef Id="TODO" />
+        </Feature>
+        <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+        <UIRef Id="WixUI_InstallDir" />
+        <Condition Message="This application requires .NET Framework 4.5 Please install the .NET Framework then run this installer again.">
+            <![CDATA[Installed OR NETFRAMEWORK45]]>
+        </Condition>
+    </Product>
+</Wix>

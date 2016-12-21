@@ -120,10 +120,6 @@
       <Project>{E1FEE78B-CBEC-4A3E-9252-581406417CE0}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NetHexToBin\HexToBinLib\HexToBinLib.csproj">
-      <Project>{78E37AB9-1A85-4E08-8F72-FA3BC098A4AF}</Project>
-      <Name>HexToBinLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon-orange.ico" />

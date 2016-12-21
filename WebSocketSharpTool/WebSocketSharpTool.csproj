@@ -110,10 +110,6 @@
       <Project>{E1FEE78B-CBEC-4A3E-9252-581406417CE0}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NetHexToBin\HexToBinLib\HexToBinLib.csproj">
-      <Project>{78E37AB9-1A85-4E08-8F72-FA3BC098A4AF}</Project>
-      <Name>HexToBinLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\websocket-sharp\websocket-sharp\websocket-sharp.csproj">
       <Project>{B357BAC7-529E-4D81-A0D2-71041B19C8DE}</Project>
       <Name>websocket-sharp</Name>

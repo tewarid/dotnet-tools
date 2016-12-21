@@ -1,6 +1,3 @@
-[submodule "net-hex-to-bin"]
-	path = NetHexToBin
-	url = git@github.com:tewarid/net-hex-to-bin.git
 [submodule "websocket-sharp"]
 	path = websocket-sharp
 	url = git@github.com:tewarid/websocket-sharp.git

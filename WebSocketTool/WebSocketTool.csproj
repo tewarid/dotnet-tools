@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebSocketTool</RootNamespace>
     <AssemblyName>WebSocketTool</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -65,6 +66,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -83,10 +85,6 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{e1fee78b-cbec-4a3e-9252-581406417ce0}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NetHexToBin\HexToBinLib\HexToBinLib.csproj">
-      <Project>{78e37ab9-1a85-4e08-8f72-fa3bc098a4af}</Project>
-      <Name>HexToBinLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
