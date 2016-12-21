@@ -27,7 +27,9 @@ namespace WebSocketServerTool
             };
             channel.Closed += delegate (object sender, EventArgs e)
             {
-                Closed.Invoke();
+                Closed?.Invoke();
+                Message = null;
+                Closed = null;
             };
         }
 
@@ -66,8 +68,22 @@ namespace WebSocketServerTool
 
             await Task.Run(delegate ()
             {
-                Message.Invoke(body, property.MessageType);
+                Message?.Invoke(body, property.MessageType);
             });
+        }
+
+        public void Close()
+        {
+            IChannel channel = (IChannel)callback;
+            channel.BeginClose(delegate(IAsyncResult ar)
+            {
+                try
+                {
+                    channel.EndClose(ar);
+                }
+                catch (TimeoutException ex)
+                { }
+            }, null);
         }
     }
 }

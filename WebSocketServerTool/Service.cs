@@ -24,6 +24,11 @@ namespace WebSocketServerTool
                 context = new ClientContext(callback);
                 callbacks[channel] = context;
 
+                context.Closed += delegate()
+                {
+                    callbacks.TryRemove(channel, out context);
+                };
+
                 ClientForm clientForm = new ClientForm(context);
                 clientForm.Show();
             }

@@ -71,7 +71,9 @@ namespace WebSocketServerTool
 
         private void ClientForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+            context.Message -= Context_Message;
+            context.Closed -= Context_Closed;
+            context.Close();
         }
     }
 }
