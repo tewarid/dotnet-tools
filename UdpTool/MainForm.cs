@@ -22,7 +22,7 @@ namespace UdpTool
             // selected interface has ceased to exist
             if (udpClient != null)
             {
-                Close();
+                CloseUdpClient();
             }
         }
 
@@ -217,7 +217,7 @@ namespace UdpTool
             }
         }
 
-        private void Close()
+        private void CloseUdpClient()
         {
             udpClient.Close();
             udpClient = null;
@@ -231,7 +231,7 @@ namespace UdpTool
 
         private void close_Click(object sender, EventArgs e)
         {
-            Close();
+            CloseUdpClient();
         }
     }
 }
