@@ -85,7 +85,7 @@
             // connect
             // 
             this.connect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.connect.Location = new System.Drawing.Point(229, 95);
+            this.connect.Location = new System.Drawing.Point(229, 94);
             this.connect.Name = "connect";
             this.connect.Size = new System.Drawing.Size(75, 23);
             this.connect.TabIndex = 3;
@@ -142,7 +142,6 @@
             // 
             // setHeaders
             // 
-            this.setHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.setHeaders.Location = new System.Drawing.Point(6, 94);
             this.setHeaders.Name = "setHeaders";
             this.setHeaders.Size = new System.Drawing.Size(105, 23);
@@ -155,7 +154,7 @@
             // 
             this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeButton.Location = new System.Drawing.Point(310, 95);
+            this.closeButton.Location = new System.Drawing.Point(310, 94);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 4;
