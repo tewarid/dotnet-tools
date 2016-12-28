@@ -27,18 +27,22 @@ namespace WebSocketServerTool
             HttpTransportBindingElement transport;
             ServiceCredentials behavior = null;
             string scheme;
-            if (uri.Scheme.Equals("ws"))
+            if (uri.Scheme.Equals("ws", StringComparison.InvariantCultureIgnoreCase))
             {
                 transport = new HttpTransportBindingElement();
                 scheme = Uri.UriSchemeHttp;
             }
-            else
+            else if (uri.Scheme.Equals("wss", StringComparison.InvariantCultureIgnoreCase))
             {
                 transport = new HttpsTransportBindingElement();
                 scheme = Uri.UriSchemeHttps;
                 behavior = new ServiceCredentials();
                 behavior.ServiceCertificate.SetCertificate(StoreLocation.LocalMachine,
                     StoreName.My, X509FindType.FindBySubjectName, subjectName);
+            }
+            else
+            {
+                throw new UriFormatException(string.Format("Scheme {0} is not supported. Try ws or wss.", uri.Scheme));
             }
 
             transport.WebSocketSettings = new WebSocketTransportSettings()
@@ -85,11 +89,11 @@ namespace WebSocketServerTool
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, this.Text);
-                if (host != null)
+                if (host != null && host.State == CommunicationState.Opened)
                 {
                     host.Close();
-                    host = null;
                 }
+                host = null;
             }
         }
 
