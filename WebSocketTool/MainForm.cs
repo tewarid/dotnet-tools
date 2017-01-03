@@ -109,6 +109,7 @@ namespace Common
             {
                 wsClient.Options.Proxy = new WebProxy(proxyUrl);
             }
+            wsClient.Options.KeepAliveInterval = TimeSpan.FromSeconds(30);
             connect.Enabled = setHeaders.Enabled = proxyButton.Enabled = false;
             location.ReadOnly = true;
             try
