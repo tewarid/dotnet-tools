@@ -52,8 +52,8 @@ Self-hosted WCF service that echoes back whatever message is sent to it. Support
 
 ## WebSocketSharp Tool
 
-Interactive WebSocket client that may be used to establish WebSocket sessions, and send/receive data. It is built with [WebSocketSharp](https://github.com/sta/websocket-sharp) and works on Windows 7 or better. An HTTP proxy may be specified so WebSocket sessions can be debugged using [Fiddler](http://www.telerik.com/fiddler).
+Interactive WebSocket client that may be used to establish WebSocket sessions, and send/receive data. It is built with [WebSocketSharp](https://github.com/sta/websocket-sharp) and works on Windows 7 or better. An HTTP proxy may be specified so WebSocket sessions can be debugged using [Fiddler](http://www.telerik.com/fiddler). This tool will go away when [usage share](http://gs.statcounter.com/#desktop-os-ww-monthly-201612-201612-bar) of Windows 8 and beyond surpasses 80% of all Windows installations.
 
 ## WebSocketSharp Server Tool
 
-Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works with Windows 7 or better. Data can be sent to and received from WebSocket clients. Supports SSL.
+Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works with Windows 7 or better. Data can be sent to and received from WebSocket clients. Supports SSL. This tool will go away when [usage share](http://gs.statcounter.com/#desktop-os-ww-monthly-201612-201612-bar) of Windows 8 and beyond surpasses 80% of all Windows installations.
