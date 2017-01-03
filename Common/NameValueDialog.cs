@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using System.Windows.Forms;
 
-namespace WebSocketSharpTool
+namespace Common
 {
     public partial class NameValueDialog : Form
     {

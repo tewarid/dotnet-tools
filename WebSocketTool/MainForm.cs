@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Net;
 using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WebSocketSharpTool
+namespace Common
 {
     public partial class MainForm : Form
     {
@@ -14,6 +15,7 @@ namespace WebSocketSharpTool
         private byte[] buffer = new byte[100];
         private bool newMessage = true;
         NameValueCollection headers;
+        private string proxyUrl;
 
         public MainForm()
         {
@@ -103,8 +105,11 @@ namespace WebSocketSharpTool
                     wsClient.Options.SetRequestHeader(name, headers.Get(name));
                 }
             }
-            connect.Enabled = false;
-            setHeaders.Enabled = false;
+            if (proxyUrl != null)
+            {
+                wsClient.Options.Proxy = new WebProxy(proxyUrl);
+            }
+            connect.Enabled = setHeaders.Enabled = proxyButton.Enabled = false;
             location.ReadOnly = true;
             try
             {
@@ -117,8 +122,7 @@ namespace WebSocketSharpTool
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, this.Text);
-                connect.Enabled = true;
-                setHeaders.Enabled = true;
+                connect.Enabled = setHeaders.Enabled = proxyButton.Enabled = true;
                 location.ReadOnly = false;
             }
         }
@@ -139,8 +143,7 @@ namespace WebSocketSharpTool
             }
             if (wsClient.State != WebSocketState.Open)
             {
-                connect.Enabled = true;
-                setHeaders.Enabled = true;
+                connect.Enabled = setHeaders.Enabled = proxyButton.Enabled = true;
                 location.ReadOnly = false;
                 if (wsClient.CloseStatus != WebSocketCloseStatus.NormalClosure)
                     MessageBox.Show(string.Format("WebSocket closed due to {0}.", 
@@ -168,8 +171,7 @@ namespace WebSocketSharpTool
                 CancellationToken token = source.Token;
                 await wsClient.CloseAsync(WebSocketCloseStatus.NormalClosure, "bye", token);
             }
-            connect.Enabled = true;
-            setHeaders.Enabled = true;
+            connect.Enabled = setHeaders.Enabled = proxyButton.Enabled = true;
             location.ReadOnly = false;
         }
 
@@ -188,6 +190,16 @@ namespace WebSocketSharpTool
                 new NameValueDialog("Request Headers", initialValues);
             headerForm.ShowDialog();
             headers = headerForm.NameValues;
+        }
+
+        private void proxyButton_Click(object sender, EventArgs e)
+        {
+            HttpProxyForm form = new HttpProxyForm(proxyUrl);
+            form.ShowDialog();
+            if (form.Result == DialogResult.OK)
+            {
+                proxyUrl = form.Proxy == null ? null : form.Proxy.AbsoluteUri;
+            }
         }
     }
 }

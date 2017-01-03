@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Specialized;
 using System.Windows.Forms;
 using WebSocketSharp;

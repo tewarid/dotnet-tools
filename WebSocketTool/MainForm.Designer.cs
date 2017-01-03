@@ -1,4 +1,4 @@
-﻿namespace WebSocketSharpTool
+﻿namespace Common
 {
     partial class MainForm
     {
@@ -42,6 +42,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.proxyButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -105,6 +106,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.proxyButton);
             this.panel2.Controls.Add(this.location);
             this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.label4);
@@ -194,6 +196,16 @@
             this.splitContainer1.SplitterDistance = 391;
             this.splitContainer1.TabIndex = 8;
             // 
+            // proxyButton
+            // 
+            this.proxyButton.Location = new System.Drawing.Point(117, 94);
+            this.proxyButton.Name = "proxyButton";
+            this.proxyButton.Size = new System.Drawing.Size(82, 23);
+            this.proxyButton.TabIndex = 2;
+            this.proxyButton.Text = "HTTP Proxy...";
+            this.proxyButton.UseVisualStyleBackColor = true;
+            this.proxyButton.Click += new System.EventHandler(this.proxyButton_Click);
+            // 
             // MainForm
             // 
             this.AcceptButton = this.connect;
@@ -238,6 +250,7 @@
         private Common.SendTextBox sendTextBox;
         private Common.ReceiveTextBox outputText;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button proxyButton;
     }
 }
 

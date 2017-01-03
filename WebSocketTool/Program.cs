@@ -4,7 +4,7 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
-namespace WebSocketSharpTool
+namespace Common
 {
     static class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace WebSocketSharpTool
+﻿namespace Common
 {
     partial class NameValueDialog
     {

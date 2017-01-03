@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebSocketTool.Properties {
+namespace Common.Properties {
     using System;
     
     
