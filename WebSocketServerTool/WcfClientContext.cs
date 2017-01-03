@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 namespace WebSocketServerTool
 {
     public delegate void ClosedHandler();
-    public delegate void MessageHandler(byte[] message, WebSocketMessageType type);
+    public delegate void MessageHandler(byte[] message, int length,
+        WebSocketMessageType type, bool lastMessage);
 
-    public class ClientContext
+    public class WcfClientContext : IClientContext
     {
         public event MessageHandler Message;
         public event ClosedHandler Closed;
 
-        const string webSocketMessageProperty = "WebSocketMessageProperty";
         private IServiceCallback callback;
 
-        public ClientContext(IServiceCallback callback)
+        public WcfClientContext(IServiceCallback callback)
         {
             this.callback = callback;
 
@@ -45,30 +45,24 @@ namespace WebSocketServerTool
         {
             Message channelMessage = ByteStreamMessage.CreateMessage(new ArraySegment<byte>(message));
 
-            channelMessage.Properties[webSocketMessageProperty] =
+            channelMessage.Properties[Service.webSocketMessageProperty] =
                 new WebSocketMessageProperty { MessageType = type };
 
             return channelMessage;
         }
 
-        public async Task Receive(Message message)
+        public async Task Receive(byte[] message, int length, WebSocketMessageType type, bool lastMessage)
         {
-            if (message.IsEmpty)
+            if (length == 0)
             {
                 // New connection notification probably because
-                // CreateNotificationOnConnection = true
-
+                // CreateNotificationOnConnection = true in service config
                 return;
             }
 
-            byte[] body = message.GetBody<byte[]>();
-
-            WebSocketMessageProperty property =
-                (WebSocketMessageProperty)message.Properties[webSocketMessageProperty];
-
             await Task.Run(delegate ()
             {
-                Message?.Invoke(body, property.MessageType);
+                Message?.Invoke(message, length, type, lastMessage);
             });
         }
 

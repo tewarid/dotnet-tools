@@ -48,7 +48,7 @@ Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.webs
 
 ## WebSocket Server Tool
 
-Self-hosted WCF service configured through app.config (at port 8087) and code (at port 8088). Data can be sent to and received from WebSocket clients. Supports SSL. Requires Windows 8 or better.
+Provides an interactive WebSocket server based on self-hosted WCF service, or System.Net.HttpListener (default). WCF service is configured through App.config to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires Windows 8 or better.
 
 ## WebSocketSharp Tool
 

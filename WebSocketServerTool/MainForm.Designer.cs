@@ -29,25 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.open = new System.Windows.Forms.Button();
+            this.start = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.subjectName = new System.Windows.Forms.TextBox();
             this.url = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.close = new System.Windows.Forms.Button();
+            this.stop = new System.Windows.Forms.Button();
+            this.useWcf = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // open
+            // start
             // 
-            this.open.Location = new System.Drawing.Point(316, 314);
-            this.open.Name = "open";
-            this.open.Size = new System.Drawing.Size(75, 23);
-            this.open.TabIndex = 8;
-            this.open.Text = "Open";
-            this.open.UseVisualStyleBackColor = true;
-            this.open.Click += new System.EventHandler(this.open_Click);
+            this.start.Location = new System.Drawing.Point(313, 332);
+            this.start.Name = "start";
+            this.start.Size = new System.Drawing.Size(75, 23);
+            this.start.TabIndex = 9;
+            this.start.Text = "Start";
+            this.start.UseVisualStyleBackColor = true;
+            this.start.Click += new System.EventHandler(this.start_Click);
             // 
             // label2
             // 
@@ -103,31 +104,42 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Service URL";
             // 
-            // close
+            // stop
             // 
-            this.close.Enabled = false;
-            this.close.Location = new System.Drawing.Point(397, 314);
-            this.close.Name = "close";
-            this.close.Size = new System.Drawing.Size(75, 23);
-            this.close.TabIndex = 9;
-            this.close.Text = "Close";
-            this.close.UseVisualStyleBackColor = true;
-            this.close.Click += new System.EventHandler(this.close_Click);
+            this.stop.Enabled = false;
+            this.stop.Location = new System.Drawing.Point(394, 332);
+            this.stop.Name = "stop";
+            this.stop.Size = new System.Drawing.Size(75, 23);
+            this.stop.TabIndex = 10;
+            this.stop.Text = "Stop";
+            this.stop.UseVisualStyleBackColor = true;
+            this.stop.Click += new System.EventHandler(this.stop_Click);
+            // 
+            // useWcf
+            // 
+            this.useWcf.AutoSize = true;
+            this.useWcf.Location = new System.Drawing.Point(15, 310);
+            this.useWcf.Name = "useWcf";
+            this.useWcf.Size = new System.Drawing.Size(338, 17);
+            this.useWcf.TabIndex = 8;
+            this.useWcf.Text = "Use self-hosted WCF service (defaults to System.Net.HttpListener)";
+            this.useWcf.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
-            this.AcceptButton = this.open;
+            this.AcceptButton = this.start;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 349);
-            this.Controls.Add(this.close);
+            this.ClientSize = new System.Drawing.Size(484, 367);
+            this.Controls.Add(this.useWcf);
+            this.Controls.Add(this.stop);
             this.Controls.Add(this.url);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.subjectName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.open);
+            this.Controls.Add(this.start);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -141,14 +153,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Button open;
+        private System.Windows.Forms.Button start;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox subjectName;
         private System.Windows.Forms.TextBox url;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button close;
+        private System.Windows.Forms.Button stop;
+        private System.Windows.Forms.CheckBox useWcf;
     }
 }
 

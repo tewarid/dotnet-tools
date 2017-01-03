@@ -8,9 +8,10 @@ namespace WebSocketServerTool
 {
     public partial class ClientForm : Form
     {
-        private ClientContext context;
+        private IClientContext context;
+        private bool newMessage = true;
 
-        public ClientForm(ClientContext context)
+        public ClientForm(IClientContext context)
         {
             InitializeComponent();
             this.context = context;
@@ -31,30 +32,38 @@ namespace WebSocketServerTool
             status.Text = "Connection closed.";
         }
 
-        private void Context_Message(byte[] message, WebSocketMessageType type)
+        private void Context_Message(byte[] message, int length, WebSocketMessageType type, bool lastMessage)
         {
             if (InvokeRequired)
             {
                 Invoke((MethodInvoker)delegate {
-                    Context_Message(message, type);
+                    Context_Message(message, length, type, lastMessage);
                 });
                 return;
             }
 
-            outputText.AppendText(string.Format("Message Received on {0}:{1}",
-                DateTime.Now, Environment.NewLine));
+            if (newMessage)
+            {
+                outputText.AppendText(string.Format("Message Received on {0}:{1}",
+                    DateTime.Now, Environment.NewLine));
+            }
 
             if (type == WebSocketMessageType.Binary)
             {
-                outputText.Append(message, message.Length);
+                outputText.Append(message, length);
             }
             else
             {
                 outputText.AppendText(Encoding.UTF8.GetString(message));
             }
 
-            outputText.AppendText(Environment.NewLine);
-            outputText.AppendText(Environment.NewLine);
+            if (lastMessage)
+            {
+                outputText.AppendText(Environment.NewLine);
+                outputText.AppendText(Environment.NewLine);
+            }
+
+            newMessage = lastMessage;
         }
 
         private void sendButton_Click(object sender, EventArgs e)
