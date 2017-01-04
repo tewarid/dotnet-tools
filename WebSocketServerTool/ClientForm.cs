@@ -29,7 +29,7 @@ namespace WebSocketServerTool
                 return;
             }
 
-            status.Text = "Connection closed.";
+            status.Text = "WebSocket closed.";
         }
 
         private void Context_Message(byte[] message, int length, WebSocketMessageType type, bool lastMessage)

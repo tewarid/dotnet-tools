@@ -144,8 +144,7 @@ namespace Common
             }
             if (wsClient.State != WebSocketState.Open)
             {
-                connect.Enabled = setHeaders.Enabled = proxyButton.Enabled = true;
-                location.ReadOnly = false;
+                await CloseWebSocketClient();
                 if (wsClient.CloseStatus != WebSocketCloseStatus.NormalClosure)
                     MessageBox.Show(string.Format("WebSocket closed due to {0}.", 
                         wsClient.CloseStatus), this.Text);
@@ -174,6 +173,7 @@ namespace Common
             }
             connect.Enabled = setHeaders.Enabled = proxyButton.Enabled = true;
             location.ReadOnly = false;
+            status.Text = "WebSocket closed.";
         }
 
         private void setHeaders_Click(object sender, EventArgs e)
