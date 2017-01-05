@@ -44,15 +44,15 @@ Interactive UDP/IP client that may be used to establish IPv4 UDP sockets, and se
 
 ## WebSocket Tool
 
-Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, and send/receive data. It is built with .NETs native implementation of WebSockets, and requires Windows 8 or better.
+Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, and send/receive data. It is built with .NETs native implementation of WebSockets, and requires at least [Windows 8](https://msdn.microsoft.com/en-us/library/windows/desktop/hh437448.aspx).
 
 ## WebSocket Server Tool
 
-Provides an interactive WebSocket server based on self-hosted WCF service, or System.Net.HttpListener (default). WCF service is configured through App.config to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires Windows 8 or better.
+Provides an interactive WebSocket server based on self-hosted WCF service, or System.Net.HttpListener (default). WCF service is configured through App.config to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires at least [Windows 8](https://msdn.microsoft.com/en-us/library/windows/desktop/hh437448.aspx).
 
 ## WebSocketSharp Tool
 
-Interactive WebSocket client that may be used to establish WebSocket sessions, and send/receive data. It is built with [WebSocketSharp](https://github.com/sta/websocket-sharp) and works on Windows 7 or better. An HTTP proxy may be specified so WebSocket sessions can be debugged using [Fiddler](http://www.telerik.com/fiddler). This tool will go away when [usage share](http://gs.statcounter.com/#desktop-os-ww-monthly-201612-201612-bar) of Windows 8 and beyond surpasses 80% of all Windows installations.
+Interactive WebSocket client that may be used to establish WebSocket sessions, and send/receive data. It is built with [WebSocketSharp](https://github.com/sta/websocket-sharp) and works on Windows 7 or better. An HTTP proxy may be specified so WebSocket sessions can be debugged using [Fiddler](http://www.telerik.com/fiddler). This tool will go away when [usage share](http://gs.statcounter.com/#desktop-os-ww-monthly-201612-201612-bar) of Windows 8 and beyond surpasses 80% of all Windows installations, or Windows 7 begins to support WebSockets (however unlikely that sounds).
 
 ## WebSocketSharp Server Tool
 
