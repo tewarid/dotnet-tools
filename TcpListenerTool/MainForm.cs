@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
+using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
@@ -118,7 +119,7 @@ namespace TcpListenerTool
                 SslStream ssls = new SslStream(tcpClient.GetStream(),
                     true, ValidateCertificate);
                 X509Certificate2 cert = new X509Certificate2(pfxPath.Text, "");
-                ssls.AuthenticateAsServer(cert);
+                ssls.AuthenticateAsServer(cert, false, SslProtocols.Tls12, false);
                 stream = ssls;
             }
             else

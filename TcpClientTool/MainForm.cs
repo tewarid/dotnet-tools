@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
+using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
@@ -152,7 +153,7 @@ namespace TcpClientTool
                 {
                     SslStream ssls = new SslStream(tcpClient.GetStream(),
                         true, ValidateCertificate);
-                    ssls.AuthenticateAsClient(string.Empty);
+                    ssls.AuthenticateAsClient(string.Empty, null, SslProtocols.Tls12, false);
                     stream = ssls;
                 }
                 stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
