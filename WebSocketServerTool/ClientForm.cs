@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net.WebSockets;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WebSocketServerTool
@@ -29,6 +28,9 @@ namespace WebSocketServerTool
                 return;
             }
 
+            context.Message -= Context_Message;
+            context.Closed -= Context_Closed;
+            context.Close();
             status.Text = "WebSocket closed.";
         }
 
