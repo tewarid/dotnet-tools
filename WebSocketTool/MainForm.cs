@@ -68,15 +68,6 @@ namespace Common
 
         private void ShowReceivedData(byte[] data, int length, bool lastMessage)
         {
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    ShowReceivedData(data, length, lastMessage);
-                });
-                return;
-            }
-
             if (newMessage)
             {
                 outputText.AppendText(string.Format("Message Received on {0}:{1}", 
