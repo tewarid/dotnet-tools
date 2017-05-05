@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpTool", "TcpTool\TcpTool.csproj", "{1A80778F-B6B5-442E-9E1B-C6216A24F8C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpClientTool", "TcpClientTool\TcpClientTool.csproj", "{1A80778F-B6B5-442E-9E1B-C6216A24F8C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdpTool", "UdpTool\UdpTool.csproj", "{3455D706-1959-442A-A53F-0B4479D94F16}"
 EndProject
@@ -12,8 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IcmpTool", "IcmpTool\IcmpTool.csproj", "{5E693A9D-F2FF-4740-A95B-CB08B5EF2C8B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialTool", "SerialTool\SerialTool.csproj", "{74FAAD3B-B66C-40BD-ACD3-C8BAEA47B8A4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexToBinLib", "NetHexToBin\HexToBinLib\HexToBinLib.csproj", "{78E37AB9-1A85-4E08-8F72-FA3BC098A4AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "websocket-sharp", "websocket-sharp\websocket-sharp\websocket-sharp.csproj", "{B357BAC7-529E-4D81-A0D2-71041B19C8DE}"
 EndProject
