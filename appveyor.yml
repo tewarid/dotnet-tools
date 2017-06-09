@@ -18,3 +18,14 @@ after_build:
 artifacts:
 - path: NetTools.zip
   name: NetTools
+deploy:
+- provider: BinTray
+  username: tewarid
+  api_key:
+    secure: UZ/R7SoyXgGoBo7z7Dxz7BrS8CSaOfPGpBpfAjPuZPo+UVAY7LkvzEQmz+UKjBP6
+  subject: tewarid
+  repo: net-tools
+  package: net-tools
+  publish: true
+  override: true
+  artifact: NetTools.zip
