@@ -40,7 +40,6 @@
             // 
             // interfaceSelector
             // 
-            this.interfaceSelector.DataSource = ((object)(resources.GetObject("interfaceSelector.DataSource")));
             this.interfaceSelector.FormattingEnabled = true;
             this.interfaceSelector.IncludeIPAddressAny = false;
             this.interfaceSelector.Location = new System.Drawing.Point(15, 31);
@@ -71,6 +70,7 @@
             // 
             // close
             // 
+            this.close.Enabled = false;
             this.close.Location = new System.Drawing.Point(357, 29);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(75, 23);

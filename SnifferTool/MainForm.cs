@@ -56,6 +56,7 @@ namespace SnifferTool
                 close.Enabled = true;
                 bind.Enabled = false;
                 interfaceSelector.Enabled = false;
+                protocolType.Enabled = false;
             }
             catch(Exception ex)
             {
@@ -141,6 +142,9 @@ namespace SnifferTool
 
         private void CloseRawSocket()
         {
+            if (socket == null)
+                return;
+
             if (InvokeRequired)
             {
                 Invoke((Action)delegate
@@ -154,6 +158,7 @@ namespace SnifferTool
             bind.Enabled = true;
             close.Enabled = false;
             interfaceSelector.Enabled = true;
+            protocolType.Enabled = true;
         }
     }
 }
