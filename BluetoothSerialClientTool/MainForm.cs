@@ -1,14 +1,6 @@
-﻿using InTheHand.Net;
-using InTheHand.Net.Bluetooth;
-using InTheHand.Net.Sockets;
+﻿using InTheHand.Net.Sockets;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -48,7 +40,9 @@ namespace BluetoothSerialClientTool
         private void connectButton_Click(object sender, EventArgs e)
         {
             if (deviceList.SelectedIndex >= devices.Length)
+            {
                 return;
+            }
             try
             {
                 client.Connect(devices[deviceList.SelectedIndex].DeviceAddress, MyServiceUuid);
@@ -59,7 +53,7 @@ namespace BluetoothSerialClientTool
                 MessageBox.Show(this, ex.Message, this.Text);
                 return;
             }
-            ReadAsync(stream);
+            Task t = ReadAsync(stream);
             deviceList.Enabled = false;
             refreshButton.Enabled = false;
             connectButton.Enabled = false;
@@ -67,7 +61,7 @@ namespace BluetoothSerialClientTool
             sendButton.Enabled = true;
         }
 
-        private async void ReadAsync(NetworkStream stream)
+        private async Task ReadAsync(NetworkStream stream)
         {
             byte[] buffer = new byte[100];
             while (true)
@@ -137,7 +131,7 @@ namespace BluetoothSerialClientTool
             connectButton.Enabled = deviceList.SelectedIndex >= 0;
         }
 
-        private async void SendAsync(byte[] buffer)
+        private async Task SendAsync(byte[] buffer)
         {
             int startTickCount = 0;
             int endTickCount = 0;
@@ -167,7 +161,7 @@ namespace BluetoothSerialClientTool
 
         private void sendButton_Click(object sender, EventArgs e)
         {
-            SendAsync(input.Bytes);
+            Task t = SendAsync(input.Bytes);
         }
     }
 }
