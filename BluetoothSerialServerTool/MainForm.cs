@@ -49,7 +49,9 @@ namespace BluetoothSppServerTool
         private void acceptBluetoothClient(IAsyncResult ar)
         {
             if (client != null)
+            {
                 Stop(false);
+            }
 
             if (listener == null)
             {
@@ -59,7 +61,7 @@ namespace BluetoothSppServerTool
 
             client = listener.EndAcceptBluetoothClient(ar);
             stream = client.GetStream();
-            ReadAsync(stream);
+            Task t = ReadAsync(stream);
 
             Invoke(new MethodInvoker(delegate
             {
@@ -70,7 +72,7 @@ namespace BluetoothSppServerTool
             listener.BeginAcceptBluetoothClient(acceptBluetoothClient, null);
         }
 
-        private async void ReadAsync(Stream stream)
+        private async Task ReadAsync(Stream stream)
         {
             byte[] buffer = new byte[100];
             while (true)
@@ -138,7 +140,7 @@ namespace BluetoothSppServerTool
             sendButton.Enabled = false;
         }
 
-        private async void SendAsync(byte[] buffer)
+        private async Task SendAsync(byte[] buffer)
         {
             int startTickCount = 0;
             int endTickCount = 0;
@@ -168,7 +170,7 @@ namespace BluetoothSppServerTool
 
         private void sendButton_Click(object sender, EventArgs e)
         {
-            SendAsync(input.Bytes);
+            Task t = SendAsync(input.Bytes);
         }
     }
 }
