@@ -1,14 +1,6 @@
 ﻿using Connection;
 using NetFwTypeLib;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FirewallTool
@@ -28,8 +20,8 @@ namespace FirewallTool
             if (result == DialogResult.OK) // Test result.
             {
                 txtAppPath.Text = openFileDialog1.FileName;
-                btnGrantAppAuth.Enabled = true;
-                btnRemoveAppAuth.Enabled = true;
+                btnGrantAppAuth.Enabled = !firewall.HasAuthorization(openFileDialog1.FileName);
+                btnRemoveAppAuth.Enabled = firewall.HasAuthorization(openFileDialog1.FileName);
                 txtPort.Enabled = true;
             }
             else if (txtAppPath.Text.Trim().Length == 0)
@@ -43,11 +35,15 @@ namespace FirewallTool
         private void btnGrantAppAuth_Click(object sender, EventArgs e)
         {
             firewall.GrantAuthorization(txtAppPath.Text);
+            btnGrantAppAuth.Enabled = false;
+            btnRemoveAppAuth.Enabled = true;
         }
 
         private void btnRemoveAppAuth_Click(object sender, EventArgs e)
         {
             firewall.RemoveAuthorization(txtAppPath.Text);
+            btnGrantAppAuth.Enabled = true;
+            btnRemoveAppAuth.Enabled = false;
         }
 
         private void btnGrantPortAuth_Click(object sender, EventArgs e)
@@ -91,8 +87,7 @@ namespace FirewallTool
             else
             {
                 btnGrantPortAuth.Enabled = true;
-                btnRemovePortAuth.Enabled = true;
-                
+                btnRemovePortAuth.Enabled = true;                
             }
         }
 

@@ -43,9 +43,13 @@ namespace Connection
             get
             {
                 if (IsFirewallInstalled && mgr.LocalPolicy.CurrentProfile.FirewallEnabled)
+                {
                     return true;
+                }
                 else
+                {
                     return false;
+                }
             }
         }
 
@@ -64,10 +68,12 @@ namespace Connection
             }
         }
 
-        private bool HasAuthorization(string applicationFullPath)
+        public bool HasAuthorization(string applicationFullPath)
         {
             if (applicationFullPath == null)
+            {
                 throw new ArgumentNullException("applicationFullPath");
+            }
             if (!File.Exists(applicationFullPath))
                 throw new FileNotFoundException("File does not exist.", applicationFullPath);
             if (!IsFirewallInstalled)
@@ -88,7 +94,9 @@ namespace Connection
         {
             // State checking
             if (!IsFirewallInstalled)
+            {
                 throw new FirewallHelperException("Cannot remove authorization, firewall is not enabled.");
+            }
 
             ArrayList list = new ArrayList();
             //  Collect the paths of all authorized applications
@@ -113,9 +121,14 @@ namespace Connection
             ValidateFields(applicationFullPath);
           
             if (!IsFirewallInstalled)
+            {
                 throw new FirewallHelperException("Cannot grant authorization: Firewall is not installed.");
+            }
+
             if (!AppAuthorizationsAllowed)
+            {
                 throw new FirewallHelperException("Application exemptions are not allowed.");
+            }
 
             if (!HasAuthorization(applicationFullPath))
             {
@@ -139,7 +152,9 @@ namespace Connection
             ValidateFields(applicationFullPath);
 
             if (!IsFirewallInstalled)
+            {
                 throw new FirewallHelperException("Cannot remove authorization: Firewall is not installed.");
+            }
 
             if (HasAuthorization(applicationFullPath))
             {
@@ -166,18 +181,26 @@ namespace Connection
         private void ValidateFields(string applicationFullPath)
         {
             if (applicationFullPath == null)
+            {
                 throw new ArgumentNullException("applicationFullPath");
+            }
             if (applicationFullPath.Trim().Length == 0)
+            {
                 throw new ArgumentException("applicationFullPath must not be blank");
+            }
             if (!File.Exists(applicationFullPath))
+            {
                 throw new FileNotFoundException("File does not exist", applicationFullPath);
+            }
           
             this.applicationFullPath = applicationFullPath;
             //To find the name of the executable
             this.appName = Path.GetFileName(applicationFullPath);
 
             if (appName == null)
+            {
                 throw new ArgumentNullException("appName");
+            }
          
         }
 
@@ -208,7 +231,9 @@ namespace Connection
             }
 
             if (appInfo == null)
+            {
                 throw new FirewallHelperException("Could not grant authorization: can't create INetFwAuthorizedApplication instance.");
+            }
 
             appInfo.Name = appName;
             appInfo.ProcessImageFileName = applicationFullPath;
@@ -230,11 +255,17 @@ namespace Connection
             ValidateFields(applicationFullPath);
 
             if (usedPort == null)
+            {
                 throw new ArgumentNullException("usedPort");
+            }
             if (!IsFirewallInstalled)
+            {
                 throw new FirewallHelperException("Cannot grant authorization, firewall is not enabled.");
+            }
             if (!AppAuthorizationsAllowed)
+            {
                 throw new FirewallHelperException("Application exceptions are not allowed.");
+            }
             // Other properties like Protocol, IP Version can also be set accordingly
             // Now add this to the GloballyOpenPorts collection
             INetFwProfile profile = mgr.LocalPolicy.GetProfileByType(NET_FW_PROFILE_TYPE_.NET_FW_PROFILE_CURRENT);
@@ -255,7 +286,9 @@ namespace Connection
             ValidateFields(applicationFullPath);
 
             if (usedPort == null)
+            {
                 throw new ArgumentNullException("usedPort");
+            }
 
             int port = Int32.Parse(usedPort);
      
