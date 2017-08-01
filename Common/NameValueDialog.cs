@@ -36,7 +36,9 @@ namespace Common
         private void remove_Click(object sender, EventArgs e)
         {
             if (headers.SelectedRows.Count > 0 && !headers.SelectedRows[0].IsNewRow)
+            {
                 headers.Rows.Remove(headers.SelectedRows[0]);
+            }
         }
 
         private void done_Click(object sender, EventArgs e)
