@@ -1,10 +1,10 @@
 # Networking Tools [![Build status](https://ci.appveyor.com/api/projects/status/d3bn7jnje8rtts7v?svg=true)](https://ci.appveyor.com/project/tewarid/nettools)
 
-Simple tools for experimenting with network communications written primarily for Windows in .NET. To get the latest working build head to https://bintray.com/tewarid/net-tools. To build them yourselves, clone the repository, and use the free Visual Studio Express for Desktop. I recommend having around the excellent [Sysinternals Suite](https://technet.microsoft.com/en-us/sysinternals/bb842062) of utilities.
+Simple tools for experimenting with network communications written primarily for Windows in .NET. To get the latest working build head to https://bintray.com/tewarid/net-tools. To build them yourselves, clone the repository, and use the latest version of Visual Studio. To initialize submodules run `git submodule update --init --recursive`. I recommend having around the excellent [Sysinternals Suite](https://technet.microsoft.com/en-us/sysinternals/bb842062) of utilities.
 
 ## Bluetooth Serial Client Tool
 
-Interactive client that may be used to open a Bluetooth serial socket, and send/receive data. It is built with [32feet.NET](https://www.nuget.org/packages/32feet.NET), a .NET library layered over Windows Bluetooth socket API.
+Interactive client that may be used to open a Bluetooth serial socket, send, and receive data. It is built with [32feet.NET](https://www.nuget.org/packages/32feet.NET), a .NET library layered over Windows Bluetooth socket API.
 
 ## Bluetooth Serial Server Tool
 
@@ -13,6 +13,10 @@ Simulate a Bluetooth serial listener/server on Windows. It is built with [32feet
 ## Firewall Tool
 
 Add/remove exceptions to/from Windows Firewall.
+
+## HTTP Listener Tool
+
+Simple HTTP/s server built using [System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx). You can use it to server static content and to test REST clients. It can respond to HTTP requests with content, content type, and status code derived from a file stored in a folder. For instance, if a folder has a single file called `200.json`, it will respond to an HTTP request for that folder with a status code of 200, a content type of `application/json`, and body containing the contents of the file. It it finds a file with status code 302 in its name, it redirect the client to the URL contained in the file. It does not return any content for the HEAD HTTP request. MIME type mapping is performed using the [Media Type Map](https://www.nuget.org/packages/MediaTypeMap/) library.
 
 ## ICMP Tool
 
@@ -44,16 +48,16 @@ Interactive UDP/IP client that may be used to establish IPv4 UDP sockets, and se
 
 ## WebSocket Tool
 
-Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, and send/receive data. It is built with .NETs native implementation of WebSockets, and requires at least [Windows 8](https://msdn.microsoft.com/en-us/library/windows/desktop/hh437448.aspx).
+Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, send, and receive data. It is built with .NET's native implementation of WebSockets, and requires at least [Windows 8](https://msdn.microsoft.com/en-us/library/windows/desktop/hh437448.aspx).
 
 ## WebSocket Server Tool
 
-Provides an interactive WebSocket server based on self-hosted WCF service, or System.Net.HttpListener (default). WCF service is configured through App.config to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires at least [Windows 8](https://msdn.microsoft.com/en-us/library/windows/desktop/hh437448.aspx).
+Provides an interactive WebSocket server based on System.Net.HttpListener, or a self-hosted WCF service. WCF service is configured through App.config to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires at least [Windows 8](https://msdn.microsoft.com/en-us/library/windows/desktop/hh437448.aspx).
 
 ## WebSocketSharp Tool
 
-Interactive WebSocket client that may be used to establish WebSocket sessions, and send/receive data. It is built with [WebSocketSharp](https://github.com/sta/websocket-sharp) and works on Windows 7 or better. An HTTP proxy may be specified so WebSocket sessions can be debugged using [Fiddler](http://www.telerik.com/fiddler). This tool will go away when [usage share](http://gs.statcounter.com/#desktop-os-ww-monthly-201612-201612-bar) of Windows 8 and beyond surpasses 80% of all Windows installations, or Windows 7 begins to support WebSockets (however unlikely that sounds).
+Interactive WebSocket client that may be used to establish WebSocket sessions, send, and receive data. It is built with [WebSocketSharp](https://github.com/sta/websocket-sharp) and works on Windows 7 or better. An HTTP proxy may be specified so WebSocket sessions can be debugged using [Fiddler](http://www.telerik.com/fiddler). This tool will go away when [usage share](http://gs.statcounter.com/#desktop-os-ww-monthly-201612-201612-bar) of Windows 8 and beyond surpasses 80% of all Windows installations, or Windows 7 begins to support WebSockets (however unlikely that sounds).
 
 ## WebSocketSharp Server Tool
 
-Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works with Windows 7 or better. Data can be sent to and received from WebSocket clients. Supports SSL. This tool will go away when [usage share](http://gs.statcounter.com/#desktop-os-ww-monthly-201612-201612-bar) of Windows 8 and beyond surpasses 80% of all Windows installations.
+Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works with Windows 7 or better. Data can be sent to and received from WebSocket clients. Supports SSL. This tool will go away when [usage share](http://gs.statcounter.com/os-version-market-share/windows/desktop/worldwide) of Windows 8 and beyond surpasses 80% of all Windows installations.
