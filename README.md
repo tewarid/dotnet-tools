@@ -16,7 +16,7 @@ Add/remove exceptions to/from Windows Firewall.
 
 ## HTTP Listener Tool
 
-Simple HTTP/s server built using [System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx). You can use it to server static content and to test REST clients. It can respond to HTTP requests with content, content type, and status code derived from a file stored in a folder. For instance, if a folder has a single file called `200.json`, it will respond to an HTTP request for that folder with a status code of 200, a content type of `application/json`, and body containing the contents of the file. It it finds a file with status code 302 in its name, it redirect the client to the URL contained in the file. It does not return any content for the HEAD HTTP request. MIME type mapping is performed using the [Media Type Map](https://www.nuget.org/packages/MediaTypeMap/) library.
+Simple HTTP/s server built using [System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx). You can use it to serve static content and to test REST clients. It can respond to HTTP requests with content, content type, and status code derived from a file stored in a folder. For example, if a folder has a single file called `200.json`, it will respond to an HTTP request for that folder with a status code of 200, a content type of `application/json`, and body containing the contents of the file. It it finds a file with status code 302 in its name, it redirect the client to the URL contained in the file. It does not return any content for the HEAD HTTP request. MIME type mapping is performed using the [Media Type Map](https://www.nuget.org/packages/MediaTypeMap/) library.
 
 ## ICMP Tool
 
@@ -28,7 +28,7 @@ Interactive client to add, view, and delete IP v4 routes on Windows. Requires Po
 
 ## Serial Tool
 
-Interactive client that may be used to open a serial port, and send/receive data.
+Interactive client that may be used to open a serial port, send, and receive data.
 
 ## Sniffer Tool
 
@@ -36,7 +36,7 @@ Elementary tool that sniffs IPv4 packets using raw sockets. Requires administrat
 
 ## TCP Client Tool
 
-Interactive TCP/IP client that may be used to establish IPv4 TCP sessions, and send/receive data.
+Interactive TCP/IP client that may be used to establish IPv4 TCP sessions, send, and receive data.
 
 ## TCP Listener Tool
 
@@ -44,7 +44,7 @@ Interactive TCP/IP client that may be used as a rudimentary listener/server.
 
 ## UDP Tool
 
-Interactive UDP/IP client that may be used to establish IPv4 UDP sockets, and send/receive datagrams.
+Interactive UDP/IP client that may be used to establish IPv4 UDP sockets, send, and receive datagrams.
 
 ## WebSocket Tool
 
@@ -52,7 +52,7 @@ Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.webs
 
 ## WebSocket Server Tool
 
-Provides an interactive WebSocket server based on System.Net.HttpListener, or a self-hosted WCF service. WCF service is configured through App.config to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires at least [Windows 8](https://msdn.microsoft.com/en-us/library/windows/desktop/hh437448.aspx).
+Provides an interactive WebSocket server based on System.Net.HttpListener, or a self-hosted WCF service. WCF service is configured through `App.config` to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires at least [Windows 8](https://msdn.microsoft.com/en-us/library/windows/desktop/hh437448.aspx).
 
 ## WebSocketSharp Tool
 
