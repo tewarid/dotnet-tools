@@ -16,7 +16,7 @@ Add/remove exceptions to/from Windows Firewall.
 
 ## HTTP Listener Tool
 
-Simple HTTP/s server built using [System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx). You can use it to serve static content and to test REST clients. It can respond to HTTP requests with content, content type, and status code derived from a file stored in a folder. For example, if a folder has a single file called `200.json`, it will respond to an HTTP request for that folder with a status code of 200, a content type of `application/json`, and body containing the contents of the file. It it finds a file with status code 302 in its name, it redirect the client to the URL contained in the file. It does not return any content for the HEAD HTTP request. MIME type mapping is performed using the [Media Type Map](https://www.nuget.org/packages/MediaTypeMap/) library.
+Simple HTTP/s server built using [System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx). You can use it to serve static content and to test REST clients. It can respond to HTTP requests with content, content type, and status code derived from a file stored in a folder. For example, if a folder has a single file called `200.json`, it will respond to an HTTP request for that folder with a status code of 200, a content type of `application/json`, and body containing the contents of the file. It it finds a file with status code 302 in its name, it redirect the client to the URL contained in the file. It does not return any content for the HEAD HTTP request. File extension to content type mapping is performed using the [Media Type Map](https://www.nuget.org/packages/MediaTypeMap/) library.
 
 ## ICMP Tool
 
