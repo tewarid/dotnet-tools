@@ -45,6 +45,7 @@
             this.clearButton = new System.Windows.Forms.Button();
             this.outputText = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.close = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -163,6 +164,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.close);
             this.panel2.Controls.Add(this.sourceIPAddress);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.clearButton);
@@ -216,7 +218,7 @@
             this.outputText.ReadOnly = true;
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.outputText.Size = new System.Drawing.Size(386, 353);
-            this.outputText.TabIndex = 2;
+            this.outputText.TabIndex = 7;
             // 
             // splitContainer1
             // 
@@ -234,6 +236,17 @@
             this.splitContainer1.Size = new System.Drawing.Size(784, 461);
             this.splitContainer1.SplitterDistance = 392;
             this.splitContainer1.TabIndex = 6;
+            // 
+            // close
+            // 
+            this.close.Enabled = false;
+            this.close.Location = new System.Drawing.Point(211, 22);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(75, 23);
+            this.close.TabIndex = 2;
+            this.close.Text = "Close";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // MainForm
             // 
@@ -278,6 +291,7 @@
         private System.Windows.Forms.ComboBox requestType;
         private Common.InterfaceSelectorComboBox sourceIPAddress;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button close;
     }
 }
 
