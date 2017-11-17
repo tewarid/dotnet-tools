@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HexToBinLib;
+using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
@@ -159,6 +161,20 @@ namespace SnifferTool
             close.Enabled = false;
             interfaceSelector.Enabled = true;
             protocolType.Enabled = true;
+        }
+
+        // Experimental support to send IP header, protocol header and payload
+        private void Send(string hexStream, IPEndPoint toEndPoint)
+        {
+            MemoryStream o = new MemoryStream();
+            HexToBin.Convert(new StringReader(hexStream), o);
+            Send(o.GetBuffer(), (int)o.Length, toEndPoint);
+        }
+
+        // Experimental support to send IP header, protocol header and payload
+        private void Send(byte [] data, int length, IPEndPoint toEndPoint)
+        {
+            socket.SendTo(data, length, 0, toEndPoint);
         }
     }
 }
