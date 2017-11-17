@@ -22,6 +22,9 @@ namespace IcmpTool
 
         private void sendButton_Click(object sender, EventArgs e)
         {
+            if (icmpSocket == null)
+                return;
+
             IPEndPoint endPoint;
 
             try
@@ -111,6 +114,7 @@ namespace IcmpTool
             IPEndPoint endPoint = icmpSocket.LocalEndPoint;
             sourceIPAddress.Text = endPoint.Address.ToString();
             bind.Enabled = false;
+            close.Enabled = true;
         }
 
         void icmpSocket_MessageReceived(IPEndPoint from, byte[] message, int length)
@@ -154,6 +158,31 @@ namespace IcmpTool
                     break;
             }
         }
+        
+        private void close_Click(object sender, EventArgs e)
+        {
+            CloseIcmpSocket();
+        }
 
+        private void CloseIcmpSocket()
+        {
+            if (icmpSocket == null)
+                return;
+
+            if (InvokeRequired)
+            {
+                Invoke((Action)delegate
+                {
+                    CloseIcmpSocket();
+                });
+                return;
+            }
+            icmpSocket.Close();
+            icmpSocket = null;
+            bind.Enabled = true;
+            sendButton.Enabled = false;
+            close.Enabled = false;
+            sourceIPAddress.Enabled = true;
+        }
     }
 }
