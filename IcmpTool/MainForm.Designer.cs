@@ -177,9 +177,8 @@
             // 
             // sourceIPAddress
             // 
-            this.sourceIPAddress.DataSource = ((object)(resources.GetObject("sourceIPAddress.DataSource")));
             this.sourceIPAddress.FormattingEnabled = true;
-            this.sourceIPAddress.IncludeIPAddressAny = false;
+            this.sourceIPAddress.IncludeIPAddressAny = true;
             this.sourceIPAddress.Location = new System.Drawing.Point(3, 24);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);

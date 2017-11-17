@@ -19,7 +19,8 @@ namespace IcmpTool
         /// </summary>
         public IcmpSocket()
         {
-            CreateIcmpSocket(new IPEndPoint(IPAddress.Any, 0));
+            LocalEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            CreateIcmpSocket();
         }
 
         /// <summary>
@@ -28,16 +29,16 @@ namespace IcmpTool
         /// <param name="endPoint"></param>
         public IcmpSocket(IPEndPoint endPoint)
         {
-            CreateIcmpSocket(endPoint);
+            LocalEndPoint = endPoint;
+            CreateIcmpSocket();
         }
 
-        private void CreateIcmpSocket(IPEndPoint endPoint)
+        private void CreateIcmpSocket()
         {
             icmpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
-            LocalEndPoint = endPoint;
-            icmpSocket.Bind(endPoint);
+            icmpSocket.Bind(LocalEndPoint);
             PlatformID p = Environment.OSVersion.Platform;
-            if (p == PlatformID.Win32NT && !endPoint.Address.Equals(IPAddress.Any))
+            if (p == PlatformID.Win32NT && !LocalEndPoint.Address.Equals(IPAddress.Any))
             {
                 icmpSocket.IOControl(IOControlCode.ReceiveAll, new byte[] { 1, 0, 0, 0 }, new byte[] { 1, 0, 0, 0 });
             }
@@ -61,8 +62,12 @@ namespace IcmpTool
             {
                 return;
             }
-            if (MessageReceived != null)
-                MessageReceived((IPEndPoint)remoteEndPoint, receiveBuffer, len);
+            IPAddress remoteIPAddress = ((IPEndPoint)remoteEndPoint).Address;
+            if (!LocalEndPoint.Address.Equals(remoteIPAddress))
+            {
+                // Handle messages not sent by us
+                MessageReceived.Invoke((IPEndPoint)remoteEndPoint, receiveBuffer, len);
+            }
             BeginReceiveFrom();
         }
 
