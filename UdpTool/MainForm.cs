@@ -141,7 +141,7 @@ namespace UdpTool
                 }
                 udpClient.Client.Bind(localEndPoint);
             }
-            catch (Exception ex)
+            catch (SocketException ex)
             {
                 MessageBox.Show(this, ex.Message, this.Text);
                 udpClient = null;
@@ -172,9 +172,11 @@ namespace UdpTool
                 ShowReceivedData(endPoint, data);
             }
             catch (ObjectDisposedException) { }
-            catch (Exception e)
+            catch (SocketException e)
             {
                 MessageBox.Show(e.Message);
+                udpClient = null;
+                CloseUdpClient();
             }
         }
 
@@ -219,8 +221,17 @@ namespace UdpTool
 
         private void CloseUdpClient()
         {
-            udpClient.Close();
-            udpClient = null;
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker( delegate { CloseUdpClient(); }));
+                return;
+            }
+
+            if (udpClient != null)
+            {
+                udpClient.Close();
+                udpClient = null;
+            }
             sourceIPAddress.Enabled = true;
             sourcePort.Enabled = true;
             bind.Enabled = true;
