@@ -37,12 +37,7 @@ namespace Common
                 for (int i = 0; i < length; i++)
                 {
                     // remove special chars
-                    if (data[i] == '\r' && data[i == length - 1 ? i : i + 1] == '\n')
-                    {
-                        i++; // maintain DOS end of line
-                        continue;
-                    }
-                    else if (data[i] < (byte)' ' || data[i] > (byte)'~')
+                    if (data[i] < (byte)' ' || data[i] > (byte)'~')
                     {
                         data[i] = (byte)'.';
                     }
