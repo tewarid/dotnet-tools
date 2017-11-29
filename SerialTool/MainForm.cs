@@ -29,12 +29,19 @@ namespace SerialTool
             ShowSerialPorts();
         }
 
-        private void sendButton_Click(object sender, EventArgs e)
+        private async void sendButton_Click(object sender, EventArgs e)
         {
-            SendAsync();
+            try
+            {
+                await SendAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private async void SendAsync()
+        private async Task SendAsync()
         {
             int startTickCount = 0;
             int endTickCount = 0;
@@ -45,31 +52,24 @@ namespace SerialTool
             if (data.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
+                sendButton.Enabled = true;
+                return;
             }
-            else
-            {
-                // this will run in a worker thread
-                await Task.Run(delegate {
-                    try
-                    {
-                        port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
-                            : SerialPort.InfiniteTimeout;
-                        startTickCount = Environment.TickCount;
-                        port.Write(data, 0, data.Length);
-                        endTickCount = Environment.TickCount;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                });
 
-                // main thread gets resumed at this point
-                // so invoke not required
-                if (endTickCount != 0)
-                    status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
-                        data.Length, endTickCount - startTickCount);
-            }
+            // this will run in a worker thread
+            await Task.Run(delegate {
+                port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
+                    : SerialPort.InfiniteTimeout;
+                startTickCount = Environment.TickCount;
+                port.Write(data, 0, data.Length);
+                endTickCount = Environment.TickCount;
+            });
+
+            // caller's context gets resumed at this point
+            if (endTickCount != 0)
+                status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
+                    data.Length, endTickCount - startTickCount);
+
             sendButton.Enabled = true;
         }
 
@@ -143,18 +143,7 @@ namespace SerialTool
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (port != null)
-            {
-                try
-                {
-                    port.Close();
-                    port = null;
-                }
-                catch
-                {
-                    //
-                }
-            }
+            CloseSerialPort();
         }
 
         private void openButton_Click(object sender, EventArgs e)
@@ -183,12 +172,6 @@ namespace SerialTool
 
         private void CloseSerialPort()
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke((MethodInvoker)CloseSerialPort);
-                return;
-            }
-
             try
             {
                 if (port != null && port.IsOpen)
