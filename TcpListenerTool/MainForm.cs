@@ -4,7 +4,9 @@ using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Authentication;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TcpListenerTool
@@ -20,60 +22,70 @@ namespace TcpListenerTool
             sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
         }
 
-        private void listen_Click(object sender, EventArgs e)
+        private async void listen_Click(object sender, EventArgs e)
         {
-            CreateTcpListener();
+            await CreateTcpListener().ConfigureAwait(true);
         }
 
-        private void CreateTcpListener()
+        private async Task CreateTcpListener()
         {
-            if (listener != null) return;
-
-            try
+            if (listener != null)
             {
-                IPEndPoint localEndPoint;
-                int port = 0;
-                if (!string.Empty.Equals(sourcePort.Text))
-                {
-                    port = int.Parse(sourcePort.Text);
-                }
-                if (!string.Empty.Equals(sourceIPAddress.Text))
-                {
-                    localEndPoint = new IPEndPoint(IPAddress.Parse(sourceIPAddress.Text),
-                        port);
-                }
-                else
-                {
-                    localEndPoint = new IPEndPoint(IPAddress.Any, port);
-                }
-                if (listener == null)
-                {
-                    listener = new TcpListener(localEndPoint);
-                }
-                if(reuseAddress.Checked)
-                {
-                    listener.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                }
-                listener.Start();
-                listener.BeginAcceptTcpClient(BeginAcceptCallback, null);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(this, e.Message, this.Text);
-                listener = null;
                 return;
             }
 
+            int port = 0;
+            if (!string.Empty.Equals(sourcePort.Text))
+            {
+                try
+                {
+                    port = int.Parse(sourcePort.Text);
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
+                    return;
+                }
+            }
+            IPAddress address = IPAddress.Any;
+            if (!string.Empty.Equals(sourceIPAddress.Text))
+            {
+                try
+                {
+                    address = IPAddress.Parse(sourceIPAddress.Text);
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
+                    return;
+                }
+            }
+            IPEndPoint localEndPoint = new IPEndPoint(address, port);
+            listener = new TcpListener(localEndPoint);
+            if(reuseAddress.Checked)
+            {
+                listener.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            }
             IPEndPoint ipEndPoint = (IPEndPoint)listener.LocalEndpoint;
             sourceIPAddress.Text = ipEndPoint.Address.ToString();
             sourcePort.Text = ipEndPoint.Port.ToString();
-
+            try
+            {
+                listener.Start();
+            }
+            catch (SocketException ex)
+            {
+                listener = null;
+                MessageBox.Show(this, ex.Message, this.Text);
+                return;
+            }
             listen.Enabled = false;
             stopListener.Enabled = true;
             sourceIPAddress.Enabled = false;
             sourcePort.Enabled = false;
             reuseAddress.Enabled = false;
             useSSLListener.Enabled = false;
+            await AcceptTcpClient().ConfigureAwait(true);
         }
 
         private bool ValidateCertificate(object sender,
@@ -83,43 +95,56 @@ namespace TcpListenerTool
             return true;
         }
 
-        private void BeginAcceptCallback(IAsyncResult ar)
+        private async Task AcceptTcpClient()
         {
-            TcpClient tcpClient;
-
-            try
+            while(true)
             {
-                tcpClient = listener.EndAcceptTcpClient(ar);
-            }
-            catch
-            {
-                return;
-            }
+                TcpClient tcpClient;
 
-            listener.BeginAcceptTcpClient(BeginAcceptCallback, null);
+                try
+                {
+                    tcpClient = await listener.AcceptTcpClientAsync().ConfigureAwait(true);
+                }
+                catch(SocketException ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
+                    break;
+                }
+                catch(ObjectDisposedException)
+                {
+                    break;
+                }
 
-            ShowClientForm(tcpClient);
+                ShowClientForm(tcpClient);
+            }
         }
 
         private void ShowClientForm(TcpClient tcpClient)
         {
-            if (InvokeRequired)
-            {
-                BeginInvoke((MethodInvoker)delegate
-                {
-                    ShowClientForm(tcpClient);
-                });
-                return;
-            }
-
             Stream stream;
 
             if (useSSLListener.Checked)
             {
                 SslStream ssls = new SslStream(tcpClient.GetStream(),
                     true, ValidateCertificate);
-                X509Certificate2 cert = new X509Certificate2(pfxPath.Text, "");
-                ssls.AuthenticateAsServer(cert, false, SslProtocols.Tls12, false);
+                X509Certificate2 cert;
+                try
+                {
+                    cert = new X509Certificate2(pfxPath.Text, "");
+                }
+                catch(CryptographicException ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
+                    return;
+                }
+                try
+                {
+                    ssls.AuthenticateAsServer(cert, false, SslProtocols.Tls12, false);
+                }
+                catch(IOException)
+                {
+                    return;
+                }
                 stream = ssls;
             }
             else
@@ -154,17 +179,26 @@ namespace TcpListenerTool
 
         private void StopListener()
         {
-            if (listener != null)
+            if (listener == null)
+            {
+                return;
+            }
+
+            try
             {
                 listener.Stop();
-                listener = null;
-                listen.Enabled = true;
-                stopListener.Enabled = false;
-                sourceIPAddress.Enabled = true;
-                reuseAddress.Enabled = true;
-                sourcePort.Enabled = true;
-                useSSLListener.Enabled = true;
             }
+            catch (SocketException ex)
+            {
+                MessageBox.Show(this, ex.Message, this.Text);
+            }
+            listener = null;
+            listen.Enabled = true;
+            stopListener.Enabled = false;
+            sourceIPAddress.Enabled = true;
+            reuseAddress.Enabled = true;
+            sourcePort.Enabled = true;
+            useSSLListener.Enabled = true;
         }
 
         private void MainForm_Load(object sender, EventArgs e)

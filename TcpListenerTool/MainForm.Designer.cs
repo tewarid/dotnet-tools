@@ -1,4 +1,6 @@
-﻿namespace TcpListenerTool
+﻿using System;
+
+namespace TcpListenerTool
 {
     partial class MainForm
     {
@@ -61,7 +63,7 @@
             this.useSSLListener.Name = "useSSLListener";
             this.useSSLListener.Size = new System.Drawing.Size(68, 17);
             this.useSSLListener.TabIndex = 18;
-            this.useSSLListener.Text = "Use SSL";
+            this.useSSLListener.Text = "Use TLS 1.2";
             this.useSSLListener.UseVisualStyleBackColor = true;
             this.useSSLListener.CheckedChanged += new System.EventHandler(this.useSSLListener_CheckedChanged);
             // 

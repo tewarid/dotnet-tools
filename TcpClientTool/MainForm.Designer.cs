@@ -115,7 +115,7 @@
             this.useSSL.Name = "useSSL";
             this.useSSL.Size = new System.Drawing.Size(68, 17);
             this.useSSL.TabIndex = 17;
-            this.useSSL.Text = "Use SSL";
+            this.useSSL.Text = "Use TLS 1.2";
             this.useSSL.UseVisualStyleBackColor = true;
             // 
             // close

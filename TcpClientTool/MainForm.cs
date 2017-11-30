@@ -5,6 +5,8 @@ using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TcpClientTool
@@ -13,76 +15,92 @@ namespace TcpClientTool
     {
         TcpClient tcpClient;
         Stream stream;
-        delegate void ShowReceivedDataDelegate(byte[] data, int length);
-        byte[] buffer = new byte[10000];
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
         public MainForm()
         {
             InitializeComponent();
+            sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
         }
 
         public MainForm(TcpClient tcpClient, Stream stream = null) : this()
         {
+            this.tcpClient = tcpClient;
+            this.stream = stream;
             if (stream == null)
             {
                 this.stream = tcpClient.GetStream();
             }
-            else
-            {
-                this.stream = stream;
-            }
-            this.tcpClient = tcpClient;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private async void MainForm_Load(object sender, EventArgs e)
         {
-            sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
             if (stream != null)
             {
                 useSSL.Checked = stream is SslStream;
                 EnableDisable(true);
-                stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
+                try
+                {
+                    await ReadAsync(cancellationTokenSource.Token).ConfigureAwait(true);
+                }
+                catch(ObjectDisposedException)
+                {
+                    // happens when form is disposed
+                }
             }
         }
 
         private void SourceIPAddress_InterfaceDeleted(string address)
         {
-            if (tcpClient != null)
-            {
-                CloseTcpClient();
-                sourceIPAddress.Text = string.Empty;
-            }
+            CloseTcpClient();
+            sourceIPAddress.Text = string.Empty;
         }
 
-        private void sendButton_Click(object sender, EventArgs e)
+        private async void sendButton_Click(object sender, EventArgs e)
         {
             if (tcpClient == null || !tcpClient.Connected)
             {
                 CreateTcpClient();
-                if (tcpClient == null || !tcpClient.Connected) return;
+                if (tcpClient == null || !tcpClient.Connected)
+                {
+                    return;
+                }
+                await SendAsync().ConfigureAwait(true);
+                await ReadAsync(cancellationTokenSource.Token)
+                    .ConfigureAwait(true); // will block here till ReadAsync is done
             }
+            else
+            {
+                await SendAsync().ConfigureAwait(true);
+            }
+        }
 
+        private async Task SendAsync()
+        {
             sendButton.Enabled = false;
 
             int tickcount = 0;
             byte[] data = input.Bytes;
             if (data.Length <= 0)
             {
+                sendButton.Enabled = true;
                 MessageBox.Show(this, "Nothing to send.", this.Text);
+                return;
             }
-            else
+
+            tickcount = Environment.TickCount;
+            try
             {
-                try
-                {
-                    tickcount = Environment.TickCount;
-                    stream.Write(data, 0, data.Length);
-                    tickcount = Environment.TickCount - tickcount;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, ex.Message, this.Text);
-                }
+                await stream.WriteAsync(data, 0, data.Length).ConfigureAwait(true);
             }
+            catch(IOException ex)
+            {
+                sendButton.Enabled = true;
+                MessageBox.Show(this, ex.Message, this.Text);
+                CloseTcpClient();
+                return;
+            }
+            tickcount = Environment.TickCount - tickcount;
 
             status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
                 data.Length, tickcount);
@@ -91,15 +109,6 @@ namespace TcpClientTool
 
         private void ShowReceivedData(byte[] data, int length)
         {
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    ShowReceivedData(data, length);
-                });
-                return;
-            }
-
             outputText.Append(data, length);
             outputText.AppendText(Environment.NewLine, true);
             outputText.AppendText(Environment.NewLine, true);
@@ -109,30 +118,39 @@ namespace TcpClientTool
         {
             if (tcpClient != null && tcpClient.Connected) return;
 
-            try
+            int port = 0;
+            IPAddress ipAddress = IPAddress.Any;
+            if (!string.Empty.Equals(sourceIPAddress.Text))
             {
-                int port = 0;
-                IPAddress ipAddress = IPAddress.Any;
-                if (!string.Empty.Equals(sourceIPAddress.Text))
+                try
                 {
                     ipAddress = IPAddress.Parse(sourceIPAddress.Text);
                 }
-                if(!string.Empty.Equals(sourcePort.Text))
+                catch (FormatException ex)
                 {
-                    port = int.Parse(sourcePort.Text);
+                    MessageBox.Show(this, ex.Message, this.Text);
+                    return;
                 }
-                IPEndPoint localEndPoint = new IPEndPoint(ipAddress, port);
-                tcpClient = new TcpClient();
-                if (reuseAddress.Checked)
-                {
-                    tcpClient.Client.SetSocketOption(SocketOptionLevel.Socket,
-                        SocketOptionName.ReuseAddress, true);
-                }
+            }
+            if(!string.Empty.Equals(sourcePort.Text))
+            {
+                port = int.Parse(sourcePort.Text);
+            }
+            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, port);
+            tcpClient = new TcpClient();
+            if (reuseAddress.Checked)
+            {
+                tcpClient.Client.SetSocketOption(SocketOptionLevel.Socket,
+                    SocketOptionName.ReuseAddress, true);
+            }
+
+            try
+            {
                 tcpClient.Client.Bind(localEndPoint);
             }
-            catch (Exception e)
+            catch (SocketException ex)
             {
-                MessageBox.Show(this, e.Message, this.Text);
+                MessageBox.Show(this, ex.Message, this.Text);
                 return;
             }
 
@@ -142,35 +160,25 @@ namespace TcpClientTool
                 MessageBox.Show(this, "Please specify the destination IP address and/or port.", this.Text);
                 return;
             }
-
+            IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Parse(destinationIPAddress.Text),
+                int.Parse(destinationPort.Text));
             try
             {
-                IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Parse(destinationIPAddress.Text),
-                    int.Parse(destinationPort.Text));
                 tcpClient.Connect(remoteEndPoint);
-                stream = tcpClient.GetStream();
-                if (useSSL.Checked)
-                {
-                    SslStream ssls = new SslStream(tcpClient.GetStream(),
-                        true, ValidateCertificate);
-                    ssls.AuthenticateAsClient(string.Empty, null, SslProtocols.Tls12, false);
-                    stream = ssls;
-                }
-                stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
             }
-            catch (Exception e)
+            catch (SocketException ex)
             {
-                if (tcpClient != null)
-                {
-                    if (tcpClient.Connected)
-                    {
-                        tcpClient.Close();
-                    }
-                    tcpClient = null;
-                    stream = null;
-                }
-                MessageBox.Show(this, e.Message, this.Text);
+                MessageBox.Show(this, ex.Message, this.Text);
+                CloseTcpClient();
                 return;
+            }
+            stream = tcpClient.GetStream();
+            if (useSSL.Checked)
+            {
+                SslStream ssls = new SslStream(stream,
+                    true, ValidateCertificate);
+                ssls.AuthenticateAsClient(string.Empty, null, SslProtocols.Tls12, false);
+                stream = ssls;
             }
 
             EnableDisable(true);
@@ -209,35 +217,38 @@ namespace TcpClientTool
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (tcpClient != null)
-            {
-                tcpClient.Close();
-            }
+            CloseTcpClient();
         }
 
-        private void ReadCallback(IAsyncResult ar)
+        public async Task ReadAsync(CancellationToken cancellationToken)
         {
-            if (tcpClient == null)
-                return;
+            byte[] data = new byte[1024];
 
-            try
+            while (true)
             {
-                int length = stream.EndRead(ar);
-                if (length > 0)
+                int length = 0;
+                try
                 {
-                    ShowReceivedData(buffer, length);
+                    length = await 
+                        stream.ReadAsync(data, 0, data.Length, cancellationToken)
+                        .ConfigureAwait(true);
                 }
-                stream.BeginRead(buffer, 0, buffer.Length, ReadCallback, null);
-            }
-            catch(IOException e)
-            {
-                BeginInvoke((MethodInvoker)delegate () {
+                catch (IOException ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
                     CloseTcpClient();
-                    MessageBox.Show(this, e.Message, this.Text);
-                });
-            }
-            catch
-            {
+                    return;
+                }
+                catch(ObjectDisposedException)
+                {
+                    CloseTcpClient();
+                    return;
+                }
+                if (length == 0)
+                {
+                    break;
+                }
+                ShowReceivedData(data, length);
             }
         }
 
@@ -245,8 +256,12 @@ namespace TcpClientTool
         {
             if (tcpClient != null)
             {
-                tcpClient.Close();
+                if (tcpClient.Connected)
+                {
+                    tcpClient.Close();
+                }
                 tcpClient = null;
+                stream = null;
             }
             EnableDisable(false);
         }
@@ -256,12 +271,15 @@ namespace TcpClientTool
             CloseTcpClient();
         }
 
-        private void open_Click(object sender, EventArgs e)
+        private async void open_Click(object sender, EventArgs e)
         {
-            if (tcpClient == null || !tcpClient.Connected)
+            if (tcpClient != null && tcpClient.Connected)
             {
-                CreateTcpClient();
+                return;
             }
+            CreateTcpClient();
+            await ReadAsync(cancellationTokenSource.Token)
+                .ConfigureAwait(true); // will block here till ReadAsync is done
         }
     }
 }
