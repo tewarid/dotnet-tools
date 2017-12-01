@@ -240,13 +240,12 @@
             // 
             // sourceIPAddress
             // 
-            this.sourceIPAddress.DataSource = ((object)(resources.GetObject("sourceIPAddress.DataSource")));
             this.sourceIPAddress.FormattingEnabled = true;
             this.sourceIPAddress.IncludeIPAddressAny = true;
             this.sourceIPAddress.Location = new System.Drawing.Point(9, 35);
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
-            this.sourceIPAddress.TabIndex = 9;
+            this.sourceIPAddress.TabIndex = 0;
             // 
             // close
             // 
@@ -278,7 +277,7 @@
             this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
             this.outputText.Size = new System.Drawing.Size(383, 312);
-            this.outputText.TabIndex = 6;
+            this.outputText.TabIndex = 7;
             // 
             // statusStrip1
             // 
