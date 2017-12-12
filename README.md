@@ -36,9 +36,13 @@ Interactive client to add, view, and delete IP v4 routes on Windows. Requires Po
 
 Interactive client that may be used to open a serial port, send, and receive data.
 
+## SMTP Server Tool
+
+A simple SMTP server based on the [SmtpServer](https://www.nuget.org/packages/SmtpServer/) library that logs messages to a text box.
+
 ## Sniffer Tool
 
-Elementary tool that sniffs IPv4 packets using raw sockets. Requires administrative privilege.
+An elementary tool that sniffs IPv4 packets using raw sockets. Requires administrative privilege.
 
 ## TCP Client Tool
 

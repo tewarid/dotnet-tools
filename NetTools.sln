@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpClientTool", "TcpClientTool\TcpClientTool.csproj", "{1A80778F-B6B5-442E-9E1B-C6216A24F8C0}"
 EndProject
@@ -36,6 +36,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluetoothSerialClientTool", "BluetoothSerialClientTool\BluetoothSerialClientTool.csproj", "{3BFFB6BF-138D-4809-AA3B-F67B5FDC57C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpListenerTool", "HttpListenerTool\HttpListenerTool.csproj", "{17F0F4CB-9A50-46C9-BB6D-4732DE14F236}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmtpServerTool", "SmtpServerTool\SmtpServerTool.csproj", "{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -181,8 +183,19 @@ Global
 		{17F0F4CB-9A50-46C9-BB6D-4732DE14F236}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
 		{17F0F4CB-9A50-46C9-BB6D-4732DE14F236}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17F0F4CB-9A50-46C9-BB6D-4732DE14F236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {231E1F36-BB9F-4CDB-BC2D-468F2805C778}
 	EndGlobalSection
 EndGlobal
