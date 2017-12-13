@@ -12,8 +12,6 @@ namespace SmtpServerTool
             new CancellationTokenSource();
         private SmtpServer.SmtpServer smtpServer;
 
-        public Delegate ActionHandler { get; private set; }
-
         public MainForm()
         {
             InitializeComponent();

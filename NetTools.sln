@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpListenerTool", "HttpLis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmtpServerTool", "SmtpServerTool\SmtpServerTool.csproj", "{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmtpClientTool", "SmtpClientTool\SmtpClientTool.csproj", "{0BB9835B-6ED0-499F-8370-D219668BC127}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Ubuntu|Any CPU = Debug_Ubuntu|Any CPU
@@ -191,6 +193,14 @@ Global
 		{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
 		{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BB9835B-6ED0-499F-8370-D219668BC127}.Debug_Ubuntu|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB9835B-6ED0-499F-8370-D219668BC127}.Debug_Ubuntu|Any CPU.Build.0 = Debug|Any CPU
+		{0BB9835B-6ED0-499F-8370-D219668BC127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB9835B-6ED0-499F-8370-D219668BC127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BB9835B-6ED0-499F-8370-D219668BC127}.Release_Ubuntu|Any CPU.ActiveCfg = Release|Any CPU
+		{0BB9835B-6ED0-499F-8370-D219668BC127}.Release_Ubuntu|Any CPU.Build.0 = Release|Any CPU
+		{0BB9835B-6ED0-499F-8370-D219668BC127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BB9835B-6ED0-499F-8370-D219668BC127}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
