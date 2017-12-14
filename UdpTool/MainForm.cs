@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UdpTool
@@ -26,12 +26,13 @@ namespace UdpTool
             }
         }
 
-        private void sendButton_Click(object sender, EventArgs e)
+        private async void sendButton_Click(object sender, EventArgs e)
         {
             if (udpClient == null)
             {
                 CreateUdpClient();
-                if (udpClient == null) return;
+                if (udpClient == null)
+                    return;
             }
 
             IPEndPoint endPoint;
@@ -48,26 +49,25 @@ namespace UdpTool
 
             sendButton.Enabled = false;
 
-            int tickcount = 0;
-
             byte[] data = input.Bytes;
             if (data.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
+                return;
             }
-            else
+
+            int tickcount = Environment.TickCount;
+            try
             {
-                try
-                {
-                    tickcount = Environment.TickCount;
-                    udpClient.Send(data, data.Length, endPoint);
-                    tickcount = Environment.TickCount - tickcount;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                await udpClient.SendAsync(data, data.Length, endPoint).ConfigureAwait(true);
             }
+            catch (SocketException ex)
+            {
+                MessageBox.Show(ex.Message);
+                sendButton.Enabled = true;
+                return;
+            }
+            tickcount = Environment.TickCount - tickcount;
 
             status.Text = String.Format("Sent {0} bytes in {1} milliseconds",
                 data.Length, tickcount);
@@ -77,15 +77,6 @@ namespace UdpTool
 
         private void ShowReceivedData(IPEndPoint endPoint, byte[] data)
         {
-            if (InvokeRequired)
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    ShowReceivedData(endPoint, data);
-                });
-                return;
-            }
-
             destinationIPAddress.Text = endPoint.Address.ToString();
             destinationPort.Text = endPoint.Port.ToString();
 
@@ -96,7 +87,7 @@ namespace UdpTool
             outputText.AppendText(Environment.NewLine);
         }
 
-        private void CreateUdpClient() 
+        private async Task CreateUdpClient() 
         {
             IPAddress address = IPAddress.Any;
             IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Any, 0);
@@ -148,35 +139,47 @@ namespace UdpTool
                 return;
             }
 
-            udpClient.BeginReceive(ReceiveCallback, null);
-
-            sourceIPAddress.Enabled = false;
             IPEndPoint endPoint = (IPEndPoint)udpClient.Client.LocalEndPoint;
             sourceIPAddress.Text = endPoint.Address.ToString();
-            sourcePort.Enabled = false;
             sourcePort.Text = endPoint.Port.ToString();
-            bind.Enabled = false;
-            reuseAddress.Enabled = false;
-            multicastGroupBox.Enabled = true;
-            close.Enabled = true;
+            EnableDisable(false);
+            await ReceiveAsync().ConfigureAwait(true);
         }
 
-        private void ReceiveCallback(IAsyncResult ar)
+        private void EnableDisable(bool enable)
         {
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 0);
-            try
+            sourceIPAddress.Enabled = enable;
+            sourcePort.Enabled = enable;
+            bind.Enabled = enable;
+            reuseAddress.Enabled = enable;
+            multicastGroupBox.Enabled = !enable;
+            close.Enabled = !enable;
+        }
+
+        private async Task ReceiveAsync()
+        {
+            if (udpClient == null)
+                return;
+
+            UdpReceiveResult r;
+            while(true)
             {
-                if (udpClient == null) return;
-                byte[] data = udpClient.EndReceive(ar, ref endPoint);
-                udpClient.BeginReceive(ReceiveCallback, null);
-                ShowReceivedData(endPoint, data);
-            }
-            catch (ObjectDisposedException) { }
-            catch (SocketException e)
-            {
-                MessageBox.Show(e.Message);
-                udpClient = null;
-                CloseUdpClient();
+                try
+                {
+                    r = await udpClient.ReceiveAsync();
+                }
+                catch (ObjectDisposedException)
+                {
+                    EnableDisable(true);
+                    break;
+                }
+                catch (SocketException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    CloseUdpClient();
+                    break;
+                }
+                ShowReceivedData(r.RemoteEndPoint, r.Buffer);
             }
         }
 
@@ -188,11 +191,11 @@ namespace UdpTool
             }
         }
 
-        private void bind_Click(object sender, EventArgs e)
+        private async void bind_Click(object sender, EventArgs e)
         {
             if (udpClient == null)
             {
-                CreateUdpClient();
+                await CreateUdpClient().ConfigureAwait(true);
             }
         }
 
@@ -221,23 +224,12 @@ namespace UdpTool
 
         private void CloseUdpClient()
         {
-            if (InvokeRequired)
-            {
-                Invoke(new MethodInvoker( delegate { CloseUdpClient(); }));
-                return;
-            }
-
             if (udpClient != null)
             {
                 udpClient.Close();
                 udpClient = null;
             }
-            sourceIPAddress.Enabled = true;
-            sourcePort.Enabled = true;
-            bind.Enabled = true;
-            reuseAddress.Enabled = true;
-            multicastGroupBox.Enabled = false;
-            close.Enabled = false;
+            EnableDisable(true);
         }
 
         private void close_Click(object sender, EventArgs e)
