@@ -278,6 +278,10 @@ namespace TcpClientTool
                 return;
             }
             CreateTcpClient();
+            if (tcpClient == null || !tcpClient.Connected)
+            {
+                return;
+            }
             await ReadAsync(cancellationTokenSource.Token)
                 .ConfigureAwait(true); // will block here till ReadAsync is done
         }
