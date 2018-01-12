@@ -37,7 +37,7 @@ namespace BluetoothSerialClientTool
             }
         }
 
-        private void connectButton_Click(object sender, EventArgs e)
+        private async void connectButton_Click(object sender, EventArgs e)
         {
             if (deviceList.SelectedIndex >= devices.Length)
             {
@@ -53,52 +53,45 @@ namespace BluetoothSerialClientTool
                 MessageBox.Show(this, ex.Message, this.Text);
                 return;
             }
-            Task t = ReadAsync(stream);
             deviceList.Enabled = false;
             refreshButton.Enabled = false;
             connectButton.Enabled = false;
             closeButton.Enabled = true;
             sendButton.Enabled = true;
+            await ReadAsync(stream).ConfigureAwait(true);
         }
 
         private async Task ReadAsync(NetworkStream stream)
         {
             byte[] buffer = new byte[100];
+            int length = 0;
             while (true)
             {
                 try
                 {
-                    int length = await stream.ReadAsync(buffer, 0, buffer.Length);
-                    Invoke(new MethodInvoker(delegate
-                    {
-                        outputText.Append(buffer, length);
-                    }));
+                    length = await stream.ReadAsync(buffer, 0, buffer.Length)
+                        .ConfigureAwait(true);
                 }
                 catch
                 {
                     if (this.Visible)
-                    { // we're not being closed
-                        Invoke(new MethodInvoker(delegate
-                        {
-                            Stop();
-                        }));
+                    {
+                        // we're not being closed
+                        Stop();
                     }
                     break;
                 }
+                if (length == 0)
+                {
+                    Stop();
+                    break;
+                }
+                outputText.Append(buffer, length);
             }
         }
 
         private void Stop()
         {
-            if (InvokeRequired)
-            {
-                Invoke(new MethodInvoker(delegate ()
-                {
-                    Stop();
-                }));
-                return;
-            }
-
             if (stream != null)
             {
                 stream.Close();
@@ -133,35 +126,26 @@ namespace BluetoothSerialClientTool
 
         private async Task SendAsync(byte[] buffer)
         {
-            int startTickCount = 0;
-            int endTickCount = 0;
-
-            // this will run in a worker thread
-            await Task.Run(delegate
+            int ticks = Environment.TickCount;
+            try
             {
-                try
-                {
-                    startTickCount = Environment.TickCount;
-                    stream.Write(buffer, 0, buffer.Length);
-                    endTickCount = Environment.TickCount;
-                }
-                catch (Exception ex)
-                {
-                    Stop();
-                    MessageBox.Show(ex.Message);
-                }
-            });
-
-            // main thread gets resumed at this point
-            // so invoke not required
-            if (endTickCount != 0)
+                await stream.WriteAsync(buffer, 0, buffer.Length)
+                    .ConfigureAwait(true);
+                // UI context gets resumed at this point
+                ticks = Environment.TickCount - ticks;
                 status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
-                    buffer.Length, endTickCount - startTickCount);
+                    buffer.Length,ticks);
+            }
+            catch (Exception ex)
+            {
+                Stop();
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void sendButton_Click(object sender, EventArgs e)
+        private async void sendButton_Click(object sender, EventArgs e)
         {
-            Task t = SendAsync(input.Bytes);
+            await SendAsync(input.Bytes).ConfigureAwait(true);
         }
     }
 }
