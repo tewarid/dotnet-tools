@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpClientTool", "TcpClientTool\TcpClientTool.csproj", "{1A80778F-B6B5-442E-9E1B-C6216A24F8C0}"
 EndProject
@@ -40,6 +40,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmtpServerTool", "SmtpServerTool\SmtpServerTool.csproj", "{7A252C0A-6704-4237-B4F4-9C75CD5FEFBD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmtpClientTool", "SmtpClientTool\SmtpClientTool.csproj", "{0BB9835B-6ED0-499F-8370-D219668BC127}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{422CD981-FC6F-4AD0-9EDA-6BA806F16A2E}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		License.md = License.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

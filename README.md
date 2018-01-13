@@ -12,7 +12,7 @@ Simulate a Bluetooth serial listener/server on Windows. It is built with [32feet
 
 ## Firewall Tool
 
-Add/remove exceptions to/from Windows Firewall.
+Add/remove exceptions to/from Windows Firewall. With contributions from Bruno Silveira.
 
 ## HTTP Listener Tool
 
@@ -76,18 +76,15 @@ Interactive WebSocket client that may be used to establish WebSocket sessions, s
 
 Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works with Windows 7 or better. Data can be sent to and received from WebSocket clients. Supports SSL. This tool will go away when [usage share](http://gs.statcounter.com/os-version-market-share/windows/desktop/worldwide) of Windows 8 and beyond surpasses 80% of all Windows installations.
 
-## Similar Tools
+## Related Tools
 
 * [Hercules SETUP utility](http://www.hw-group.com/products/hercules/index_en.html)
-
-* [Telerik Fiddler](https://www.telerik.com/fiddler)
-
-* [Tera Term](https://ttssh2.osdn.jp/)
-
-## Troubleshooting Tools
-
 * netstat
-
+* [ncat](https://nmap.org/ncat/)
 * [Sysinternals Suite](https://technet.microsoft.com/en-us/sysinternals/bb842062)
-
-* TCP View (part of Sysinternals Suite)
+  * TCP View
+* tcpdump
+* [Telerik Fiddler](https://www.telerik.com/fiddler)
+* [Tera Term](https://ttssh2.osdn.jp/)
+* WinDump
+* Wireshark (recommend replacing WinPcap with [npcap](https://nmap.org/npcap/) on Windows)
