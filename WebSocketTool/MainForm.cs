@@ -195,8 +195,9 @@ namespace Common
             {
                 defaultValue = proxyUrl;
             }
+            Uri value;
             DialogResult result = InputDialog.Show<Uri>(this, "HTTP Proxy",
-                defaultValue, out Uri value);
+                defaultValue, out value);
             if (result == DialogResult.OK)
             {
                 proxyUrl = value == null ? null : value.AbsoluteUri;
