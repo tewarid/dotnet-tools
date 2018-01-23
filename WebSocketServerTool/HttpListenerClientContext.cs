@@ -33,7 +33,7 @@ namespace WebSocketServerTool
                 {
                     result = await wsContext.WebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), token);
                 }
-                catch(WebSocketException ex)
+                catch(WebSocketException)
                 {
                     Closed?.Invoke();
                     break;

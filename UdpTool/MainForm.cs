@@ -30,7 +30,7 @@ namespace UdpTool
         {
             if (udpClient == null)
             {
-                CreateUdpClient();
+                await CreateUdpClient().ConfigureAwait(true);
                 if (udpClient == null)
                     return;
             }
@@ -38,7 +38,8 @@ namespace UdpTool
             IPEndPoint endPoint;
             try
             {
-                endPoint = new IPEndPoint(IPAddress.Parse(destinationIPAddress.Text),
+                endPoint = new IPEndPoint(
+                    IPAddress.Parse(destinationIPAddress.Text),
                     int.Parse(destinationPort.Text));
             }
             catch (Exception ex)

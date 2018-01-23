@@ -186,11 +186,12 @@ namespace Common
 
         private void proxyButton_Click(object sender, EventArgs e)
         {
-            HttpProxyForm form = new HttpProxyForm(proxyUrl);
-            form.ShowDialog();
-            if (form.Result == DialogResult.OK)
+            DialogResult result = InputDialog.Show<Uri>(this, "HTTP Proxy",
+                string.IsNullOrEmpty(proxyUrl) ? "http://localhost:8888" : proxyUrl,
+                out Uri value);
+            if (result == DialogResult.OK)
             {
-                proxyUrl = form.Proxy == null ? null : form.Proxy.AbsoluteUri;
+                proxyUrl = value == null ? null : value.AbsoluteUri;
             }
         }
     }

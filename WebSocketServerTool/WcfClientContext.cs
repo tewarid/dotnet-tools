@@ -75,8 +75,10 @@ namespace WebSocketServerTool
                 {
                     channel.EndClose(ar);
                 }
-                catch (TimeoutException ex)
-                { }
+                catch (TimeoutException)
+                {
+                    // ignore timeout
+                }
             }, null);
         }
     }
