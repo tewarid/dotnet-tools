@@ -186,9 +186,17 @@ namespace Common
 
         private void proxyButton_Click(object sender, EventArgs e)
         {
+            string defaultValue;
+            if (string.IsNullOrEmpty(proxyUrl))
+            {
+                defaultValue = "http://localhost:8888";
+            }
+            else
+            {
+                defaultValue = proxyUrl;
+            }
             DialogResult result = InputDialog.Show<Uri>(this, "HTTP Proxy",
-                string.IsNullOrEmpty(proxyUrl) ? "http://localhost:8888" : proxyUrl,
-                out Uri value);
+                defaultValue, out Uri value);
             if (result == DialogResult.OK)
             {
                 proxyUrl = value == null ? null : value.AbsoluteUri;
