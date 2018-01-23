@@ -61,6 +61,7 @@
       <DependentUpon>InterfaceSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfoCommon.cs" />
     <Compile Include="ReceiveTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
