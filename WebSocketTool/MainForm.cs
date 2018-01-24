@@ -11,6 +11,7 @@ namespace Common
     public partial class MainForm : Form
     {
         delegate void ShowReceivedDataDelegate(byte[] data, int length);
+
         private ClientWebSocket wsClient;
         private byte[] buffer = new byte[100];
         private bool newMessage = true;
@@ -28,41 +29,49 @@ namespace Common
 
         private async void sendButton_Click(object sender, EventArgs e)
         {
-            await CreateWebSocketClient();
             if (wsClient == null || wsClient.State != WebSocketState.Open)
             {
-                return;
+                await CreateWebSocketClient().ConfigureAwait(true);
+                if (wsClient == null || wsClient.State != WebSocketState.Open)
+                {
+                    return;
+                }
+                await SendAsync().ConfigureAwait(true);
+                await ReadCallback().ConfigureAwait(true);
             }
+            else
+            {
+                await SendAsync().ConfigureAwait(true);
+            }
+        }
 
-            sendButton.Enabled = false;
-
-            int tickcount = 0;
-
+        private async Task SendAsync()
+        {
             byte[] data = sendTextBox.Bytes;
             if (data.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
+                return;
             }
-            else
+            sendButton.Enabled = false;
+            int tickCount = Environment.TickCount;
+            try
             {
-                try
-                {
-                    tickcount = Environment.TickCount;
-                    CancellationTokenSource source = new CancellationTokenSource();
-                    CancellationToken token = source.Token;
-                    await wsClient.SendAsync(new ArraySegment<byte>(data, 0, data.Length), 
-                        sendTextBox.Binary ? WebSocketMessageType.Binary : WebSocketMessageType.Text, 
-                        true, token);
-                    tickcount = Environment.TickCount - tickcount;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, ex.Message, this.Text);
-                }
+                CancellationTokenSource source = new CancellationTokenSource();
+                CancellationToken token = source.Token;
+                await wsClient.SendAsync(new ArraySegment<byte>(data, 0, data.Length),
+                    sendTextBox.Binary ? WebSocketMessageType.Binary : WebSocketMessageType.Text,
+                    true, token).ConfigureAwait(true);
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, this.Text);
+                sendButton.Enabled = true;
+                return;
+            }
+            tickCount = Environment.TickCount - tickCount;
             status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
-                data.Length, tickcount);
+                data.Length, tickCount);
             sendButton.Enabled = true;
         }
 
@@ -87,35 +96,52 @@ namespace Common
 
         private async Task CreateWebSocketClient()
         {
-            if (wsClient != null && wsClient.State == WebSocketState.Open) return;
+            if (wsClient != null && wsClient.State == WebSocketState.Open)
+            {
+                return;
+            }
             wsClient = new ClientWebSocket();
             if (headers != null)
             { 
                 foreach(string name in headers)
                 {
-                    wsClient.Options.SetRequestHeader(name, headers.Get(name));
+                    try
+                    {
+                        wsClient.Options.SetRequestHeader(name, headers.Get(name));
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message, this.Text);
+                        return;
+                    }
                 }
             }
-            if (proxyUrl != null)
+            if (!string.IsNullOrEmpty(proxyUrl))
             {
                 wsClient.Options.Proxy = new WebProxy(proxyUrl);
             }
             wsClient.Options.KeepAliveInterval = TimeSpan.FromSeconds(30);
-            connect.Enabled = setHeaders.Enabled = proxyButton.Enabled = false;
-            location.ReadOnly = true;
+            Uri uri;
             try
             {
-                Uri uri = new Uri(location.Text);
+                uri = new Uri(location.Text);
+            }
+            catch (UriFormatException ex)
+            {
+                MessageBox.Show(ex.Message, this.Text);
+                return;
+            }
+            EnableDisable(false);
+            try
+            {
                 CancellationTokenSource source = new CancellationTokenSource();
                 CancellationToken token = source.Token;
-                await wsClient.ConnectAsync(uri, token);
-                Task task = ReadCallback();
+                await wsClient.ConnectAsync(uri, token).ConfigureAwait(true);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, this.Text);
-                connect.Enabled = setHeaders.Enabled = proxyButton.Enabled = true;
-                location.ReadOnly = false;
+                EnableDisable(true);
             }
         }
 
@@ -128,30 +154,43 @@ namespace Common
         {
             CancellationTokenSource source = new CancellationTokenSource();
             CancellationToken token = source.Token;
-            WebSocketReceiveResult result = await wsClient.ReceiveAsync(new ArraySegment<byte>(buffer), token);
-            if (result.Count > 0)
+            while(true)
             {
-                ShowReceivedData(buffer, result.Count, result.EndOfMessage);
+                WebSocketReceiveResult result;
+                try
+                {
+                     result = await wsClient
+                        .ReceiveAsync(new ArraySegment<byte>(buffer),token)
+                        .ConfigureAwait(true);
+                }
+                catch (ObjectDisposedException)
+                {
+                    return;
+                }
+                if (result.Count > 0)
+                {
+                    ShowReceivedData(buffer, result.Count, result.EndOfMessage);
+                }
+                if (wsClient.State != WebSocketState.Open)
+                {
+                    await CloseWebSocketClient().ConfigureAwait(true);
+                    if (wsClient.CloseStatus != WebSocketCloseStatus.NormalClosure)
+                        MessageBox.Show(string.Format("WebSocket closed due to {0}.",
+                            wsClient.CloseStatus), this.Text);
+                    return;
+                }
             }
-            if (wsClient.State != WebSocketState.Open)
-            {
-                await CloseWebSocketClient();
-                if (wsClient.CloseStatus != WebSocketCloseStatus.NormalClosure)
-                    MessageBox.Show(string.Format("WebSocket closed due to {0}.", 
-                        wsClient.CloseStatus), this.Text);
-                return;
-            }
-            Task task = ReadCallback();
         }
 
         private async void connect_Click(object sender, EventArgs e)
         {
-            await CreateWebSocketClient();
+            await CreateWebSocketClient().ConfigureAwait(true);
+            await ReadCallback().ConfigureAwait(true);
         }
 
         private async void closeButton_Click(object sender, EventArgs e)
         {
-            await CloseWebSocketClient();
+            await CloseWebSocketClient().ConfigureAwait(true);
         }
 
         private async Task CloseWebSocketClient()
@@ -160,11 +199,12 @@ namespace Common
             {
                 CancellationTokenSource source = new CancellationTokenSource();
                 CancellationToken token = source.Token;
-                await wsClient.CloseAsync(WebSocketCloseStatus.NormalClosure, "bye", token);
+                await wsClient
+                    .CloseAsync(WebSocketCloseStatus.NormalClosure, "bye", token)
+                    .ConfigureAwait(true);
+                status.Text = "WebSocket closed.";
+                EnableDisable(true);
             }
-            connect.Enabled = setHeaders.Enabled = proxyButton.Enabled = true;
-            location.ReadOnly = false;
-            status.Text = "WebSocket closed.";
         }
 
         private void setHeaders_Click(object sender, EventArgs e)
@@ -200,8 +240,16 @@ namespace Common
                 defaultValue, out value);
             if (result == DialogResult.OK)
             {
-                proxyUrl = value == null ? null : value.AbsoluteUri;
+                proxyUrl = value?.AbsoluteUri;
             }
+        }
+
+        private void EnableDisable(bool enable)
+        {
+            connect.Enabled = enable;
+            setHeaders.Enabled = enable;
+            proxyButton.Enabled = enable;
+            location.ReadOnly = !enable;
         }
     }
 }
