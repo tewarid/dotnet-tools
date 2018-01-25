@@ -10,10 +10,8 @@ namespace WebSocketSharpServerTool
 
         public ClientForm(ServiceBehavior client)
         {
-            if (client == null)
-                throw new Exception("Parameter client is required.");
-
-            this.client = client;
+            this.client = client ?? throw
+                new ArgumentNullException("Parameter client is required.");
             client.Message += Client_Message;
             client.Close += Client_Close;
 

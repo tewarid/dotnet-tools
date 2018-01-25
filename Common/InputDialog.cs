@@ -16,7 +16,8 @@ namespace Common
         {
             T inputValue = default(T);
             InputDialog dialog = new InputDialog();
-            dialog.Text = dialog.label.Text = label;
+            dialog.Text = label;
+            dialog.label.Text = label;
             dialog.value.Text = defaultValue;
             DialogResult result = DialogResult.None;
             dialog.ok.Click += (o, a) =>

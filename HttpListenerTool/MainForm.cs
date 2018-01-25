@@ -24,9 +24,7 @@ namespace HttpListenerTool
                 listener = new HttpListener();
                 listener.Prefixes.Add(uri.Text);
                 listener.Start();
-                start.Enabled = false;
-                stop.Enabled = true;
-                uri.ReadOnly = directory.ReadOnly = true;
+                EnableDisable(false);
                 while (listener.IsListening)
                 {
                     await ListenAsync();
@@ -143,9 +141,15 @@ namespace HttpListenerTool
         private void stop_Click(object sender, EventArgs e)
         {
             listener.Stop();
-            start.Enabled = true;
-            stop.Enabled = false;
-            uri.ReadOnly = directory.ReadOnly = false;
+            EnableDisable(true);
+        }
+
+        private void EnableDisable(bool enable)
+        {
+            start.Enabled = enable;
+            stop.Enabled = !enable;
+            uri.ReadOnly = !enable;
+            directory.ReadOnly = !enable;
         }
     }
 }
