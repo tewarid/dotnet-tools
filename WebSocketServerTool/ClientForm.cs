@@ -7,12 +7,14 @@ namespace WebSocketServerTool
 {
     public partial class ClientForm : Form
     {
-        private IClientContext context;
+        private readonly IClientContext context;
         private bool newMessage = true;
+        private static int id = 1;
 
         public ClientForm(IClientContext context)
         {
             InitializeComponent();
+            this.Text = $"Client {id++}";
             this.context = context;
             context.Message += Context_Message;
             context.Closed += Context_Closed;

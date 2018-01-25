@@ -145,7 +145,6 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "WebSocket Server Tool (Requires Windows 8 or better)";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

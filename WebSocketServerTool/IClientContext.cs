@@ -1,5 +1,4 @@
 ﻿using System.Net.WebSockets;
-using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 
 namespace WebSocketServerTool

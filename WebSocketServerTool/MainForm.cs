@@ -25,12 +25,12 @@ namespace WebSocketServerTool
         /// <param name="uri">A Uri.</param>
         /// <param name="subjectName">Subject name of certificate in certificate store.</param>
         /// <returns></returns>
-        private ServiceHost CreateServiceHost(Uri uri, string subjectName = null)
+        private ServiceHost CreateServiceHost(Uri uri)
         {
             CustomBinding binding = new CustomBinding();
             binding.Elements.Add(new ByteStreamMessageEncodingBindingElement());
 
-            string scheme = ValidateWsGetHttp(uri);
+            string scheme = GetHttpScheme(uri);
             HttpTransportBindingElement transport;
             ServiceCredentials behavior = null;
 
@@ -44,11 +44,9 @@ namespace WebSocketServerTool
                 transport = new HttpsTransportBindingElement();
                 scheme = Uri.UriSchemeHttps;
                 behavior = new ServiceCredentials();
-                behavior.ServiceCertificate.SetCertificate(StoreLocation.LocalMachine,
-                    StoreName.My, X509FindType.FindBySubjectName, subjectName);
             }
 
-            transport.WebSocketSettings = new WebSocketTransportSettings()
+            transport.WebSocketSettings = new WebSocketTransportSettings
             {
                 TransportUsage = WebSocketTransportUsage.Always,
                 CreateNotificationOnConnection = true
@@ -62,76 +60,89 @@ namespace WebSocketServerTool
                 Scheme = scheme
             };
 
-            ServiceEndpoint endpoint = newHost.AddServiceEndpoint(typeof(IService), 
+            newHost.AddServiceEndpoint(typeof(IService), 
                 binding, newUri.ToString());
 
             if (behavior != null)
+            {
                 newHost.Description.Behaviors.Add(behavior);
+            }
 
             newHost.Open();
 
             return newHost;
         }
 
-        private string ValidateWsGetHttp(Uri uri)
+        private static string GetHttpScheme(Uri uri)
         {
             string scheme;
-            if (uri.Scheme.Equals("ws", StringComparison.InvariantCultureIgnoreCase))
+            if (uri.Scheme.Equals("ws",
+                StringComparison.InvariantCultureIgnoreCase))
             {
                 scheme = Uri.UriSchemeHttp;
             }
-            else if (uri.Scheme.Equals("wss", StringComparison.InvariantCultureIgnoreCase))
+            else if (uri.Scheme.Equals("wss",
+                StringComparison.InvariantCultureIgnoreCase))
             {
                 scheme = Uri.UriSchemeHttps;
             }
             else
             {
-                throw new UriFormatException(string.Format("Scheme {0} is not supported. Try ws or wss.", uri.Scheme));
+                throw new ArgumentException(string
+                    .Format("Scheme {0} is not supported. Try ws or wss.",
+                    uri.Scheme));
             }
             return scheme;
         }
 
         private void start_Click(object sender, System.EventArgs e)
         {
-            if (host != null) return;
-
-            try
+            if (useWcf.Checked)
             {
-                if (useWcf.Checked)
+                if (host != null)
                 {
-                    host = CreateServiceHost(new Uri(url.Text), this.subjectName.Text);
+                    return;
                 }
-                else
+                try
                 {
-                    httpListener = CreateHttpListener(new Uri(url.Text), this.subjectName.Text);
+                    host = CreateServiceHost(new Uri(url.Text));
                 }
-                start.Enabled = false;
-                stop.Enabled = true;
-                subjectName.ReadOnly = true;
-                url.ReadOnly = true;
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
+                    return;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(this, ex.Message, this.Text);
-                if (host != null && host.State == CommunicationState.Opened)
+                if (httpListener != null)
                 {
-                    host.Close();
+                    return;
                 }
-                host = null;
+                try
+                {
+                    httpListener = CreateHttpListener(new Uri(url.Text));
+                }
+                catch (HttpListenerException ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
+                    return;
+                }
             }
+            EnableDisable(false);
         }
 
-        private HttpListener CreateHttpListener(Uri uri, string text)
+        private HttpListener CreateHttpListener(Uri uri)
         {
             HttpListener listener = new HttpListener();
-            string scheme = ValidateWsGetHttp(uri);
+            string scheme = GetHttpScheme(uri);
             UriBuilder newUri = new UriBuilder(uri)
             {
                 Scheme = scheme
             };
             listener.Prefixes.Add(newUri.ToString());
             listener.Start();
-            Task task = new Task(delegate ()
+            Task task = new Task(delegate
             {
                 while (true)
                 {
@@ -146,9 +157,10 @@ namespace WebSocketServerTool
                     }
                     if (listenerContext.Request.IsWebSocketRequest)
                     {
-                        Invoke(new MethodInvoker(delegate()
+                        Invoke(new MethodInvoker(delegate
                         {
-                            HttpListenerClientContext clientContext = new HttpListenerClientContext(listenerContext);
+                            HttpListenerClientContext clientContext =
+                                new HttpListenerClientContext(listenerContext);
                             ClientForm clientForm = new ClientForm(clientContext);
                             clientForm.Show();
                         }));
@@ -171,22 +183,20 @@ namespace WebSocketServerTool
                 host.Close();
                 host = null;
             }
-
-            if (httpListener != null)
+            else if (httpListener != null)
             {
                 httpListener.Close();
                 httpListener = null;
             }
-
-            start.Enabled = true;
-            stop.Enabled = false;
-            subjectName.ReadOnly = false;
-            url.ReadOnly = false;
+            EnableDisable(true);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void EnableDisable(bool enable)
         {
-
+            start.Enabled = enable;
+            stop.Enabled = !enable;
+            subjectName.ReadOnly = !enable;
+            url.ReadOnly = !enable;
         }
     }
 }

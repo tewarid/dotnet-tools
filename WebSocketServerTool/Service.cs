@@ -10,7 +10,7 @@ namespace WebSocketServerTool
     class Service : IService
     {
         public const string webSocketMessageProperty = "WebSocketMessageProperty";
-        ConcurrentDictionary<IChannel, WcfClientContext> callbacks = 
+        private readonly ConcurrentDictionary<IChannel, WcfClientContext> callbacks = 
             new ConcurrentDictionary<IChannel, WcfClientContext>();
 
         public async Task Send(Message message)
@@ -45,7 +45,8 @@ namespace WebSocketServerTool
                 (WebSocketMessageProperty)message.Properties[webSocketMessageProperty];
 
             await context.Receive(body, body.Length, property == null ? 
-                WebSocketMessageType.Binary : property.MessageType, true);
+                WebSocketMessageType.Binary : property.MessageType, true)
+                .ConfigureAwait(true);
         }
     }
 }

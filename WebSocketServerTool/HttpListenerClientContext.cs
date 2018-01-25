@@ -20,7 +20,7 @@ namespace WebSocketServerTool
             Start();
         }
 
-        private async void Start()
+        private async Task Start()
         {
             byte[] buffer = new byte[100];
             wsContext = await listenerContext.AcceptWebSocketAsync(null, TimeSpan.FromSeconds(30));

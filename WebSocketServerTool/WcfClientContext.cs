@@ -22,10 +22,10 @@ namespace WebSocketServerTool
             this.callback = callback;
 
             IChannel channel = (IChannel)callback;
-            channel.Faulted += delegate (object sender, EventArgs e)
+            channel.Faulted += delegate
             {
             };
-            channel.Closed += delegate (object sender, EventArgs e)
+            channel.Closed += delegate
             {
                 Closed?.Invoke();
                 Message = null;
@@ -37,13 +37,16 @@ namespace WebSocketServerTool
         {
             IChannel channel = (IChannel)callback;
             if (channel.State == CommunicationState.Opened)
+            {
                 callback.Callback(CreateMessage(message, type));
+            }
         }
 
-        private Message CreateMessage(byte[] message,
+        private static Message CreateMessage(byte[] message,
             WebSocketMessageType type = WebSocketMessageType.Binary)
         {
-            Message channelMessage = ByteStreamMessage.CreateMessage(new ArraySegment<byte>(message));
+            Message channelMessage = 
+                ByteStreamMessage.CreateMessage(new ArraySegment<byte>(message));
 
             channelMessage.Properties[Service.webSocketMessageProperty] =
                 new WebSocketMessageProperty { MessageType = type };
@@ -51,7 +54,8 @@ namespace WebSocketServerTool
             return channelMessage;
         }
 
-        public async Task Receive(byte[] message, int length, WebSocketMessageType type, bool lastMessage)
+        public async Task Receive(byte[] message, int length,
+            WebSocketMessageType type, bool lastMessage)
         {
             if (length == 0)
             {
@@ -63,7 +67,7 @@ namespace WebSocketServerTool
             await Task.Run(delegate ()
             {
                 Message?.Invoke(message, length, type, lastMessage);
-            });
+            }).ConfigureAwait(true);
         }
 
         public void Close()
