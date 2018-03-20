@@ -11,6 +11,7 @@ namespace HttpListenerTool
     public partial class MainForm : Form
     {
         private HttpListener listener;
+        private Uri prefix;
 
         public MainForm()
         {
@@ -22,6 +23,7 @@ namespace HttpListenerTool
             try
             {
                 listener = new HttpListener();
+                prefix = new Uri(uri.Text);
                 listener.Prefixes.Add(uri.Text);
                 listener.Start();
                 EnableDisable(false);
@@ -66,7 +68,8 @@ namespace HttpListenerTool
         {
             HttpListenerRequest request = context.Request;
             HttpListenerResponse response = context.Response;
-            string path = GetAbsoluteLocalPath(request.Url.LocalPath.Substring(1));
+
+            string path = GetAbsoluteLocalPath(prefix.MakeRelativeUri(request.Url).ToString());
             string file;
             if (File.Exists(path))
             {
