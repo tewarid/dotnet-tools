@@ -1,0 +1,10 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:echo="http://echo" xmlns:alt="http://alternate">
+   <soapenv:Header>
+      <echo:SessionId>?</echo:SessionId>
+   </soapenv:Header>
+   <soapenv:Body>
+     <echo:Echo>
+       <alt:message>?</alt:message>
+     </echo:Echo>
+   </soapenv:Body>
+</soapenv:Envelope>

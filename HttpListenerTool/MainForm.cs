@@ -66,8 +66,7 @@ namespace HttpListenerTool
 
         private void SendResponse(HttpListenerContext context)
         {
-            string relativePath = prefix.MakeRelativeUri(context.Request.Url).ToString();
-            string path = GetAbsoluteLocalPath(relativePath);
+            string path = GetAbsoluteLocalPath(context.Request);
             if (File.Exists(path))
             {
                 ProcessFile(context.Request, context.Response, path);
@@ -133,8 +132,9 @@ namespace HttpListenerTool
             return filename;
         }
 
-        private string GetAbsoluteLocalPath(string localPath)
+        private string GetAbsoluteLocalPath(HttpListenerRequest request)
         {
+            string localPath = prefix.MakeRelativeUri(request.Url).ToString();
             string path = string.Empty;
             if (Path.IsPathRooted(directory.Text))
             {
@@ -143,6 +143,19 @@ namespace HttpListenerTool
             else
             {
                 path = Path.Combine(Environment.CurrentDirectory + Path.DirectorySeparatorChar, directory.Text, localPath);
+            }
+            if (!string.IsNullOrWhiteSpace(headers.Text))
+            {
+                string [] headerArray = headers.Text.Split(new[] { ' ' },
+                    StringSplitOptions.RemoveEmptyEntries);
+                foreach(string header in headerArray)
+                {
+                    string value = request.Headers[header];
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        path = Path.Combine(path, value.Replace("\"", ""));
+                    }
+                }
             }
             return path;
         }

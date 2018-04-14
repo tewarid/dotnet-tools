@@ -81,6 +81,7 @@ Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket
 * [Hercules SETUP utility](http://www.hw-group.com/products/hercules/index_en.html)
 * netstat
 * [ncat](https://nmap.org/ncat/)
+* [SoapUI](https://www.soapui.org/)
 * [Sysinternals Suite](https://technet.microsoft.com/en-us/sysinternals/bb842062)
   * TCP View
 * tcpdump

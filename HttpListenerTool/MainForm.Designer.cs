@@ -42,6 +42,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.browse = new System.Windows.Forms.Button();
             this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
+            this.headers = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // uri
@@ -83,7 +85,7 @@
             // 
             // directory
             // 
-            this.directory.Location = new System.Drawing.Point(15, 231);
+            this.directory.Location = new System.Drawing.Point(15, 253);
             this.directory.Name = "directory";
             this.directory.Size = new System.Drawing.Size(375, 20);
             this.directory.TabIndex = 7;
@@ -92,11 +94,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 214);
+            this.label1.Location = new System.Drawing.Point(15, 236);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 13);
+            this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 20;
-            this.label1.Text = "Content Directory";
+            this.label1.Text = "Content Folder";
             // 
             // stop
             // 
@@ -122,28 +124,28 @@
             // certificateAuth
             // 
             this.certificateAuth.AutoSize = true;
-            this.certificateAuth.Location = new System.Drawing.Point(15, 257);
+            this.certificateAuth.Location = new System.Drawing.Point(18, 216);
             this.certificateAuth.Name = "certificateAuth";
-            this.certificateAuth.Size = new System.Drawing.Size(145, 17);
-            this.certificateAuth.TabIndex = 9;
-            this.certificateAuth.Text = "Request Client Certificate";
+            this.certificateAuth.Size = new System.Drawing.Size(212, 17);
+            this.certificateAuth.TabIndex = 10;
+            this.certificateAuth.Text = "Request Client Certificate (HTTPS only)";
             this.certificateAuth.UseVisualStyleBackColor = true;
             // 
             // log
             // 
-            this.log.Location = new System.Drawing.Point(15, 294);
+            this.log.Location = new System.Drawing.Point(15, 332);
             this.log.Multiline = true;
             this.log.Name = "log";
             this.log.ReadOnly = true;
             this.log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.log.Size = new System.Drawing.Size(456, 163);
+            this.log.Size = new System.Drawing.Size(456, 125);
             this.log.TabIndex = 11;
             this.log.WordWrap = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 278);
+            this.label5.Location = new System.Drawing.Point(15, 316);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(25, 13);
             this.label5.TabIndex = 27;
@@ -151,7 +153,7 @@
             // 
             // browse
             // 
-            this.browse.Location = new System.Drawing.Point(396, 229);
+            this.browse.Location = new System.Drawing.Point(396, 251);
             this.browse.Name = "browse";
             this.browse.Size = new System.Drawing.Size(75, 23);
             this.browse.TabIndex = 8;
@@ -159,11 +161,31 @@
             this.browse.UseVisualStyleBackColor = true;
             this.browse.Click += new System.EventHandler(this.browse_Click);
             // 
+            // headers
+            // 
+            this.headers.Location = new System.Drawing.Point(15, 292);
+            this.headers.Name = "headers";
+            this.headers.Size = new System.Drawing.Size(375, 20);
+            this.headers.TabIndex = 9;
+            this.headers.Text = "SOAPAction";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 276);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(437, 13);
+            this.label3.TabIndex = 29;
+            this.label3.Text = "Add value of HTTP headers to content folder path (use space to separate multiple " +
+    "headers)";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(483, 501);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.headers);
             this.Controls.Add(this.browse);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.log);
@@ -200,6 +222,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button browse;
         private System.Windows.Forms.FolderBrowserDialog folderBrowser;
+        private System.Windows.Forms.TextBox headers;
+        private System.Windows.Forms.Label label3;
     }
 }
 

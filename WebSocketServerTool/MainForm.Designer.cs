@@ -38,11 +38,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.stop = new System.Windows.Forms.Button();
             this.useWcf = new System.Windows.Forms.CheckBox();
+            this.certificateAuth = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(313, 332);
+            this.start.Location = new System.Drawing.Point(313, 357);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(75, 23);
             this.start.TabIndex = 9;
@@ -107,7 +108,7 @@
             // stop
             // 
             this.stop.Enabled = false;
-            this.stop.Location = new System.Drawing.Point(394, 332);
+            this.stop.Location = new System.Drawing.Point(394, 357);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(75, 23);
             this.stop.TabIndex = 10;
@@ -125,12 +126,23 @@
             this.useWcf.Text = "Use self-hosted WCF service (defaults to System.Net.HttpListener)";
             this.useWcf.UseVisualStyleBackColor = true;
             // 
+            // certificateAuth
+            // 
+            this.certificateAuth.AutoSize = true;
+            this.certificateAuth.Location = new System.Drawing.Point(15, 333);
+            this.certificateAuth.Name = "certificateAuth";
+            this.certificateAuth.Size = new System.Drawing.Size(145, 17);
+            this.certificateAuth.TabIndex = 9;
+            this.certificateAuth.Text = "Request Client Certificate";
+            this.certificateAuth.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.start;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 367);
+            this.ClientSize = new System.Drawing.Size(484, 392);
+            this.Controls.Add(this.certificateAuth);
             this.Controls.Add(this.useWcf);
             this.Controls.Add(this.stop);
             this.Controls.Add(this.url);
@@ -161,6 +173,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button stop;
         private System.Windows.Forms.CheckBox useWcf;
+        private System.Windows.Forms.CheckBox certificateAuth;
     }
 }
 
