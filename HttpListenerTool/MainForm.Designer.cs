@@ -40,6 +40,8 @@
             this.certificateAuth = new System.Windows.Forms.CheckBox();
             this.log = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.browse = new System.Windows.Forms.Button();
+            this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
             // uri
@@ -83,7 +85,7 @@
             // 
             this.directory.Location = new System.Drawing.Point(15, 231);
             this.directory.Name = "directory";
-            this.directory.Size = new System.Drawing.Size(457, 20);
+            this.directory.Size = new System.Drawing.Size(375, 20);
             this.directory.TabIndex = 7;
             this.directory.Text = "www";
             // 
@@ -147,11 +149,22 @@
             this.label5.TabIndex = 27;
             this.label5.Text = "Log";
             // 
+            // browse
+            // 
+            this.browse.Location = new System.Drawing.Point(396, 229);
+            this.browse.Name = "browse";
+            this.browse.Size = new System.Drawing.Size(75, 23);
+            this.browse.TabIndex = 8;
+            this.browse.Text = "Browse...";
+            this.browse.UseVisualStyleBackColor = true;
+            this.browse.Click += new System.EventHandler(this.browse_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(483, 501);
+            this.Controls.Add(this.browse);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.log);
             this.Controls.Add(this.certificateAuth);
@@ -185,6 +198,8 @@
         private System.Windows.Forms.CheckBox certificateAuth;
         private System.Windows.Forms.TextBox log;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button browse;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowser;
     }
 }
 

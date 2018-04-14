@@ -66,48 +66,60 @@ namespace HttpListenerTool
 
         private void SendResponse(HttpListenerContext context)
         {
-            HttpListenerRequest request = context.Request;
-            HttpListenerResponse response = context.Response;
-
-            string path = GetAbsoluteLocalPath(prefix.MakeRelativeUri(request.Url).ToString());
-            string file;
+            string relativePath = prefix.MakeRelativeUri(context.Request.Url).ToString();
+            string path = GetAbsoluteLocalPath(relativePath);
             if (File.Exists(path))
             {
-                file = path;
+                ProcessFile(context.Request, context.Response, path);
             }
             else
             {
-                file = GetFirstFile(path);
-                if (string.IsNullOrEmpty(file))
+                ProcessDirectory(context.Request, context.Response, path);
+            }
+            context.Response.Close();
+        }
+
+        private void ProcessFile(HttpListenerRequest request, HttpListenerResponse response, string file)
+        {
+            string mimeType = MimeTypeMap.GetMimeType(Path.GetExtension(file));
+            response.ContentType = mimeType;
+            if (request.HttpMethod != "HEAD")
+            {
+                byte[] data = File.ReadAllBytes(file);
+                response.OutputStream.Write(data, 0, data.Length);
+            }
+        }
+
+        private void ProcessDirectory(HttpListenerRequest request, HttpListenerResponse response, string file)
+        {
+            string statusFile = GetFirstFile(file);
+            if (string.IsNullOrEmpty(statusFile))
+            {
+                response.StatusCode = (int)HttpStatusCode.NotFound;
+            }
+            else
+            {
+                string statusCodeString = Path.GetFileNameWithoutExtension(statusFile);
+                int statusCode;
+                if (int.TryParse(statusCodeString, out statusCode))
+                {
+                    response.StatusCode = statusCode;
+                    switch (statusCode)
+                    {
+                        case 302:
+                            string[] location = File.ReadAllLines(statusFile);
+                            response.AddHeader("Location", location.Length > 0 ? location[0] : string.Empty);
+                            break;
+                        default:
+                            ProcessFile(request, response, statusFile);
+                            break;
+                    }
+                }
+                else
                 {
                     response.StatusCode = (int)HttpStatusCode.NotFound;
-                    response.Close();
-                    return;
                 }
             }
-            string statusCodeString = Path.GetFileNameWithoutExtension(file);
-            int statusCode;
-            if (int.TryParse(statusCodeString, out statusCode))
-            {
-                response.StatusCode = statusCode;
-            }
-            switch (statusCode)
-            {
-                case 302:
-                    string [] location = File.ReadAllLines(file);
-                    response.AddHeader("Location", location.Length > 0 ? location[0] : string.Empty);
-                    break;
-                default:
-                    string mimeType = MimeTypeMap.GetMimeType(Path.GetExtension(file));
-                    response.ContentType = mimeType;
-                    if (request.HttpMethod != "HEAD")
-                    {
-                        byte[] data = File.ReadAllBytes(file);
-                        response.OutputStream.Write(data, 0, data.Length);
-                    }
-                    break;
-            }
-            response.Close();
         }
 
         private string GetFirstFile(string path)
@@ -130,7 +142,7 @@ namespace HttpListenerTool
             }
             else
             {
-                path = Path.Combine(Environment.CurrentDirectory, directory.Text, localPath);
+                path = Path.Combine(Environment.CurrentDirectory + Path.DirectorySeparatorChar, directory.Text, localPath);
             }
             return path;
         }
@@ -152,7 +164,21 @@ namespace HttpListenerTool
             start.Enabled = enable;
             stop.Enabled = !enable;
             uri.ReadOnly = !enable;
-            directory.ReadOnly = !enable;
+        }
+
+        private void browse_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(folderBrowser.SelectedPath))
+            {
+                folderBrowser.SelectedPath = Environment.CurrentDirectory;
+            }
+            DialogResult result = folderBrowser.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                Uri selectedPathUri = new Uri(folderBrowser.SelectedPath);
+                Uri cwdUri = new Uri(Environment.CurrentDirectory + Path.DirectorySeparatorChar);
+                directory.Text = cwdUri.MakeRelativeUri(selectedPathUri).ToString();
+            }
         }
     }
 }
