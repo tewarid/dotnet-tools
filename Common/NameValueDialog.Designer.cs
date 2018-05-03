@@ -28,46 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.headers = new System.Windows.Forms.DataGridView();
-            this.headerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.headerValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.done = new System.Windows.Forms.Button();
             this.remove = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.headers)).BeginInit();
+            this.headers = new NetTools.Common.NameValueGrid();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SuspendLayout();
-            // 
-            // headers
-            // 
-            this.headers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.headers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.headers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.headerName,
-            this.headerValue});
-            this.headers.Location = new System.Drawing.Point(2, 1);
-            this.headers.MultiSelect = false;
-            this.headers.Name = "headers";
-            this.headers.Size = new System.Drawing.Size(394, 218);
-            this.headers.TabIndex = 0;
-            // 
-            // headerName
-            // 
-            this.headerName.HeaderText = "Name";
-            this.headerName.Name = "headerName";
-            // 
-            // headerValue
-            // 
-            this.headerValue.HeaderText = "Value";
-            this.headerValue.Name = "headerValue";
-            this.headerValue.Width = 200;
             // 
             // done
             // 
             this.done.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.done.Location = new System.Drawing.Point(317, 226);
+            this.done.Location = new System.Drawing.Point(423, 278);
+            this.done.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.done.Name = "done";
-            this.done.Size = new System.Drawing.Size(75, 23);
+            this.done.Size = new System.Drawing.Size(100, 23);
             this.done.TabIndex = 2;
             this.done.Text = "Done";
             this.done.UseVisualStyleBackColor = true;
@@ -76,9 +50,10 @@
             // remove
             // 
             this.remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.remove.Location = new System.Drawing.Point(236, 226);
+            this.remove.Location = new System.Drawing.Point(315, 278);
+            this.remove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.remove.Name = "remove";
-            this.remove.Size = new System.Drawing.Size(75, 23);
+            this.remove.Size = new System.Drawing.Size(100, 23);
             this.remove.TabIndex = 1;
             this.remove.Text = "Remove";
             this.remove.UseVisualStyleBackColor = true;
@@ -86,13 +61,14 @@
             // 
             // NameValueDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 254);
+            this.ClientSize = new System.Drawing.Size(532, 313);
+            this.Controls.Add(this.headers);
             this.Controls.Add(this.remove);
             this.Controls.Add(this.done);
-            this.Controls.Add(this.headers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NameValueDialog";
@@ -100,17 +76,14 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Name Value Dialog";
-            ((System.ComponentModel.ISupportInitialize)(this.headers)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView headers;
         private System.Windows.Forms.Button done;
         private System.Windows.Forms.Button remove;
-        private System.Windows.Forms.DataGridViewTextBoxColumn headerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn headerValue;
+        private NetTools.Common.NameValueGrid headers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

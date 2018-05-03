@@ -53,9 +53,10 @@
             // start
             // 
             this.start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.start.Location = new System.Drawing.Point(456, 406);
+            this.start.Location = new System.Drawing.Point(607, 507);
+            this.start.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.start.Name = "start";
-            this.start.Size = new System.Drawing.Size(75, 23);
+            this.start.Size = new System.Drawing.Size(100, 23);
             this.start.TabIndex = 7;
             this.start.Text = "Start";
             this.start.UseVisualStyleBackColor = true;
@@ -64,18 +65,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(17, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(251, 13);
+            this.label1.Size = new System.Drawing.Size(332, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "This server echoes back whatever data is sent to it.";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 35);
+            this.label2.Location = new System.Drawing.Point(17, 43);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(371, 13);
+            this.label2.Size = new System.Drawing.Size(489, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "For wss:// scheme, create and initialize service\'s X509 certificate as follows..." +
     "";
@@ -86,12 +89,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(16, 51);
+            this.textBox1.Location = new System.Drawing.Point(21, 63);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(596, 106);
+            this.textBox1.Size = new System.Drawing.Size(794, 130);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
@@ -99,27 +103,30 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 238);
+            this.label3.Location = new System.Drawing.Point(19, 293);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 13);
+            this.label3.Size = new System.Drawing.Size(198, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Thumbprint of X509 certificate";
             // 
             // thumbprint
             // 
             this.thumbprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.thumbprint.Location = new System.Drawing.Point(14, 254);
+            this.thumbprint.Location = new System.Drawing.Point(19, 313);
+            this.thumbprint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.thumbprint.Name = "thumbprint";
-            this.thumbprint.Size = new System.Drawing.Size(310, 20);
+            this.thumbprint.Size = new System.Drawing.Size(412, 22);
             this.thumbprint.TabIndex = 2;
             this.thumbprint.Text = "3228f47d6f0a56c47f62d96b9d0e8580049389a0";
             // 
             // url
             // 
             this.url.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.url.Location = new System.Drawing.Point(14, 377);
+            this.url.Location = new System.Drawing.Point(19, 464);
+            this.url.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.url.Name = "url";
-            this.url.Size = new System.Drawing.Size(598, 20);
+            this.url.Size = new System.Drawing.Size(796, 22);
             this.url.TabIndex = 6;
             this.url.Text = "wss://localhost:8088";
             // 
@@ -127,9 +134,10 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 361);
+            this.label4.Location = new System.Drawing.Point(19, 444);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.Size = new System.Drawing.Size(87, 17);
             this.label4.TabIndex = 6;
             this.label4.Text = "Service URL";
             // 
@@ -137,9 +145,10 @@
             // 
             this.stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.stop.Enabled = false;
-            this.stop.Location = new System.Drawing.Point(537, 406);
+            this.stop.Location = new System.Drawing.Point(715, 507);
+            this.stop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.stop.Name = "stop";
-            this.stop.Size = new System.Drawing.Size(75, 23);
+            this.stop.Size = new System.Drawing.Size(100, 23);
             this.stop.TabIndex = 8;
             this.stop.Text = "Stop";
             this.stop.UseVisualStyleBackColor = true;
@@ -151,9 +160,11 @@
             this.privateKeyOption.Controls.Add(this.pfxFileOption);
             this.privateKeyOption.Controls.Add(this.keystoreOption);
             this.privateKeyOption.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.privateKeyOption.Location = new System.Drawing.Point(17, 163);
+            this.privateKeyOption.Location = new System.Drawing.Point(23, 201);
+            this.privateKeyOption.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.privateKeyOption.Name = "privateKeyOption";
-            this.privateKeyOption.Size = new System.Drawing.Size(307, 65);
+            this.privateKeyOption.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.privateKeyOption.Size = new System.Drawing.Size(409, 80);
             this.privateKeyOption.TabIndex = 0;
             this.privateKeyOption.TabStop = false;
             this.privateKeyOption.Text = "Private Key";
@@ -161,9 +172,10 @@
             // pfxFileOption
             // 
             this.pfxFileOption.AutoSize = true;
-            this.pfxFileOption.Location = new System.Drawing.Point(8, 39);
+            this.pfxFileOption.Location = new System.Drawing.Point(11, 48);
+            this.pfxFileOption.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pfxFileOption.Name = "pfxFileOption";
-            this.pfxFileOption.Size = new System.Drawing.Size(64, 17);
+            this.pfxFileOption.Size = new System.Drawing.Size(81, 21);
             this.pfxFileOption.TabIndex = 1;
             this.pfxFileOption.Text = "PFX File";
             this.pfxFileOption.UseVisualStyleBackColor = true;
@@ -173,9 +185,10 @@
             // 
             this.keystoreOption.AutoSize = true;
             this.keystoreOption.Checked = true;
-            this.keystoreOption.Location = new System.Drawing.Point(7, 16);
+            this.keystoreOption.Location = new System.Drawing.Point(9, 20);
+            this.keystoreOption.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.keystoreOption.Name = "keystoreOption";
-            this.keystoreOption.Size = new System.Drawing.Size(269, 17);
+            this.keystoreOption.Size = new System.Drawing.Size(358, 21);
             this.keystoreOption.TabIndex = 0;
             this.keystoreOption.TabStop = true;
             this.keystoreOption.Text = "Use Keystore (Windows only, may require elevation)";
@@ -185,9 +198,10 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 279);
+            this.label5.Location = new System.Drawing.Point(19, 343);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.Size = new System.Drawing.Size(88, 17);
             this.label5.TabIndex = 11;
             this.label5.Text = "PFX file path";
             // 
@@ -196,10 +210,11 @@
             this.pfxPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pfxPath.Enabled = false;
-            this.pfxPath.Location = new System.Drawing.Point(14, 295);
+            this.pfxPath.Location = new System.Drawing.Point(19, 363);
+            this.pfxPath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pfxPath.Name = "pfxPath";
             this.pfxPath.ReadOnly = true;
-            this.pfxPath.Size = new System.Drawing.Size(517, 20);
+            this.pfxPath.Size = new System.Drawing.Size(688, 22);
             this.pfxPath.TabIndex = 3;
             this.pfxPath.Text = "mycompany.pfx";
             // 
@@ -207,9 +222,10 @@
             // 
             this.browseForPfx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.browseForPfx.Enabled = false;
-            this.browseForPfx.Location = new System.Drawing.Point(537, 292);
+            this.browseForPfx.Location = new System.Drawing.Point(716, 363);
+            this.browseForPfx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.browseForPfx.Name = "browseForPfx";
-            this.browseForPfx.Size = new System.Drawing.Size(75, 23);
+            this.browseForPfx.Size = new System.Drawing.Size(100, 23);
             this.browseForPfx.TabIndex = 4;
             this.browseForPfx.Text = "Browse...";
             this.browseForPfx.UseVisualStyleBackColor = true;
@@ -225,9 +241,10 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 320);
+            this.label6.Location = new System.Drawing.Point(19, 394);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 13);
+            this.label6.Size = new System.Drawing.Size(98, 17);
             this.label6.TabIndex = 14;
             this.label6.Text = "PFX password";
             // 
@@ -235,18 +252,19 @@
             // 
             this.pfxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pfxPassword.Enabled = false;
-            this.pfxPassword.Location = new System.Drawing.Point(14, 336);
+            this.pfxPassword.Location = new System.Drawing.Point(19, 414);
+            this.pfxPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pfxPassword.Name = "pfxPassword";
             this.pfxPassword.PasswordChar = '*';
-            this.pfxPassword.Size = new System.Drawing.Size(107, 20);
+            this.pfxPassword.Size = new System.Drawing.Size(141, 22);
             this.pfxPassword.TabIndex = 5;
             // 
             // MainForm
             // 
             this.AcceptButton = this.start;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 441);
+            this.ClientSize = new System.Drawing.Size(832, 543);
             this.Controls.Add(this.pfxPassword);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.browseForPfx);
@@ -263,7 +281,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.start);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(480, 480);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(634, 580);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WebSocketSharp Server Tool";

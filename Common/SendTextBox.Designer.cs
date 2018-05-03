@@ -42,9 +42,11 @@
             // 
             this.inputInHex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(3, 312);
+            this.inputInHex.Location = new System.Drawing.Point(4, 384);
+            this.inputInHex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.inputInHex.MinimumSize = new System.Drawing.Size(363, 21);
             this.inputInHex.Name = "inputInHex";
-            this.inputInHex.Size = new System.Drawing.Size(277, 17);
+            this.inputInHex.Size = new System.Drawing.Size(363, 21);
             this.inputInHex.TabIndex = 1;
             this.inputInHex.Text = "Send binary, text is hexadecimal ASCII (e.g. BE 0xad)";
             this.inputInHex.UseVisualStyleBackColor = true;
@@ -53,9 +55,10 @@
             // inputTextLabel
             // 
             this.inputTextLabel.AutoSize = true;
-            this.inputTextLabel.Location = new System.Drawing.Point(3, 0);
+            this.inputTextLabel.Location = new System.Drawing.Point(4, 0);
+            this.inputTextLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.inputTextLabel.Name = "inputTextLabel";
-            this.inputTextLabel.Size = new System.Drawing.Size(105, 13);
+            this.inputTextLabel.Size = new System.Drawing.Size(140, 17);
             this.inputTextLabel.TabIndex = 21;
             this.inputTextLabel.Text = "Text to send (UTF-8)";
             // 
@@ -65,9 +68,12 @@
             this.endOfLine.Controls.Add(this.endOfLineUnix);
             this.endOfLine.Controls.Add(this.endOfLineDos);
             this.endOfLine.Controls.Add(this.endOfLineMac);
-            this.endOfLine.Location = new System.Drawing.Point(3, 335);
+            this.endOfLine.Location = new System.Drawing.Point(4, 412);
+            this.endOfLine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.endOfLine.MinimumSize = new System.Drawing.Size(329, 55);
             this.endOfLine.Name = "endOfLine";
-            this.endOfLine.Size = new System.Drawing.Size(247, 45);
+            this.endOfLine.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.endOfLine.Size = new System.Drawing.Size(329, 55);
             this.endOfLine.TabIndex = 2;
             this.endOfLine.TabStop = false;
             this.endOfLine.Text = "End of Line";
@@ -75,9 +81,10 @@
             // endOfLineUnix
             // 
             this.endOfLineUnix.AutoSize = true;
-            this.endOfLineUnix.Location = new System.Drawing.Point(174, 19);
+            this.endOfLineUnix.Location = new System.Drawing.Point(232, 23);
+            this.endOfLineUnix.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.endOfLineUnix.Name = "endOfLineUnix";
-            this.endOfLineUnix.Size = new System.Drawing.Size(67, 17);
+            this.endOfLineUnix.Size = new System.Drawing.Size(86, 21);
             this.endOfLineUnix.TabIndex = 2;
             this.endOfLineUnix.Text = "Unix (LF)";
             this.endOfLineUnix.UseVisualStyleBackColor = true;
@@ -86,9 +93,10 @@
             // 
             this.endOfLineDos.AutoSize = true;
             this.endOfLineDos.Checked = true;
-            this.endOfLineDos.Location = new System.Drawing.Point(6, 19);
+            this.endOfLineDos.Location = new System.Drawing.Point(8, 23);
+            this.endOfLineDos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.endOfLineDos.Name = "endOfLineDos";
-            this.endOfLineDos.Size = new System.Drawing.Size(87, 17);
+            this.endOfLineDos.Size = new System.Drawing.Size(113, 21);
             this.endOfLineDos.TabIndex = 2;
             this.endOfLineDos.TabStop = true;
             this.endOfLineDos.Text = "DOS (CR-LF)";
@@ -97,9 +105,10 @@
             // endOfLineMac
             // 
             this.endOfLineMac.AutoSize = true;
-            this.endOfLineMac.Location = new System.Drawing.Point(96, 19);
+            this.endOfLineMac.Location = new System.Drawing.Point(128, 23);
+            this.endOfLineMac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.endOfLineMac.Name = "endOfLineMac";
-            this.endOfLineMac.Size = new System.Drawing.Size(72, 17);
+            this.endOfLineMac.Size = new System.Drawing.Size(91, 21);
             this.endOfLineMac.TabIndex = 2;
             this.endOfLineMac.Text = "MAC (CR)";
             this.endOfLineMac.UseVisualStyleBackColor = true;
@@ -113,26 +122,27 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.inputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputText.HideSelection = false;
-            this.inputText.Location = new System.Drawing.Point(3, 16);
+            this.inputText.Location = new System.Drawing.Point(4, 20);
+            this.inputText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.inputText.MaxLength = 1000000;
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputText.Size = new System.Drawing.Size(402, 290);
+            this.inputText.Size = new System.Drawing.Size(535, 356);
             this.inputText.TabIndex = 0;
             this.inputText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputText_KeyPress);
             // 
             // SendTextBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.inputTextLabel);
             this.Controls.Add(this.inputText);
             this.Controls.Add(this.inputInHex);
             this.Controls.Add(this.endOfLine);
-            this.MinimumSize = new System.Drawing.Size(280, 130);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "SendTextBox";
-            this.Size = new System.Drawing.Size(407, 382);
+            this.Size = new System.Drawing.Size(543, 470);
             this.endOfLine.ResumeLayout(false);
             this.endOfLine.PerformLayout();
             this.ResumeLayout(false);

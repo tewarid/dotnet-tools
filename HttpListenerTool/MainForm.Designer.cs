@@ -48,64 +48,76 @@
             // 
             // uri
             // 
-            this.uri.Location = new System.Drawing.Point(15, 191);
+            this.uri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uri.Location = new System.Drawing.Point(20, 235);
+            this.uri.Margin = new System.Windows.Forms.Padding(4);
             this.uri.Name = "uri";
-            this.uri.Size = new System.Drawing.Size(457, 20);
+            this.uri.Size = new System.Drawing.Size(608, 22);
             this.uri.TabIndex = 5;
             this.uri.Text = "https://localhost:8088/";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 174);
+            this.label4.Location = new System.Drawing.Point(20, 214);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.Size = new System.Drawing.Size(70, 17);
             this.label4.TabIndex = 18;
             this.label4.Text = "Prefix URI";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 25);
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(20, 31);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(456, 146);
+            this.textBox1.Size = new System.Drawing.Size(607, 179);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Location = new System.Drawing.Point(16, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(292, 13);
+            this.label2.Size = new System.Drawing.Size(388, 17);
             this.label2.TabIndex = 14;
             this.label2.Text = "For HTTPS, create and initialize X509 certificate as follows...";
             // 
             // directory
             // 
-            this.directory.Location = new System.Drawing.Point(15, 253);
+            this.directory.Location = new System.Drawing.Point(20, 311);
+            this.directory.Margin = new System.Windows.Forms.Padding(4);
             this.directory.Name = "directory";
-            this.directory.Size = new System.Drawing.Size(375, 20);
+            this.directory.Size = new System.Drawing.Size(499, 22);
             this.directory.TabIndex = 7;
             this.directory.Text = "www";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 236);
+            this.label1.Location = new System.Drawing.Point(20, 290);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.Size = new System.Drawing.Size(101, 17);
             this.label1.TabIndex = 20;
             this.label1.Text = "Content Folder";
             // 
             // stop
             // 
+            this.stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.stop.Enabled = false;
-            this.stop.Location = new System.Drawing.Point(397, 466);
+            this.stop.Location = new System.Drawing.Point(529, 574);
+            this.stop.Margin = new System.Windows.Forms.Padding(4);
             this.stop.Name = "stop";
-            this.stop.Size = new System.Drawing.Size(75, 23);
+            this.stop.Size = new System.Drawing.Size(100, 28);
             this.stop.TabIndex = 24;
             this.stop.Text = "Stop";
             this.stop.UseVisualStyleBackColor = true;
@@ -113,9 +125,11 @@
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(316, 466);
+            this.start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.start.Location = new System.Drawing.Point(421, 574);
+            this.start.Margin = new System.Windows.Forms.Padding(4);
             this.start.Name = "start";
-            this.start.Size = new System.Drawing.Size(75, 23);
+            this.start.Size = new System.Drawing.Size(100, 28);
             this.start.TabIndex = 23;
             this.start.Text = "Start";
             this.start.UseVisualStyleBackColor = true;
@@ -124,38 +138,45 @@
             // certificateAuth
             // 
             this.certificateAuth.AutoSize = true;
-            this.certificateAuth.Location = new System.Drawing.Point(18, 216);
+            this.certificateAuth.Location = new System.Drawing.Point(24, 266);
+            this.certificateAuth.Margin = new System.Windows.Forms.Padding(4);
             this.certificateAuth.Name = "certificateAuth";
-            this.certificateAuth.Size = new System.Drawing.Size(212, 17);
+            this.certificateAuth.Size = new System.Drawing.Size(279, 21);
             this.certificateAuth.TabIndex = 10;
             this.certificateAuth.Text = "Request Client Certificate (HTTPS only)";
             this.certificateAuth.UseVisualStyleBackColor = true;
             // 
             // log
             // 
-            this.log.Location = new System.Drawing.Point(15, 332);
+            this.log.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.log.Location = new System.Drawing.Point(20, 409);
+            this.log.Margin = new System.Windows.Forms.Padding(4);
             this.log.Multiline = true;
             this.log.Name = "log";
             this.log.ReadOnly = true;
             this.log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.log.Size = new System.Drawing.Size(456, 125);
+            this.log.Size = new System.Drawing.Size(607, 153);
             this.log.TabIndex = 11;
             this.log.WordWrap = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 316);
+            this.label5.Location = new System.Drawing.Point(20, 389);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 13);
+            this.label5.Size = new System.Drawing.Size(32, 17);
             this.label5.TabIndex = 27;
             this.label5.Text = "Log";
             // 
             // browse
             // 
-            this.browse.Location = new System.Drawing.Point(396, 251);
+            this.browse.Location = new System.Drawing.Point(528, 309);
+            this.browse.Margin = new System.Windows.Forms.Padding(4);
             this.browse.Name = "browse";
-            this.browse.Size = new System.Drawing.Size(75, 23);
+            this.browse.Size = new System.Drawing.Size(100, 28);
             this.browse.TabIndex = 8;
             this.browse.Text = "Browse...";
             this.browse.UseVisualStyleBackColor = true;
@@ -163,27 +184,29 @@
             // 
             // headers
             // 
-            this.headers.Location = new System.Drawing.Point(15, 292);
+            this.headers.Location = new System.Drawing.Point(20, 359);
+            this.headers.Margin = new System.Windows.Forms.Padding(4);
             this.headers.Name = "headers";
-            this.headers.Size = new System.Drawing.Size(375, 20);
+            this.headers.Size = new System.Drawing.Size(499, 22);
             this.headers.TabIndex = 9;
             this.headers.Text = "SOAPAction";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 276);
+            this.label3.Location = new System.Drawing.Point(20, 340);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(437, 13);
+            this.label3.Size = new System.Drawing.Size(586, 17);
             this.label3.TabIndex = 29;
             this.label3.Text = "Add value of HTTP headers to content folder path (use space to separate multiple " +
     "headers)";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(483, 501);
+            this.ClientSize = new System.Drawing.Size(644, 617);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.headers);
             this.Controls.Add(this.browse);
@@ -198,8 +221,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "HTTP Listener Tool";
             this.ResumeLayout(false);

@@ -26,31 +26,17 @@ namespace Common
             NameValueCollection initialValues) : this()
         {
             this.Text = title;
-            this.collection.Add(initialValues);
-            foreach(string key in this.collection)
-            {
-                headers.Rows.Add(key, this.collection[key]);
-            }
+            headers.Add(initialValues);
         }
 
         private void remove_Click(object sender, EventArgs e)
         {
-            if (headers.SelectedRows.Count > 0 && !headers.SelectedRows[0].IsNewRow)
-            {
-                headers.Rows.Remove(headers.SelectedRows[0]);
-            }
+            headers.RemoveSelected();
         }
 
         private void done_Click(object sender, EventArgs e)
         {
-            collection = new NameValueCollection();
-            foreach (DataGridViewRow row in headers.Rows)
-            {
-                string name = (string)row.Cells[0].Value;
-                string value = (string)row.Cells[1].Value;
-                if (!string.IsNullOrWhiteSpace(name))
-                    collection.Add(name, value);
-            }
+            collection = headers.Get();
             this.Hide();
         }
     }

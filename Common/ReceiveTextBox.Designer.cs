@@ -38,10 +38,11 @@
             // 
             this.label.AutoSize = true;
             this.label.Location = new System.Drawing.Point(0, 1);
+            this.label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(352, 13);
+            this.label.Size = new System.Drawing.Size(150, 17);
             this.label.TabIndex = 13;
-            this.label.Text = "Data received (assumes UTF-8, special characters are replaced with a \'.\')";
+            this.label.Text = "Data received (UTF-8)";
             // 
             // outputText
             // 
@@ -49,13 +50,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputText.Location = new System.Drawing.Point(0, 17);
+            this.outputText.Location = new System.Drawing.Point(0, 21);
+            this.outputText.Margin = new System.Windows.Forms.Padding(4);
             this.outputText.MaxLength = 1000000;
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
             this.outputText.ReadOnly = true;
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(390, 230);
+            this.outputText.Size = new System.Drawing.Size(376, 291);
             this.outputText.TabIndex = 0;
             this.outputText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.outputText_KeyPress);
             // 
@@ -63,9 +65,10 @@
             // 
             this.viewInHex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.viewInHex.AutoSize = true;
-            this.viewInHex.Location = new System.Drawing.Point(3, 261);
+            this.viewInHex.Location = new System.Drawing.Point(0, 322);
+            this.viewInHex.Margin = new System.Windows.Forms.Padding(4);
             this.viewInHex.Name = "viewInHex";
-            this.viewInHex.Size = new System.Drawing.Size(228, 17);
+            this.viewInHex.Size = new System.Drawing.Size(297, 21);
             this.viewInHex.TabIndex = 2;
             this.viewInHex.Text = "Display as hexadecimal ASCII (e.g. BE AD)";
             this.viewInHex.UseVisualStyleBackColor = true;
@@ -73,9 +76,10 @@
             // clearButton
             // 
             this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearButton.Location = new System.Drawing.Point(315, 253);
+            this.clearButton.Location = new System.Drawing.Point(301, 320);
+            this.clearButton.Margin = new System.Windows.Forms.Padding(4);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(75, 30);
+            this.clearButton.Size = new System.Drawing.Size(75, 23);
             this.clearButton.TabIndex = 3;
             this.clearButton.Text = "&Clear";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -83,15 +87,15 @@
             // 
             // ReceiveTextBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label);
             this.Controls.Add(this.viewInHex);
             this.Controls.Add(this.outputText);
             this.Controls.Add(this.clearButton);
-            this.MinimumSize = new System.Drawing.Size(355, 95);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ReceiveTextBox";
-            this.Size = new System.Drawing.Size(392, 285);
+            this.Size = new System.Drawing.Size(380, 347);
             this.ResumeLayout(false);
             this.PerformLayout();
 

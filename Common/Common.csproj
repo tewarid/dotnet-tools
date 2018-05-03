@@ -61,10 +61,16 @@
       <DependentUpon>NameValueDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="InterfaceSelector.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="InterfaceSelector.Designer.cs">
       <DependentUpon>InterfaceSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NameValueGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NameValueGrid.Designer.cs">
+      <DependentUpon>NameValueGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfoCommon.cs" />
@@ -87,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NameValueDialog.resx">
       <DependentUpon>NameValueDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NameValueGrid.resx">
+      <DependentUpon>NameValueGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReceiveTextBox.resx">
       <DependentUpon>ReceiveTextBox.cs</DependentUpon>

@@ -179,7 +179,6 @@
             // 
             // sourceIPAddress
             // 
-            this.sourceIPAddress.FormattingEnabled = true;
             this.sourceIPAddress.IncludeIPAddressAny = true;
             this.sourceIPAddress.Location = new System.Drawing.Point(3, 24);
             this.sourceIPAddress.Name = "sourceIPAddress";

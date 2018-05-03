@@ -66,17 +66,19 @@
             this.panel1.Controls.Add(this.input);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(388, 439);
+            this.panel1.Size = new System.Drawing.Size(518, 545);
             this.panel1.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(149, 412);
+            this.label2.Location = new System.Drawing.Point(199, 512);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.Size = new System.Drawing.Size(61, 17);
             this.label2.TabIndex = 19;
             this.label2.Text = "seconds";
             // 
@@ -84,7 +86,8 @@
             // 
             this.timeOutValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.timeOutValue.Enabled = false;
-            this.timeOutValue.Location = new System.Drawing.Point(92, 407);
+            this.timeOutValue.Location = new System.Drawing.Point(123, 506);
+            this.timeOutValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.timeOutValue.Maximum = new decimal(new int[] {
             120,
             0,
@@ -96,7 +99,7 @@
             0,
             0});
             this.timeOutValue.Name = "timeOutValue";
-            this.timeOutValue.Size = new System.Drawing.Size(51, 20);
+            this.timeOutValue.Size = new System.Drawing.Size(68, 22);
             this.timeOutValue.TabIndex = 14;
             this.timeOutValue.Value = new decimal(new int[] {
             10,
@@ -108,9 +111,10 @@
             // 
             this.timeOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.timeOut.AutoSize = true;
-            this.timeOut.Location = new System.Drawing.Point(8, 408);
+            this.timeOut.Location = new System.Drawing.Point(11, 507);
+            this.timeOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.timeOut.Name = "timeOut";
-            this.timeOut.Size = new System.Drawing.Size(78, 17);
+            this.timeOut.Size = new System.Drawing.Size(100, 21);
             this.timeOut.TabIndex = 13;
             this.timeOut.Text = "Time out in";
             this.timeOut.UseVisualStyleBackColor = true;
@@ -120,9 +124,10 @@
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.sendButton.Enabled = false;
-            this.sendButton.Location = new System.Drawing.Point(306, 403);
+            this.sendButton.Location = new System.Drawing.Point(409, 509);
+            this.sendButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(75, 30);
+            this.sendButton.Size = new System.Drawing.Size(100, 23);
             this.sendButton.TabIndex = 15;
             this.sendButton.Text = "&Send";
             this.sendButton.UseVisualStyleBackColor = true;
@@ -133,18 +138,20 @@
             this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input.Location = new System.Drawing.Point(3, 4);
-            this.input.MinimumSize = new System.Drawing.Size(280, 130);
+            this.input.Location = new System.Drawing.Point(4, 5);
+            this.input.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.input.MinimumSize = new System.Drawing.Size(373, 160);
             this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(378, 398);
+            this.input.Size = new System.Drawing.Size(505, 495);
             this.input.TabIndex = 12;
             // 
             // closeButton
             // 
             this.closeButton.Enabled = false;
-            this.closeButton.Location = new System.Drawing.Point(213, 72);
+            this.closeButton.Location = new System.Drawing.Point(284, 89);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.Size = new System.Drawing.Size(100, 28);
             this.closeButton.TabIndex = 4;
             this.closeButton.Text = "&Close";
             this.closeButton.UseVisualStyleBackColor = true;
@@ -152,9 +159,10 @@
             // 
             // refreshButton
             // 
-            this.refreshButton.Location = new System.Drawing.Point(132, 27);
+            this.refreshButton.Location = new System.Drawing.Point(176, 33);
+            this.refreshButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.refreshButton.Name = "refreshButton";
-            this.refreshButton.Size = new System.Drawing.Size(75, 23);
+            this.refreshButton.Size = new System.Drawing.Size(100, 28);
             this.refreshButton.TabIndex = 1;
             this.refreshButton.Text = "&Refresh";
             this.refreshButton.UseVisualStyleBackColor = true;
@@ -163,9 +171,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 56);
+            this.label1.Location = new System.Drawing.Point(4, 69);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.Size = new System.Drawing.Size(75, 17);
             this.label1.TabIndex = 13;
             this.label1.Text = "Baud Rate";
             // 
@@ -188,16 +197,18 @@
             "230400",
             "460800",
             "921600"});
-            this.baudRate.Location = new System.Drawing.Point(7, 72);
+            this.baudRate.Location = new System.Drawing.Point(9, 89);
+            this.baudRate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.baudRate.Name = "baudRate";
-            this.baudRate.Size = new System.Drawing.Size(119, 21);
+            this.baudRate.Size = new System.Drawing.Size(157, 24);
             this.baudRate.TabIndex = 2;
             // 
             // openButton
             // 
-            this.openButton.Location = new System.Drawing.Point(132, 72);
+            this.openButton.Location = new System.Drawing.Point(176, 89);
+            this.openButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.openButton.Name = "openButton";
-            this.openButton.Size = new System.Drawing.Size(75, 23);
+            this.openButton.Size = new System.Drawing.Size(100, 28);
             this.openButton.TabIndex = 3;
             this.openButton.Text = "&Open";
             this.openButton.UseVisualStyleBackColor = true;
@@ -207,18 +218,20 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(4, 11);
+            this.label4.Location = new System.Drawing.Point(5, 14);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.Size = new System.Drawing.Size(85, 17);
             this.label4.TabIndex = 7;
             this.label4.Text = "Serial Port";
             // 
             // serialPortName
             // 
             this.serialPortName.FormattingEnabled = true;
-            this.serialPortName.Location = new System.Drawing.Point(7, 27);
+            this.serialPortName.Location = new System.Drawing.Point(9, 33);
+            this.serialPortName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.serialPortName.Name = "serialPortName";
-            this.serialPortName.Size = new System.Drawing.Size(119, 21);
+            this.serialPortName.Size = new System.Drawing.Size(157, 24);
             this.serialPortName.TabIndex = 0;
             // 
             // panel2
@@ -233,8 +246,9 @@
             this.panel2.Controls.Add(this.openButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(392, 439);
+            this.panel2.Size = new System.Drawing.Size(522, 545);
             this.panel2.TabIndex = 1;
             // 
             // outputText
@@ -242,19 +256,22 @@
             this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputText.Location = new System.Drawing.Point(6, 99);
-            this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
+            this.outputText.Location = new System.Drawing.Point(8, 122);
+            this.outputText.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.outputText.MinimumSize = new System.Drawing.Size(473, 117);
             this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(384, 337);
+            this.outputText.Size = new System.Drawing.Size(511, 420);
             this.outputText.TabIndex = 5;
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.status});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 439);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 545);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1045, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -267,6 +284,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -276,18 +294,20 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(784, 439);
-            this.splitContainer1.SplitterDistance = 392;
+            this.splitContainer1.Size = new System.Drawing.Size(1045, 545);
+            this.splitContainer1.SplitterDistance = 522;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 3;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(1045, 567);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Serial Tool";

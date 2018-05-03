@@ -7,26 +7,28 @@ using System.Windows.Forms;
 
 namespace Common
 {
-    public partial class InterfaceSelectorComboBox : ComboBox
+    public partial class InterfaceSelectorComboBox : UserControl
     {
+        private ComboBox comboBox;
+        private readonly string any = IPAddress.Any.ToString();
+
         public event Action<string> InterfaceDeleted;
 
-        private readonly string any = IPAddress.Any.ToString();
-        bool _includeIPAddressAny = false;
+        private bool includeIPAddressAny = false;
         public bool IncludeIPAddressAny
         {
             get
             {
-                return _includeIPAddressAny;
+                return includeIPAddressAny;
             }
             set
             {
-                _includeIPAddressAny = value;
+                includeIPAddressAny = value;
                 if (value)
                 {
-                    if (!Items.Contains(any))
+                    if (!comboBox.Items.Contains(any))
                     {
-                        Items.Add(any);
+                        comboBox.Items.Add(any);
                     }
                 }
             }
@@ -35,13 +37,17 @@ namespace Common
         public InterfaceSelectorComboBox()
         {
             InitializeComponent();
+            comboBox = new ComboBox();
+            comboBox.Dock = DockStyle.Fill;
+            Controls.Add(comboBox);
+            RefreshNetworkInterfaces();
+            NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
+        }
 
-            if (!DesignMode)
-            {
-                RefreshNetworkInterfaces();
-
-                NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
-            }
+        public void DeleteSelected()
+        {
+            comboBox.SelectedIndex =
+                comboBox.SelectedIndex > 0 ? comboBox.SelectedIndex - 1 : -1;
         }
 
         private void RefreshNetworkInterfaces()
@@ -58,24 +64,24 @@ namespace Common
             // Add
             foreach (string address in newList)
             {
-                if (!Items.Contains(address))
+                if (!comboBox.Items.Contains(address))
                 {
                     // Added
-                    Items.Add(address);
+                    comboBox.Items.Add(address);
                 }
             }
 
             // Delete
-            for (int i = 0; i < Items.Count; i++)
+            for (int i = 0; i < comboBox.Items.Count; i++)
             {
-                if (!any.Equals(Items[i]) && !newList.Contains((String)Items[i]))
+                if (!any.Equals(comboBox.Items[i]) && !newList.Contains((String)comboBox.Items[i]))
                 {
                     // Removed
-                    if (SelectedIndex == i)
+                    if (comboBox.SelectedIndex == i)
                     {
-                        InterfaceDeleted?.Invoke((String)Items[i]);
+                        InterfaceDeleted?.Invoke((String)comboBox.Items[i]);
                     }
-                    Items.RemoveAt(i);
+                    comboBox.Items.RemoveAt(i);
                 }
             }
         }

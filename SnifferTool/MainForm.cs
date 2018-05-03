@@ -34,8 +34,7 @@ namespace SnifferTool
 
         private void InterfaceSelector_InterfaceDeleted(string address)
         {
-            interfaceSelector.SelectedIndex =
-                interfaceSelector.SelectedIndex > 0 ? interfaceSelector.SelectedIndex - 1 : -1;
+            interfaceSelector.DeleteSelected();
             if (socket != null)
             {
                 CloseRawSocket();
