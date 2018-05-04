@@ -87,8 +87,6 @@
             // 
             // ReceiveTextBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label);
             this.Controls.Add(this.viewInHex);
             this.Controls.Add(this.outputText);
