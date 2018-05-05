@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Windows.Forms;
@@ -22,11 +23,16 @@ namespace HttpRequestTool
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             // Request Methods
-            requestMethod.Items.Add(WebRequestMethods.Http.Get);
-            requestMethod.Items.Add(WebRequestMethods.Http.Head);
-            requestMethod.Items.Add(WebRequestMethods.Http.Post);
-            requestMethod.Items.Add(WebRequestMethods.Http.Put);
+            requestMethod.Items.Add(HttpMethod.Get.Method);
+            requestMethod.Items.Add(HttpMethod.Head.Method);
+            requestMethod.Items.Add(HttpMethod.Post.Method);
+            requestMethod.Items.Add(HttpMethod.Put.Method);
             requestMethod.SelectedIndex = 0;
+
+            // Request Content Type
+            requestContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("txt"));
+            requestContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("xml"));
+            requestContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("json"));
         }
 
         private void selectCertificateFile_Click(object sender, EventArgs e)
@@ -59,16 +65,60 @@ namespace HttpRequestTool
                 certificates.Import(clientCertificateFile.Text, certificatePassword.Text, X509KeyStorageFlags.DefaultKeySet);
                 request.ClientCertificates = certificates;
             }
+            if (HasContentBody())
+            {
+                request.Method = requestMethod.Text;
+                if (!string.IsNullOrEmpty(requestContentType.Text))
+                {
+                    request.ContentType = requestContentType.Text;
+                }
+                byte[] dataOut = requestContent.Bytes;
+                if (dataOut.Length > 0)
+                {
+                    request.GetRequestStream().WriteAsync(dataOut, 0, dataOut.Length);
+                }
+            }
             WebResponse response = request.GetResponse();
-            responseContent.AppendText(new StreamReader(response.GetResponseStream()).ReadToEnd());
+            byte[] dataIn = ReadAllBytes(request.GetResponse().GetResponseStream());
+            responseContent.Clear();
+            responseContent.Append(dataIn, dataIn.Length);
+            responseHeaders.Clear();
             responseHeaders.Add(response.Headers);
+        }
+
+        private byte[] ReadAllBytes(Stream s)
+        {
+            MemoryStream m = new MemoryStream();
+            s.CopyTo(m);
+            return m.ToArray();
         }
 
         private void url_TextChanged(object sender, EventArgs e)
         {
-            Uri uri = new Uri(url.Text);
+            Uri uri;
+            try
+            {
+                uri = new Uri(url.Text);
+            }
+            catch (UriFormatException)
+            {
+                return;
+            }
             queryParameters.Clear();
             queryParameters.Add(HttpUtility.ParseQueryString(uri.Query));
+        }
+
+        private void requestMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool enable = HasContentBody();
+            requestContentType.Enabled = enable;
+            requestContent.Enabled = enable;
+        }
+
+        private bool HasContentBody()
+        {
+            return requestMethod.Text.Equals(HttpMethod.Post.Method)
+                || requestMethod.Text.Equals(HttpMethod.Put.Method);
         }
     }
 }

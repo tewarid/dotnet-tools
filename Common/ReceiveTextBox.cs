@@ -68,5 +68,10 @@ namespace Common
                 e.Handled = true;
             }
         }
+
+        public void Clear()
+        {
+            outputText.Clear();
+        }
     }
 }

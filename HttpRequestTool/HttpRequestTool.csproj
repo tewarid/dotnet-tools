@@ -38,6 +38,9 @@
     <Reference Include="HexToBinLib">
       <HintPath>..\packages\HexToBin.1.0.0\lib\net40\HexToBinLib.dll</HintPath>
     </Reference>
+    <Reference Include="MimeTypeMap, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediaTypeMap.2.1.0.0\lib\net40\MimeTypeMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -74,6 +77,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
