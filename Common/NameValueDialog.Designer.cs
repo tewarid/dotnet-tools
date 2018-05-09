@@ -38,10 +38,9 @@
             // done
             // 
             this.done.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.done.Location = new System.Drawing.Point(423, 278);
-            this.done.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.done.Location = new System.Drawing.Point(195, 243);
             this.done.Name = "done";
-            this.done.Size = new System.Drawing.Size(100, 23);
+            this.done.Size = new System.Drawing.Size(75, 19);
             this.done.TabIndex = 2;
             this.done.Text = "Done";
             this.done.UseVisualStyleBackColor = true;
@@ -50,25 +49,39 @@
             // remove
             // 
             this.remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.remove.Location = new System.Drawing.Point(315, 278);
-            this.remove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.remove.Location = new System.Drawing.Point(114, 243);
             this.remove.Name = "remove";
-            this.remove.Size = new System.Drawing.Size(100, 23);
+            this.remove.Size = new System.Drawing.Size(75, 19);
             this.remove.TabIndex = 1;
             this.remove.Text = "Remove";
             this.remove.UseVisualStyleBackColor = true;
             this.remove.Click += new System.EventHandler(this.remove_Click);
             // 
+            // headers
+            // 
+            this.headers.Location = new System.Drawing.Point(11, 11);
+            this.headers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.headers.Name = "headers";
+            this.headers.Size = new System.Drawing.Size(258, 222);
+            this.headers.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
             // NameValueDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 313);
+            this.ClientSize = new System.Drawing.Size(277, 271);
             this.Controls.Add(this.headers);
             this.Controls.Add(this.remove);
             this.Controls.Add(this.done);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NameValueDialog";
@@ -77,6 +90,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Name Value Dialog";
             this.ResumeLayout(false);
+
         }
 
         #endregion

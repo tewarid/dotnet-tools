@@ -37,6 +37,9 @@
       <HintPath>..\packages\HexToBin.1.0.0\lib\net40\HexToBinLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MimeTypeMap, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediaTypeMap.2.1.0.0\lib\net40\MimeTypeMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -49,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComboBoxItem.cs" />
+    <Compile Include="ContentTypeSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContentTypeSelector.Designer.cs">
+      <DependentUpon>ContentTypeSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,8 +98,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ContentTypeSelector.resx">
+      <DependentUpon>ContentTypeSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfaceSelector.resx">
+      <DependentUpon>InterfaceSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NameValueDialog.resx">
       <DependentUpon>NameValueDialog.cs</DependentUpon>

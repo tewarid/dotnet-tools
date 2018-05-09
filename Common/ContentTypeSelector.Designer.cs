@@ -1,13 +1,13 @@
-﻿namespace Common
+﻿namespace NetTools.Common
 {
-    partial class InterfaceSelectorComboBox
+    partial class ContentTypeSelector
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -22,7 +22,7 @@
 
         #region Component Designer generated code
 
-        /// <summary>
+        /// <summary> 
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
@@ -30,10 +30,11 @@
         {
             this.SuspendLayout();
             // 
-            // InterfaceSelectorComboBox
+            // ContentTypeSelector
             // 
-            this.Name = "InterfaceSelectorComboBox";
-            this.Size = new System.Drawing.Size(150, 86);
+            this.AutoSize = true;
+            this.Name = "ContentTypeSelector";
+            this.Size = new System.Drawing.Size(150, 92);
             this.ResumeLayout(false);
 
         }

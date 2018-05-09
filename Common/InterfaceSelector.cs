@@ -40,6 +40,7 @@ namespace Common
             comboBox = new ComboBox();
             comboBox.Dock = DockStyle.Fill;
             Controls.Add(comboBox);
+            this.Height = comboBox.Height;
             RefreshNetworkInterfaces();
             NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
         }

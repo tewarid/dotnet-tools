@@ -29,11 +29,6 @@ namespace Common
             requestMethod.Items.Add(HttpMethod.Post.Method);
             requestMethod.Items.Add(HttpMethod.Put.Method);
             requestMethod.SelectedIndex = 0;
-
-            // Request Content Type
-            requestContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("txt"));
-            requestContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("xml"));
-            requestContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("json"));
         }
 
         private void selectCertificateFile_Click(object sender, EventArgs e)
@@ -54,7 +49,8 @@ namespace Common
 
         private void tlsVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ServicePointManager.SecurityProtocol = ((ComboboxItem<SecurityProtocolType>)tlsVersion.SelectedItem).Value;
+            ServicePointManager.SecurityProtocol = 
+                ((ComboboxItem<SecurityProtocolType>)tlsVersion.SelectedItem).Value;
         }
 
         private void go_Click(object sender, EventArgs e)
@@ -63,7 +59,8 @@ namespace Common
             if (setClientCertificate.Checked)
             {
                 X509Certificate2Collection certificates = new X509Certificate2Collection();
-                certificates.Import(clientCertificateFile.Text, certificatePassword.Text, X509KeyStorageFlags.DefaultKeySet);
+                certificates.Import(clientCertificateFile.Text,
+                    certificatePassword.Text, X509KeyStorageFlags.DefaultKeySet);
                 request.ClientCertificates = certificates;
             }
             if (HasContentBody())

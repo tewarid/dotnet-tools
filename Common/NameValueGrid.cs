@@ -1,14 +1,49 @@
-﻿using System;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.Windows.Forms;
 
 namespace NetTools.Common
 {
     public partial class NameValueGrid : UserControl
     {
-        NameValueCollection collection = new NameValueCollection();
-        DataGridView dataGrid;
+        private NameValueCollection collection = new NameValueCollection();
+        private DataGridView dataGrid;
 
+        public bool ReadOnly
+        {
+            get
+            {
+                return dataGrid.ReadOnly;
+            }
+            set
+            {
+                dataGrid.ReadOnly = value;
+            }
+        }
+
+        public bool AllowUserToAddRows
+        {
+            get
+            {
+                return dataGrid.AllowUserToAddRows;
+            }
+            set
+            {
+                dataGrid.AllowUserToAddRows = value;
+            }
+        }
+
+        public bool AllowUserToDeleteRows
+        {
+            get
+            {
+                return dataGrid.AllowUserToDeleteRows;
+            }
+            set
+            {
+                dataGrid.AllowUserToDeleteRows = value;
+            }
+        }
+        
         public NameValueGrid()
         {
             InitializeComponent();

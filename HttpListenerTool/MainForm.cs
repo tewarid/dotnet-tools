@@ -30,11 +30,6 @@ namespace HttpListenerTool
                 }
             }
             responseStatusCode.SelectedItem = selected;
-
-            // Response Content Type
-            responseContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("txt"));
-            responseContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("xml"));
-            responseContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("json"));
         }
 
         private async void start_Click(object sender, EventArgs e)
