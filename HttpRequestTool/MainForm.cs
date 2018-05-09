@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -6,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Windows.Forms;
 
-namespace HttpRequestTool
+namespace Common
 {
     public partial class MainForm : Form
     {
@@ -15,10 +16,10 @@ namespace HttpRequestTool
             InitializeComponent();
 
             // Set SSL/TLS version options
-            tlsVersion.Items.Add(new ComboboxItem("SSL 3", SecurityProtocolType.Ssl3));
-            tlsVersion.Items.Add(new ComboboxItem("TLS", SecurityProtocolType.Tls));
-            tlsVersion.Items.Add(new ComboboxItem("TLS 1.1", SecurityProtocolType.Tls11));
-            tlsVersion.Items.Add(new ComboboxItem("TLS 1.2", SecurityProtocolType.Tls12));
+            tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("SSL 3", SecurityProtocolType.Ssl3));
+            tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("TLS", SecurityProtocolType.Tls));
+            tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("TLS 1.1", SecurityProtocolType.Tls11));
+            tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("TLS 1.2", SecurityProtocolType.Tls12));
             tlsVersion.SelectedIndex = 3;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
@@ -53,7 +54,7 @@ namespace HttpRequestTool
 
         private void tlsVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ServicePointManager.SecurityProtocol = ((ComboboxItem)tlsVersion.SelectedItem).Value;
+            ServicePointManager.SecurityProtocol = ((ComboboxItem<SecurityProtocolType>)tlsVersion.SelectedItem).Value;
         }
 
         private void go_Click(object sender, EventArgs e)
@@ -78,8 +79,17 @@ namespace HttpRequestTool
                     request.GetRequestStream().WriteAsync(dataOut, 0, dataOut.Length);
                 }
             }
-            WebResponse response = request.GetResponse();
-            byte[] dataIn = ReadAllBytes(request.GetResponse().GetResponseStream());
+            WebResponse response;
+            try
+            {
+                response = request.GetResponse();
+            }
+            catch (WebException w)
+            {
+                MessageBox.Show(w.Message, this.Text);
+                response = w.Response;
+            }
+            byte[] dataIn = ReadAllBytes(response.GetResponseStream());
             responseContent.Clear();
             responseContent.Append(dataIn, dataIn.Length);
             responseHeaders.Clear();

@@ -1,4 +1,5 @@
-﻿using MimeTypes;
+﻿using Common;
+using MimeTypes;
 using System;
 using System.IO;
 using System.Net;
@@ -16,6 +17,24 @@ namespace HttpListenerTool
         public MainForm()
         {
             InitializeComponent();
+
+            // Response status codes
+            ComboboxItem<HttpStatusCode> selected = null;
+            foreach(HttpStatusCode code in Enum.GetValues(typeof(HttpStatusCode)))
+            {
+                ComboboxItem<HttpStatusCode> item = new ComboboxItem<HttpStatusCode>($"{(int)code} - {code}", code);
+                responseStatusCode.Items.Add(item);
+                if (code == HttpStatusCode.OK)
+                {
+                    selected = item;
+                }
+            }
+            responseStatusCode.SelectedItem = selected;
+
+            // Response Content Type
+            responseContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("txt"));
+            responseContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("xml"));
+            responseContentType.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("json"));
         }
 
         private async void start_Click(object sender, EventArgs e)
@@ -40,7 +59,15 @@ namespace HttpListenerTool
 
         private async Task ListenAsync()
         {
-            HttpListenerContext context = await listener.GetContextAsync();
+            HttpListenerContext context;
+            try
+            {
+                context = await listener.GetContextAsync();
+            }
+            catch(HttpListenerException)
+            {
+                return;
+            }
             HttpListenerRequest request = context.Request;
             Log(string.Format("Received {0} request with URL {1}.", request.HttpMethod, 
                 request.Url.OriginalString));
@@ -66,98 +93,16 @@ namespace HttpListenerTool
 
         private void SendResponse(HttpListenerContext context)
         {
-            string path = GetAbsoluteLocalPath(context.Request);
-            if (File.Exists(path))
+            HttpListenerResponse response = context.Response;
+            response.StatusCode = (int)((ComboboxItem<HttpStatusCode>)responseStatusCode.SelectedItem).Value;
+            response.Headers.Add(responseHeaders.Get());
+            if (!string.IsNullOrWhiteSpace(responseContentType.Text))
             {
-                ProcessFile(context.Request, context.Response, path);
+                response.ContentType = responseContentType.Text;
             }
-            else
-            {
-                ProcessDirectory(context.Request, context.Response, path);
-            }
-            context.Response.Close();
-        }
-
-        private void ProcessFile(HttpListenerRequest request, HttpListenerResponse response, string file)
-        {
-            string mimeType = MimeTypeMap.GetMimeType(Path.GetExtension(file));
-            response.ContentType = mimeType;
-            if (request.HttpMethod != "HEAD")
-            {
-                byte[] data = File.ReadAllBytes(file);
-                response.OutputStream.Write(data, 0, data.Length);
-            }
-        }
-
-        private void ProcessDirectory(HttpListenerRequest request, HttpListenerResponse response, string file)
-        {
-            string statusFile = GetFirstFile(file);
-            if (string.IsNullOrEmpty(statusFile))
-            {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-            }
-            else
-            {
-                string statusCodeString = Path.GetFileNameWithoutExtension(statusFile);
-                int statusCode;
-                if (int.TryParse(statusCodeString, out statusCode))
-                {
-                    response.StatusCode = statusCode;
-                    switch (statusCode)
-                    {
-                        case 302:
-                            string[] location = File.ReadAllLines(statusFile);
-                            response.AddHeader("Location", location.Length > 0 ? location[0] : string.Empty);
-                            break;
-                        default:
-                            ProcessFile(request, response, statusFile);
-                            break;
-                    }
-                }
-                else
-                {
-                    response.StatusCode = (int)HttpStatusCode.NotFound;
-                }
-            }
-        }
-
-        private string GetFirstFile(string path)
-        {
-            string filename = null;
-            if (Directory.Exists(path))
-            {
-                string[] files = Directory.GetFiles(path);
-                filename = files.Length > 0 ? files[0] : null;
-            }
-            return filename;
-        }
-
-        private string GetAbsoluteLocalPath(HttpListenerRequest request)
-        {
-            string localPath = prefix.MakeRelativeUri(request.Url).ToString();
-            string path = string.Empty;
-            if (Path.IsPathRooted(directory.Text))
-            {
-                path = Path.Combine(directory.Text, localPath);
-            }
-            else
-            {
-                path = Path.Combine(Environment.CurrentDirectory + Path.DirectorySeparatorChar, directory.Text, localPath);
-            }
-            if (!string.IsNullOrWhiteSpace(headers.Text))
-            {
-                string [] headerArray = headers.Text.Split(new[] { ' ' },
-                    StringSplitOptions.RemoveEmptyEntries);
-                foreach(string header in headerArray)
-                {
-                    string value = request.Headers[header];
-                    if (!string.IsNullOrEmpty(value))
-                    {
-                        path = Path.Combine(path, value.Replace("\"", ""));
-                    }
-                }
-            }
-            return path;
+            byte[] data = responseContent.Bytes;
+            response.OutputStream.Write(data, 0, data.Length);
+            response.Close();
         }
 
         private void Log(string text)
@@ -177,21 +122,6 @@ namespace HttpListenerTool
             start.Enabled = enable;
             stop.Enabled = !enable;
             uri.ReadOnly = !enable;
-        }
-
-        private void browse_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(folderBrowser.SelectedPath))
-            {
-                folderBrowser.SelectedPath = Environment.CurrentDirectory;
-            }
-            DialogResult result = folderBrowser.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                Uri selectedPathUri = new Uri(folderBrowser.SelectedPath);
-                Uri cwdUri = new Uri(Environment.CurrentDirectory + Path.DirectorySeparatorChar);
-                directory.Text = cwdUri.MakeRelativeUri(selectedPathUri).ToString();
-            }
         }
     }
 }

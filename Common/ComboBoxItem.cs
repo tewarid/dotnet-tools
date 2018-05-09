@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Net;
 
-namespace HttpRequestTool
+namespace Common
 {
-    class ComboboxItem
+    public class ComboboxItem<T>
     {
         public string Text { get; set; }
-        public SecurityProtocolType Value { get; set; }
+        public T Value { get; set; }
 
-        public ComboboxItem(String text, SecurityProtocolType value)
+        public ComboboxItem(String text, T value)
         {
             Text = text;
             Value = value;

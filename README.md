@@ -14,15 +14,13 @@ Simulate a Bluetooth serial listener/server on Windows. It is built with [32feet
 
 Add/remove exceptions to/from Windows Firewall. With contributions from Bruno Silveira.
 
+## HTTP Request Tool
+
+Simple HTTP(S) client built using [System.Net.HttpWebRequest](https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.aspx). You can use it to serve static content and to test REST clients.
+
 ## HTTP Listener Tool
 
-Simple HTTP/s server built using [System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx). You can use it to serve static content and to test REST clients.
-
-It can respond to HTTP requests with content, content type, and status code derived from a file stored in a folder. For example, if a folder has a single file called `200.json`, it will respond to an HTTP request for that folder with a status code of 200, a content type of `application/json`, and body containing the contents of the file.
-
-If it finds a file with status code 302 in its name, it redirect the client to the URL contained in the file. It does not return any content for the HEAD HTTP request.
-
-File extension to content type mapping is performed using the [Media Type Map](https://www.nuget.org/packages/MediaTypeMap/) library.
+Simple HTTP(S) server built using [System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx).
 
 ## ICMP Tool
 
@@ -62,19 +60,19 @@ Interactive UDP/IP client that may be used to establish IPv4 UDP sockets, send, 
 
 ## WebSocket Tool
 
-Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, send, and receive data. It is built with .NET's native implementation of WebSockets, and requires at least [Windows 8](https://msdn.microsoft.com/en-us/library/windows/desktop/hh437448.aspx).
+Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, send, and receive data. It is built with .NET's native implementation of WebSockets, and requires at least [Windows 8](http://gs.statcounter.com/os-version-market-share/windows/desktop/worldwide).
 
 ## WebSocket Server Tool
 
-Provides an interactive WebSocket server based on System.Net.HttpListener, or a self-hosted WCF service. WCF service is configured through `App.config` to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires at least [Windows 8](https://msdn.microsoft.com/en-us/library/windows/desktop/hh437448.aspx).
+Provides an interactive WebSocket server based on System.Net.HttpListener, or a self-hosted WCF service. WCF service is configured through `App.config` to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires at least [Windows 8](http://gs.statcounter.com/os-version-market-share/windows/desktop/worldwide).
 
 ## WebSocketSharp Tool
 
-Interactive WebSocket client that may be used to establish WebSocket sessions, send, and receive data. It is built with [WebSocketSharp](https://github.com/sta/websocket-sharp) and works on Windows 7 or better. An HTTP proxy may be specified so WebSocket sessions can be debugged using [Fiddler](http://www.telerik.com/fiddler). This tool will go away when [usage share](http://gs.statcounter.com/os-version-market-share/windows/desktop/worldwide) of Windows 8 and beyond surpasses 80% of all Windows installations, or Windows 7 begins to support WebSockets.
+Interactive WebSocket client that may be used to establish WebSocket sessions, send, and receive data. It is built with [WebSocketSharp](https://github.com/sta/websocket-sharp) and works on Windows 7 or better. An HTTP proxy may be specified so WebSocket sessions can be debugged using [Fiddler](http://www.telerik.com/fiddler).
 
 ## WebSocketSharp Server Tool
 
-Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works with Windows 7 or better. Data can be sent to and received from WebSocket clients. Supports SSL. This tool will go away when [usage share](http://gs.statcounter.com/os-version-market-share/windows/desktop/worldwide) of Windows 8 and beyond surpasses 80% of all Windows installations.
+Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works with Windows 7 or better. Data can be sent to and received from WebSocket clients. Supports SSL.
 
 ## Related Tools
 

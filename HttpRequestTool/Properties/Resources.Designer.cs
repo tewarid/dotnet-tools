@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HttpRequestTool.Properties {
+namespace Common.Properties {
     using System;
     
     

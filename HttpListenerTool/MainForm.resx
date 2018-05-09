@@ -129,9 +129,6 @@ makecert -sk MyCert -ss MY -sr LocalMachine -n CN=mycompany.com -sky exchange -r
 netsh http add sslcert ipport=0.0.0.0:8088 certhash=3228f47d6f0a56c47f62d96b9d0e8580049389a0 appid={4846204e-e40a-4abe-ab71-8cfed0cb1567}
 </value>
   </data>
-  <metadata name="folderBrowser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
