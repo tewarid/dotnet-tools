@@ -56,6 +56,9 @@ namespace Common
 
         private void go_Click(object sender, EventArgs e)
         {
+            responseContent.Clear();
+            responseHeaders.Clear();
+
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url.Text);
             if (setClientCertificate.Checked)
             {
@@ -69,33 +72,36 @@ namespace Common
             {
                 request.Headers.Add(headers);
             }
-            if (HasContentBody())
-            {
-                request.Method = requestMethod.Text;
-                if (!string.IsNullOrEmpty(requestContentType.Text))
-                {
-                    request.ContentType = requestContentType.Text;
-                }
-                byte[] dataOut = requestContent.Bytes;
-                if (dataOut.Length > 0)
-                {
-                    request.GetRequestStream().WriteAsync(dataOut, 0, dataOut.Length);
-                }
-            }
             WebResponse response;
             try
             {
+                if (HasContentBody())
+                {
+                    request.Method = requestMethod.Text;
+                    if (!string.IsNullOrEmpty(requestContentType.Text))
+                    {
+                        request.ContentType = requestContentType.Text;
+                    }
+                    byte[] dataOut = requestContent.Bytes;
+                    if (dataOut.Length > 0)
+                    {
+                        request.GetRequestStream().WriteAsync(dataOut, 0, dataOut.Length);
+                    }
+                }
+
                 response = request.GetResponse();
             }
             catch (WebException w)
             {
                 MessageBox.Show(w.Message, this.Text);
+                if (w.Response == null)
+                {
+                    return;
+                }
                 response = w.Response;
             }
             byte[] dataIn = ReadAllBytes(response.GetResponseStream());
-            responseContent.Clear();
             responseContent.Append(dataIn, dataIn.Length);
-            responseHeaders.Clear();
             responseHeaders.Add(response.Headers);
         }
 
