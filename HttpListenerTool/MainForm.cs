@@ -64,8 +64,15 @@ namespace HttpListenerTool
                 return;
             }
             HttpListenerRequest request = context.Request;
-            Log(string.Format("Received {0} request with URL {1}.", request.HttpMethod, 
-                request.Url.OriginalString));
+            Log($"[{DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")}] Received {request.HttpMethod} request for resource {request.Url.OriginalString}");
+            if(request.Headers.Count > 0)
+            {
+                Log($"{request.Headers}");
+            }
+            if (request.ContentLength64 > 0)
+            {
+                Log($"{new StreamReader(request.InputStream).ReadToEnd()}");
+            }
             if (certificateAuth.Checked)
             {
                 X509Certificate2 certificate = await context.Request.GetClientCertificateAsync();
