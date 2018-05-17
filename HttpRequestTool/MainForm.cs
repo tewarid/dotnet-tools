@@ -1,5 +1,6 @@
 ﻿using Common;
 using System;
+using System.Collections.Specialized;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -62,6 +63,11 @@ namespace Common
                 certificates.Import(clientCertificateFile.Text,
                     certificatePassword.Text, X509KeyStorageFlags.DefaultKeySet);
                 request.ClientCertificates = certificates;
+            }
+            NameValueCollection headers = requestHeaders.Get();
+            if (headers.Count > 0)
+            {
+                request.Headers.Add(headers);
             }
             if (HasContentBody())
             {
