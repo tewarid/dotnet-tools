@@ -53,14 +53,17 @@ namespace WebSocketSharpServerTool
                 store.Close();
             }
 
-            if (uri.Scheme.Equals("wss") && cert == null)
+
+            if (cert != null)
+            {
+                server.SslConfiguration.ServerCertificate = cert;
+            }
+            else if (uri.Scheme.Equals("wss"))
             {
                 MessageBox.Show(this, "Certificate not found.", this.Text);
                 server = null;
                 return;
             }
-
-            server.SslConfiguration.ServerCertificate = cert;
 
             server.AddWebSocketService<ServiceBehavior>(uri.AbsolutePath);
 
@@ -73,14 +76,22 @@ namespace WebSocketSharpServerTool
 
             try
             {
-                if (pfxFileOption.Checked)
+                Uri uri = new Uri(url.Text);
+                if (uri.Scheme.Equals("ws", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    CreateServer(new Uri(url.Text), pfxPath: this.pfxPath.Text, 
-                        pfxPassword: this.pfxPassword.Text);
+                    CreateServer(uri);
                 }
                 else
                 {
-                    CreateServer(new Uri(url.Text), this.thumbprint.Text);
+                    if (pfxFileOption.Checked)
+                    {
+                        CreateServer(uri, pfxPath: this.pfxPath.Text,
+                            pfxPassword: this.pfxPassword.Text);
+                    }
+                    else
+                    {
+                        CreateServer(uri, this.thumbprint.Text);
+                    }
                 }
 
                 if (server == null)
