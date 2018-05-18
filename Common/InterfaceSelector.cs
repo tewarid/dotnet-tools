@@ -34,6 +34,12 @@ namespace Common
             }
         }
 
+        public override string Text
+        {
+            get => comboBox.Text;
+            set => comboBox.Text = value;
+        }
+
         public InterfaceSelectorComboBox()
         {
             InitializeComponent();
