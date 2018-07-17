@@ -118,8 +118,21 @@ namespace TcpClientTool
         {
             if (tcpClient != null && tcpClient.Connected) return;
 
+            if (string.Empty.Equals(destinationIPAddress.Text)
+                || string.Empty.Equals(destinationPort.Text))
+            {
+                MessageBox.Show(this, "Please specify the destination IP address and/or port.", this.Text);
+                return;
+            }
+            IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Parse(destinationIPAddress.Text),
+                int.Parse(destinationPort.Text));
+
             int port = 0;
             IPAddress ipAddress = IPAddress.Any;
+            if (remoteEndPoint.AddressFamily == AddressFamily.InterNetworkV6)
+            {
+                ipAddress = IPAddress.IPv6Any;
+            }
             if (!string.Empty.Equals(sourceIPAddress.Text))
             {
                 try
@@ -137,7 +150,7 @@ namespace TcpClientTool
                 port = int.Parse(sourcePort.Text);
             }
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, port);
-            tcpClient = new TcpClient();
+            tcpClient = new TcpClient(ipAddress.AddressFamily);
             if (reuseAddress.Checked)
             {
                 tcpClient.Client.SetSocketOption(SocketOptionLevel.Socket,
@@ -154,14 +167,6 @@ namespace TcpClientTool
                 return;
             }
 
-            if (string.Empty.Equals(destinationIPAddress.Text)
-                || string.Empty.Equals(destinationPort.Text))
-            {
-                MessageBox.Show(this, "Please specify the destination IP address and/or port.", this.Text);
-                return;
-            }
-            IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Parse(destinationIPAddress.Text),
-                int.Parse(destinationPort.Text));
             try
             {
                 tcpClient.Connect(remoteEndPoint);
