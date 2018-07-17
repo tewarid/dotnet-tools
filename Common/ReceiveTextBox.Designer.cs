@@ -65,6 +65,8 @@
             // 
             this.viewInHex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.viewInHex.AutoSize = true;
+            this.viewInHex.Checked = true;
+            this.viewInHex.CheckState = System.Windows.Forms.CheckState.Checked;
             this.viewInHex.Location = new System.Drawing.Point(0, 326);
             this.viewInHex.Margin = new System.Windows.Forms.Padding(4);
             this.viewInHex.Name = "viewInHex";
