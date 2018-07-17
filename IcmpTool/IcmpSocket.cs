@@ -35,10 +35,12 @@ namespace IcmpTool
 
         private void CreateIcmpSocket()
         {
-            icmpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.Icmp);
+            icmpSocket = new Socket(LocalEndPoint.AddressFamily, SocketType.Raw, ProtocolType.Icmp);
             icmpSocket.Bind(LocalEndPoint);
             PlatformID p = Environment.OSVersion.Platform;
-            if (p == PlatformID.Win32NT && !LocalEndPoint.Address.Equals(IPAddress.Any))
+            if (p == PlatformID.Win32NT &&
+                !LocalEndPoint.Address.Equals(IPAddress.Any) &&
+                !LocalEndPoint.Address.Equals(IPAddress.IPv6Any))
             {
                 icmpSocket.IOControl(IOControlCode.ReceiveAll, new byte[] { 1, 0, 0, 0 }, new byte[] { 1, 0, 0, 0 });
             }
