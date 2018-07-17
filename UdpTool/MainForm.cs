@@ -30,9 +30,11 @@ namespace UdpTool
         {
             if (udpClient == null)
             {
-                await CreateUdpClient().ConfigureAwait(true);
+                CreateUdpClient();
                 if (udpClient == null)
+                {
                     return;
+                }
             }
 
             IPEndPoint endPoint;
@@ -88,10 +90,17 @@ namespace UdpTool
             outputText.AppendText(Environment.NewLine);
         }
 
-        private async Task CreateUdpClient() 
+        private void CreateUdpClient() 
         {
             IPAddress address = IPAddress.Any;
-            IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            IPAddress destination;
+            if (!string.IsNullOrWhiteSpace(destinationIPAddress.Text) &&
+                IPAddress.TryParse(destinationIPAddress.Text, out destination) &&
+                destination.AddressFamily == AddressFamily.InterNetworkV6)
+            {
+                address = IPAddress.IPv6Any;
+            }
+            IPEndPoint localEndPoint = new IPEndPoint(address, 0);
 
             if(!string.Empty.Equals(sourceIPAddress.Text))
             {
@@ -118,7 +127,7 @@ namespace UdpTool
 
             try
             {
-                udpClient = new UdpClient();
+                udpClient = new UdpClient(address.AddressFamily);
                 if (reuseAddress.Checked)
                 {
                     // See also, udpClient.ExclusiveAddressUse 
@@ -144,7 +153,7 @@ namespace UdpTool
             sourceIPAddress.Text = endPoint.Address.ToString();
             sourcePort.Text = endPoint.Port.ToString();
             EnableDisable(false);
-            await ReceiveAsync().ConfigureAwait(true);
+            Task receiverTask = ReceiveAsync();
         }
 
         private void EnableDisable(bool enable)
@@ -192,11 +201,11 @@ namespace UdpTool
             }
         }
 
-        private async void bind_Click(object sender, EventArgs e)
+        private void bind_Click(object sender, EventArgs e)
         {
             if (udpClient == null)
             {
-                await CreateUdpClient().ConfigureAwait(true);
+                CreateUdpClient();
             }
         }
 
