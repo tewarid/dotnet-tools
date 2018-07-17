@@ -79,12 +79,8 @@ namespace TcpListenerTool
                 MessageBox.Show(this, ex.Message, this.Text);
                 return;
             }
-            listen.Enabled = false;
-            stopListener.Enabled = true;
-            sourceIPAddress.Enabled = false;
-            sourcePort.Enabled = false;
-            reuseAddress.Enabled = false;
-            useSSLListener.Enabled = false;
+            EnableDisable(false);
+
             await AcceptTcpClient().ConfigureAwait(true);
         }
 
@@ -130,7 +126,7 @@ namespace TcpListenerTool
                 X509Certificate2 cert;
                 try
                 {
-                    cert = new X509Certificate2(pfxPath.Text, "");
+                    cert = new X509Certificate2(pfxPath.Text, pfxPassphrase.Text);
                 }
                 catch(CryptographicException ex)
                 {
@@ -170,6 +166,7 @@ namespace TcpListenerTool
         {
             pfxPath.Enabled = useSSLListener.Checked;
             browseForPfx.Enabled = useSSLListener.Checked;
+            pfxPassphrase.Enabled = useSSLListener.Checked;
         }
 
         private void stopListener_Click(object sender, EventArgs e)
@@ -193,12 +190,7 @@ namespace TcpListenerTool
                 MessageBox.Show(this, ex.Message, this.Text);
             }
             listener = null;
-            listen.Enabled = true;
-            stopListener.Enabled = false;
-            sourceIPAddress.Enabled = true;
-            reuseAddress.Enabled = true;
-            sourcePort.Enabled = true;
-            useSSLListener.Enabled = true;
+            EnableDisable(true);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -212,6 +204,18 @@ namespace TcpListenerTool
                 StopListener();
                 sourceIPAddress.Text = string.Empty;
             }
+        }
+
+        private void EnableDisable(bool enable)
+        {
+            listen.Enabled = enable;
+            stopListener.Enabled = !enable;
+            sourceIPAddress.Enabled = enable;
+            reuseAddress.Enabled = enable;
+            sourcePort.Enabled = enable;
+            useSSLListener.Enabled = enable;
+            pfxPath.Enabled = enable;
+            pfxPassphrase.Enabled = enable;
         }
     }
 }
