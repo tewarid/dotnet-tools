@@ -234,6 +234,10 @@ namespace TcpClientTool
                 int length = 0;
                 try
                 {
+                    if (stream == null)
+                    {
+                        return;
+                    }
                     length = await 
                         stream.ReadAsync(data, 0, data.Length, cancellationToken)
                         .ConfigureAwait(true);
