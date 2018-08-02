@@ -16,7 +16,7 @@ Add/remove exceptions to/from Windows Firewall. With contributions from Bruno Si
 
 ## HTTP Request Tool
 
-Simple HTTP(S) client built using [System.Net.HttpWebRequest](https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.aspx). You can use it to serve static content and to test REST clients.
+Simple interactive HTTP(S) client built using [System.Net.HttpWebRequest](https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.aspx).
 
 ## HTTP Listener Tool
 
@@ -60,19 +60,19 @@ Interactive UDP/IP client that may be used to establish IPv4 UDP sockets, send, 
 
 ## WebSocket Tool
 
-Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, send, and receive data. It is built with .NET's native implementation of WebSockets, and requires at least [Windows 8](http://gs.statcounter.com/os-version-market-share/windows/desktop/worldwide).
+Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, send, and receive data. It is built with .NET's native implementation of WebSockets, and requires at least Windows 8.
 
 ## WebSocket Server Tool
 
-Provides an interactive WebSocket server based on System.Net.HttpListener, or a self-hosted WCF service. WCF service is configured through `App.config` to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires at least [Windows 8](http://gs.statcounter.com/os-version-market-share/windows/desktop/worldwide).
+Interactive WebSocket server based on either System.Net.HttpListener or a self-hosted WCF service. WCF service is configured through `App.config` to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires at least Windows 8.
 
 ## WebSocketSharp Tool
 
-Interactive WebSocket client that may be used to establish WebSocket sessions, send, and receive data. It is built with [WebSocketSharp](https://github.com/sta/websocket-sharp) and works on Windows 7 or better. An HTTP proxy may be specified so WebSocket sessions can be debugged using [Fiddler](http://www.telerik.com/fiddler).
+Interactive WebSocket client that may be used to establish WebSocket sessions, send, and receive data. It is built with [WebSocketSharp](https://github.com/sta/websocket-sharp) and works on Windows 7, or better. An HTTP proxy may be specified so WebSocket sessions can be debugged using [Fiddler](http://www.telerik.com/fiddler).
 
 ## WebSocketSharp Server Tool
 
-Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works with Windows 7 or better. Data can be sent to and received from WebSocket clients. Supports SSL.
+Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works on Windows 7, or better. Data can be sent to and received from WebSocket clients. Supports SSL.
 
 ## Related Tools
 
