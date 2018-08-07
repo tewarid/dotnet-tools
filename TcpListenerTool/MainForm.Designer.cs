@@ -52,7 +52,7 @@ namespace TcpListenerTool
             this.stopListener.Enabled = false;
             this.stopListener.Location = new System.Drawing.Point(307, 154);
             this.stopListener.Name = "stopListener";
-            this.stopListener.Size = new System.Drawing.Size(75, 19);
+            this.stopListener.Size = new System.Drawing.Size(75, 23);
             this.stopListener.TabIndex = 24;
             this.stopListener.Text = "Stop";
             this.stopListener.UseVisualStyleBackColor = true;
@@ -72,9 +72,9 @@ namespace TcpListenerTool
             // browseForPfx
             // 
             this.browseForPfx.Enabled = false;
-            this.browseForPfx.Location = new System.Drawing.Point(305, 81);
+            this.browseForPfx.Location = new System.Drawing.Point(307, 79);
             this.browseForPfx.Name = "browseForPfx";
-            this.browseForPfx.Size = new System.Drawing.Size(75, 19);
+            this.browseForPfx.Size = new System.Drawing.Size(75, 23);
             this.browseForPfx.TabIndex = 20;
             this.browseForPfx.Text = "Browse...";
             this.browseForPfx.UseVisualStyleBackColor = true;
@@ -88,7 +88,6 @@ namespace TcpListenerTool
             this.pfxPath.ReadOnly = true;
             this.pfxPath.Size = new System.Drawing.Size(287, 20);
             this.pfxPath.TabIndex = 19;
-            this.pfxPath.Text = "mycompany.pfx";
             // 
             // label3
             // 
@@ -136,7 +135,7 @@ namespace TcpListenerTool
             // 
             this.listen.Location = new System.Drawing.Point(224, 154);
             this.listen.Name = "listen";
-            this.listen.Size = new System.Drawing.Size(75, 19);
+            this.listen.Size = new System.Drawing.Size(75, 23);
             this.listen.TabIndex = 23;
             this.listen.Text = "Listen";
             this.listen.UseVisualStyleBackColor = true;
