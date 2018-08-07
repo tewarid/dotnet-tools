@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Authentication;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
@@ -177,12 +178,35 @@ namespace TcpClientTool
                 CloseTcpClient();
                 return;
             }
+
             stream = tcpClient.GetStream();
             if (useSSL.Checked)
             {
+                X509Certificate2Collection certs = new X509Certificate2Collection();
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(pfxPath.Text) && File.Exists(pfxPath.Text))
+                    {
+                        X509Certificate2 cert = new X509Certificate2(pfxPath.Text, pfxPassphrase.Text);
+                    }
+                }
+                catch (CryptographicException ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
+                    return;
+                }
                 SslStream ssls = new SslStream(stream,
                     true, ValidateCertificate);
-                ssls.AuthenticateAsClient(string.Empty, null, SslProtocols.Tls12, false);
+                try
+                {
+                    ssls.AuthenticateAsClient(string.Empty, certs, SslProtocols.Tls12, false);
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
+                    CloseTcpClient();
+                    return;
+                }
                 stream = ssls;
             }
 
@@ -209,6 +233,9 @@ namespace TcpClientTool
             destinationIPAddress.Enabled = !connected;
             destinationPort.Enabled = !connected;
             useSSL.Enabled = !connected;
+            pfxPath.Enabled = !connected && useSSL.Checked;
+            browseForPfx.Enabled = !connected && useSSL.Checked;
+            pfxPassphrase.Enabled = !connected && useSSL.Checked;
             close.Enabled = connected;
             open.Enabled = !connected;
         }
@@ -293,6 +320,22 @@ namespace TcpClientTool
             }
             await ReadAsync(cancellationTokenSource.Token)
                 .ConfigureAwait(true); // will block here till ReadAsync is done
+        }
+
+        private void useSSL_CheckedChanged(object sender, EventArgs e)
+        {
+            pfxPath.Enabled = useSSL.Checked;
+            browseForPfx.Enabled = useSSL.Checked;
+            pfxPassphrase.Enabled = useSSL.Checked;
+        }
+
+        private void browseForPfx_Click(object sender, EventArgs e)
+        {
+            DialogResult r = openFileDialog.ShowDialog();
+            if (r == DialogResult.OK)
+            {
+                pfxPath.Text = openFileDialog.FileName;
+            }
         }
     }
 }
