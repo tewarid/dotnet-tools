@@ -188,11 +188,13 @@ namespace TcpClientTool
                     if (!string.IsNullOrWhiteSpace(pfxPath.Text) && File.Exists(pfxPath.Text))
                     {
                         X509Certificate2 cert = new X509Certificate2(pfxPath.Text, pfxPassphrase.Text);
+                        certs.Add(cert);
                     }
                 }
                 catch (CryptographicException ex)
                 {
                     MessageBox.Show(this, ex.Message, this.Text);
+                    CloseTcpClient();
                     return;
                 }
                 SslStream ssls = new SslStream(stream,
