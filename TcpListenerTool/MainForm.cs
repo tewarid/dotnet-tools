@@ -135,7 +135,9 @@ namespace TcpListenerTool
                 }
                 try
                 {
-                    ssls.AuthenticateAsServer(cert, false, SslProtocols.Tls12, false);
+                    ssls.AuthenticateAsServer(cert,
+                        requestClientCertificate.Checked, SslProtocols.Tls12,
+                        false);
                 }
                 catch(IOException)
                 {
@@ -167,6 +169,7 @@ namespace TcpListenerTool
             pfxPath.Enabled = useSSLListener.Checked;
             browseForPfx.Enabled = useSSLListener.Checked;
             pfxPassphrase.Enabled = useSSLListener.Checked;
+            requestClientCertificate.Enabled = useSSLListener.Checked;
         }
 
         private void stopListener_Click(object sender, EventArgs e)
@@ -216,6 +219,7 @@ namespace TcpListenerTool
             useSSLListener.Enabled = enable;
             pfxPath.Enabled = enable;
             pfxPassphrase.Enabled = enable;
+            requestClientCertificate.Enabled = enable;
         }
     }
 }

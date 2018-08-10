@@ -45,15 +45,16 @@ namespace TcpListenerTool
             this.reuseAddress = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pfxPassphrase = new System.Windows.Forms.TextBox();
+            this.requestClientCertificate = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // stopListener
             // 
             this.stopListener.Enabled = false;
-            this.stopListener.Location = new System.Drawing.Point(307, 154);
+            this.stopListener.Location = new System.Drawing.Point(307, 171);
             this.stopListener.Name = "stopListener";
             this.stopListener.Size = new System.Drawing.Size(75, 23);
-            this.stopListener.TabIndex = 24;
+            this.stopListener.TabIndex = 28;
             this.stopListener.Text = "Stop";
             this.stopListener.UseVisualStyleBackColor = true;
             this.stopListener.Click += new System.EventHandler(this.stopListener_Click);
@@ -133,10 +134,10 @@ namespace TcpListenerTool
             // 
             // listen
             // 
-            this.listen.Location = new System.Drawing.Point(224, 154);
+            this.listen.Location = new System.Drawing.Point(224, 171);
             this.listen.Name = "listen";
             this.listen.Size = new System.Drawing.Size(75, 23);
-            this.listen.TabIndex = 23;
+            this.listen.TabIndex = 26;
             this.listen.Text = "Listen";
             this.listen.UseVisualStyleBackColor = true;
             this.listen.Click += new System.EventHandler(this.listen_Click);
@@ -176,11 +177,22 @@ namespace TcpListenerTool
             this.pfxPassphrase.TabIndex = 22;
             this.pfxPassphrase.Text = "abcd";
             // 
+            // requestClientCertificate
+            // 
+            this.requestClientCertificate.AutoSize = true;
+            this.requestClientCertificate.Location = new System.Drawing.Point(13, 147);
+            this.requestClientCertificate.Name = "requestClientCertificate";
+            this.requestClientCertificate.Size = new System.Drawing.Size(145, 17);
+            this.requestClientCertificate.TabIndex = 224;
+            this.requestClientCertificate.Text = "Request Client Certificate";
+            this.requestClientCertificate.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 182);
+            this.ClientSize = new System.Drawing.Size(394, 206);
+            this.Controls.Add(this.requestClientCertificate);
             this.Controls.Add(this.pfxPassphrase);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.reuseAddress);
@@ -222,6 +234,7 @@ namespace TcpListenerTool
         private System.Windows.Forms.CheckBox reuseAddress;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox pfxPassphrase;
+        private System.Windows.Forms.CheckBox requestClientCertificate;
     }
 }
 
