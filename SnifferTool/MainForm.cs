@@ -166,7 +166,7 @@ namespace SnifferTool
         private void Send(string hexStream, IPEndPoint toEndPoint)
         {
             MemoryStream o = new MemoryStream();
-            HexToBin.Convert(new StringReader(hexStream), o);
+            HexToBin.DefaultInstance.Convert(new StringReader(hexStream), o);
             Send(o.GetBuffer(), (int)o.Length, toEndPoint);
         }
 

@@ -43,7 +43,7 @@ namespace IcmpTool
 
             MemoryStream output = new MemoryStream();
             TextReader input = new StringReader(inputText.Text);
-            length = HexToBin.Convert(input, output);
+            length = HexToBin.DefaultInstance.Convert(input, output);
             data = output.GetBuffer();
 
             if (length <= 0)

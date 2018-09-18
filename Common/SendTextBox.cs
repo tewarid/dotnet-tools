@@ -17,7 +17,7 @@ namespace Common
                 {
                     MemoryStream output = new MemoryStream();
                     TextReader input = new StringReader(Text);
-                    HexToBin.Convert(input, output);
+                    HexToBin.DefaultInstance.Convert(input, output);
                     buffer = output.ToArray();
                 }
                 else

@@ -68,9 +68,9 @@ namespace RouteTool
                 var data = from dynamic item in outputCollection
                            select new
                            {
-                               InterfaceIndex = item.InterfaceIndex,
-                               InterfaceAlias = item.InterfaceAlias,
-                               InterfaceDescription = item.InterfaceDescription,
+                               item.InterfaceIndex,
+                               item.InterfaceAlias,
+                               item.InterfaceDescription,
                                IPv4Address = item.IPv4Address[0].CimInstanceProperties["IPv4Address"].Value,
                                IPv4DefaultGateway = item.IPv4DefaultGateway != null? item.IPv4DefaultGateway[0].CimInstanceProperties["NextHop"].Value: "",
                                DisplayText = string.Format("{0} ({1})", 
