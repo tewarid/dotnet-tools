@@ -98,7 +98,7 @@ namespace SnifferTool
             }
             catch
             {
-
+                // nothing to show/tell the user
             }
         }
 
@@ -144,7 +144,9 @@ namespace SnifferTool
         private void CloseRawSocket()
         {
             if (socket == null)
+            {
                 return;
+            }
 
             if (InvokeRequired)
             {

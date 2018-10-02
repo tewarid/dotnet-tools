@@ -1,6 +1,8 @@
-﻿namespace TcpClientTool
+﻿using System.Windows.Forms;
+
+namespace TcpClientTool
 {
-    partial class MainForm
+    partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.

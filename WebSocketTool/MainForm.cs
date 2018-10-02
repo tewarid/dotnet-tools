@@ -13,7 +13,7 @@ namespace Common
         delegate void ShowReceivedDataDelegate(byte[] data, int length);
 
         private ClientWebSocket wsClient;
-        private byte[] buffer = new byte[100];
+        private readonly byte[] buffer = new byte[100];
         private bool newMessage = true;
         NameValueCollection headers;
         private string proxyUrl;
@@ -57,11 +57,12 @@ namespace Common
             int tickCount = Environment.TickCount;
             try
             {
-                CancellationTokenSource source = new CancellationTokenSource();
-                CancellationToken token = source.Token;
+                CancellationTokenSource cts = new CancellationTokenSource();
+                CancellationToken token = cts.Token;
                 await wsClient.SendAsync(new ArraySegment<byte>(data, 0, data.Length),
                     sendTextBox.Binary ? WebSocketMessageType.Binary : WebSocketMessageType.Text,
                     true, token).ConfigureAwait(true);
+                cts.Dispose();
             }
             catch (Exception ex)
             {
@@ -134,9 +135,10 @@ namespace Common
             EnableDisable(false);
             try
             {
-                CancellationTokenSource source = new CancellationTokenSource();
-                CancellationToken token = source.Token;
+                CancellationTokenSource cts = new CancellationTokenSource();
+                CancellationToken token = cts.Token;
                 await wsClient.ConnectAsync(uri, token).ConfigureAwait(true);
+                cts.Dispose();
             }
             catch (Exception ex)
             {
@@ -147,21 +149,22 @@ namespace Common
 
         private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            await CloseWebSocketClient();
+            await CloseWebSocketClient().ConfigureAwait(true);
         }
 
         private async Task ReadCallback()
         {
-            CancellationTokenSource source = new CancellationTokenSource();
-            CancellationToken token = source.Token;
             while(true)
             {
                 WebSocketReceiveResult result;
                 try
                 {
+                    CancellationTokenSource cts = new CancellationTokenSource();
+                    CancellationToken token = cts.Token;
                      result = await wsClient
                         .ReceiveAsync(new ArraySegment<byte>(buffer),token)
                         .ConfigureAwait(true);
+                    cts.Dispose();
                 }
                 catch (ObjectDisposedException)
                 {
@@ -182,13 +185,13 @@ namespace Common
             }
         }
 
-        private async void connect_Click(object sender, EventArgs e)
+        private async void Connect_Click(object sender, EventArgs e)
         {
             await CreateWebSocketClient().ConfigureAwait(true);
             await ReadCallback().ConfigureAwait(true);
         }
 
-        private async void closeButton_Click(object sender, EventArgs e)
+        private async void CloseButton_Click(object sender, EventArgs e)
         {
             await CloseWebSocketClient().ConfigureAwait(true);
         }
@@ -197,17 +200,18 @@ namespace Common
         {
             if (wsClient != null && wsClient.State == WebSocketState.Open)
             {
-                CancellationTokenSource source = new CancellationTokenSource();
-                CancellationToken token = source.Token;
+                CancellationTokenSource cts = new CancellationTokenSource();
+                CancellationToken token = cts.Token;
                 await wsClient
                     .CloseAsync(WebSocketCloseStatus.NormalClosure, "bye", token)
                     .ConfigureAwait(true);
+                cts.Dispose();
                 status.Text = "WebSocket closed.";
                 EnableDisable(true);
             }
         }
 
-        private void setHeaders_Click(object sender, EventArgs e)
+        private void SetHeaders_Click(object sender, EventArgs e)
         {
             NameValueCollection initialValues = new NameValueCollection();
             if (headers == null || headers.Count == 0)
@@ -224,7 +228,7 @@ namespace Common
             headers = headerForm.NameValues;
         }
 
-        private void proxyButton_Click(object sender, EventArgs e)
+        private void ProxyButton_Click(object sender, EventArgs e)
         {
             string defaultValue;
             if (string.IsNullOrEmpty(proxyUrl))
@@ -235,11 +239,12 @@ namespace Common
             {
                 defaultValue = proxyUrl;
             }
-            DialogResult result = InputDialog.Show<Uri>(this, "HTTP Proxy",
-                defaultValue, out Uri value);
+            InputDialog<Uri> dialog = new InputDialog<Uri>();
+            DialogResult result = dialog.Show(this, "HTTP Proxy",
+                defaultValue);
             if (result == DialogResult.OK)
             {
-                proxyUrl = value?.AbsoluteUri;
+                proxyUrl = dialog.Value == null ? null : dialog.Value.AbsoluteUri;
             }
         }
 

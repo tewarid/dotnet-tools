@@ -58,11 +58,11 @@
     <Compile Include="..\Common\Properties\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
-    <Compile Include="AddRoute.cs">
+    <Compile Include="AddRouteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddRoute.Designer.cs">
-      <DependentUpon>AddRoute.cs</DependentUpon>
+    <Compile Include="AddRouteForm.Designer.cs">
+      <DependentUpon>AddRouteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -72,8 +72,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddRoute.resx">
-      <DependentUpon>AddRoute.cs</DependentUpon>
+    <EmbeddedResource Include="AddRouteForm.resx">
+      <DependentUpon>AddRouteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

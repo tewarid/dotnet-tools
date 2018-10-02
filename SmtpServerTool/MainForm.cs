@@ -8,8 +8,7 @@ namespace SmtpServerTool
 {
     public partial class MainForm : Form
     {
-        readonly CancellationTokenSource cancellationTokenSource =
-            new CancellationTokenSource();
+        private CancellationTokenSource cancellationTokenSource;
         private SmtpServer.SmtpServer smtpServer;
 
         public MainForm()
@@ -17,7 +16,7 @@ namespace SmtpServerTool
             InitializeComponent();
         }
 
-        private async void start_Click(object sender, EventArgs e)
+        private async void Start_Click(object sender, EventArgs e)
         {
             EnableDisable(false);
             TimeSpan seconds =
@@ -34,7 +33,9 @@ namespace SmtpServerTool
             smtpServer.SessionCreated += OnSessionCreated;
             try
             {
+                cancellationTokenSource = new CancellationTokenSource();
                 await smtpServer.StartAsync(cancellationTokenSource.Token);
+                cancellationTokenSource.Dispose();
             }
             catch(SocketException ex)
             {
@@ -42,7 +43,7 @@ namespace SmtpServerTool
             }
             catch(OperationCanceledException)
             {
-
+                // nothing for user to do
             }
             EnableDisable(true);
         }
@@ -78,14 +79,15 @@ namespace SmtpServerTool
 
         private void OnCommandExecuting(object sender, SmtpCommandExecutingEventArgs e)
         {
+            // nothing to show or tell the user
         }
 
-        private void stop_Click(object sender, EventArgs e)
+        private void Stop_Click(object sender, EventArgs e)
         {
             cancellationTokenSource.Cancel();
         }
 
-        private void clear_Click(object sender, EventArgs e)
+        private void Clear_Click(object sender, EventArgs e)
         {
             log.Clear();
         }

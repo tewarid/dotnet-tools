@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;

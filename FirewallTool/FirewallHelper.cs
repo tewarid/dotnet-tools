@@ -9,7 +9,7 @@ namespace Connection
 {
     public class FirewallHelper
     {
-        private INetFwMgr mgr = null;
+        private readonly INetFwMgr mgr;
         private string applicationFullPath;
         private string appName;
    
@@ -32,9 +32,13 @@ namespace Connection
             get
             {
                 if (mgr != null && mgr.LocalPolicy != null && mgr.LocalPolicy.CurrentProfile != null)
+                {
                     return true;
+                }
                 else
+                {
                     return false;
+                }
             }
         }
 
@@ -62,9 +66,13 @@ namespace Connection
             get
             {
                 if (IsFirewallInstalled && !mgr.LocalPolicy.CurrentProfile.ExceptionsNotAllowed)
+                {
                     return true;
+                }
                 else
+                {
                     return false;
+                }
             }
         }
 
@@ -75,9 +83,13 @@ namespace Connection
                 throw new ArgumentNullException("applicationFullPath");
             }
             if (!File.Exists(applicationFullPath))
+            {
                 throw new FileNotFoundException("File does not exist.", applicationFullPath);
+            }
             if (!IsFirewallInstalled)
+            {
                 throw new FirewallHelperException("Cannot remove authorization, firewall is not enabled.");
+            }
 
             foreach (string appName in GetAuthorizedAppPaths())
             {
@@ -100,8 +112,11 @@ namespace Connection
 
             ArrayList list = new ArrayList();
             //  Collect the paths of all authorized applications
-            foreach (INetFwAuthorizedApplication app in mgr.LocalPolicy.CurrentProfile.AuthorizedApplications)
+            foreach (INetFwAuthorizedApplication app
+                in mgr.LocalPolicy.CurrentProfile.AuthorizedApplications)
+            {
                 list.Add(app.ProcessImageFileName);
+            }
 
             return list;
         }
@@ -204,7 +219,7 @@ namespace Connection
          
         }
 
-        private INetFwAuthorizedApplication GetAuthAppObj(string applicationFullPath, string appName)
+        private static INetFwAuthorizedApplication GetAuthAppObj(string applicationFullPath, string appName)
         {
             // Get the type of HNetCfg.FwMgr, or null if an error occurred
             Type authApp = Type.GetTypeFromProgID("HNetCfg.FwAuthorizedApplication", false);
@@ -218,16 +233,10 @@ namespace Connection
                 {
                     appInfo = (INetFwAuthorizedApplication)Activator.CreateInstance(authApp);
                 }
-                // In all other circumnstances, appInfo is null.
-                catch (ArgumentException) { }
-                catch (NotSupportedException) { }
-                catch (System.Reflection.TargetInvocationException) { }
-                catch (MissingMethodException) { }
-                catch (MethodAccessException) { }
-                catch (MemberAccessException) { }
-                catch (InvalidComObjectException) { }
-                catch (COMException) { }
-                catch (TypeLoadException) { }
+                catch (Exception)
+                {
+                    // In all other circumnstances, appInfo is null.
+                }
             }
 
             if (appInfo == null)

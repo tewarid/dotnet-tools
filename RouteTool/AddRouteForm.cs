@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace RouteTool
 {
-    public partial class AddRoute : Form
+    public partial class AddRouteForm : Form
     {
         public string DestinationPrefix
         {
@@ -49,7 +49,7 @@ namespace RouteTool
             }
         }
 
-        public AddRoute()
+        public AddRouteForm()
         {
             InitializeComponent();
         }
@@ -95,7 +95,7 @@ namespace RouteTool
 
         }
 
-        private void interfaces_SelectedIndexChanged(object sender, EventArgs e)
+        private void Interfaces_SelectedIndexChanged(object sender, EventArgs e)
         {
             dynamic control = sender;
             nextHopIPAddress.Text = control.SelectedItem.IPv4DefaultGateway;

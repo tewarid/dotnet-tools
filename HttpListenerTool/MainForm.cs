@@ -43,7 +43,7 @@ namespace HttpListenerTool
                 EnableDisable(false);
                 while (listener.IsListening)
                 {
-                    await ListenAsync();
+                    await ListenAsync().ConfigureAwait(true);
                 }
             }
             catch(Exception ex)

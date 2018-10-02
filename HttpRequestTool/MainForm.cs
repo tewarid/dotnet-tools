@@ -32,7 +32,7 @@ namespace Common
             requestMethod.SelectedIndex = 0;
         }
 
-        private void selectCertificateFile_Click(object sender, EventArgs e)
+        private void SelectCertificateFile_Click(object sender, EventArgs e)
         {
             DialogResult r = fileDialog.ShowDialog();
             if (r == DialogResult.OK)
@@ -41,20 +41,20 @@ namespace Common
             }
         }
 
-        private void setClientCertificate_CheckedChanged(object sender, EventArgs e)
+        private void SetClientCertificate_CheckedChanged(object sender, EventArgs e)
         {
             certificatePassword.Enabled = setClientCertificate.Checked;
             clientCertificateFile.Enabled = setClientCertificate.Checked;
             selectCertificateFile.Enabled = setClientCertificate.Checked;
         }
 
-        private void tlsVersion_SelectedIndexChanged(object sender, EventArgs e)
+        private void TlsVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
             ServicePointManager.SecurityProtocol = 
                 ((ComboboxItem<SecurityProtocolType>)tlsVersion.SelectedItem).Value;
         }
 
-        private void go_Click(object sender, EventArgs e)
+        private void Go_Click(object sender, EventArgs e)
         {
             responseContent.Clear();
             responseHeaders.Clear();
@@ -105,14 +105,14 @@ namespace Common
             responseHeaders.Add(response.Headers);
         }
 
-        private byte[] ReadAllBytes(Stream s)
+        private static byte[] ReadAllBytes(Stream s)
         {
             MemoryStream m = new MemoryStream();
             s.CopyTo(m);
             return m.ToArray();
         }
 
-        private void url_TextChanged(object sender, EventArgs e)
+        private void Url_TextChanged(object sender, EventArgs e)
         {
             Uri uri;
             try
@@ -127,7 +127,7 @@ namespace Common
             queryParameters.Add(HttpUtility.ParseQueryString(uri.Query));
         }
 
-        private void requestMethod_SelectedIndexChanged(object sender, EventArgs e)
+        private void RequestMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool enable = HasContentBody();
             requestContentType.Enabled = enable;

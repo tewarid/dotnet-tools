@@ -15,7 +15,7 @@ namespace WebSocketServerTool
         public event MessageHandler Message;
         public event ClosedHandler Closed;
 
-        private IServiceCallback callback;
+        private readonly IServiceCallback callback;
 
         public WcfClientContext(IServiceCallback callback)
         {

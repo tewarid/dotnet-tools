@@ -1,6 +1,8 @@
-﻿namespace SerialTool
+﻿using System.Windows.Forms;
+
+namespace SerialTool
 {
-    partial class MainForm
+    partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.

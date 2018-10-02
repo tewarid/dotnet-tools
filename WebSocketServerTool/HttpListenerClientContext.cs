@@ -26,12 +26,14 @@ namespace WebSocketServerTool
             wsContext = await listenerContext.AcceptWebSocketAsync(null, TimeSpan.FromSeconds(30));
             while (true)
             {
-                CancellationTokenSource source = new CancellationTokenSource();
-                CancellationToken token = source.Token;
                 WebSocketReceiveResult result;
                 try
                 {
-                    result = await wsContext.WebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), token);
+                    CancellationTokenSource cts = new CancellationTokenSource();
+                    CancellationToken token = cts.Token;
+                    result = await wsContext.WebSocket
+                        .ReceiveAsync(new ArraySegment<byte>(buffer), token);
+                    cts.Dispose();
                 }
                 catch(WebSocketException)
                 {
@@ -40,7 +42,8 @@ namespace WebSocketServerTool
                 }
                 if (result.Count > 0)
                 {
-                    await Receive(buffer, result.Count, result.MessageType, result.EndOfMessage);
+                    await Receive(buffer, result.Count, result.MessageType,
+                        result.EndOfMessage).ConfigureAwait(true);
                 }
 
                 if (wsContext.WebSocket.State != WebSocketState.Open)
@@ -53,14 +56,14 @@ namespace WebSocketServerTool
 
         public void Close()
         {
-            CancellationToken cancellationToken = default(System.Threading.CancellationToken);
+            CancellationToken cancellationToken = default(CancellationToken);
             wsContext.WebSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, 
                 "Closed by user.", cancellationToken);
         }
 
         public void Send(byte[] message, WebSocketMessageType type)
         {
-            CancellationToken cancellationToken = default(System.Threading.CancellationToken);
+            CancellationToken cancellationToken = default(CancellationToken);
             wsContext.WebSocket.SendAsync(new ArraySegment<byte>(message), 
                 type, true, cancellationToken);
         }

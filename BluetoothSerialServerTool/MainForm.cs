@@ -104,7 +104,7 @@ namespace BluetoothSppServerTool
             }
         }
 
-        private void stopButton_Click(object sender, EventArgs e)
+        private void StopButton_Click(object sender, EventArgs e)
         {
             Stop(true);
         }
@@ -169,10 +169,9 @@ namespace BluetoothSppServerTool
             }
         }
 
-        private async void sendButton_Click(object sender, EventArgs e)
+        private async void SendButton_Click(object sender, EventArgs e)
         {
-            await SendAsync(input.Bytes)
-                .ConfigureAwait(true);
+            await SendAsync(input.Bytes).ConfigureAwait(true);
         }
     }
 }

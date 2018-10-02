@@ -1,6 +1,8 @@
-﻿namespace NetTools.Common
+﻿using System.Windows.Forms;
+
+namespace NetTools.Common
 {
-    partial class ContentTypeSelector
+    partial class ContentTypeSelector : UserControl
     {
         /// <summary> 
         /// Required designer variable.

@@ -1,6 +1,8 @@
-﻿namespace Common
+﻿using System.Windows.Forms;
+
+namespace Common
 {
-    partial class MainForm
+    partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -96,7 +98,7 @@
             this.connect.TabIndex = 3;
             this.connect.Text = "Connect";
             this.connect.UseVisualStyleBackColor = true;
-            this.connect.Click += new System.EventHandler(this.connect_Click);
+            this.connect.Click += new System.EventHandler(this.Connect_Click);
             // 
             // label4
             // 
@@ -135,7 +137,7 @@
             this.proxyButton.TabIndex = 2;
             this.proxyButton.Text = "HTTP Proxy...";
             this.proxyButton.UseVisualStyleBackColor = true;
-            this.proxyButton.Click += new System.EventHandler(this.proxyButton_Click);
+            this.proxyButton.Click += new System.EventHandler(this.ProxyButton_Click);
             // 
             // location
             // 
@@ -170,7 +172,7 @@
             this.setHeaders.TabIndex = 1;
             this.setHeaders.Text = "HTTP Headers...";
             this.setHeaders.UseVisualStyleBackColor = true;
-            this.setHeaders.Click += new System.EventHandler(this.setHeaders_Click);
+            this.setHeaders.Click += new System.EventHandler(this.SetHeaders_Click);
             // 
             // closeButton
             // 
@@ -183,7 +185,7 @@
             this.closeButton.TabIndex = 4;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // statusStrip1
             // 

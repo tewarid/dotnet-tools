@@ -18,10 +18,6 @@ namespace WebSocketSharpTool
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-        }
-
         private void SendButton_Click(object sender, EventArgs e)
         {
             sendButton.Enabled = false;
@@ -57,7 +53,7 @@ namespace WebSocketSharpTool
                             {
                                 int tickcount = Environment.TickCount;
                                 tickcount = Environment.TickCount - tickcount;
-                                BeginInvoke((MethodInvoker)delegate ()
+                                BeginInvoke((MethodInvoker)delegate
                                 {
                                     status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
                                     data.Length, tickcount);
@@ -132,7 +128,9 @@ namespace WebSocketSharpTool
         private void CreateWebSocketClient()
         {
             if (ws != null && ws.IsAlive)
+            {
                 return;
+            }
 
             ws = new WebSocket(location.Text);
             
@@ -257,12 +255,12 @@ namespace WebSocketSharpTool
             {
                 defaultValue = proxyUrl;
             }
-            Uri value;
-            DialogResult result = InputDialog.Show<Uri>(this, "HTTP Proxy",
-                defaultValue, out value);
+            InputDialog<Uri> dialog = new InputDialog<Uri>();
+            DialogResult result = dialog.Show(this, "HTTP Proxy",
+                defaultValue);
             if (result == DialogResult.OK)
             {
-                proxyUrl = value == null ? null : value.AbsoluteUri;
+                proxyUrl = dialog.Value == null ? null : dialog.Value.AbsoluteUri;
             }
         }
 

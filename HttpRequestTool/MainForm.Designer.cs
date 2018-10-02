@@ -1,6 +1,8 @@
-﻿namespace Common
+﻿using System.Windows.Forms;
+
+namespace Common
 {
-    partial class MainForm
+    partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -81,7 +83,7 @@
             this.url.Size = new System.Drawing.Size(512, 20);
             this.url.TabIndex = 9;
             this.url.Text = "https://localhost:8443/";
-            this.url.TextChanged += new System.EventHandler(this.url_TextChanged);
+            this.url.TextChanged += new System.EventHandler(this.Url_TextChanged);
             // 
             // setClientCertificate
             // 
@@ -93,7 +95,7 @@
             this.setClientCertificate.TabIndex = 2;
             this.setClientCertificate.Text = "Set client certificate";
             this.setClientCertificate.UseVisualStyleBackColor = true;
-            this.setClientCertificate.CheckedChanged += new System.EventHandler(this.setClientCertificate_CheckedChanged);
+            this.setClientCertificate.CheckedChanged += new System.EventHandler(this.SetClientCertificate_CheckedChanged);
             // 
             // label2
             // 
@@ -149,7 +151,7 @@
             this.selectCertificateFile.TabIndex = 7;
             this.selectCertificateFile.Text = "Browse...";
             this.selectCertificateFile.UseVisualStyleBackColor = true;
-            this.selectCertificateFile.Click += new System.EventHandler(this.selectCertificateFile_Click);
+            this.selectCertificateFile.Click += new System.EventHandler(this.SelectCertificateFile_Click);
             // 
             // fileDialog
             // 
@@ -166,7 +168,7 @@
             this.go.TabIndex = 10;
             this.go.Text = "Go";
             this.go.UseVisualStyleBackColor = true;
-            this.go.Click += new System.EventHandler(this.go_Click);
+            this.go.Click += new System.EventHandler(this.Go_Click);
             // 
             // label4
             // 
@@ -189,7 +191,7 @@
             this.tlsVersion.Name = "tlsVersion";
             this.tlsVersion.Size = new System.Drawing.Size(102, 21);
             this.tlsVersion.TabIndex = 12;
-            this.tlsVersion.SelectedIndexChanged += new System.EventHandler(this.tlsVersion_SelectedIndexChanged);
+            this.tlsVersion.SelectedIndexChanged += new System.EventHandler(this.TlsVersion_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -220,7 +222,7 @@
             this.requestMethod.Name = "requestMethod";
             this.requestMethod.Size = new System.Drawing.Size(129, 21);
             this.requestMethod.TabIndex = 15;
-            this.requestMethod.SelectedIndexChanged += new System.EventHandler(this.requestMethod_SelectedIndexChanged);
+            this.requestMethod.SelectedIndexChanged += new System.EventHandler(this.RequestMethod_SelectedIndexChanged);
             // 
             // label7
             // 

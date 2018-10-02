@@ -52,12 +52,12 @@ namespace Common
             outputText.AppendText(text);
         }
 
-        public void AppendText(string text, bool inHexadecimalMode)
+        public void AppendTextInHexMode(string text)
         {
-            if (inHexadecimalMode && viewInHex.Checked)
+            if (viewInHex.Checked)
+            {
                 AppendText(text);
-            else if (!inHexadecimalMode && !viewInHex.Checked)
-                AppendText(text);
+            }
         }
 
         public void Clear()

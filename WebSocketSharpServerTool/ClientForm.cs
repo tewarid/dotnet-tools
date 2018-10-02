@@ -6,7 +6,7 @@ namespace WebSocketSharpServerTool
 {
     public partial class ClientForm : Form
     {
-        private ServiceBehavior client;
+        private readonly ServiceBehavior client;
 
         public ClientForm(ServiceBehavior client)
         {

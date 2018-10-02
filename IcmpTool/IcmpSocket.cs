@@ -7,7 +7,7 @@ namespace IcmpTool
     class IcmpSocket
     {
         private Socket icmpSocket;
-        private byte[] receiveBuffer = new byte[256];
+        private readonly byte[] receiveBuffer = new byte[256];
         private EndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, 0);
 
         public delegate void MessageReceivedHandler(IPEndPoint from, byte[] message, int length);

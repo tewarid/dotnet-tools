@@ -1,6 +1,8 @@
-﻿namespace RouteTool
+﻿using System.Windows.Forms;
+
+namespace RouteTool
 {
-    partial class AddRoute
+    partial class AddRouteForm : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -78,7 +80,7 @@
             this.interfaces.Name = "interfaces";
             this.interfaces.Size = new System.Drawing.Size(351, 24);
             this.interfaces.TabIndex = 3;
-            this.interfaces.SelectedIndexChanged += new System.EventHandler(this.interfaces_SelectedIndexChanged);
+            this.interfaces.SelectedIndexChanged += new System.EventHandler(this.Interfaces_SelectedIndexChanged);
             // 
             // label3
             // 

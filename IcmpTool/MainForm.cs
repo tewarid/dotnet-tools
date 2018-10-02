@@ -16,14 +16,12 @@ namespace IcmpTool
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-        }
-
         private void SendButton_Click(object sender, EventArgs e)
         {
             if (icmpSocket == null)
+            {
                 return;
+            }
 
             IPEndPoint endPoint;
 

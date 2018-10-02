@@ -16,7 +16,6 @@ namespace TcpClientTool
     {
         TcpClient tcpClient;
         Stream stream;
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
         public MainForm()
         {
@@ -24,7 +23,7 @@ namespace TcpClientTool
             sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
         }
 
-        public MainForm(TcpClient tcpClient, Stream stream = null) : this()
+        public MainForm(TcpClient tcpClient, Stream stream) : this()
         {
             this.tcpClient = tcpClient;
             this.stream = stream;
@@ -32,6 +31,11 @@ namespace TcpClientTool
             {
                 this.stream = tcpClient.GetStream();
             }
+        }
+
+        public MainForm(TcpClient tcpClient) : this(tcpClient, null)
+        {
+
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
@@ -42,7 +46,10 @@ namespace TcpClientTool
                 EnableDisable(true);
                 try
                 {
-                    await ReadAsync(cancellationTokenSource.Token).ConfigureAwait(true);
+                    CancellationTokenSource cts =
+                        new CancellationTokenSource();
+                    await ReadAsync(cts.Token).ConfigureAwait(true);
+                    cts.Dispose();
                 }
                 catch(ObjectDisposedException)
                 {
@@ -67,8 +74,11 @@ namespace TcpClientTool
                     return;
                 }
                 await SendAsync().ConfigureAwait(true);
-                await ReadAsync(cancellationTokenSource.Token)
+                CancellationTokenSource cts =
+                    new CancellationTokenSource();
+                await ReadAsync(cts.Token)
                     .ConfigureAwait(true); // will block here till ReadAsync is done
+                cts.Dispose();
             }
             else
             {
@@ -111,13 +121,16 @@ namespace TcpClientTool
         private void ShowReceivedData(byte[] data, int length)
         {
             outputText.Append(data, length);
-            outputText.AppendText(Environment.NewLine, true);
-            outputText.AppendText(Environment.NewLine, true);
+            outputText.AppendTextInHexMode(Environment.NewLine);
+            outputText.AppendTextInHexMode(Environment.NewLine);
         }
 
         private void CreateTcpClient()
         {
-            if (tcpClient != null && tcpClient.Connected) return;
+            if (tcpClient != null && tcpClient.Connected)
+            {
+                return;
+            }
 
             if (string.Empty.Equals(destinationIPAddress.Text)
                 || string.Empty.Equals(destinationPort.Text))
@@ -316,8 +329,11 @@ namespace TcpClientTool
             {
                 return;
             }
-            await ReadAsync(cancellationTokenSource.Token)
-                .ConfigureAwait(true); // will block here till ReadAsync is done
+            CancellationTokenSource cts =
+                new CancellationTokenSource();
+            await ReadAsync(cts.Token).ConfigureAwait(true);
+            // will block here till ReadAsync is done
+            cts.Dispose();
         }
 
         private void UseSSL_CheckedChanged(object sender, EventArgs e)

@@ -4,7 +4,7 @@ namespace NetTools.Common
 {
     public partial class ContentTypeSelector : UserControl
     {
-        private ComboBox comboBox;
+        private readonly ComboBox comboBox;
 
         public override string Text
         {
@@ -17,13 +17,15 @@ namespace NetTools.Common
         public ContentTypeSelector()
         {
             InitializeComponent();
-            comboBox = new ComboBox();
+            comboBox = new ComboBox()
+            {
+                Dock = DockStyle.Fill
+            };
             comboBox.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("txt"));
             comboBox.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("xml"));
             comboBox.Items.Add(MimeTypes.MimeTypeMap.GetMimeType("json"));
-            comboBox.Dock = DockStyle.Fill;
             Controls.Add(comboBox);
-            this.Height = comboBox.Height;
+            Height = comboBox.Height;
         }
     }
 }

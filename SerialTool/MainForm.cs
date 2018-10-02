@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.IO.Ports;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace SerialTool
         {
             try
             {
-                await SendAsync();
+                await SendAsync().ConfigureAwait(true);
             }
             catch (Exception ex)
             {
@@ -84,8 +85,8 @@ namespace SerialTool
             }
 
             outputText.Append(data, length);
-            outputText.AppendText(Environment.NewLine, true);
-            outputText.AppendText(Environment.NewLine, true);
+            outputText.AppendTextInHexMode(Environment.NewLine);
+            outputText.AppendTextInHexMode(Environment.NewLine);
         }
 
         private void CreateSerialPort()
@@ -180,8 +181,9 @@ namespace SerialTool
                 }
                 port = null;
             }
-            catch
+            catch(IOException)
             {
+                // don't need user to do anything
             }
 
             closeButton.Enabled = false;

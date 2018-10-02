@@ -1,8 +1,8 @@
-﻿using System;
+﻿using System.Windows.Forms;
 
 namespace TcpListenerTool
 {
-    partial class MainForm
+    partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -212,7 +212,6 @@ namespace TcpListenerTool
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TCP Listener Tool";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

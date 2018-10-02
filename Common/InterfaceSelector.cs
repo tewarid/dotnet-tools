@@ -10,7 +10,7 @@ namespace Common
 {
     public partial class InterfaceSelectorComboBox : UserControl
     {
-        private ComboBox comboBox = null;
+        private ComboBox comboBox;
 
         public event Action InterfaceDeleted;
 

@@ -63,11 +63,11 @@
     <Compile Include="InputDialog.Designer.cs">
       <DependentUpon>InputDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="NameValueDialog.cs">
+    <Compile Include="NameValueDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NameValueDialog.Designer.cs">
-      <DependentUpon>NameValueDialog.cs</DependentUpon>
+    <Compile Include="NameValueDialogForm.Designer.cs">
+      <DependentUpon>NameValueDialogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="InterfaceSelector.cs">
       <SubType>UserControl</SubType>
@@ -106,8 +106,8 @@
     <EmbeddedResource Include="InterfaceSelector.resx">
       <DependentUpon>InterfaceSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NameValueDialog.resx">
-      <DependentUpon>NameValueDialog.cs</DependentUpon>
+    <EmbeddedResource Include="NameValueDialogForm.resx">
+      <DependentUpon>NameValueDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NameValueGrid.resx">
       <DependentUpon>NameValueGrid.cs</DependentUpon>

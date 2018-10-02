@@ -4,50 +4,49 @@ using System.Windows.Forms;
 
 namespace Common
 {
-    public partial class InputDialog : Form
+    public partial class InputDialog<T> : Form
     {
-        private InputDialog()
+        public T Value { get; private set; }
+
+        public InputDialog()
         {
             InitializeComponent();
         }
 
-        public static DialogResult Show<T>(IWin32Window owner, string label,
-            string defaultValue, out T value)
+        public DialogResult Show(IWin32Window owner, string label,
+            string defaultValue)
         {
-            T inputValue = default(T);
-            InputDialog dialog = new InputDialog();
-            dialog.Text = label;
-            dialog.label.Text = label;
-            dialog.value.Text = defaultValue;
+            this.Text = label;
+            this.label.Text = label;
+            this.value.Text = defaultValue;
             DialogResult result = DialogResult.None;
-            dialog.ok.Click += (o, a) =>
+            this.ok.Click += (o, a) =>
             {
                 try
                 {
-                    if (!string.IsNullOrEmpty(dialog.value.Text))
+                    if (!string.IsNullOrEmpty(this.value.Text))
                     {
-                        inputValue = (T)Activator.CreateInstance(typeof(T),
-                            new object[] { dialog.value.Text });
+                        Value = (T)Activator.CreateInstance(typeof(T),
+                            new object[] { this.value.Text });
                     }
                 }
                 catch(TargetInvocationException ex)
                 {
                     if (ex.InnerException != null)
                     {
-                        MessageBox.Show(dialog, ex.InnerException.Message,
-                            dialog.Text);
+                        MessageBox.Show(this, ex.InnerException.Message,
+                            this.Text);
                     }
                     return;
                 }
                 result = DialogResult.OK;
-                dialog.Close();
+                this.Close();
             };
-            dialog.cancel.Click += (o, a) =>
+            this.cancel.Click += (o, a) =>
             {
                 result = DialogResult.Cancel;
             };
-            dialog.ShowDialog(owner);
-            value = inputValue;
+            this.ShowDialog(owner);
             return result;
         }
     }

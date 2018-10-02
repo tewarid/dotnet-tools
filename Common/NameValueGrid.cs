@@ -88,7 +88,9 @@ namespace NetTools.Common
                 string name = (string)row.Cells[0].Value;
                 string value = (string)row.Cells[1].Value;
                 if (!string.IsNullOrWhiteSpace(name))
+                {
                     collection.Add(name, value);
+                }
             }
             return collection;
         }

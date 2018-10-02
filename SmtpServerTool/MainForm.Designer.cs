@@ -1,6 +1,8 @@
-﻿namespace SmtpServerTool
+﻿using System.Windows.Forms;
+
+namespace SmtpServerTool
 {
-    partial class MainForm
+    partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -54,7 +56,7 @@
             this.start.TabIndex = 6;
             this.start.Text = "Start";
             this.start.UseVisualStyleBackColor = true;
-            this.start.Click += new System.EventHandler(this.start_Click);
+            this.start.Click += new System.EventHandler(this.Start_Click);
             // 
             // label1
             // 
@@ -156,7 +158,7 @@
             this.stop.TabIndex = 8;
             this.stop.Text = "Stop";
             this.stop.UseVisualStyleBackColor = true;
-            this.stop.Click += new System.EventHandler(this.stop_Click);
+            this.stop.Click += new System.EventHandler(this.Stop_Click);
             // 
             // log
             // 
@@ -193,7 +195,7 @@
             this.clear.TabIndex = 11;
             this.clear.Text = "Clear";
             this.clear.UseVisualStyleBackColor = true;
-            this.clear.Click += new System.EventHandler(this.clear_Click);
+            this.clear.Click += new System.EventHandler(this.Clear_Click);
             // 
             // MainForm
             // 

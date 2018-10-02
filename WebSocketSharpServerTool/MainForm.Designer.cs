@@ -1,6 +1,8 @@
-﻿namespace WebSocketSharpServerTool
+﻿using System.Windows.Forms;
+
+namespace WebSocketSharpServerTool
 {
-    partial class MainForm
+    partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.

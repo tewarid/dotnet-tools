@@ -1,6 +1,8 @@
-﻿namespace HttpListenerTool
+﻿using System.Windows.Forms;
+
+namespace HttpListenerTool
 {
-    partial class MainForm
+    partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.

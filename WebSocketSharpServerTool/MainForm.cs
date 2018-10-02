@@ -9,7 +9,7 @@ namespace WebSocketSharpServerTool
     public partial class MainForm : Form
     {
         WebSocketServer server;
-        static int counter = 0;
+        static int counter;
 
         public MainForm()
         {
@@ -72,7 +72,10 @@ namespace WebSocketSharpServerTool
 
         private void Start_Click(object sender, System.EventArgs e)
         {
-            if (server != null) return;
+            if (server != null)
+            {
+                return;
+            }
 
             try
             {

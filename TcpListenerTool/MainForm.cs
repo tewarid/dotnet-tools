@@ -194,10 +194,6 @@ namespace TcpListenerTool
             EnableDisable(true);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-        }
-
         private void SourceIPAddress_InterfaceDeleted()
         {
             if (listener != null)

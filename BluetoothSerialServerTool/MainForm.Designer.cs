@@ -1,6 +1,8 @@
-﻿namespace BluetoothSppServerTool
+﻿using System.Windows.Forms;
+
+namespace BluetoothSppServerTool
 {
-    partial class MainForm
+    partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -85,7 +87,7 @@
             this.stopButton.TabIndex = 6;
             this.stopButton.Text = "S&top";
             this.stopButton.UseVisualStyleBackColor = true;
-            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            this.stopButton.Click += new System.EventHandler(this.StopButton_Click);
             // 
             // outputText
             // 
@@ -128,7 +130,7 @@
             this.sendButton.TabIndex = 15;
             this.sendButton.Text = "&Send";
             this.sendButton.UseVisualStyleBackColor = true;
-            this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
+            this.sendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
             // input
             // 

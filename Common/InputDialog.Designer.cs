@@ -1,6 +1,8 @@
-﻿namespace Common
+﻿using System.Windows.Forms;
+
+namespace Common
 {
-    partial class InputDialog
+    partial class InputDialog<T> : Form
     {
         /// <summary>
         /// Required designer variable.

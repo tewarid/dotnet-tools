@@ -71,7 +71,7 @@ namespace RouteTool
 
         private void add_Click(object sender, EventArgs e)
         {
-            AddRoute form = new AddRoute();
+            AddRouteForm form = new AddRouteForm();
             DialogResult result = form.ShowDialog(this);
             if (result != DialogResult.Cancel)
             {

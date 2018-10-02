@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.WebSockets;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace WebSocketServerTool
@@ -14,7 +15,8 @@ namespace WebSocketServerTool
         public ClientForm(IClientContext context)
         {
             InitializeComponent();
-            this.Text = $"Client {id++}";
+            Interlocked.Increment(ref id);
+            this.Text = $"Client {id}";
             this.context = context;
             context.Message += Context_Message;
             context.Closed += Context_Closed;

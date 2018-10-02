@@ -7,49 +7,49 @@ namespace FirewallTool
 {
     public partial class MainForm : Form
     {
-        private FirewallHelper firewall;
+        private readonly FirewallHelper firewall;
         public MainForm()
         {
             InitializeComponent();
             firewall = new FirewallHelper();
         }
 
-        private void btnBrowser_Click(object sender, EventArgs e)
+        private void Browse_Click(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            DialogResult result = openFileDialog.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
-                txtAppPath.Text = openFileDialog1.FileName;
-                btnGrantAppAuth.Enabled = !firewall.HasAuthorization(openFileDialog1.FileName);
-                btnRemoveAppAuth.Enabled = firewall.HasAuthorization(openFileDialog1.FileName);
-                txtPort.Enabled = true;
+                appPath.Text = openFileDialog.FileName;
+                grantAppAuth.Enabled = !firewall.HasAuthorization(openFileDialog.FileName);
+                removeAppAuth.Enabled = firewall.HasAuthorization(openFileDialog.FileName);
+                port.Enabled = true;
             }
-            else if (txtAppPath.Text.Trim().Length == 0)
+            else if (appPath.Text.Trim().Length == 0)
             {
-                btnGrantAppAuth.Enabled = false;
-                btnRemoveAppAuth.Enabled = false;
-                txtPort.Enabled = false;
+                grantAppAuth.Enabled = false;
+                removeAppAuth.Enabled = false;
+                port.Enabled = false;
             }
         }
 
-        private void btnGrantAppAuth_Click(object sender, EventArgs e)
+        private void GrantAppAuth_Click(object sender, EventArgs e)
         {
-            firewall.GrantAuthorization(txtAppPath.Text);
-            btnGrantAppAuth.Enabled = false;
-            btnRemoveAppAuth.Enabled = true;
+            firewall.GrantAuthorization(appPath.Text);
+            grantAppAuth.Enabled = false;
+            removeAppAuth.Enabled = true;
         }
 
-        private void btnRemoveAppAuth_Click(object sender, EventArgs e)
+        private void RemoveAppAuth_Click(object sender, EventArgs e)
         {
-            firewall.RemoveAuthorization(txtAppPath.Text);
-            btnGrantAppAuth.Enabled = true;
-            btnRemoveAppAuth.Enabled = false;
+            firewall.RemoveAuthorization(appPath.Text);
+            grantAppAuth.Enabled = true;
+            removeAppAuth.Enabled = false;
         }
 
-        private void btnGrantPortAuth_Click(object sender, EventArgs e)
+        private void GrantPortAuth_Click(object sender, EventArgs e)
         {
             NET_FW_IP_PROTOCOL_ ipProtocol;
-            if (rbTCP.Checked)
+            if (tcpOption.Checked)
             {
                 ipProtocol = NET_FW_IP_PROTOCOL_.NET_FW_IP_PROTOCOL_TCP;
             }
@@ -58,13 +58,13 @@ namespace FirewallTool
                 ipProtocol = NET_FW_IP_PROTOCOL_.NET_FW_IP_PROTOCOL_UDP;
             }
 
-            firewall.GrantPortAuthorization(txtAppPath.Text, txtPort.Text, ipProtocol);
+            firewall.GrantPortAuthorization(appPath.Text, port.Text, ipProtocol);
         }
 
-        private void btnRemovePortAuth_Click(object sender, EventArgs e)
+        private void RemovePortAuth_Click(object sender, EventArgs e)
         {
             NET_FW_IP_PROTOCOL_ ipProtocol;
-            if (rbTCP.Checked)
+            if (tcpOption.Checked)
             {
                 ipProtocol = NET_FW_IP_PROTOCOL_.NET_FW_IP_PROTOCOL_TCP;
             }
@@ -73,37 +73,37 @@ namespace FirewallTool
                 ipProtocol = NET_FW_IP_PROTOCOL_.NET_FW_IP_PROTOCOL_UDP;
             }
 
-            firewall.RemovePortAuthorization(txtAppPath.Text, txtPort.Text, ipProtocol);
+            firewall.RemovePortAuthorization(appPath.Text, port.Text, ipProtocol);
         }
 
-        private void txtPort_TextChanged(object sender, EventArgs e)
+        private void Port_TextChanged(object sender, EventArgs e)
         {
-            if (txtPort.Text.Trim().Length == 0)
+            if (port.Text.Trim().Length == 0)
             {
-                btnGrantPortAuth.Enabled = false;
-                btnRemovePortAuth.Enabled = false;
+                grantPortAuth.Enabled = false;
+                removePortAuth.Enabled = false;
 
             }
             else
             {
-                btnGrantPortAuth.Enabled = true;
-                btnRemovePortAuth.Enabled = true;                
+                grantPortAuth.Enabled = true;
+                removePortAuth.Enabled = true;                
             }
         }
 
-        private void txtAppPath_TextChanged(object sender, EventArgs e)
+        private void AppPath_TextChanged(object sender, EventArgs e)
         {
-            if (txtAppPath.Text.Trim().Length == 0)
+            if (appPath.Text.Trim().Length == 0)
             {
-                btnGrantAppAuth.Enabled = false;
-                btnRemoveAppAuth.Enabled = false;
-                txtPort.Enabled = false;
+                grantAppAuth.Enabled = false;
+                removeAppAuth.Enabled = false;
+                port.Enabled = false;
             }
             else
             {
-                btnGrantAppAuth.Enabled = true;
-                btnRemoveAppAuth.Enabled = true;
-                txtPort.Enabled = true;
+                grantAppAuth.Enabled = true;
+                removeAppAuth.Enabled = true;
+                port.Enabled = true;
             }
         }
     }
