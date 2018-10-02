@@ -22,7 +22,7 @@ namespace TcpListenerTool
             sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
         }
 
-        private async void listen_Click(object sender, EventArgs e)
+        private async void Listen_Click(object sender, EventArgs e)
         {
             await CreateTcpListener().ConfigureAwait(true);
         }
@@ -84,13 +84,6 @@ namespace TcpListenerTool
             await AcceptTcpClient().ConfigureAwait(true);
         }
 
-        private bool ValidateCertificate(object sender,
-            X509Certificate certificate, X509Chain chain,
-            SslPolicyErrors sslPolicyErrors)
-        {
-            return true;
-        }
-
         private async Task AcceptTcpClient()
         {
             while(true)
@@ -121,8 +114,11 @@ namespace TcpListenerTool
 
             if (useSSLListener.Checked)
             {
-                SslStream ssls = new SslStream(tcpClient.GetStream(),
-                    true, ValidateCertificate);
+                SslStream ssls = new SslStream(tcpClient.GetStream(), true,
+                    (sender, certificate, chain, sslPolicyErrors) =>
+                    {
+                        return true;
+                    });
                 X509Certificate2 cert;
                 try
                 {
@@ -150,12 +146,14 @@ namespace TcpListenerTool
                 stream = tcpClient.GetStream();
             }
 
-            Form newForm = new TcpClientTool.MainForm(tcpClient, stream);
-            newForm.Text = "TCP Client " + (++clientNum);
+            Form newForm = new TcpClientTool.MainForm(tcpClient, stream)
+            {
+                Text = "TCP Client " + (++clientNum)
+            };
             newForm.Show(this);
         }
 
-        private void browseForPfx_Click(object sender, EventArgs e)
+        private void BrowseForPfx_Click(object sender, EventArgs e)
         {
             DialogResult r = openFileDialog.ShowDialog();
             if (r == DialogResult.OK)
@@ -164,7 +162,7 @@ namespace TcpListenerTool
             }
         }
 
-        private void useSSLListener_CheckedChanged(object sender, EventArgs e)
+        private void UseSSLListener_CheckedChanged(object sender, EventArgs e)
         {
             pfxPath.Enabled = useSSLListener.Checked;
             browseForPfx.Enabled = useSSLListener.Checked;
@@ -172,7 +170,7 @@ namespace TcpListenerTool
             requestClientCertificate.Enabled = useSSLListener.Checked;
         }
 
-        private void stopListener_Click(object sender, EventArgs e)
+        private void StopListener_Click(object sender, EventArgs e)
         {
             StopListener();
         }
@@ -200,7 +198,7 @@ namespace TcpListenerTool
         {
         }
 
-        private void SourceIPAddress_InterfaceDeleted(string address)
+        private void SourceIPAddress_InterfaceDeleted()
         {
             if (listener != null)
             {

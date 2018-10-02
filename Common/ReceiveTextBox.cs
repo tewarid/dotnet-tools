@@ -11,7 +11,7 @@ namespace Common
             InitializeComponent();
         }
 
-        private void clearButton_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
             outputText.Clear();
         }
@@ -58,15 +58,6 @@ namespace Common
                 AppendText(text);
             else if (!inHexadecimalMode && !viewInHex.Checked)
                 AppendText(text);
-        }
-
-        private void outputText_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 1) // Control+A
-            {
-                outputText.SelectAll();
-                e.Handled = true;
-            }
         }
 
         public void Clear()

@@ -74,7 +74,7 @@
             this.sendButton.TabIndex = 7;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
-            this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
+            this.sendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
             // sendTextBox
             // 
@@ -123,7 +123,7 @@
             this.proxyButton.TabIndex = 2;
             this.proxyButton.Text = "HTTP Proxy...";
             this.proxyButton.UseVisualStyleBackColor = true;
-            this.proxyButton.Click += new System.EventHandler(this.proxyButton_Click);
+            this.proxyButton.Click += new System.EventHandler(this.ProxyButton_Click);
             // 
             // outputText
             // 
@@ -148,7 +148,7 @@
             this.location.Size = new System.Drawing.Size(512, 78);
             this.location.TabIndex = 0;
             this.location.Text = "wss://localhost:8088";
-            this.location.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.location_KeyPress);
+            this.location.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Location_KeyPress);
             // 
             // setHeaders
             // 
@@ -159,7 +159,7 @@
             this.setHeaders.TabIndex = 1;
             this.setHeaders.Text = "HTTP Headers...";
             this.setHeaders.UseVisualStyleBackColor = true;
-            this.setHeaders.Click += new System.EventHandler(this.setHeaders_Click);
+            this.setHeaders.Click += new System.EventHandler(this.SetHeaders_Click);
             // 
             // closeButton
             // 
@@ -172,7 +172,7 @@
             this.closeButton.TabIndex = 4;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // connect
             // 
@@ -184,7 +184,7 @@
             this.connect.TabIndex = 3;
             this.connect.Text = "Connect";
             this.connect.UseVisualStyleBackColor = true;
-            this.connect.Click += new System.EventHandler(this.connect_Click);
+            this.connect.Click += new System.EventHandler(this.Connect_Click);
             // 
             // statusStrip1
             // 

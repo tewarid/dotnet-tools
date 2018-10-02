@@ -17,7 +17,7 @@ namespace WebSocketServerTool
         public HttpListenerClientContext(HttpListenerContext listenerContext)
         {
             this.listenerContext = listenerContext;
-            Start();
+            Task t = Start();
         }
 
         private async Task Start()

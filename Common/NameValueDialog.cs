@@ -29,12 +29,12 @@ namespace Common
             headers.Add(initialValues);
         }
 
-        private void remove_Click(object sender, EventArgs e)
+        private void Remove_Click(object sender, EventArgs e)
         {
             headers.RemoveSelected();
         }
 
-        private void done_Click(object sender, EventArgs e)
+        private void Done_Click(object sender, EventArgs e)
         {
             collection = headers.Get();
             this.Hide();

@@ -113,7 +113,7 @@
             this.sendButton.TabIndex = 15;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
-            this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
+            this.sendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
             // destinationPort
             // 
@@ -152,7 +152,7 @@
             this.bind.TabIndex = 3;
             this.bind.Text = "Bind";
             this.bind.UseVisualStyleBackColor = true;
-            this.bind.Click += new System.EventHandler(this.bind_Click);
+            this.bind.Click += new System.EventHandler(this.Bind_Click);
             // 
             // label5
             // 
@@ -228,7 +228,7 @@
             this.join.TabIndex = 6;
             this.join.Text = "Join";
             this.join.UseVisualStyleBackColor = true;
-            this.join.Click += new System.EventHandler(this.join_Click);
+            this.join.Click += new System.EventHandler(this.Join_Click);
             // 
             // multicastGroupAddress
             // 
@@ -276,7 +276,7 @@
             this.close.TabIndex = 4;
             this.close.Text = "Close";
             this.close.UseVisualStyleBackColor = true;
-            this.close.Click += new System.EventHandler(this.close_Click);
+            this.close.Click += new System.EventHandler(this.Close_Click);
             // 
             // reuseAddress
             // 

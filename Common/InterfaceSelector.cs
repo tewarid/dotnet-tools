@@ -10,9 +10,9 @@ namespace Common
 {
     public partial class InterfaceSelectorComboBox : UserControl
     {
-        private ComboBox comboBox;
+        private ComboBox comboBox = null;
 
-        public event Action<string> InterfaceDeleted;
+        public event Action InterfaceDeleted;
 
         [DefaultValue(false)]
         public bool IncludeIPAddressAny { get; set; }
@@ -26,17 +26,14 @@ namespace Common
         public InterfaceSelectorComboBox()
         {
             InitializeComponent();
-            comboBox = new ComboBox();
-            comboBox.Dock = DockStyle.Fill;
+            comboBox = new ComboBox
+            {
+                Dock = DockStyle.Fill
+            };
             Controls.Add(comboBox);
             this.Height = comboBox.Height;
-            NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
             RefreshNetworkInterfaces();
+            NetworkChange.NetworkAddressChanged += NetworkChange_NetworkAddressChanged;
         }
 
         public void DeleteSelected()
@@ -79,14 +76,14 @@ namespace Common
                     // Removed
                     if (comboBox.SelectedIndex == i)
                     {
-                        InterfaceDeleted?.Invoke((String)comboBox.Items[i]);
+                        InterfaceDeleted?.Invoke();
                     }
                     comboBox.Items.RemoveAt(i);
                 }
             }
         }
 
-        private List<string> GetIPAddresses()
+        private static List<string> GetIPAddresses()
         {
             List<string> newList = new List<string>();
             NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();

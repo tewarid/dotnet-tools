@@ -68,7 +68,7 @@
             this.bind.TabIndex = 2;
             this.bind.Text = "Bind";
             this.bind.UseVisualStyleBackColor = true;
-            this.bind.Click += new System.EventHandler(this.bind_Click);
+            this.bind.Click += new System.EventHandler(this.Bind_Click);
             // 
             // close
             // 
@@ -80,7 +80,7 @@
             this.close.TabIndex = 3;
             this.close.Text = "Close";
             this.close.UseVisualStyleBackColor = true;
-            this.close.Click += new System.EventHandler(this.close_Click);
+            this.close.Click += new System.EventHandler(this.Close_Click);
             // 
             // label1
             // 

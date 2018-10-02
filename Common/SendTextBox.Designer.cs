@@ -1,6 +1,8 @@
-﻿namespace Common
+﻿using System.Windows.Forms;
+
+namespace Common
 {
-    partial class SendTextBox
+    partial class SendTextBox : UserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -51,7 +53,7 @@
             this.inputInHex.TabIndex = 1;
             this.inputInHex.Text = "Send binary, text is hexadecimal ASCII (e.g. BE 0xad)";
             this.inputInHex.UseVisualStyleBackColor = true;
-            this.inputInHex.CheckedChanged += new System.EventHandler(this.inputInHex_CheckedChanged);
+            this.inputInHex.CheckedChanged += new System.EventHandler(this.InputInHex_CheckedChanged);
             // 
             // inputTextLabel
             // 
@@ -78,7 +80,6 @@
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.inputText.Size = new System.Drawing.Size(394, 285);
             this.inputText.TabIndex = 0;
-            this.inputText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputText_KeyPress);
             // 
             // endOfLine
             // 

@@ -38,7 +38,7 @@ namespace Connection
             }
         }
 
-        private bool IsFirewallEnabled
+        public bool IsFirewallEnabled
         {
             get
             {

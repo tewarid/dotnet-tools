@@ -70,7 +70,7 @@ namespace Common
             InitializeComponent();
         }
 
-        private void inputInHex_CheckedChanged(object sender, EventArgs e)
+        private void InputInHex_CheckedChanged(object sender, EventArgs e)
         {
             if (inputInHex.Checked)
             {
@@ -79,15 +79,6 @@ namespace Common
             else
             {
                 endOfLine.Enabled = true;
-            }
-        }
-
-        private void inputText_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 1) // Control+A
-            {
-                inputText.SelectAll();
-                e.Handled = true;
             }
         }
     }

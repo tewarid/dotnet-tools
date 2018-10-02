@@ -57,7 +57,7 @@ namespace TcpListenerTool
             this.stopListener.TabIndex = 28;
             this.stopListener.Text = "Stop";
             this.stopListener.UseVisualStyleBackColor = true;
-            this.stopListener.Click += new System.EventHandler(this.stopListener_Click);
+            this.stopListener.Click += new System.EventHandler(this.StopListener_Click);
             // 
             // useSSLListener
             // 
@@ -68,7 +68,7 @@ namespace TcpListenerTool
             this.useSSLListener.TabIndex = 18;
             this.useSSLListener.Text = "Use TLS 1.2";
             this.useSSLListener.UseVisualStyleBackColor = true;
-            this.useSSLListener.CheckedChanged += new System.EventHandler(this.useSSLListener_CheckedChanged);
+            this.useSSLListener.CheckedChanged += new System.EventHandler(this.UseSSLListener_CheckedChanged);
             // 
             // browseForPfx
             // 
@@ -79,7 +79,7 @@ namespace TcpListenerTool
             this.browseForPfx.TabIndex = 20;
             this.browseForPfx.Text = "Browse...";
             this.browseForPfx.UseVisualStyleBackColor = true;
-            this.browseForPfx.Click += new System.EventHandler(this.browseForPfx_Click);
+            this.browseForPfx.Click += new System.EventHandler(this.BrowseForPfx_Click);
             // 
             // pfxPath
             // 
@@ -140,7 +140,7 @@ namespace TcpListenerTool
             this.listen.TabIndex = 26;
             this.listen.Text = "Listen";
             this.listen.UseVisualStyleBackColor = true;
-            this.listen.Click += new System.EventHandler(this.listen_Click);
+            this.listen.Click += new System.EventHandler(this.Listen_Click);
             // 
             // openFileDialog
             // 

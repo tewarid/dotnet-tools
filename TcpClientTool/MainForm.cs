@@ -51,13 +51,13 @@ namespace TcpClientTool
             }
         }
 
-        private void SourceIPAddress_InterfaceDeleted(string address)
+        private void SourceIPAddress_InterfaceDeleted()
         {
             CloseTcpClient();
             sourceIPAddress.Text = string.Empty;
         }
 
-        private async void sendButton_Click(object sender, EventArgs e)
+        private async void SendButton_Click(object sender, EventArgs e)
         {
             if (tcpClient == null || !tcpClient.Connected)
             {
@@ -197,8 +197,11 @@ namespace TcpClientTool
                     CloseTcpClient();
                     return;
                 }
-                SslStream ssls = new SslStream(stream,
-                    true, ValidateCertificate);
+                SslStream ssls = new SslStream(stream, true,
+                    (sender, certificate, chain, sslPolicyErrors) =>
+                    {
+                        return true;
+                    });
                 try
                 {
                     ssls.AuthenticateAsClient(string.Empty, certs, SslProtocols.Tls12, false);
@@ -240,13 +243,6 @@ namespace TcpClientTool
             pfxPassphrase.Enabled = !connected && useSSL.Checked;
             close.Enabled = connected;
             open.Enabled = !connected;
-        }
-
-        private bool ValidateCertificate(object sender, 
-            X509Certificate certificate, X509Chain chain, 
-            SslPolicyErrors sslPolicyErrors)
-        {
-            return true;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -304,12 +300,12 @@ namespace TcpClientTool
             EnableDisable(false);
         }
 
-        private void close_Click(object sender, EventArgs e)
+        private void Close_Click(object sender, EventArgs e)
         {
             CloseTcpClient();
         }
 
-        private async void open_Click(object sender, EventArgs e)
+        private async void Open_Click(object sender, EventArgs e)
         {
             if (tcpClient != null && tcpClient.Connected)
             {
@@ -324,14 +320,14 @@ namespace TcpClientTool
                 .ConfigureAwait(true); // will block here till ReadAsync is done
         }
 
-        private void useSSL_CheckedChanged(object sender, EventArgs e)
+        private void UseSSL_CheckedChanged(object sender, EventArgs e)
         {
             pfxPath.Enabled = useSSL.Checked;
             browseForPfx.Enabled = useSSL.Checked;
             pfxPassphrase.Enabled = useSSL.Checked;
         }
 
-        private void browseForPfx_Click(object sender, EventArgs e)
+        private void BrowseForPfx_Click(object sender, EventArgs e)
         {
             DialogResult r = openFileDialog.ShowDialog();
             if (r == DialogResult.OK)

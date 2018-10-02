@@ -1,6 +1,8 @@
-﻿namespace Common
+﻿using System.Windows.Forms;
+
+namespace Common
 {
-    partial class ReceiveTextBox
+    partial class ReceiveTextBox : UserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -59,7 +61,6 @@
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.outputText.Size = new System.Drawing.Size(376, 291);
             this.outputText.TabIndex = 0;
-            this.outputText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.outputText_KeyPress);
             // 
             // viewInHex
             // 
@@ -85,7 +86,7 @@
             this.clearButton.TabIndex = 3;
             this.clearButton.Text = "&Clear";
             this.clearButton.UseVisualStyleBackColor = true;
-            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // ReceiveTextBox
             // 

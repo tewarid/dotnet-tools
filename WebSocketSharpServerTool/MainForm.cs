@@ -70,7 +70,7 @@ namespace WebSocketSharpServerTool
             server.Start();
         }
 
-        private void start_Click(object sender, System.EventArgs e)
+        private void Start_Click(object sender, System.EventArgs e)
         {
             if (server != null) return;
 
@@ -110,7 +110,7 @@ namespace WebSocketSharpServerTool
             }
         }
 
-        private void stop_Click(object sender, EventArgs e)
+        private void Stop_Click(object sender, EventArgs e)
         {
             if (server == null) return;
 
@@ -119,7 +119,7 @@ namespace WebSocketSharpServerTool
             LockControls(false);
         }
 
-        private void browseForPfx_Click(object sender, EventArgs e)
+        private void BrowseForPfx_Click(object sender, EventArgs e)
         {
             DialogResult r = openFileDialog.ShowDialog();
             if (r == DialogResult.OK)
@@ -128,7 +128,7 @@ namespace WebSocketSharpServerTool
             }
         }
 
-        private void pfxFileOption_CheckedChanged(object sender, EventArgs e)
+        private void PfxFileOption_CheckedChanged(object sender, EventArgs e)
         {
             EnablePfxControls(pfxFileOption.Checked);
         }

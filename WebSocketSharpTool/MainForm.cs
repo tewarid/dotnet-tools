@@ -8,7 +8,6 @@ namespace WebSocketSharpTool
 {
     public partial class MainForm : Form
     {
-        delegate void ShowReceivedDataDelegate(byte[] data, int length);
         private WebSocket ws;
         private bool newMessage = true;
         NameValueCollection headers;
@@ -23,7 +22,7 @@ namespace WebSocketSharpTool
         {
         }
 
-        private void sendButton_Click(object sender, EventArgs e)
+        private void SendButton_Click(object sender, EventArgs e)
         {
             sendButton.Enabled = false;
 
@@ -199,7 +198,7 @@ namespace WebSocketSharpTool
         }
 
 
-        private void connect_Click(object sender, EventArgs e)
+        private void Connect_Click(object sender, EventArgs e)
         {
             try
             {
@@ -211,7 +210,7 @@ namespace WebSocketSharpTool
             }
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e)
         {
             CloseWebSocketClient();
         }
@@ -230,7 +229,7 @@ namespace WebSocketSharpTool
             location.ReadOnly = false;
         }
 
-        private void setHeaders_Click(object sender, EventArgs e)
+        private void SetHeaders_Click(object sender, EventArgs e)
         {
             NameValueCollection initialValues = new NameValueCollection();
             if (headers == null || headers.Count == 0)
@@ -247,7 +246,7 @@ namespace WebSocketSharpTool
             headers = headerForm.NameValues;
         }
 
-        private void proxyButton_Click(object sender, EventArgs e)
+        private void ProxyButton_Click(object sender, EventArgs e)
         {
             string defaultValue;
             if (string.IsNullOrEmpty(proxyUrl))
@@ -267,7 +266,7 @@ namespace WebSocketSharpTool
             }
         }
 
-        private void location_KeyPress(object sender, KeyPressEventArgs e)
+        private void Location_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 1) // Control+A
             {

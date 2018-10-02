@@ -1,6 +1,8 @@
-﻿namespace Common
+﻿using System.Windows.Forms;
+
+namespace Common
 {
-    partial class NameValueDialog
+    partial class NameValueDialog : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -44,7 +46,7 @@
             this.done.TabIndex = 2;
             this.done.Text = "Done";
             this.done.UseVisualStyleBackColor = true;
-            this.done.Click += new System.EventHandler(this.done_Click);
+            this.done.Click += new System.EventHandler(this.Done_Click);
             // 
             // remove
             // 
@@ -55,7 +57,7 @@
             this.remove.TabIndex = 1;
             this.remove.Text = "Remove";
             this.remove.UseVisualStyleBackColor = true;
-            this.remove.Click += new System.EventHandler(this.remove_Click);
+            this.remove.Click += new System.EventHandler(this.Remove_Click);
             // 
             // headers
             // 

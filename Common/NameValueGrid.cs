@@ -6,7 +6,7 @@ namespace NetTools.Common
     public partial class NameValueGrid : UserControl
     {
         private NameValueCollection collection = new NameValueCollection();
-        private DataGridView dataGrid;
+        private DataGridView dataGrid = null;
 
         public bool ReadOnly
         {
@@ -47,8 +47,10 @@ namespace NetTools.Common
         public NameValueGrid()
         {
             InitializeComponent();
-            dataGrid = new DataGridView();
-            dataGrid.Dock = DockStyle.Fill;
+            dataGrid = new DataGridView
+            {
+                Dock = DockStyle.Fill
+            };
             Controls.Add(dataGrid);
             dataGrid.Columns.Clear();
             dataGrid.Columns.Add("name", "Name");

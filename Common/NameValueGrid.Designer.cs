@@ -1,6 +1,8 @@
-﻿namespace NetTools.Common
+﻿using System.Windows.Forms;
+
+namespace NetTools.Common
 {
-    partial class NameValueGrid
+    partial class NameValueGrid : UserControl
     {
         /// <summary> 
         /// Required designer variable.

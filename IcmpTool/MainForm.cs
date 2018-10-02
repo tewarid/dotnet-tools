@@ -20,7 +20,7 @@ namespace IcmpTool
         {
         }
 
-        private void sendButton_Click(object sender, EventArgs e)
+        private void SendButton_Click(object sender, EventArgs e)
         {
             if (icmpSocket == null)
                 return;
@@ -102,7 +102,7 @@ namespace IcmpTool
             try
             {
                 icmpSocket = new IcmpSocket(srcEndPoint);
-                icmpSocket.MessageReceived += icmpSocket_MessageReceived;
+                icmpSocket.MessageReceived += IcmpSocket_MessageReceived;
             }
             catch (Exception ex)
             {
@@ -117,12 +117,12 @@ namespace IcmpTool
             close.Enabled = true;
         }
 
-        void icmpSocket_MessageReceived(IPEndPoint from, byte[] message, int length)
+        void IcmpSocket_MessageReceived(IPEndPoint from, byte[] message, int length)
         {
             ShowReceivedData(from, message, length);
         }
 
-        private void clearButton_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
             outputText.Clear();
         }
@@ -135,18 +135,18 @@ namespace IcmpTool
             }
         }
 
-        private void bind_Click(object sender, EventArgs e)
+        private void Bind_Click(object sender, EventArgs e)
         {
             CreateIcmpSocket();
             sendButton.Enabled = true;
         }
 
-        private void requestType_KeyPress(object sender, KeyPressEventArgs e)
+        private void RequestType_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
 
-        private void requestType_SelectedIndexChanged(object sender, EventArgs e)
+        private void RequestType_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (requestType.SelectedIndex)
             {
@@ -159,7 +159,7 @@ namespace IcmpTool
             }
         }
         
-        private void close_Click(object sender, EventArgs e)
+        private void Close_Click(object sender, EventArgs e)
         {
             CloseIcmpSocket();
         }

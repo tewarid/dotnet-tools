@@ -114,7 +114,7 @@
             this.browseForPfx.TabIndex = 19;
             this.browseForPfx.Text = "Browse...";
             this.browseForPfx.UseVisualStyleBackColor = true;
-            this.browseForPfx.Click += new System.EventHandler(this.browseForPfx_Click);
+            this.browseForPfx.Click += new System.EventHandler(this.BrowseForPfx_Click);
             // 
             // pfxPath
             // 
@@ -141,7 +141,7 @@
             this.open.TabIndex = 22;
             this.open.Text = "Open";
             this.open.UseVisualStyleBackColor = true;
-            this.open.Click += new System.EventHandler(this.open_Click);
+            this.open.Click += new System.EventHandler(this.Open_Click);
             // 
             // sendButton
             // 
@@ -152,7 +152,7 @@
             this.sendButton.TabIndex = 27;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
-            this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
+            this.sendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
             // input
             // 
@@ -176,7 +176,7 @@
             this.useSSL.TabIndex = 17;
             this.useSSL.Text = "Use TLS 1.2";
             this.useSSL.UseVisualStyleBackColor = true;
-            this.useSSL.CheckedChanged += new System.EventHandler(this.useSSL_CheckedChanged);
+            this.useSSL.CheckedChanged += new System.EventHandler(this.UseSSL_CheckedChanged);
             // 
             // close
             // 
@@ -187,7 +187,7 @@
             this.close.TabIndex = 23;
             this.close.Text = "Close";
             this.close.UseVisualStyleBackColor = true;
-            this.close.Click += new System.EventHandler(this.close_Click);
+            this.close.Click += new System.EventHandler(this.Close_Click);
             // 
             // destinationIPAddress
             // 

@@ -32,7 +32,7 @@ namespace SnifferTool
             interfaceSelector.InterfaceDeleted += InterfaceSelector_InterfaceDeleted;
         }
 
-        private void InterfaceSelector_InterfaceDeleted(string address)
+        private void InterfaceSelector_InterfaceDeleted()
         {
             interfaceSelector.DeleteSelected();
             if (socket != null)
@@ -42,7 +42,7 @@ namespace SnifferTool
             }
         }
 
-        private void bind_Click(object sender, EventArgs e)
+        private void Bind_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(interfaceSelector.Text))
             {
@@ -136,7 +136,7 @@ namespace SnifferTool
             output.AppendText(Environment.NewLine);
         }
 
-        private void close_Click(object sender, EventArgs e)
+        private void Close_Click(object sender, EventArgs e)
         {
             CloseRawSocket();
         }
@@ -163,12 +163,12 @@ namespace SnifferTool
         }
 
         // Experimental support to send IP header, protocol header and payload
-        private void Send(string hexStream, IPEndPoint toEndPoint)
-        {
-            MemoryStream o = new MemoryStream();
-            HexToBin.DefaultInstance.Convert(new StringReader(hexStream), o);
-            Send(o.GetBuffer(), (int)o.Length, toEndPoint);
-        }
+        //private void Send(string hexStream, IPEndPoint toEndPoint)
+        //{
+        //    MemoryStream o = new MemoryStream();
+        //    HexToBin.DefaultInstance.Convert(new StringReader(hexStream), o);
+        //    Send(o.GetBuffer(), (int)o.Length, toEndPoint);
+        //}
 
         // Experimental support to send IP header, protocol header and payload
         private void Send(byte [] data, int length, IPEndPoint toEndPoint)

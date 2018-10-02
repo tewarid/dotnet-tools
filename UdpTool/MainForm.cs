@@ -9,7 +9,6 @@ namespace UdpTool
     public partial class MainForm : Form
     {
         UdpClient udpClient;
-        delegate void ShowReceivedDataDelegate(IPEndPoint endPoint, byte[] data);
 
         public MainForm()
         {
@@ -17,7 +16,7 @@ namespace UdpTool
             sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
         }
 
-        private void SourceIPAddress_InterfaceDeleted(string obj)
+        private void SourceIPAddress_InterfaceDeleted()
         {
             // selected interface has ceased to exist
             if (udpClient != null)
@@ -26,7 +25,7 @@ namespace UdpTool
             }
         }
 
-        private async void sendButton_Click(object sender, EventArgs e)
+        private async void SendButton_Click(object sender, EventArgs e)
         {
             if (udpClient == null)
             {
@@ -36,7 +35,12 @@ namespace UdpTool
                     return;
                 }
             }
+            await SendAsync().ConfigureAwait(true);
+            await ReceiveAsync().ConfigureAwait(true);
+        }
 
+        private async Task SendAsync()
+        {
             IPEndPoint endPoint;
             try
             {
@@ -93,9 +97,8 @@ namespace UdpTool
         private void CreateUdpClient() 
         {
             IPAddress address = IPAddress.Any;
-            IPAddress destination;
             if (!string.IsNullOrWhiteSpace(destinationIPAddress.Text) &&
-                IPAddress.TryParse(destinationIPAddress.Text, out destination) &&
+                IPAddress.TryParse(destinationIPAddress.Text, out IPAddress destination) &&
                 destination.AddressFamily == AddressFamily.InterNetworkV6)
             {
                 address = IPAddress.IPv6Any;
@@ -153,7 +156,6 @@ namespace UdpTool
             sourceIPAddress.Text = endPoint.Address.ToString();
             sourcePort.Text = endPoint.Port.ToString();
             EnableDisable(false);
-            Task receiverTask = ReceiveAsync();
         }
 
         private void EnableDisable(bool enable)
@@ -176,7 +178,7 @@ namespace UdpTool
             {
                 try
                 {
-                    r = await udpClient.ReceiveAsync();
+                    r = await udpClient.ReceiveAsync().ConfigureAwait(true);
                 }
                 catch (ObjectDisposedException)
                 {
@@ -201,15 +203,20 @@ namespace UdpTool
             }
         }
 
-        private void bind_Click(object sender, EventArgs e)
+        private async void Bind_Click(object sender, EventArgs e)
         {
             if (udpClient == null)
             {
                 CreateUdpClient();
             }
+            if (udpClient == null)
+            {
+                return;
+            }
+            await ReceiveAsync().ConfigureAwait(true);
         }
 
-        private void join_Click(object sender, EventArgs e)
+        private void Join_Click(object sender, EventArgs e)
         {
             IPAddress groupIPAddress;
             try
@@ -242,7 +249,7 @@ namespace UdpTool
             EnableDisable(true);
         }
 
-        private void close_Click(object sender, EventArgs e)
+        private void Close_Click(object sender, EventArgs e)
         {
             CloseUdpClient();
         }

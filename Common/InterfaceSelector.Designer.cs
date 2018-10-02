@@ -1,6 +1,8 @@
-﻿namespace Common
+﻿using System.Windows.Forms;
+
+namespace Common
 {
-    partial class InterfaceSelectorComboBox
+    partial class InterfaceSelectorComboBox : UserControl
     {
         /// <summary>
         /// Required designer variable.

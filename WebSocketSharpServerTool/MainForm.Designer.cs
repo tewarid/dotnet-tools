@@ -60,7 +60,7 @@
             this.start.TabIndex = 7;
             this.start.Text = "Start";
             this.start.UseVisualStyleBackColor = true;
-            this.start.Click += new System.EventHandler(this.start_Click);
+            this.start.Click += new System.EventHandler(this.Start_Click);
             // 
             // label1
             // 
@@ -152,7 +152,7 @@
             this.stop.TabIndex = 8;
             this.stop.Text = "Stop";
             this.stop.UseVisualStyleBackColor = true;
-            this.stop.Click += new System.EventHandler(this.stop_Click);
+            this.stop.Click += new System.EventHandler(this.Stop_Click);
             // 
             // privateKeyOption
             // 
@@ -179,7 +179,7 @@
             this.pfxFileOption.TabIndex = 1;
             this.pfxFileOption.Text = "PFX File";
             this.pfxFileOption.UseVisualStyleBackColor = true;
-            this.pfxFileOption.CheckedChanged += new System.EventHandler(this.pfxFileOption_CheckedChanged);
+            this.pfxFileOption.CheckedChanged += new System.EventHandler(this.PfxFileOption_CheckedChanged);
             // 
             // keystoreOption
             // 
@@ -229,7 +229,7 @@
             this.browseForPfx.TabIndex = 4;
             this.browseForPfx.Text = "Browse...";
             this.browseForPfx.UseVisualStyleBackColor = true;
-            this.browseForPfx.Click += new System.EventHandler(this.browseForPfx_Click);
+            this.browseForPfx.Click += new System.EventHandler(this.BrowseForPfx_Click);
             // 
             // openFileDialog
             // 

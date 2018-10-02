@@ -70,7 +70,7 @@ namespace WebSocketServerTool
             newMessage = lastMessage;
         }
 
-        private void sendButton_Click(object sender, EventArgs e)
+        private void SendButton_Click(object sender, EventArgs e)
         {
             if (input.Binary)
             {
