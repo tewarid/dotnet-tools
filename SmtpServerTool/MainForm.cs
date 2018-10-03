@@ -85,8 +85,6 @@ namespace SmtpServerTool
         private void Stop_Click(object sender, EventArgs e)
         {
             cancellationTokenSource.Cancel();
-            cancellationTokenSource.Dispose();
-            cancellationTokenSource = null;
         }
 
         void IDisposable.Dispose()

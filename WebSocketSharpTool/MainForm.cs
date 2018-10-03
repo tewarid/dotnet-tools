@@ -163,7 +163,7 @@ namespace WebSocketSharpTool
         {
             if (InvokeRequired)
             {
-                BeginInvoke((MethodInvoker)delegate()
+                BeginInvoke((MethodInvoker)delegate
                 {
                     Ws_OnClose(sender, e);
                 });

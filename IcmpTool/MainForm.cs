@@ -147,14 +147,9 @@ namespace IcmpTool
 
         private void RequestType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (requestType.SelectedIndex)
+            if (requestType.SelectedIndex == 0)
             {
-                case 0:
-                    inputText.Text = "08 00 4d 3d 00 01 00 1e 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f 70 71 72 73 74 75 76 77 61 62 63 64 65 66 67 68 69";
-                    break;
-
-                default:
-                    break;
+                inputText.Text = "08 00 4d 3d 00 01 00 1e 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f 70 71 72 73 74 75 76 77 61 62 63 64 65 66 67 68 69";
             }
         }
         

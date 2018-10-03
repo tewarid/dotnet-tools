@@ -10,7 +10,7 @@ namespace Common
 {
     public partial class InterfaceSelectorComboBox : UserControl
     {
-        private readonly ComboBox comboBox;
+        private readonly ComboBox comboBox = new ComboBox();
 
         public event Action InterfaceDeleted;
 
@@ -26,10 +26,7 @@ namespace Common
         public InterfaceSelectorComboBox()
         {
             InitializeComponent();
-            comboBox = new ComboBox
-            {
-                Dock = DockStyle.Fill
-            };
+            comboBox.Dock = DockStyle.Fill;
             Controls.Add(comboBox);
             this.Height = comboBox.Height;
             RefreshNetworkInterfaces();

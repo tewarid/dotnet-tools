@@ -10,7 +10,6 @@ namespace WebSocketServerTool
     {
         private readonly HttpListenerContext listenerContext;
         private HttpListenerWebSocketContext wsContext;
-        private readonly Task task;
 
         public event ClosedHandler Closed;
         public event MessageHandler Message;
@@ -18,7 +17,8 @@ namespace WebSocketServerTool
         public HttpListenerClientContext(HttpListenerContext listenerContext)
         {
             this.listenerContext = listenerContext;
-            task = Start();
+            Task task = Start();
+            task.ConfigureAwait(false);
         }
 
         private async Task Start()
