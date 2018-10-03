@@ -151,6 +151,7 @@ namespace WebSocketSharpTool
 
         private void Ws_OnOpen(object sender, EventArgs e)
         {
+            // Nothing to do after ws is open
         }
 
         private void Ws_OnMessage(object sender, MessageEventArgs e)

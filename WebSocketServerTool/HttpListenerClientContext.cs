@@ -8,7 +8,7 @@ namespace WebSocketServerTool
 {
     class HttpListenerClientContext : IClientContext
     {
-        private HttpListenerContext listenerContext;
+        private readonly HttpListenerContext listenerContext;
         private HttpListenerWebSocketContext wsContext;
         private readonly Task task;
 

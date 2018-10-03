@@ -176,7 +176,7 @@ namespace Connection
             {
                 foreach (string appName in GetAuthorizedAppPaths())
                 {
-                    if (appName.ToLower() == applicationFullPath.ToLower())
+                    if (appName.ToLower(CultureInfo.InvariantCulture).Equals(applicationFullPath.ToLower(CultureInfo.InvariantCulture)))
                     {
                         // Remove Authorizations for this application
                         INetFwProfile profileDomain = mgr.LocalPolicy.GetProfileByType(NET_FW_PROFILE_TYPE_.NET_FW_PROFILE_STANDARD);

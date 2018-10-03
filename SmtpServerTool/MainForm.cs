@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace SmtpServerTool
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IDisposable
     {
         private CancellationTokenSource cancellationTokenSource;
         private SmtpServer.SmtpServer smtpServer;
@@ -86,7 +86,18 @@ namespace SmtpServerTool
         {
             cancellationTokenSource.Cancel();
             cancellationTokenSource.Dispose();
+            cancellationTokenSource = null;
         }
+
+        new void Dispose()
+        {
+            base.Dispose();
+            if (cancellationTokenSource != null)
+            {
+                cancellationTokenSource.Dispose();
+            }
+        }
+
 
         private void Clear_Click(object sender, EventArgs e)
         {
