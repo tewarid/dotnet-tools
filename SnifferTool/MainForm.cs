@@ -11,7 +11,7 @@ namespace SnifferTool
     {
         private const int MTU = 65535;
         private Socket socket;
-        private object [] protocolTypes = new []
+        private readonly object [] protocolTypes = new object []
         {
             new { id = ProtocolType.Icmp, text = "ICMP" },
             new { id = ProtocolType.IP, text = "IP" },
@@ -121,7 +121,7 @@ namespace SnifferTool
         {
             if (InvokeRequired)
             {
-                Invoke((MethodInvoker)delegate ()
+                Invoke((MethodInvoker)delegate
                 {
                     ShowMessage(data, length, remoteEndPoint);
                 });
@@ -162,20 +162,6 @@ namespace SnifferTool
             close.Enabled = false;
             interfaceSelector.Enabled = true;
             protocolType.Enabled = true;
-        }
-
-        // Experimental support to send IP header, protocol header and payload
-        //private void Send(string hexStream, IPEndPoint toEndPoint)
-        //{
-        //    MemoryStream o = new MemoryStream();
-        //    HexToBin.DefaultInstance.Convert(new StringReader(hexStream), o);
-        //    Send(o.GetBuffer(), (int)o.Length, toEndPoint);
-        //}
-
-        // Experimental support to send IP header, protocol header and payload
-        private void Send(byte [] data, int length, IPEndPoint toEndPoint)
-        {
-            socket.SendTo(data, length, 0, toEndPoint);
         }
     }
 }

@@ -64,7 +64,7 @@ namespace WebSocketServerTool
                 return;
             }
 
-            await Task.Run(delegate ()
+            await Task.Run(delegate
             {
                 Message?.Invoke(message, length, type, lastMessage);
             }).ConfigureAwait(true);

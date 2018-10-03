@@ -22,8 +22,8 @@ namespace WebSocketSharpServerTool
             Invoke((MethodInvoker)delegate
             {
                 ClientForm form = new ClientForm(client);
-                Interlocked.Increment(ref counter);
-                form.Text = "Client " + counter;
+                int value = Interlocked.Increment(ref counter);
+                form.Text = "Client " + value;
                 form.Owner = this;
                 form.Show(this);
             });
@@ -49,7 +49,7 @@ namespace WebSocketSharpServerTool
                 if (certificates.Count > 0)
                 {
                     cert = certificates[0];
-                };
+                }
                 store.Close();
             }
 
@@ -98,7 +98,9 @@ namespace WebSocketSharpServerTool
                 }
 
                 if (server == null)
+                {
                     return;
+                }
 
                 LockControls(true);
             }
@@ -115,7 +117,10 @@ namespace WebSocketSharpServerTool
 
         private void Stop_Click(object sender, EventArgs e)
         {
-            if (server == null) return;
+            if (server == null)
+            {
+                return;
+            }
 
             server.Stop();
             server = null;

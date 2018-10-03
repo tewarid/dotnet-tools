@@ -17,7 +17,7 @@ namespace NetTools.Common
         public ContentTypeSelector()
         {
             InitializeComponent();
-            comboBox = new ComboBox()
+            comboBox = new ComboBox
             {
                 Dock = DockStyle.Fill
             };

@@ -15,8 +15,8 @@ namespace WebSocketServerTool
         public ClientForm(IClientContext context)
         {
             InitializeComponent();
-            Interlocked.Increment(ref id);
-            this.Text = $"Client {id}";
+            int value = Interlocked.Increment(ref id);
+            this.Text = $"Client {value}";
             this.context = context;
             context.Message += Context_Message;
             context.Closed += Context_Closed;

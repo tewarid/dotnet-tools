@@ -90,11 +90,6 @@ namespace RouteTool
             interfaces.ValueMember = "InterfaceIndex";
         }
 
-        private void add_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Interfaces_SelectedIndexChanged(object sender, EventArgs e)
         {
             dynamic control = sender;

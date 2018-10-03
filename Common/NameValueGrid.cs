@@ -6,7 +6,7 @@ namespace NetTools.Common
     public partial class NameValueGrid : UserControl
     {
         private NameValueCollection collection = new NameValueCollection();
-        private DataGridView dataGrid = null;
+        private readonly DataGridView dataGrid;
 
         public bool ReadOnly
         {

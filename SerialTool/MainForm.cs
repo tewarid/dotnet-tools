@@ -30,7 +30,7 @@ namespace SerialTool
             ShowSerialPorts();
         }
 
-        private async void sendButton_Click(object sender, EventArgs e)
+        private async void SendButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -68,8 +68,10 @@ namespace SerialTool
 
             // caller's context gets resumed at this point
             if (endTickCount != 0)
+            {
                 status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
-                    data.Length, endTickCount - startTickCount);
+                      data.Length, endTickCount - startTickCount);
+            }
 
             sendButton.Enabled = true;
         }
@@ -105,30 +107,31 @@ namespace SerialTool
             try
             {
                 port.Open();
-                port.DataReceived += port_DataReceived;
-                port.ErrorReceived += port_ErrorReceived;
+                port.DataReceived += Port_DataReceived;
+                port.ErrorReceived += Port_ErrorReceived;
             }
             catch
             {
                 MessageBox.Show("Invalid port name or unknown error.");
                 port = null;
-                openButton.Enabled = true;
+                open.Enabled = true;
                 return;
             }
 
             serialPortName.Enabled = false;
             baudRate.Enabled = false;
-            openButton.Enabled = false;
+            open.Enabled = false;
             sendButton.Enabled = true;
-            closeButton.Enabled = true;
-            refreshButton.Enabled = false;
+            close.Enabled = true;
+            refresh.Enabled = false;
         }
 
-        void port_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
+        void Port_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
+            // we'll do nothing with error
         }
 
-        void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
@@ -147,7 +150,7 @@ namespace SerialTool
             CloseSerialPort();
         }
 
-        private void openButton_Click(object sender, EventArgs e)
+        private void Open_Click(object sender, EventArgs e)
         {
             if (string.Empty.Equals(serialPortName.Text))
             {
@@ -161,7 +164,7 @@ namespace SerialTool
             }
         }
 
-        private void refreshButton_Click(object sender, EventArgs e)
+        private void Refresh_Click(object sender, EventArgs e)
         {
             serialPortName.Text = "";
             ShowSerialPorts();
@@ -186,21 +189,21 @@ namespace SerialTool
                 // don't need user to do anything
             }
 
-            closeButton.Enabled = false;
+            close.Enabled = false;
             sendButton.Enabled = false;
-            openButton.Enabled = true;
-            refreshButton.Enabled = true;
+            open.Enabled = true;
+            refresh.Enabled = true;
             serialPortName.Enabled = true;
             baudRate.Enabled = true;
             timeOut.Checked = false;
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
+        private void Close_Click(object sender, EventArgs e)
         {
             CloseSerialPort();
         }
 
-        private void timeOut_CheckedChanged(object sender, EventArgs e)
+        private void TimeOut_CheckedChanged(object sender, EventArgs e)
         {
             timeOutValue.Enabled = timeOut.Checked;
             if (port != null)

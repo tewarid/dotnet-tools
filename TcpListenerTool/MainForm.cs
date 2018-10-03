@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,8 +14,8 @@ namespace TcpListenerTool
 {
     public partial class MainForm : Form
     {
-        TcpListener listener;
-        int clientNum = 0;
+        private TcpListener listener;
+        private static int clientNum;
 
         public MainForm()
         {
@@ -146,9 +147,10 @@ namespace TcpListenerTool
                 stream = tcpClient.GetStream();
             }
 
+            int value = Interlocked.Increment(ref clientNum);
             Form newForm = new TcpClientTool.MainForm(tcpClient, stream)
             {
-                Text = "TCP Client " + (++clientNum)
+                Text = "TCP Client " + (value)
             };
             newForm.Show(this);
         }

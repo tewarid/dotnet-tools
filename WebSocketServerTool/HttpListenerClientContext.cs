@@ -10,6 +10,7 @@ namespace WebSocketServerTool
     {
         private HttpListenerContext listenerContext;
         private HttpListenerWebSocketContext wsContext;
+        private readonly Task task;
 
         public event ClosedHandler Closed;
         public event MessageHandler Message;
@@ -17,7 +18,7 @@ namespace WebSocketServerTool
         public HttpListenerClientContext(HttpListenerContext listenerContext)
         {
             this.listenerContext = listenerContext;
-            Task t = Start();
+            task = Start();
         }
 
         private async Task Start()
@@ -70,10 +71,10 @@ namespace WebSocketServerTool
 
         public async Task Receive(byte[] message, int length, WebSocketMessageType type, bool lastMessage)
         {
-            await Task.Run(delegate ()
+            await Task.Run(delegate
             {
                 Message?.Invoke(message, length, type, lastMessage);
-            });
+            }).ConfigureAwait(true);
         }
     }
 }

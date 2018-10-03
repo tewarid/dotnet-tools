@@ -57,7 +57,7 @@ namespace WebSocketSharpServerTool
             outputText.AppendText(Environment.NewLine);
         }
 
-        private void sendButton_Click(object sender, EventArgs e)
+        private void SendButton_Click(object sender, EventArgs e)
         {
             if (input.Binary)
             {
@@ -67,11 +67,6 @@ namespace WebSocketSharpServerTool
             {
                 client.Send(input.Text);
             }
-        }
-
-        private void ClientForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            
         }
     }
 }

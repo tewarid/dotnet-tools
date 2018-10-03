@@ -34,8 +34,8 @@ namespace SmtpServerTool
             try
             {
                 cancellationTokenSource = new CancellationTokenSource();
-                await smtpServer.StartAsync(cancellationTokenSource.Token);
-                cancellationTokenSource.Dispose();
+                await smtpServer.StartAsync(cancellationTokenSource.Token)
+                    .ConfigureAwait(true);
             }
             catch(SocketException ex)
             {
@@ -85,6 +85,7 @@ namespace SmtpServerTool
         private void Stop_Click(object sender, EventArgs e)
         {
             cancellationTokenSource.Cancel();
+            cancellationTokenSource.Dispose();
         }
 
         private void Clear_Click(object sender, EventArgs e)

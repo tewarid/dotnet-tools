@@ -3,15 +3,14 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Collections;
 using NetFwTypeLib;
-
+using System.Globalization;
 
 namespace Connection
 {
     public class FirewallHelper
     {
         private readonly INetFwMgr mgr;
-        private string applicationFullPath;
-        private string appName;
+        private string applicationFileName;
    
         public FirewallHelper()
         {
@@ -91,10 +90,12 @@ namespace Connection
                 throw new FirewallHelperException("Cannot remove authorization, firewall is not enabled.");
             }
 
-            foreach (string appName in GetAuthorizedAppPaths())
+            foreach (string path in GetAuthorizedAppPaths())
             {
-                if (appName.ToLower() == applicationFullPath.ToLower())
+                if (path.ToLower(CultureInfo.InvariantCulture).Equals(applicationFullPath.ToLower(CultureInfo.InvariantCulture)))
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -148,13 +149,13 @@ namespace Connection
             if (!HasAuthorization(applicationFullPath))
             {
                 INetFwProfile profileDomain = mgr.LocalPolicy.GetProfileByType(NET_FW_PROFILE_TYPE_.NET_FW_PROFILE_STANDARD);
-                profileDomain.AuthorizedApplications.Add(GetAuthAppObj(applicationFullPath, appName));
+                profileDomain.AuthorizedApplications.Add(GetAuthAppObj(applicationFullPath, applicationFileName));
 
                 profileDomain = mgr.LocalPolicy.GetProfileByType(NET_FW_PROFILE_TYPE_.NET_FW_PROFILE_DOMAIN);
-                profileDomain.AuthorizedApplications.Add(GetAuthAppObj(applicationFullPath, appName));
+                profileDomain.AuthorizedApplications.Add(GetAuthAppObj(applicationFullPath, applicationFileName));
 
                 profileDomain = mgr.LocalPolicy.GetProfileByType(NET_FW_PROFILE_TYPE_.NET_FW_PROFILE_CURRENT);
-                profileDomain.AuthorizedApplications.Add(GetAuthAppObj(applicationFullPath, appName));
+                profileDomain.AuthorizedApplications.Add(GetAuthAppObj(applicationFullPath, applicationFileName));
             }
         }
 
@@ -208,11 +209,10 @@ namespace Connection
                 throw new FileNotFoundException("File does not exist", applicationFullPath);
             }
           
-            this.applicationFullPath = applicationFullPath;
             //To find the name of the executable
-            this.appName = Path.GetFileName(applicationFullPath);
+            this.applicationFileName = Path.GetFileName(applicationFullPath);
 
-            if (appName == null)
+            if (applicationFileName == null)
             {
                 throw new ArgumentNullException("appName");
             }
@@ -315,7 +315,7 @@ namespace Connection
             Type tpResult = Type.GetTypeFromCLSID(new Guid("{0CA545C6-37AD-4A6C-BF92-9F7610067EF5}"));
             INetFwOpenPort port = (INetFwOpenPort)Activator.CreateInstance(tpResult);
             port.Port = Int32.Parse(portNumber); // port number
-            port.Name = appName; // name of the application using the port
+            port.Name = applicationFileName; // name of the application using the port
             port.Enabled = true; // enable the port
             port.Protocol = ipProtocol;
             return port;

@@ -26,7 +26,7 @@ namespace WebSocketServerTool
                 context = new WcfClientContext(callback);
                 callbacks[channel] = context;
 
-                context.Closed += delegate()
+                context.Closed += delegate
                 {
                     callbacks.TryRemove(channel, out context);
                 };

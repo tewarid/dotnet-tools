@@ -23,10 +23,6 @@ namespace Common
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-        }
-
         private async void sendButton_Click(object sender, EventArgs e)
         {
             if (wsClient == null || wsClient.State != WebSocketState.Open)
@@ -147,9 +143,9 @@ namespace Common
             }
         }
 
-        private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            await CloseWebSocketClient().ConfigureAwait(true);
+            CloseWebSocketClient();
         }
 
         private async Task ReadCallback()
@@ -178,8 +174,10 @@ namespace Common
                 {
                     await CloseWebSocketClient().ConfigureAwait(true);
                     if (wsClient.CloseStatus != WebSocketCloseStatus.NormalClosure)
+                    {
                         MessageBox.Show(string.Format("WebSocket closed due to {0}.",
                             wsClient.CloseStatus), this.Text);
+                    }
                     return;
                 }
             }

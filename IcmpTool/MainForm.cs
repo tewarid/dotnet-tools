@@ -73,6 +73,7 @@ namespace IcmpTool
                 }
                 catch (ObjectDisposedException)
                 {
+                    // nothing to tell the user
                 }
             }
         }
@@ -165,7 +166,9 @@ namespace IcmpTool
         private void CloseIcmpSocket()
         {
             if (icmpSocket == null)
+            {
                 return;
+            }
 
             if (InvokeRequired)
             {

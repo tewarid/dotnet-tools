@@ -171,7 +171,9 @@ namespace UdpTool
         private async Task ReceiveAsync()
         {
             if (udpClient == null)
+            {
                 return;
+            }
 
             UdpReceiveResult r;
             while(true)
@@ -208,10 +210,10 @@ namespace UdpTool
             if (udpClient == null)
             {
                 CreateUdpClient();
-            }
-            if (udpClient == null)
-            {
-                return;
+                if (udpClient == null)
+                {
+                    return;
+                }
             }
             await ReceiveAsync().ConfigureAwait(true);
         }

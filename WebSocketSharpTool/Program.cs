@@ -17,7 +17,7 @@ namespace WebSocketSharpTool
             // Ignore X.509 certificate errors
             ServicePointManager.ServerCertificateValidationCallback
                 += new System.Net.Security.RemoteCertificateValidationCallback
-                (delegate (object sender, X509Certificate cert, X509Chain chain, SslPolicyErrors error)
+                (delegate
                 {
                     return true;
                 });

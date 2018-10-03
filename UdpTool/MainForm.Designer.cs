@@ -1,6 +1,8 @@
-﻿namespace UdpTool
+﻿using System.Windows.Forms;
+
+namespace UdpTool
 {
-    partial class MainForm
+    partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.
