@@ -2,7 +2,7 @@
 
 namespace Common
 {
-    partial class ReceiveTextBox : UserControl
+    public partial class ReceiveTextBox : UserControl
     {
         /// <summary> 
         /// Required designer variable.

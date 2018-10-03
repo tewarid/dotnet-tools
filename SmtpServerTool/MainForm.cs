@@ -89,15 +89,13 @@ namespace SmtpServerTool
             cancellationTokenSource = null;
         }
 
-        new void Dispose()
+        void IDisposable.Dispose()
         {
-            base.Dispose();
             if (cancellationTokenSource != null)
             {
                 cancellationTokenSource.Dispose();
             }
         }
-
 
         private void Clear_Click(object sender, EventArgs e)
         {

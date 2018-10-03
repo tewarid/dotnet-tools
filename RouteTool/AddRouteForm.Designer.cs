@@ -2,7 +2,7 @@
 
 namespace RouteTool
 {
-    partial class AddRouteForm : Form
+    public partial class AddRouteForm : Form
     {
         /// <summary>
         /// Required designer variable.

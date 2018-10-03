@@ -1,6 +1,8 @@
-﻿namespace SmtpClientTool
+﻿using System.Windows.Forms;
+
+namespace SmtpClientTool
 {
-    partial class MainForm
+    public partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.

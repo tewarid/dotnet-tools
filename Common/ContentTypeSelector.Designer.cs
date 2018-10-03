@@ -2,7 +2,7 @@
 
 namespace NetTools.Common
 {
-    partial class ContentTypeSelector : UserControl
+    public partial class ContentTypeSelector : UserControl
     {
         /// <summary> 
         /// Required designer variable.

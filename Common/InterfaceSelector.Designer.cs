@@ -2,7 +2,7 @@
 
 namespace Common
 {
-    partial class InterfaceSelectorComboBox : UserControl
+    public partial class InterfaceSelectorComboBox : UserControl
     {
         /// <summary>
         /// Required designer variable.

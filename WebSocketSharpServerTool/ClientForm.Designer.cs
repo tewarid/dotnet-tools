@@ -2,7 +2,7 @@
 
 namespace WebSocketSharpServerTool
 {
-    partial class ClientForm : Form
+    public partial class ClientForm : Form
     {
         /// <summary>
         /// Required designer variable.

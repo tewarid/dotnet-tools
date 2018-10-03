@@ -2,7 +2,7 @@
 
 namespace Common
 {
-    partial class InputDialog<T> : Form
+    public partial class InputDialog<T> : Form
     {
         /// <summary>
         /// Required designer variable.

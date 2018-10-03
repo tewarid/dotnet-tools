@@ -1,6 +1,6 @@
 ﻿namespace WebSocketServerTool
 {
-    partial class ClientForm
+    public partial class ClientForm
     {
         /// <summary>
         /// Required designer variable.

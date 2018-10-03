@@ -2,7 +2,7 @@
 
 namespace Common
 {
-    partial class NameValueDialog : Form
+    public partial class NameValueDialog : Form
     {
         /// <summary>
         /// Required designer variable.

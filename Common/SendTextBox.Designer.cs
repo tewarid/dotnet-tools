@@ -2,7 +2,7 @@
 
 namespace Common
 {
-    partial class SendTextBox : UserControl
+    public partial class SendTextBox : UserControl
     {
         /// <summary> 
         /// Required designer variable.

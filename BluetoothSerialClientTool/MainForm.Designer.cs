@@ -1,6 +1,6 @@
 ﻿namespace BluetoothSerialClientTool
 {
-    partial class MainForm
+    public partial class MainForm
     {
         /// <summary>
         /// Required designer variable.

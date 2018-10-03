@@ -2,7 +2,7 @@
 
 namespace NetTools.Common
 {
-    partial class NameValueGrid : UserControl
+    public partial class NameValueGrid : UserControl
     {
         /// <summary> 
         /// Required designer variable.
