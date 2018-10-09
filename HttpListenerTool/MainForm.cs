@@ -12,7 +12,6 @@ namespace HttpListenerTool
     public partial class MainForm : Form
     {
         private HttpListener listener;
-        private Uri prefix;
 
         public MainForm()
         {
@@ -37,7 +36,6 @@ namespace HttpListenerTool
             try
             {
                 listener = new HttpListener();
-                prefix = new Uri(uri.Text);
                 listener.Prefixes.Add(uri.Text);
                 listener.Start();
                 EnableDisable(false);

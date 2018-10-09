@@ -143,9 +143,9 @@ namespace Common
             }
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            CloseWebSocketClient();
+            await CloseWebSocketClient().ConfigureAwait(true);
         }
 
         private async Task ReadCallback()

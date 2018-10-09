@@ -86,11 +86,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{e1fee78b-cbec-4a3e-9252-581406417ce0}</Project>
+      <Project>{E1FEE78B-CBEC-4A3E-9252-581406417CE0}</Project>
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\TcpClientTool\TcpClientTool.csproj">
-      <Project>{1a80778f-b6b5-442e-9e1b-c6216a24f8c0}</Project>
+      <Project>{1A80778F-B6B5-442E-9E1B-C6216A24F8C0}</Project>
       <Name>TcpClientTool</Name>
     </ProjectReference>
   </ItemGroup>

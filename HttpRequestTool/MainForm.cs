@@ -19,10 +19,15 @@ namespace Common
             // Set SSL/TLS version options
             tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("SSL 3", SecurityProtocolType.Ssl3));
             tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("TLS", SecurityProtocolType.Tls));
-            tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("TLS 1.1", SecurityProtocolType.Tls11));
-            tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("TLS 1.2", SecurityProtocolType.Tls12));
-            tlsVersion.SelectedIndex = 3;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+			#if __MonoCS__
+			tlsVersion.SelectedIndex = 1;
+			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+			#else 
+			tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("TLS 1.1", SecurityProtocolType.Tls11));
+			tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("TLS 1.2", SecurityProtocolType.Tls12));
+			tlsVersion.SelectedIndex = 3;
+			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+			#endif
 
             // Request Methods
             requestMethod.Items.Add(HttpMethod.Get.Method);

@@ -97,8 +97,9 @@ namespace UdpTool
         private void CreateUdpClient() 
         {
             IPAddress address = IPAddress.Any;
+			IPAddress destination;
             if (!string.IsNullOrWhiteSpace(destinationIPAddress.Text) &&
-                IPAddress.TryParse(destinationIPAddress.Text, out IPAddress destination) &&
+                IPAddress.TryParse(destinationIPAddress.Text, out destination) &&
                 destination.AddressFamily == AddressFamily.InterNetworkV6)
             {
                 address = IPAddress.IPv6Any;
