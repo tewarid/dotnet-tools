@@ -53,20 +53,18 @@ namespace HttpListenerTool
             // 
             this.uri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uri.Location = new System.Drawing.Point(17, 114);
-            this.uri.Margin = new System.Windows.Forms.Padding(4);
+            this.uri.Location = new System.Drawing.Point(13, 93);
             this.uri.Name = "uri";
-            this.uri.Size = new System.Drawing.Size(612, 22);
+            this.uri.Size = new System.Drawing.Size(460, 20);
             this.uri.TabIndex = 5;
             this.uri.Text = "https://localhost:8443/";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 94);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(13, 76);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 17);
+            this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 18;
             this.label4.Text = "Prefix URI";
             // 
@@ -74,23 +72,21 @@ namespace HttpListenerTool
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(19, 31);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(14, 25);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(611, 59);
+            this.textBox1.Size = new System.Drawing.Size(459, 49);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 11);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(10, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(388, 17);
+            this.label2.Size = new System.Drawing.Size(292, 13);
             this.label2.TabIndex = 14;
             this.label2.Text = "For HTTPS, create and initialize X509 certificate as follows...";
             // 
@@ -98,8 +94,7 @@ namespace HttpListenerTool
             // 
             this.stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.stop.Enabled = false;
-            this.stop.Location = new System.Drawing.Point(555, 394);
-            this.stop.Margin = new System.Windows.Forms.Padding(4);
+            this.stop.Location = new System.Drawing.Point(398, 320);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(75, 23);
             this.stop.TabIndex = 24;
@@ -110,8 +105,7 @@ namespace HttpListenerTool
             // start
             // 
             this.start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.start.Location = new System.Drawing.Point(471, 394);
-            this.start.Margin = new System.Windows.Forms.Padding(4);
+            this.start.Location = new System.Drawing.Point(317, 320);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(75, 23);
             this.start.TabIndex = 23;
@@ -122,10 +116,9 @@ namespace HttpListenerTool
             // certificateAuth
             // 
             this.certificateAuth.AutoSize = true;
-            this.certificateAuth.Location = new System.Drawing.Point(21, 146);
-            this.certificateAuth.Margin = new System.Windows.Forms.Padding(4);
+            this.certificateAuth.Location = new System.Drawing.Point(16, 119);
             this.certificateAuth.Name = "certificateAuth";
-            this.certificateAuth.Size = new System.Drawing.Size(189, 21);
+            this.certificateAuth.Size = new System.Drawing.Size(145, 17);
             this.certificateAuth.TabIndex = 10;
             this.certificateAuth.Text = "Request Client Certificate";
             this.certificateAuth.UseVisualStyleBackColor = true;
@@ -135,32 +128,31 @@ namespace HttpListenerTool
             this.log.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.log.Location = new System.Drawing.Point(13, 442);
-            this.log.Margin = new System.Windows.Forms.Padding(4);
+            this.log.Location = new System.Drawing.Point(10, 359);
             this.log.Multiline = true;
             this.log.Name = "log";
             this.log.ReadOnly = true;
             this.log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.log.Size = new System.Drawing.Size(616, 159);
+            this.log.Size = new System.Drawing.Size(463, 130);
             this.log.TabIndex = 26;
             this.log.WordWrap = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 421);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(8, 342);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 17);
+            this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 27;
             this.label5.Text = "Request Log";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(203, 171);
+            this.label7.Location = new System.Drawing.Point(152, 139);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(161, 17);
+            this.label7.Size = new System.Drawing.Size(122, 13);
             this.label7.TabIndex = 30;
             this.label7.Text = "Response Content Type";
             // 
@@ -168,18 +160,20 @@ namespace HttpListenerTool
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(388, 171);
+            this.label1.Location = new System.Drawing.Point(291, 139);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 17);
+            this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 28;
             this.label1.Text = "Response Headers";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 171);
+            this.label3.Location = new System.Drawing.Point(14, 139);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 17);
+            this.label3.Size = new System.Drawing.Size(116, 13);
             this.label3.TabIndex = 33;
             this.label3.Text = "Response Status Code";
             // 
@@ -187,10 +181,10 @@ namespace HttpListenerTool
             // 
             this.responseStatusCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.responseStatusCode.FormattingEnabled = true;
-            this.responseStatusCode.Location = new System.Drawing.Point(21, 191);
-            this.responseStatusCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.responseStatusCode.Location = new System.Drawing.Point(16, 155);
+            this.responseStatusCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.responseStatusCode.Name = "responseStatusCode";
-            this.responseStatusCode.Size = new System.Drawing.Size(176, 24);
+            this.responseStatusCode.Size = new System.Drawing.Size(133, 21);
             this.responseStatusCode.TabIndex = 12;
             // 
             // responseHeaders
@@ -198,39 +192,38 @@ namespace HttpListenerTool
             this.responseHeaders.AllowUserToAddRows = true;
             this.responseHeaders.AllowUserToDeleteRows = true;
             this.responseHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.responseHeaders.Location = new System.Drawing.Point(391, 192);
-            this.responseHeaders.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.responseHeaders.Location = new System.Drawing.Point(293, 156);
+            this.responseHeaders.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.responseHeaders.Name = "responseHeaders";
             this.responseHeaders.ReadOnly = false;
-            this.responseHeaders.Size = new System.Drawing.Size(237, 196);
+            this.responseHeaders.Size = new System.Drawing.Size(178, 159);
             this.responseHeaders.TabIndex = 18;
             // 
             // responseContentType
             // 
             this.responseContentType.AutoSize = true;
-            this.responseContentType.Location = new System.Drawing.Point(205, 191);
-            this.responseContentType.Margin = new System.Windows.Forms.Padding(4);
+            this.responseContentType.Location = new System.Drawing.Point(154, 155);
             this.responseContentType.Name = "responseContentType";
-            this.responseContentType.Size = new System.Drawing.Size(173, 26);
+            this.responseContentType.Size = new System.Drawing.Size(130, 21);
             this.responseContentType.TabIndex = 14;
             // 
             // responseContent
             // 
             this.responseContent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.responseContent.Location = new System.Drawing.Point(14, 223);
-            this.responseContent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.responseContent.MinimumSize = new System.Drawing.Size(280, 130);
+            this.responseContent.Location = new System.Drawing.Point(10, 181);
+            this.responseContent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.responseContent.MinimumSize = new System.Drawing.Size(210, 106);
             this.responseContent.Name = "responseContent";
-            this.responseContent.Padding = new System.Windows.Forms.Padding(5);
-            this.responseContent.Size = new System.Drawing.Size(365, 166);
+            this.responseContent.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.responseContent.Size = new System.Drawing.Size(274, 135);
             this.responseContent.TabIndex = 16;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 613);
+            this.ClientSize = new System.Drawing.Size(482, 498);
             this.Controls.Add(this.responseContent);
             this.Controls.Add(this.responseContentType);
             this.Controls.Add(this.responseStatusCode);
@@ -248,7 +241,6 @@ namespace HttpListenerTool
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "HTTP Listener Tool";
             this.ResumeLayout(false);

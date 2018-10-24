@@ -62,6 +62,17 @@ namespace HttpListenerTool
                 return;
             }
             HttpListenerRequest request = context.Request;
+            if (certificateAuth.Checked)
+            {
+                X509Certificate2 certificate = await context.Request
+                    .GetClientCertificateAsync().ConfigureAwait(true);
+                if (certificate == null)
+                {
+                    Log("Client certificate not received.");
+                    return;
+                }
+                Log(string.Format("Received client certificate with thumbprint {0}.", certificate.Thumbprint));
+            }
             Log($"[{DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")}] Received {request.HttpMethod} request for resource {request.Url.OriginalString}");
             if(request.Headers.Count > 0)
             {
@@ -70,16 +81,6 @@ namespace HttpListenerTool
             if (request.ContentLength64 > 0)
             {
                 Log($"{new StreamReader(request.InputStream).ReadToEnd()}");
-            }
-            if (certificateAuth.Checked)
-            {
-                X509Certificate2 certificate = await context.Request.GetClientCertificateAsync();
-                if (certificate == null)
-                {
-                    Log("Client certificate not received.");
-                    return;
-                }
-                Log(string.Format("Received client certificate with thumbprint {0}.", certificate.Thumbprint));
             }
             try
             {
