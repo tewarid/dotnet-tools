@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Windows.Forms;
@@ -68,9 +69,16 @@ namespace Common
             if (setClientCertificate.Checked)
             {
                 X509Certificate2Collection certificates = new X509Certificate2Collection();
-                certificates.Import(clientCertificateFile.Text,
-                    certificatePassword.Text, X509KeyStorageFlags.DefaultKeySet);
-                request.ClientCertificates = certificates;
+                try
+                {
+                    certificates.Import(clientCertificateFile.Text,
+                        certificatePassword.Text, X509KeyStorageFlags.DefaultKeySet);
+                    request.ClientCertificates = certificates;
+                }
+                catch (CryptographicException ex)
+                {
+                    MessageBox.Show(this, ex.Message);
+                }
             }
             NameValueCollection headers = requestHeaders.Get();
             if (headers.Count > 0)
