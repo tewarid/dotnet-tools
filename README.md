@@ -10,6 +10,10 @@ Interactive client that may be used to open a Bluetooth serial socket, send, and
 
 Simulate a Bluetooth serial listener/server on Windows. It is built with [32feet.NET](https://www.nuget.org/packages/32feet.NET), a .NET library layered over Windows Bluetooth socket API.
 
+## Encoding Tool
+
+Convert data or text to or from various formats such as Base64, and encoded HTML, XML, or URL.
+
 ## Firewall Tool
 
 Add/remove exceptions to/from Windows Firewall. With contributions from Bruno Silveira.
