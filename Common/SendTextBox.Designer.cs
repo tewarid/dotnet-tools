@@ -46,7 +46,7 @@ namespace Common
             // 
             this.inputInHex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(7, 307);
+            this.inputInHex.Location = new System.Drawing.Point(10, 295);
             this.inputInHex.MinimumSize = new System.Drawing.Size(272, 17);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(327, 21);
@@ -73,19 +73,19 @@ namespace Common
             | System.Windows.Forms.AnchorStyles.Right)));
             this.inputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputText.HideSelection = false;
-            this.inputText.Location = new System.Drawing.Point(7, 20);
+            this.inputText.Location = new System.Drawing.Point(7, 24);
             this.inputText.MaxLength = 1000000;
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputText.Size = new System.Drawing.Size(394, 285);
+            this.inputText.Size = new System.Drawing.Size(394, 265);
             this.inputText.TabIndex = 0;
             // 
             // endOfLine
             // 
             this.endOfLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.endOfLine.Controls.Add(this.flowLayoutPanel1);
-            this.endOfLine.Location = new System.Drawing.Point(7, 334);
+            this.endOfLine.Location = new System.Drawing.Point(10, 322);
             this.endOfLine.MinimumSize = new System.Drawing.Size(247, 45);
             this.endOfLine.Name = "endOfLine";
             this.endOfLine.Size = new System.Drawing.Size(363, 51);
@@ -144,7 +144,7 @@ namespace Common
             this.Controls.Add(this.inputInHex);
             this.Name = "SendTextBox";
             this.Padding = new System.Windows.Forms.Padding(4);
-            this.Size = new System.Drawing.Size(407, 385);
+            this.Size = new System.Drawing.Size(407, 380);
             this.endOfLine.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
