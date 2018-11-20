@@ -34,16 +34,8 @@ namespace Common
             }
             else
             {
-                for (int i = 0; i < length; i++)
-                {
-                    // remove special chars
-                    if (data[i] < (byte)' ' || data[i] > (byte)'~')
-                    {
-                        data[i] = (byte)'.';
-                    }
-                }
-
-                outputText.AppendText(ASCIIEncoding.UTF8.GetString(data, 0, length));
+                string text = ASCIIEncoding.UTF8.GetString(data, 0, length);
+                outputText.AppendText(TextEncoding.FixEndOfLine(text));
             }
         }
 

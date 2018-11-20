@@ -95,6 +95,7 @@
     <Compile Include="SendTextBox.Designer.cs">
       <DependentUpon>SendTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="TextEncoding.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ContentTypeSelector.resx">

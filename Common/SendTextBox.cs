@@ -43,17 +43,20 @@ namespace Common
             {
                 string text;
 
-                if (endOfLineMac.Checked) // MAC - CR
+                if (endOfLineMac.Checked)
                 {
-                    text = inputText.Text.Replace("\r\n", "\r");
+                    text = inputText.Text.Replace(Environment.NewLine,
+                        EndOfLineConstants.MACOS);
                 }
-                else if (endOfLineDos.Checked) // DOS - CR/LF
+                else if (endOfLineDos.Checked)
                 {
-                    text = inputText.Text;
+                    text = inputText.Text.Replace(Environment.NewLine,
+                        EndOfLineConstants.DOS);
                 }
-                else // Unix - LF
+                else
                 {
-                    text = inputText.Text.Replace("\r\n", "\n");
+                    text = inputText.Text.Replace(Environment.NewLine,
+                        EndOfLineConstants.UNIX);
                 }
 
                 return text;

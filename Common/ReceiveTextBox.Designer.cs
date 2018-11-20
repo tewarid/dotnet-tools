@@ -42,9 +42,9 @@ namespace Common
             this.label.Location = new System.Drawing.Point(0, 1);
             this.label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(113, 13);
+            this.label.Size = new System.Drawing.Size(133, 17);
             this.label.TabIndex = 13;
-            this.label.Text = "Data received (UTF-8)";
+            this.label.Text = "Output Log (UTF-8)";
             // 
             // outputText
             // 
@@ -68,10 +68,10 @@ namespace Common
             this.viewInHex.AutoSize = true;
             this.viewInHex.Checked = true;
             this.viewInHex.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.viewInHex.Location = new System.Drawing.Point(0, 326);
+            this.viewInHex.Location = new System.Drawing.Point(0, 322);
             this.viewInHex.Margin = new System.Windows.Forms.Padding(4);
             this.viewInHex.Name = "viewInHex";
-            this.viewInHex.Size = new System.Drawing.Size(228, 17);
+            this.viewInHex.Size = new System.Drawing.Size(297, 21);
             this.viewInHex.TabIndex = 2;
             this.viewInHex.Text = "Display as hexadecimal ASCII (e.g. BE AD)";
             this.viewInHex.UseVisualStyleBackColor = true;

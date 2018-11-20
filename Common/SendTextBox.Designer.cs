@@ -35,9 +35,9 @@ namespace Common
             this.inputText = new System.Windows.Forms.TextBox();
             this.endOfLine = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.endOfLineUnix = new System.Windows.Forms.RadioButton();
             this.endOfLineDos = new System.Windows.Forms.RadioButton();
             this.endOfLineMac = new System.Windows.Forms.RadioButton();
+            this.endOfLineUnix = new System.Windows.Forms.RadioButton();
             this.endOfLine.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,9 +49,9 @@ namespace Common
             this.inputInHex.Location = new System.Drawing.Point(7, 307);
             this.inputInHex.MinimumSize = new System.Drawing.Size(272, 17);
             this.inputInHex.Name = "inputInHex";
-            this.inputInHex.Size = new System.Drawing.Size(363, 21);
+            this.inputInHex.Size = new System.Drawing.Size(327, 21);
             this.inputInHex.TabIndex = 1;
-            this.inputInHex.Text = "Send binary, text is hexadecimal ASCII (e.g. BE 0xad)";
+            this.inputInHex.Text = "Text is binary hexadecimal ASCII (e.g. BE 0xad)";
             this.inputInHex.UseVisualStyleBackColor = true;
             this.inputInHex.CheckedChanged += new System.EventHandler(this.InputInHex_CheckedChanged);
             // 
@@ -60,9 +60,9 @@ namespace Common
             this.inputTextLabel.AutoSize = true;
             this.inputTextLabel.Location = new System.Drawing.Point(7, 4);
             this.inputTextLabel.Name = "inputTextLabel";
-            this.inputTextLabel.Size = new System.Drawing.Size(140, 17);
+            this.inputTextLabel.Size = new System.Drawing.Size(124, 17);
             this.inputTextLabel.TabIndex = 21;
-            this.inputTextLabel.Text = "Text to send (UTF-8)";
+            this.inputTextLabel.Text = "Input Text (UTF-8)";
             // 
             // inputText
             // 
@@ -104,16 +104,6 @@ namespace Common
             this.flowLayoutPanel1.Size = new System.Drawing.Size(357, 30);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // endOfLineUnix
-            // 
-            this.endOfLineUnix.AutoSize = true;
-            this.endOfLineUnix.Location = new System.Drawing.Point(219, 3);
-            this.endOfLineUnix.Name = "endOfLineUnix";
-            this.endOfLineUnix.Size = new System.Drawing.Size(86, 21);
-            this.endOfLineUnix.TabIndex = 3;
-            this.endOfLineUnix.Text = "Unix (LF)";
-            this.endOfLineUnix.UseVisualStyleBackColor = true;
-            // 
             // endOfLineDos
             // 
             this.endOfLineDos.AutoSize = true;
@@ -135,6 +125,16 @@ namespace Common
             this.endOfLineMac.TabIndex = 5;
             this.endOfLineMac.Text = "MAC (CR)";
             this.endOfLineMac.UseVisualStyleBackColor = true;
+            // 
+            // endOfLineUnix
+            // 
+            this.endOfLineUnix.AutoSize = true;
+            this.endOfLineUnix.Location = new System.Drawing.Point(219, 3);
+            this.endOfLineUnix.Name = "endOfLineUnix";
+            this.endOfLineUnix.Size = new System.Drawing.Size(86, 21);
+            this.endOfLineUnix.TabIndex = 3;
+            this.endOfLineUnix.Text = "Unix (LF)";
+            this.endOfLineUnix.UseVisualStyleBackColor = true;
             // 
             // SendTextBox
             // 
