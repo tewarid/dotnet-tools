@@ -33,7 +33,7 @@ namespace Common
                     return;
                 }
                 await SendAsync().ConfigureAwait(true);
-                await ReadCallback().ConfigureAwait(true);
+                await Receive().ConfigureAwait(true);
             }
             else
             {
@@ -97,7 +97,15 @@ namespace Common
             {
                 return;
             }
-            wsClient = new ClientWebSocket();
+            try
+            {
+                wsClient = new ClientWebSocket();
+            }
+            catch(PlatformNotSupportedException ex)
+            {
+                MessageBox.Show(this, ex.Message, this.Text);
+                return;
+            }
             if (headers != null)
             { 
                 foreach(string name in headers)
@@ -148,7 +156,7 @@ namespace Common
             await CloseWebSocketClient().ConfigureAwait(true);
         }
 
-        private async Task ReadCallback()
+        private async Task Receive()
         {
             while(true)
             {
@@ -186,7 +194,11 @@ namespace Common
         private async void Connect_Click(object sender, EventArgs e)
         {
             await CreateWebSocketClient().ConfigureAwait(true);
-            await ReadCallback().ConfigureAwait(true);
+            if (wsClient == null || wsClient.State != WebSocketState.Open)
+            {
+                return;
+            }
+            await Receive().ConfigureAwait(true);
         }
 
         private async void CloseButton_Click(object sender, EventArgs e)
