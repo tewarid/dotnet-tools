@@ -1,6 +1,8 @@
-﻿namespace EncodingTool
+﻿using System.Windows.Forms;
+
+namespace EncodingTool
 {
-    partial class MainForm
+    public partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.
