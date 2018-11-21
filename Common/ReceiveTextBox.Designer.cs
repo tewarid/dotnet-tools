@@ -69,9 +69,9 @@ namespace Common
             this.viewInHex.Location = new System.Drawing.Point(0, 322);
             this.viewInHex.Margin = new System.Windows.Forms.Padding(4);
             this.viewInHex.Name = "viewInHex";
-            this.viewInHex.Size = new System.Drawing.Size(297, 21);
+            this.viewInHex.Size = new System.Drawing.Size(267, 21);
             this.viewInHex.TabIndex = 2;
-            this.viewInHex.Text = "Display as hexadecimal ASCII (e.g. BE AD)";
+            this.viewInHex.Text = "Display in hexadecimal (e.g. BE 0xad)";
             this.viewInHex.UseVisualStyleBackColor = true;
             // 
             // clearButton

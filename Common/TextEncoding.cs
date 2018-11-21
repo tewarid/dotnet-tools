@@ -1,11 +1,15 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace Common
 {
     public enum EndOfLine : byte
     {
+        [Description("macOS (CR)")]
         MacOS,
+        [Description("DOS or Windows (CR-LF)")]
         Dos,
+        [Description("Linux or Unix (LF)")]
         Unix
     }
 

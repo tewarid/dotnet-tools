@@ -33,25 +33,20 @@ namespace Common
             this.inputInHex = new System.Windows.Forms.CheckBox();
             this.inputTextLabel = new System.Windows.Forms.Label();
             this.inputText = new System.Windows.Forms.TextBox();
-            this.endOfLine = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.endOfLineDos = new System.Windows.Forms.RadioButton();
-            this.endOfLineMac = new System.Windows.Forms.RadioButton();
-            this.endOfLineUnix = new System.Windows.Forms.RadioButton();
-            this.endOfLine.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.changeEndOfLine = new System.Windows.Forms.CheckBox();
+            this.endOfLine = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // inputInHex
             // 
             this.inputInHex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(10, 295);
+            this.inputInHex.Location = new System.Drawing.Point(6, 249);
             this.inputInHex.MinimumSize = new System.Drawing.Size(272, 17);
             this.inputInHex.Name = "inputInHex";
-            this.inputInHex.Size = new System.Drawing.Size(327, 21);
+            this.inputInHex.Size = new System.Drawing.Size(272, 21);
             this.inputInHex.TabIndex = 1;
-            this.inputInHex.Text = "Text is binary hexadecimal ASCII (e.g. BE 0xad)";
+            this.inputInHex.Text = "Text is in hexadecimal (e.g. BE 0xad)";
             this.inputInHex.UseVisualStyleBackColor = true;
             this.inputInHex.CheckedChanged += new System.EventHandler(this.InputInHex_CheckedChanged);
             // 
@@ -73,81 +68,48 @@ namespace Common
             | System.Windows.Forms.AnchorStyles.Right)));
             this.inputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputText.HideSelection = false;
-            this.inputText.Location = new System.Drawing.Point(7, 24);
+            this.inputText.Location = new System.Drawing.Point(6, 24);
             this.inputText.MaxLength = 1000000;
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputText.Size = new System.Drawing.Size(394, 265);
+            this.inputText.Size = new System.Drawing.Size(489, 219);
             this.inputText.TabIndex = 0;
+            // 
+            // changeEndOfLine
+            // 
+            this.changeEndOfLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.changeEndOfLine.AutoSize = true;
+            this.changeEndOfLine.Checked = true;
+            this.changeEndOfLine.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.changeEndOfLine.Location = new System.Drawing.Point(6, 276);
+            this.changeEndOfLine.Name = "changeEndOfLine";
+            this.changeEndOfLine.Size = new System.Drawing.Size(149, 21);
+            this.changeEndOfLine.TabIndex = 22;
+            this.changeEndOfLine.Text = "Change end of line";
+            this.changeEndOfLine.UseVisualStyleBackColor = true;
+            this.changeEndOfLine.CheckedChanged += new System.EventHandler(this.ChangeEndOfLine_CheckedChanged);
             // 
             // endOfLine
             // 
             this.endOfLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.endOfLine.Controls.Add(this.flowLayoutPanel1);
-            this.endOfLine.Location = new System.Drawing.Point(10, 322);
-            this.endOfLine.MinimumSize = new System.Drawing.Size(247, 45);
+            this.endOfLine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.endOfLine.FormattingEnabled = true;
+            this.endOfLine.Location = new System.Drawing.Point(161, 276);
             this.endOfLine.Name = "endOfLine";
-            this.endOfLine.Size = new System.Drawing.Size(363, 51);
-            this.endOfLine.TabIndex = 22;
-            this.endOfLine.TabStop = false;
-            this.endOfLine.Text = "End of Line";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.endOfLineDos);
-            this.flowLayoutPanel1.Controls.Add(this.endOfLineMac);
-            this.flowLayoutPanel1.Controls.Add(this.endOfLineUnix);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 18);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(357, 30);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // endOfLineDos
-            // 
-            this.endOfLineDos.AutoSize = true;
-            this.endOfLineDos.Checked = true;
-            this.endOfLineDos.Location = new System.Drawing.Point(3, 3);
-            this.endOfLineDos.Name = "endOfLineDos";
-            this.endOfLineDos.Size = new System.Drawing.Size(113, 21);
-            this.endOfLineDos.TabIndex = 4;
-            this.endOfLineDos.TabStop = true;
-            this.endOfLineDos.Text = "DOS (CR-LF)";
-            this.endOfLineDos.UseVisualStyleBackColor = true;
-            // 
-            // endOfLineMac
-            // 
-            this.endOfLineMac.AutoSize = true;
-            this.endOfLineMac.Location = new System.Drawing.Point(122, 3);
-            this.endOfLineMac.Name = "endOfLineMac";
-            this.endOfLineMac.Size = new System.Drawing.Size(91, 21);
-            this.endOfLineMac.TabIndex = 5;
-            this.endOfLineMac.Text = "MAC (CR)";
-            this.endOfLineMac.UseVisualStyleBackColor = true;
-            // 
-            // endOfLineUnix
-            // 
-            this.endOfLineUnix.AutoSize = true;
-            this.endOfLineUnix.Location = new System.Drawing.Point(219, 3);
-            this.endOfLineUnix.Name = "endOfLineUnix";
-            this.endOfLineUnix.Size = new System.Drawing.Size(86, 21);
-            this.endOfLineUnix.TabIndex = 3;
-            this.endOfLineUnix.Text = "Unix (LF)";
-            this.endOfLineUnix.UseVisualStyleBackColor = true;
+            this.endOfLine.Size = new System.Drawing.Size(211, 24);
+            this.endOfLine.TabIndex = 23;
             // 
             // SendTextBox
             // 
             this.Controls.Add(this.endOfLine);
+            this.Controls.Add(this.changeEndOfLine);
             this.Controls.Add(this.inputTextLabel);
             this.Controls.Add(this.inputText);
             this.Controls.Add(this.inputInHex);
             this.Name = "SendTextBox";
             this.Padding = new System.Windows.Forms.Padding(4);
-            this.Size = new System.Drawing.Size(407, 380);
-            this.endOfLine.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.Size = new System.Drawing.Size(502, 307);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,10 +120,7 @@ namespace Common
         private System.Windows.Forms.CheckBox inputInHex;
         private System.Windows.Forms.Label inputTextLabel;
         private System.Windows.Forms.TextBox inputText;
-        private System.Windows.Forms.GroupBox endOfLine;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.RadioButton endOfLineDos;
-        private System.Windows.Forms.RadioButton endOfLineMac;
-        private System.Windows.Forms.RadioButton endOfLineUnix;
+        private CheckBox changeEndOfLine;
+        private ComboBox endOfLine;
     }
 }

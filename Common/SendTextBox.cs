@@ -3,6 +3,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using HexToBinLib;
+using System.Linq;
+using System.ComponentModel;
 
 namespace Common
 {
@@ -41,22 +43,25 @@ namespace Common
         {
             get
             {
-                string text;
+                string text = inputText.Text;
 
-                if (endOfLineMac.Checked)
+                if (changeEndOfLine.Checked)
                 {
-                    text = inputText.Text.Replace(Environment.NewLine,
-                        EndOfLineConstants.MACOS);
-                }
-                else if (endOfLineDos.Checked)
-                {
-                    text = inputText.Text.Replace(Environment.NewLine,
-                        EndOfLineConstants.DOS);
-                }
-                else
-                {
-                    text = inputText.Text.Replace(Environment.NewLine,
-                        EndOfLineConstants.UNIX);
+                    switch ((EndOfLine)endOfLine.SelectedValue)
+                    {
+                        case EndOfLine.MacOS:
+                            text = text.Replace(Environment.NewLine,
+                                EndOfLineConstants.MACOS);
+                            break;
+                        case EndOfLine.Dos:
+                            text = text.Replace(Environment.NewLine,
+                                EndOfLineConstants.DOS);
+                            break;
+                        default:
+                            text = text.Replace(Environment.NewLine,
+                                EndOfLineConstants.UNIX);
+                            break;
+                    }
                 }
 
                 return text;
@@ -71,18 +76,29 @@ namespace Common
         public SendTextBox()
         {
             InitializeComponent();
+            endOfLine.DisplayMember = "Description";
+            endOfLine.ValueMember = "Value";
+            endOfLine.DataSource = Enum.GetValues(typeof(EndOfLine))
+                .Cast<Enum>()
+                .Select(value => new
+                {
+                    (Attribute.GetCustomAttribute(value.GetType().GetField(value.ToString()), typeof(DescriptionAttribute)) as DescriptionAttribute).Description,
+                    value
+                })
+                .OrderBy(item => item.value)
+                .ToList();
+            endOfLine.SelectedValue = EndOfLine.Dos;
         }
 
         private void InputInHex_CheckedChanged(object sender, EventArgs e)
         {
-            if (inputInHex.Checked)
-            {
-                endOfLine.Enabled = false;
-            }
-            else
-            {
-                endOfLine.Enabled = true;
-            }
+            changeEndOfLine.Enabled = !inputInHex.Checked;
+            endOfLine.Enabled = !inputInHex.Checked && changeEndOfLine.Checked;
+        }
+
+        private void ChangeEndOfLine_CheckedChanged(object sender, EventArgs e)
+        {
+            endOfLine.Enabled = changeEndOfLine.Checked;
         }
     }
 }
