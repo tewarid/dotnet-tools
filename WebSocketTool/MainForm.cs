@@ -27,13 +27,13 @@ namespace Common
         {
             if (wsClient == null || wsClient.State != WebSocketState.Open)
             {
-                await CreateWebSocketClient().ConfigureAwait(true);
+                await ConnectAsync().ConfigureAwait(true);
                 if (wsClient == null || wsClient.State != WebSocketState.Open)
                 {
                     return;
                 }
                 await SendAsync().ConfigureAwait(true);
-                await Receive().ConfigureAwait(true);
+                await ReceiveAsync().ConfigureAwait(true);
             }
             else
             {
@@ -72,7 +72,7 @@ namespace Common
             sendButton.Enabled = true;
         }
 
-        private void ShowReceivedData(byte[] data, int length, bool lastMessage)
+        private void Log(byte[] data, int length, bool lastMessage)
         {
             if (newMessage)
             {
@@ -91,7 +91,7 @@ namespace Common
             newMessage = lastMessage;
         }
 
-        private async Task CreateWebSocketClient()
+        private async Task ConnectAsync()
         {
             if (wsClient != null && wsClient.State == WebSocketState.Open)
             {
@@ -101,14 +101,14 @@ namespace Common
             {
                 wsClient = new ClientWebSocket();
             }
-            catch(PlatformNotSupportedException ex)
+            catch (PlatformNotSupportedException ex)
             {
                 MessageBox.Show(this, ex.Message, this.Text);
                 return;
             }
             if (headers != null)
             { 
-                foreach(string name in headers)
+                foreach (string name in headers)
                 {
                     try
                     {
@@ -151,14 +151,15 @@ namespace Common
             }
         }
 
-        private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            await CloseWebSocketClient().ConfigureAwait(true);
+            Task t = CloseAsync();
+            t.ConfigureAwait(false);
         }
 
-        private async Task Receive()
+        private async Task ReceiveAsync()
         {
-            while(true)
+            while (true)
             {
                 WebSocketReceiveResult result;
                 try
@@ -166,7 +167,7 @@ namespace Common
                     CancellationTokenSource cts = new CancellationTokenSource();
                     CancellationToken token = cts.Token;
                      result = await wsClient
-                        .ReceiveAsync(new ArraySegment<byte>(buffer),token)
+                        .ReceiveAsync(new ArraySegment<byte>(buffer), token)
                         .ConfigureAwait(true);
                     cts.Dispose();
                 }
@@ -176,11 +177,11 @@ namespace Common
                 }
                 if (result.Count > 0)
                 {
-                    ShowReceivedData(buffer, result.Count, result.EndOfMessage);
+                    Log(buffer, result.Count, result.EndOfMessage);
                 }
                 if (wsClient.State != WebSocketState.Open)
                 {
-                    await CloseWebSocketClient().ConfigureAwait(true);
+                    await CloseAsync().ConfigureAwait(true);
                     if (wsClient.CloseStatus != WebSocketCloseStatus.NormalClosure)
                     {
                         MessageBox.Show(string.Format("WebSocket closed due to {0}.",
@@ -193,20 +194,20 @@ namespace Common
 
         private async void Connect_Click(object sender, EventArgs e)
         {
-            await CreateWebSocketClient().ConfigureAwait(true);
+            await ConnectAsync().ConfigureAwait(true);
             if (wsClient == null || wsClient.State != WebSocketState.Open)
             {
                 return;
             }
-            await Receive().ConfigureAwait(true);
+            await ReceiveAsync().ConfigureAwait(true);
         }
 
         private async void CloseButton_Click(object sender, EventArgs e)
         {
-            await CloseWebSocketClient().ConfigureAwait(true);
+            await CloseAsync().ConfigureAwait(true);
         }
 
-        private async Task CloseWebSocketClient()
+        private async Task CloseAsync()
         {
             if (wsClient != null && wsClient.State == WebSocketState.Open)
             {
