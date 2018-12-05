@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common.NetCore</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HexToBin" Version="1.1.0" />
+    <PackageReference Include="MediaTypeMap" Version="2.1.0.0" />
+  </ItemGroup>
+
+</Project>
