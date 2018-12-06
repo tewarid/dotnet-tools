@@ -3,14 +3,14 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <RootNamespace>UdpTool</RootNamespace>
-    <AssemblyName>UdpTool</AssemblyName>
+    <RootNamespace>TcpClientTool</RootNamespace>
+    <AssemblyName>TcpClientTool</AssemblyName>
     <UseWindowsForms>true</UseWindowsForms>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <PropertyGroup>
-    <ApplicationIcon>icon-orange.ico</ApplicationIcon>
+    <ApplicationIcon>icon-green.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="icon-orange.ico" />
+    <Content Include="icon-green.ico" />
   </ItemGroup>
 
 </Project>
