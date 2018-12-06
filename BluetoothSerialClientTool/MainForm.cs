@@ -27,7 +27,16 @@ namespace BluetoothSerialClientTool
 
         private void Initialize()
         {
-            client = new BluetoothClient();
+            try
+            {
+                client = new BluetoothClient();
+            }
+            catch(PlatformNotSupportedException ex)
+            {
+                MessageBox.Show(ex.Message, this.Text);
+                return;
+            }
+
             devices = client.DiscoverDevices(10, true, true, false);
 
             deviceList.Items.Clear();
