@@ -1,6 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using Common;
+using System.Windows.Forms;
 
-namespace Common
+namespace WebSocketTool
 {
     public partial class MainForm : Form
     {

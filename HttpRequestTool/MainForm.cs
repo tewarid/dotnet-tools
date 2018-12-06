@@ -9,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Windows.Forms;
 
-namespace Common
+namespace HttpRequestTool
 {
     public partial class MainForm : Form
     {
@@ -18,7 +18,6 @@ namespace Common
             InitializeComponent();
 
             // Set SSL/TLS version options
-            tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("SSL 3", SecurityProtocolType.Ssl3));
             tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("TLS", SecurityProtocolType.Tls));
 			#if __MonoCS__
 			tlsVersion.SelectedIndex = 1;
@@ -26,7 +25,7 @@ namespace Common
 			#else 
 			tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("TLS 1.1", SecurityProtocolType.Tls11));
 			tlsVersion.Items.Add(new ComboboxItem<SecurityProtocolType>("TLS 1.2", SecurityProtocolType.Tls12));
-			tlsVersion.SelectedIndex = 3;
+			tlsVersion.SelectedIndex = 2;
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 			#endif
 

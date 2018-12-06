@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Specialized;
 using System.Net;
 using System.Net.WebSockets;
@@ -6,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Common
+namespace WebSocketTool
 {
     public partial class MainForm : Form
     {
