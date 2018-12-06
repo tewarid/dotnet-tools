@@ -24,7 +24,7 @@ namespace WebSocketSharpTool
 
             try
             {
-                CreateWebSocketClient();
+                Connect();
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace WebSocketSharpTool
                             {
                                 int tickcount = Environment.TickCount;
                                 tickcount = Environment.TickCount - tickcount;
-                                BeginInvoke((MethodInvoker)delegate ()
+                                BeginInvoke((MethodInvoker)delegate
                                 {
                                     status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
                                         text.Length, tickcount);
@@ -97,13 +97,13 @@ namespace WebSocketSharpTool
             }
         }
 
-        private void ShowReceivedData(byte[] data, int length, bool lastMessage)
+        private void Log(byte[] data, int length, bool lastMessage)
         {
             if (InvokeRequired)
             {
                 Invoke((MethodInvoker)delegate
                 {
-                    ShowReceivedData(data, length, lastMessage);
+                    Log(data, length, lastMessage);
                 });
                 return;
             }
@@ -125,7 +125,7 @@ namespace WebSocketSharpTool
             newMessage = lastMessage;
         }
 
-        private void CreateWebSocketClient()
+        private void Connect()
         {
             if (ws != null && ws.IsAlive)
             {
@@ -156,7 +156,7 @@ namespace WebSocketSharpTool
 
         private void Ws_OnMessage(object sender, MessageEventArgs e)
         {
-            ShowReceivedData(e.RawData, e.RawData.Length, true);
+            Log(e.RawData, e.RawData.Length, true);
         }
 
         private void Ws_OnClose(object sender, CloseEventArgs e)
@@ -173,7 +173,7 @@ namespace WebSocketSharpTool
             MessageBox.Show(this, string.Format("WebSocket closed. {0}",
                 e.Reason), this.Text);
 
-            CloseWebSocketClient();
+            CloseWebSocket();
         }
 
         private void Ws_OnError(object sender, ErrorEventArgs e)
@@ -188,12 +188,12 @@ namespace WebSocketSharpTool
             }
 
             MessageBox.Show(e.Message, this.Text);
-            CloseWebSocketClient();
+            CloseWebSocket();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            CloseWebSocketClient();
+            CloseWebSocket();
         }
 
 
@@ -201,7 +201,7 @@ namespace WebSocketSharpTool
         {
             try
             {
-                CreateWebSocketClient();
+                Connect();
             }
             catch (Exception ex)
             {
@@ -211,10 +211,10 @@ namespace WebSocketSharpTool
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            CloseWebSocketClient();
+            CloseWebSocket();
         }
 
-        private void CloseWebSocketClient()
+        private void CloseWebSocket()
         {
             if (ws != null && ws.IsAlive)
             {
