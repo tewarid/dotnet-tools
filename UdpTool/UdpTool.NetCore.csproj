@@ -9,6 +9,10 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <ApplicationIcon>icon-orange.ico</ApplicationIcon>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="..\Common\Properties\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
