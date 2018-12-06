@@ -1,6 +1,5 @@
-﻿using HexToBinLib;
-using System;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
@@ -11,11 +10,11 @@ namespace SnifferTool
     {
         private const int MTU = 65535;
         private Socket socket;
-        private readonly object [] protocolTypes = new object []
+        private readonly List<object> protocolTypes = new List<object>
         {
-            new { id = ProtocolType.Icmp, text = "ICMP" },
-            new { id = ProtocolType.IP, text = "IP" },
-            new { id = ProtocolType.Udp, text = "UDP" }
+            new { Value = ProtocolType.Icmp, Description = "ICMP" },
+            new { Value = ProtocolType.IP, Description = "IP" },
+            new { Value = ProtocolType.Udp, Description = "UDP" }
         };
 
         public MainForm()
@@ -25,9 +24,9 @@ namespace SnifferTool
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            protocolType.ValueMember = "Value";
+            protocolType.DisplayMember = "Description";
             protocolType.DataSource = protocolTypes;
-            protocolType.ValueMember = "id";
-            protocolType.DisplayMember = "text";
             protocolType.SelectedValue = ProtocolType.IP;
             interfaceSelector.InterfaceDeleted += InterfaceSelector_InterfaceDeleted;
         }
