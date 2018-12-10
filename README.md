@@ -1,6 +1,47 @@
 # Networking Tools [![Build status](https://ci.appveyor.com/api/projects/status/d3bn7jnje8rtts7v?svg=true)](https://ci.appveyor.com/project/tewarid/nettools) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9272afa7d6494d7fa5a885e8e02a2999)](https://www.codacy.com/app/tewarid/net-tools?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tewarid/net-tools&amp;utm_campaign=Badge_Grade) [![Join the chat at https://gitter.im/tewarid-net-tools/Lobby](https://badges.gitter.im/tewarid-net-tools/Lobby.svg)](https://gitter.im/tewarid-net-tools/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Simple tools for experimenting with network communications written primarily for Windows in .NET. To get the latest working build head to https://dl.bintray.com/tewarid/net-tools/. To build them yourselves, clone the repository, and use the latest version of Visual Studio. To initialize submodules, run `git submodule update --init --recursive`.
+Simple tools for experimenting with network communications written primarily for Windows in .NET. To get the latest working build head to https://dl.bintray.com/tewarid/net-tools/.
+
+## Build
+
+To build all the tools, clone the repository, and initialize submodules
+
+```bash
+git clone https://github.com/tewarid/net-tools.git
+cd net-tools
+git submodule update --init --recursive
+```
+
+You can open the solution file `NeTools.sln` using Visual Studio 2017 and build.
+
+To build from the command line, open Developer Command Prompt for VS 2017, change to the `net-tools` directory, and run
+
+```bash
+nuget restore NetTools.sln
+msbuild NeTools.sln
+```
+
+You may have to download nuget from nuget.org.
+
+### Mono
+
+A solution file is available for building some of the tools for Linux using Mono.
+
+Use the msbuild version supplied by Mono to build
+
+```bash
+msbuild NetTools.Mono.sln
+```
+
+### .NET Core
+
+A solution file is available to build some of the tools for Windows using .NET Core
+
+```powershell
+dotnet build NetTools.NetCore.sln
+```
+
+You can also use Visual Studio 2019 Preview to build.
 
 ## Bluetooth Serial Client Tool
 
@@ -16,7 +57,7 @@ Convert data or text to or from various formats such as Base64, and encoded HTML
 
 ## Firewall Tool
 
-Add/remove exceptions to/from Windows Firewall. With contributions from Bruno Silveira.
+Add exceptions to Windows Firewall using native COM library `NetFwTypeLib`. With contributions from Bruno Silveira.
 
 ## HTTP Request Tool
 
@@ -80,14 +121,16 @@ Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket
 
 ## Related Tools
 
-* [Hercules SETUP utility](http://www.hw-group.com/products/hercules/index_en.html)
-* netstat
 * [ncat](https://nmap.org/ncat/)
 * [SoapUI](https://www.soapui.org/)
-* [Sysinternals Suite](https://technet.microsoft.com/en-us/sysinternals/bb842062)
-  * TCP View
-* tcpdump
 * [Telerik Fiddler](https://www.telerik.com/fiddler)
 * [Tera Term](https://ttssh2.osdn.jp/)
+
+## Useful Tools
+
+* netstat
+* tcpdump
+* [Sysinternals Suite](https://technet.microsoft.com/en-us/sysinternals/bb842062)
+  * TCP View
 * WinDump
 * Wireshark (recommend replacing WinPcap with [npcap](https://nmap.org/npcap/) on Windows)
