@@ -19,6 +19,9 @@ after_build:
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\Common\bin\Debug\*.dll
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\websocket-sharp\websocket-sharp\bin\Debug\*.dll
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\FirewallTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\*.dll
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\lib
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\EncodingTool\bin\Debug\*.exe
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\IcmpTool\bin\Debug\*.exe
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\TcpClientTool\bin\Debug\*.exe
