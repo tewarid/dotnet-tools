@@ -45,15 +45,17 @@ namespace GitTool
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.clear = new System.Windows.Forms.Button();
+            this.clone = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rootFolder
             // 
             this.rootFolder.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rootFolder.Location = new System.Drawing.Point(13, 25);
+            this.rootFolder.Multiline = true;
             this.rootFolder.Name = "rootFolder";
             this.rootFolder.ReadOnly = true;
-            this.rootFolder.Size = new System.Drawing.Size(175, 20);
+            this.rootFolder.Size = new System.Drawing.Size(175, 50);
             this.rootFolder.TabIndex = 0;
             this.rootFolder.Text = "Z:\\git";
             this.rootFolder.TextChanged += new System.EventHandler(this.rootFolder_TextChanged);
@@ -84,11 +86,11 @@ namespace GitTool
             | System.Windows.Forms.AnchorStyles.Left)));
             this.gitFolders.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gitFolders.FormattingEnabled = true;
-            this.gitFolders.Location = new System.Drawing.Point(12, 68);
+            this.gitFolders.Location = new System.Drawing.Point(12, 94);
             this.gitFolders.Name = "gitFolders";
             this.gitFolders.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.gitFolders.Size = new System.Drawing.Size(337, 342);
-            this.gitFolders.TabIndex = 4;
+            this.gitFolders.Size = new System.Drawing.Size(337, 316);
+            this.gitFolders.TabIndex = 5;
             // 
             // clipboard
             // 
@@ -96,7 +98,7 @@ namespace GitTool
             this.clipboard.Location = new System.Drawing.Point(224, 416);
             this.clipboard.Name = "clipboard";
             this.clipboard.Size = new System.Drawing.Size(125, 23);
-            this.clipboard.TabIndex = 5;
+            this.clipboard.TabIndex = 6;
             this.clipboard.Text = "Copy to Clipboard";
             this.clipboard.UseVisualStyleBackColor = true;
             this.clipboard.Click += new System.EventHandler(this.clipboard_Click);
@@ -110,7 +112,7 @@ namespace GitTool
             this.command.Multiline = true;
             this.command.Name = "command";
             this.command.Size = new System.Drawing.Size(431, 58);
-            this.command.TabIndex = 6;
+            this.command.TabIndex = 7;
             this.command.Text = "config --list\r\nstatus";
             // 
             // run
@@ -119,7 +121,7 @@ namespace GitTool
             this.run.Location = new System.Drawing.Point(712, 86);
             this.run.Name = "run";
             this.run.Size = new System.Drawing.Size(75, 23);
-            this.run.TabIndex = 7;
+            this.run.TabIndex = 8;
             this.run.Text = "Run...";
             this.run.UseVisualStyleBackColor = true;
             this.run.Click += new System.EventHandler(this.run_Click);
@@ -135,8 +137,8 @@ namespace GitTool
             this.log.Name = "log";
             this.log.ReadOnly = true;
             this.log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.log.Size = new System.Drawing.Size(430, 293);
-            this.log.TabIndex = 8;
+            this.log.Size = new System.Drawing.Size(430, 295);
+            this.log.TabIndex = 9;
             // 
             // label1
             // 
@@ -150,7 +152,7 @@ namespace GitTool
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 52);
+            this.label2.Location = new System.Drawing.Point(12, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 13);
             this.label2.TabIndex = 10;
@@ -184,11 +186,22 @@ namespace GitTool
             this.clear.UseVisualStyleBackColor = true;
             this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
+            // clone
+            // 
+            this.clone.Location = new System.Drawing.Point(195, 53);
+            this.clone.Name = "clone";
+            this.clone.Size = new System.Drawing.Size(75, 23);
+            this.clone.TabIndex = 4;
+            this.clone.Text = "Clone...";
+            this.clone.UseVisualStyleBackColor = true;
+            this.clone.Click += new System.EventHandler(this.clone_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.clone);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -226,6 +239,7 @@ namespace GitTool
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private Button clear;
+        private Button clone;
     }
 }
 

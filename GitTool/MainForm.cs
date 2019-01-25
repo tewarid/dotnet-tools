@@ -146,5 +146,18 @@ namespace GitTool
         {
             log.Clear();
         }
+
+        private void clone_Click(object sender, EventArgs e)
+        {
+            RemoteBrowser browser = new RemoteBrowser();
+            browser.ShowDialog(this);
+            if (browser.Result == DialogResult.OK)
+            {
+                foreach(var repo in browser.Repositories)
+                {
+                    RunGitCommand(rootFolder.Text, $"clone {repo}");
+                }
+            }
+        }
     }
 }
