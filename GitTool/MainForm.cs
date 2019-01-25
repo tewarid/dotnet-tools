@@ -17,13 +17,18 @@ namespace GitTool
 
         private void scan_Click(object sender, System.EventArgs e)
         {
-            if (Directory.Exists(rootFolder.Text))
+            Scan(rootFolder.Text);
+        }
+
+        private void Scan(string folder)
+        {
+            if (Directory.Exists(folder))
             {
                 gitFolders.Items.Clear();
                 scan.Enabled = false;
                 Task.Run(() =>
                 {
-                    Scan(new DirectoryInfo(rootFolder.Text));
+                    Scan(new DirectoryInfo(folder));
                 }).ContinueWith((task) => {
                     BeginInvoke(new MethodInvoker(() =>
                     {
@@ -33,7 +38,7 @@ namespace GitTool
             }
             else
             {
-                MessageBox.Show(this, $"Folder {rootFolder.Text} not found.");
+                MessageBox.Show(this, $"Folder {folder} not found.");
             }
         }
 
@@ -82,6 +87,7 @@ namespace GitTool
             if (folderBrowser.ShowDialog() == DialogResult.OK)
             {
                 rootFolder.Text = folderBrowser.SelectedPath;
+                Scan(rootFolder.Text);
             }
         }
 
@@ -129,6 +135,11 @@ namespace GitTool
         private static string ReplaceNewLine(string old)
         {
             return old.Replace("\n", Environment.NewLine);
+        }
+
+        private void rootFolder_Leave(object sender, EventArgs e)
+        {
+            Scan(rootFolder.Text);
         }
     }
 }

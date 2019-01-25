@@ -52,6 +52,7 @@
             this.rootFolder.Size = new System.Drawing.Size(175, 20);
             this.rootFolder.TabIndex = 0;
             this.rootFolder.Text = "Z:\\git";
+            this.rootFolder.Leave += new System.EventHandler(this.rootFolder_Leave);
             // 
             // browse
             // 
