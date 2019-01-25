@@ -94,7 +94,7 @@ namespace GitTool
         private void run_Click(object sender, EventArgs e)
         {
             log.Clear();
-            string [] gitCommands = command.Text.Split(new string[] { Environment.NewLine },
+            string [] gitCommands = command.Text.Split(new [] { Environment.NewLine },
                 StringSplitOptions.RemoveEmptyEntries);
             foreach (string folder in GetFolders())
             {

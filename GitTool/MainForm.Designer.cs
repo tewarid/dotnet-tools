@@ -1,6 +1,8 @@
-﻿namespace GitTool
+﻿using System.Windows.Forms;
+
+namespace GitTool
 {
-    partial class MainForm
+    public partial class MainForm : Form
     {
         /// <summary>
         /// Required designer variable.
