@@ -44,6 +44,7 @@ namespace GitTool
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.clear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rootFolder
@@ -51,10 +52,11 @@ namespace GitTool
             this.rootFolder.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rootFolder.Location = new System.Drawing.Point(13, 25);
             this.rootFolder.Name = "rootFolder";
+            this.rootFolder.ReadOnly = true;
             this.rootFolder.Size = new System.Drawing.Size(175, 20);
             this.rootFolder.TabIndex = 0;
             this.rootFolder.Text = "Z:\\git";
-            this.rootFolder.Leave += new System.EventHandler(this.rootFolder_Leave);
+            this.rootFolder.TextChanged += new System.EventHandler(this.rootFolder_TextChanged);
             // 
             // browse
             // 
@@ -141,18 +143,18 @@ namespace GitTool
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 13);
+            this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Specify root Folder";
+            this.label1.Text = "Specify root folder";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 52);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 13);
+            this.label2.Size = new System.Drawing.Size(109, 13);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Select Git Repositories";
+            this.label2.Text = "Select Git repositories";
             // 
             // label3
             // 
@@ -172,11 +174,22 @@ namespace GitTool
             this.label4.TabIndex = 12;
             this.label4.Text = "Output";
             // 
+            // clear
+            // 
+            this.clear.Location = new System.Drawing.Point(713, 414);
+            this.clear.Name = "clear";
+            this.clear.Size = new System.Drawing.Size(75, 23);
+            this.clear.TabIndex = 13;
+            this.clear.Text = "Clear";
+            this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.clear_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.clear);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -212,6 +225,7 @@ namespace GitTool
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private Button clear;
     }
 }
 

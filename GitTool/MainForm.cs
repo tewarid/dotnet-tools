@@ -26,6 +26,7 @@ namespace GitTool
             {
                 gitFolders.Items.Clear();
                 scan.Enabled = false;
+                browse.Enabled = false;
                 Task.Run(() =>
                 {
                     Scan(new DirectoryInfo(folder));
@@ -33,6 +34,7 @@ namespace GitTool
                     BeginInvoke(new MethodInvoker(() =>
                     {
                         scan.Enabled = true;
+                        browse.Enabled = true;
                     }));
                 });
             }
@@ -87,13 +89,11 @@ namespace GitTool
             if (folderBrowser.ShowDialog() == DialogResult.OK)
             {
                 rootFolder.Text = folderBrowser.SelectedPath;
-                Scan(rootFolder.Text);
             }
         }
 
         private void run_Click(object sender, EventArgs e)
         {
-            log.Clear();
             string [] gitCommands = command.Text.Split(new [] { Environment.NewLine },
                 StringSplitOptions.RemoveEmptyEntries);
             foreach (string folder in GetFolders())
@@ -137,9 +137,14 @@ namespace GitTool
             return old.Replace("\n", Environment.NewLine);
         }
 
-        private void rootFolder_Leave(object sender, EventArgs e)
+        private void rootFolder_TextChanged(object sender, EventArgs e)
         {
             Scan(rootFolder.Text);
+        }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            log.Clear();
         }
     }
 }
