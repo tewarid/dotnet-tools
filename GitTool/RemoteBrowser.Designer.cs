@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.gitHub = new System.Windows.Forms.RadioButton();
             this.gitLab = new System.Windows.Forms.RadioButton();
+            this.gitHub = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.host = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,6 +60,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Git Hosting Provider";
             // 
+            // gitLab
+            // 
+            this.gitLab.AutoSize = true;
+            this.gitLab.Location = new System.Drawing.Point(98, 20);
+            this.gitLab.Name = "gitLab";
+            this.gitLab.Size = new System.Drawing.Size(56, 17);
+            this.gitLab.TabIndex = 1;
+            this.gitLab.Text = "GitLab";
+            this.gitLab.UseVisualStyleBackColor = true;
+            this.gitLab.CheckedChanged += new System.EventHandler(this.gitLab_CheckedChanged);
+            // 
             // gitHub
             // 
             this.gitHub.AutoSize = true;
@@ -72,17 +83,6 @@
             this.gitHub.Text = "GitHub";
             this.gitHub.UseVisualStyleBackColor = true;
             this.gitHub.CheckedChanged += new System.EventHandler(this.gitHub_CheckedChanged);
-            // 
-            // gitLab
-            // 
-            this.gitLab.AutoSize = true;
-            this.gitLab.Location = new System.Drawing.Point(98, 20);
-            this.gitLab.Name = "gitLab";
-            this.gitLab.Size = new System.Drawing.Size(56, 17);
-            this.gitLab.TabIndex = 1;
-            this.gitLab.Text = "GitLab";
-            this.gitLab.UseVisualStyleBackColor = true;
-            this.gitLab.CheckedChanged += new System.EventHandler(this.gitLab_CheckedChanged);
             // 
             // label1
             // 
@@ -122,16 +122,16 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(13, 155);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.Size = new System.Drawing.Size(132, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Password";
+            this.label3.Text = "Password or access token";
             // 
             // password
             // 
             this.password.Location = new System.Drawing.Point(13, 172);
             this.password.Name = "password";
             this.password.PasswordChar = '*';
-            this.password.Size = new System.Drawing.Size(100, 20);
+            this.password.Size = new System.Drawing.Size(171, 20);
             this.password.TabIndex = 6;
             // 
             // groupBox2
@@ -169,6 +169,9 @@
             // 
             // repositories
             // 
+            this.repositories.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.repositories.FormattingEnabled = true;
             this.repositories.Location = new System.Drawing.Point(190, 30);
             this.repositories.Name = "repositories";
@@ -197,6 +200,7 @@
             // 
             // ok
             // 
+            this.ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ok.Location = new System.Drawing.Point(359, 251);
             this.ok.Name = "ok";
             this.ok.Size = new System.Drawing.Size(75, 23);
@@ -207,6 +211,7 @@
             // 
             // cancel
             // 
+            this.cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancel.Location = new System.Drawing.Point(440, 251);
             this.cancel.Name = "cancel";

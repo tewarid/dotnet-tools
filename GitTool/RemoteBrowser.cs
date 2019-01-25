@@ -1,5 +1,8 @@
-﻿using Octokit;
+﻿using GitLabApiClient;
+using Octokit;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GitTool
@@ -41,11 +44,53 @@ namespace GitTool
 
         private async void query_Click(object sender, EventArgs e)
         {
+            if (gitHub.Checked)
+            {
+                await QueryGitHub().ConfigureAwait(true);
+            }
+            else
+            {
+                await QueryGitLab().ConfigureAwait(true);
+            }
+        }
+
+        private async Task QueryGitLab()
+        {
+            query.Enabled = false;
+            GitLabClient client;
+            if (string.IsNullOrEmpty(username.Text))
+            {
+                client = new GitLabClient(host.Text, password.Text);
+            }
+            else
+            {
+                client = new GitLabClient(host.Text);
+                var session = await client.LoginAsync(username.Text, password.Text);
+            }
+            var list = await client.Projects.GetAsync();
+            repositories.Items.Clear();
+            foreach (var project in list)
+            {
+                if (ssh.Checked)
+                {
+                    repositories.Items.Add(project.SshUrlToRepo);
+                }
+                else
+                {
+                    repositories.Items.Add(project.HttpUrlToRepo);
+                }
+            }
+            query.Enabled = true;
+        }
+
+        private async Task QueryGitHub()
+        {
             query.Enabled = false;
             var ghe = host.Text;
             var phv = new ProductHeaderValue(username.Text);
             GitHubClient client;
-            if (!ghe.Contains(GITHUB_HOST)) {
+            if (!ghe.Contains(GITHUB_HOST))
+            {
                 client = new GitHubClient(phv);
             }
             else

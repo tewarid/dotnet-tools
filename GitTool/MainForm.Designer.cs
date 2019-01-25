@@ -178,6 +178,7 @@ namespace GitTool
             // 
             // clear
             // 
+            this.clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.clear.Location = new System.Drawing.Point(713, 414);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(75, 23);
