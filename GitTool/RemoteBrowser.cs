@@ -86,20 +86,12 @@ namespace GitTool
         private async Task QueryGitHub()
         {
             query.Enabled = false;
-            var ghe = host.Text;
             var phv = new ProductHeaderValue(username.Text);
-            GitHubClient client;
-            if (!ghe.Contains(GITHUB_HOST))
-            {
-                client = new GitHubClient(phv);
-            }
-            else
-            {
-                client = new GitHubClient(phv, new Uri(host.Text));
-            }
-            var credentials = new Credentials(username.Text, password.Text);
+            GitHubClient client = new GitHubClient(phv, new Uri(host.Text));
+            IReadOnlyList<Repository> list;
+            Credentials credentials = new Credentials(username.Text, password.Text);
             client.Credentials = credentials;
-            var list = await client.Repository.GetAllForCurrent().ConfigureAwait(true);
+            list = await client.Repository.GetAllForCurrent().ConfigureAwait(true);
             repositories.Items.Clear();
             foreach (var repo in list)
             {
@@ -126,6 +118,13 @@ namespace GitTool
             Result = DialogResult.OK;
             Repositories = list;
             this.Visible = false;
+        }
+
+        private void clipboard_Click(object sender, EventArgs e)
+        {
+            string[] list = new string[repositories.SelectedItems.Count];
+            repositories.SelectedItems.CopyTo(list, 0);
+            Clipboard.SetText(String.Join(Environment.NewLine, list));
         }
     }
 }

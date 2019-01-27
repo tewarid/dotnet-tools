@@ -1,6 +1,8 @@
-﻿namespace GitTool
+﻿using System.Windows.Forms;
+
+namespace GitTool
 {
-    partial class RemoteBrowser
+    public partial class RemoteBrowser : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +47,7 @@
             this.query = new System.Windows.Forms.Button();
             this.ok = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
+            this.clipboard = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -221,12 +224,24 @@
             this.cancel.UseVisualStyleBackColor = true;
             this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
+            // clipboard
+            // 
+            this.clipboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clipboard.Location = new System.Drawing.Point(190, 251);
+            this.clipboard.Name = "clipboard";
+            this.clipboard.Size = new System.Drawing.Size(125, 23);
+            this.clipboard.TabIndex = 12;
+            this.clipboard.Text = "Copy to Clipboard";
+            this.clipboard.UseVisualStyleBackColor = true;
+            this.clipboard.Click += new System.EventHandler(this.clipboard_Click);
+            // 
             // RemoteBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancel;
             this.ClientSize = new System.Drawing.Size(527, 282);
+            this.Controls.Add(this.clipboard);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.ok);
             this.Controls.Add(this.query);
@@ -272,5 +287,6 @@
         private System.Windows.Forms.Button query;
         private System.Windows.Forms.Button ok;
         private System.Windows.Forms.Button cancel;
+        private System.Windows.Forms.Button clipboard;
     }
 }

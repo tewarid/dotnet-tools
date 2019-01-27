@@ -113,7 +113,7 @@ namespace GitTool
             this.command.Name = "command";
             this.command.Size = new System.Drawing.Size(431, 58);
             this.command.TabIndex = 7;
-            this.command.Text = "config --list\r\nstatus";
+            this.command.Text = "status";
             // 
             // run
             // 
