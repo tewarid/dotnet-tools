@@ -1,6 +1,8 @@
 ﻿using LibGit2Sharp;
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
@@ -10,6 +12,13 @@ namespace GitTool
 {
     public partial class MainForm : Form
     {
+        private readonly string VARIABLE_START = "{{";
+        private readonly string VARIABLE_END = "}}";
+        private readonly string VARIABLE_OUT = "OUT";
+
+        private ConcurrentDictionary<string, string> context =
+            new ConcurrentDictionary<string, string>();
+
         public MainForm()
         {
             InitializeComponent();
@@ -96,16 +105,87 @@ namespace GitTool
         {
             string [] gitCommands = command.Text.Split(new [] { Environment.NewLine },
                 StringSplitOptions.RemoveEmptyEntries);
+            
             foreach (string folder in GetFolders())
             {
                 foreach(string cmd in gitCommands)
                 {
-                    RunGitCommand(folder, cmd);
+                    string cmdRun = ProcessVariables(cmd, context);
+                    string output = RunGitCommand(folder, cmdRun);
+                    context.AddOrUpdate(VARIABLE_OUT, output, (oldVal, newVal) =>
+                    {
+                        return newVal;
+                    });
                 }
             }
         }
 
-        private void RunGitCommand(string gitFolder, string command)
+        private string ProcessVariables(string cmd, IDictionary<string, string> context)
+        {
+            if (!cmd.Contains(VARIABLE_START))
+            {
+                return cmd;
+            }
+            int index = 0;
+            int startIndex = 0;
+            string cmdReturn = string.Empty;
+            while ((startIndex = cmd.IndexOf(VARIABLE_START, index)) != -1)
+            {
+                cmdReturn += cmd.Substring(index, startIndex - index);
+                int endIndex = cmd.IndexOf(VARIABLE_END);
+                if (endIndex == -1)
+                {
+                    index = cmd.Length;
+                    break;
+                }
+                string variable = cmd.Substring(startIndex + VARIABLE_START.Length,
+                    endIndex - (startIndex + VARIABLE_START.Length));
+                try
+                {
+                    cmdReturn += ProcessVariable(variable, context);
+                }
+                catch
+                {
+                    // ignore exception
+                }
+                index = endIndex + VARIABLE_END.Length;
+            }
+            cmdReturn += cmd.Substring(index, cmd.Length - index);
+            return cmdReturn;
+        }
+
+        private string ProcessVariable(string variable, IDictionary<string, string> context)
+        {
+            variable = variable.Trim();
+            string name = variable;
+            int startIndex = 0;
+            int length = 0;
+            int colonIndex = variable.IndexOf(":");
+            if (colonIndex != -1)
+            {
+                name = variable.Substring(0, colonIndex);
+                int commaIndex = variable.IndexOf(",", colonIndex);
+                if (commaIndex != -1)
+                {
+                    startIndex = int.Parse(variable.Substring(colonIndex + 1,
+                        commaIndex - (colonIndex + 1)));
+                    length = int.Parse(variable.Substring(commaIndex + 1,
+                        variable.Length - (commaIndex + 1)));
+                }
+            }
+            string value = string.Empty;
+            if (context.ContainsKey(name))
+            {
+                value = context[name];
+            }
+            if (length == 0)
+            {
+                length = value.Length - startIndex - 1;
+            }
+            return value.Substring(startIndex, length);
+        }
+
+        private string RunGitCommand(string gitFolder, string command)
         {
             log.AppendText($"{gitFolder}> git {command}{Environment.NewLine}");
             ProcessStartInfo info = new ProcessStartInfo
@@ -128,8 +208,10 @@ namespace GitTool
             proc.Start();
             proc.WaitForExit();
             log.AppendText(ReplaceNewLine(proc.StandardError.ReadToEnd()));
-            log.AppendText(ReplaceNewLine(proc.StandardOutput.ReadToEnd()));
+            string output = proc.StandardOutput.ReadToEnd();
+            log.AppendText(ReplaceNewLine(output));
             log.AppendText(Environment.NewLine);
+            return output;
         }
 
         private static string ReplaceNewLine(string old)
