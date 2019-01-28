@@ -115,9 +115,9 @@ namespace GitTool
                 {
                     string cmdRun = ProcessVariables(cmd, context);
                     string output = RunGitCommand(folder, cmdRun);
-                    context.AddOrUpdate(VARIABLE_OUT, output, (oldVal, newVal) =>
+                    context.AddOrUpdate(VARIABLE_OUT, output, (key, oldValue) =>
                     {
-                        return newVal;
+                        return output;
                     });
                 }
             }
