@@ -12,9 +12,12 @@ namespace GitTool
 {
     public partial class MainForm : Form
     {
+        RemoteBrowser browser = new RemoteBrowser();
+
         private readonly string VARIABLE_START = "{{";
         private readonly string VARIABLE_END = "}}";
         private readonly string VARIABLE_OUT = "OUT";
+        private readonly string REMOTE_PATH_SEPARATOR = "/";
 
         private ConcurrentDictionary<string, string> context =
             new ConcurrentDictionary<string, string>();
@@ -24,7 +27,7 @@ namespace GitTool
             InitializeComponent();
         }
 
-        private void scan_Click(object sender, System.EventArgs e)
+        private void scan_Click(object sender, EventArgs e)
         {
             Scan(rootFolder.Text);
         }
@@ -207,7 +210,8 @@ namespace GitTool
             });
             proc.Start();
             proc.WaitForExit();
-            log.AppendText(ReplaceNewLine(proc.StandardError.ReadToEnd()));
+            string error = proc.StandardError.ReadToEnd();
+            log.AppendText(ReplaceNewLine(error).Replace("\r", Environment.NewLine));
             string output = proc.StandardOutput.ReadToEnd();
             log.AppendText(ReplaceNewLine(output));
             log.AppendText(Environment.NewLine);
@@ -231,13 +235,24 @@ namespace GitTool
 
         private void clone_Click(object sender, EventArgs e)
         {
-            RemoteBrowser browser = new RemoteBrowser();
             browser.ShowDialog(this);
             if (browser.Result == DialogResult.OK)
             {
                 foreach(var repo in browser.Repositories)
                 {
-                    RunGitCommand(rootFolder.Text, $"clone {repo}");
+                    int colonStartIndex = repo.LastIndexOf(":");
+                    string path = rootFolder.Text;
+                    if (colonStartIndex != -1)
+                    {
+                        string remotePath = repo.Substring(colonStartIndex + 1);
+                        string[] remotePaths = remotePath.Split(new[] { REMOTE_PATH_SEPARATOR },
+                            StringSplitOptions.RemoveEmptyEntries);
+                        path = string.Join(Path.DirectorySeparatorChar.ToString(),
+                            remotePaths, 0, remotePaths.Length - 1);
+                        path = Path.Combine(rootFolder.Text, path);
+                        Directory.CreateDirectory(path);
+                    }
+                    RunGitCommand(path, $"clone {repo}");
                 }
             }
         }
