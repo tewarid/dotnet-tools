@@ -86,6 +86,7 @@ namespace GitTool
             | System.Windows.Forms.AnchorStyles.Left)));
             this.gitFolders.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gitFolders.FormattingEnabled = true;
+            this.gitFolders.IntegralHeight = false;
             this.gitFolders.Location = new System.Drawing.Point(12, 94);
             this.gitFolders.Name = "gitFolders";
             this.gitFolders.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
