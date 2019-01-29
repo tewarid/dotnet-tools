@@ -44,19 +44,27 @@ namespace GitTool
 
         private async void query_Click(object sender, EventArgs e)
         {
-            if (gitHub.Checked)
+            query.Enabled = false;
+            try
             {
-                await QueryGitHub().ConfigureAwait(true);
+                if (gitHub.Checked)
+                {
+                    await QueryGitHub().ConfigureAwait(true);
+                }
+                else
+                {
+                    await QueryGitLab().ConfigureAwait(true);
+                }
             }
-            else
+            catch
             {
-                await QueryGitLab().ConfigureAwait(true);
+                MessageBox.Show(this, "Query failed. Username is optional for GitLab but required for GitHub. Password or token is required to list your projects.");
             }
+            query.Enabled = true;
         }
 
         private async Task QueryGitLab()
         {
-            query.Enabled = false;
             GitLabClient client;
             if (string.IsNullOrEmpty(username.Text))
             {
@@ -80,12 +88,10 @@ namespace GitTool
                     repositories.Items.Add(project.HttpUrlToRepo);
                 }
             }
-            query.Enabled = true;
         }
 
         private async Task QueryGitHub()
         {
-            query.Enabled = false;
             var phv = new ProductHeaderValue(username.Text);
             GitHubClient client = new GitHubClient(phv, new Uri(host.Text));
             IReadOnlyList<Repository> list;
@@ -104,7 +110,6 @@ namespace GitTool
                     repositories.Items.Add(repo.CloneUrl);
                 }
             }
-            query.Enabled = true;
         }
 
         private void ok_Click(object sender, EventArgs e)
