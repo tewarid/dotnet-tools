@@ -126,5 +126,13 @@ namespace GitTool
             repositories.SelectedItems.CopyTo(list, 0);
             Clipboard.SetText(String.Join(Environment.NewLine, list));
         }
+
+        private void RemoteBrowser_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Result = DialogResult.Cancel;
+            }
+        }
     }
 }
