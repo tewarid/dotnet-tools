@@ -204,10 +204,6 @@ namespace GitTool
             };
             Process proc = new Process();
             proc.StartInfo = info;
-            proc.OutputDataReceived += new DataReceivedEventHandler((dataSender, dataEvent) =>
-            {
-                log.AppendText(dataEvent.Data);
-            });
             proc.Start();
             proc.WaitForExit();
             string error = proc.StandardError.ReadToEnd();
