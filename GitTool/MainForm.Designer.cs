@@ -91,6 +91,7 @@ namespace GitTool
             this.gitFolders.Name = "gitFolders";
             this.gitFolders.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.gitFolders.Size = new System.Drawing.Size(337, 316);
+            this.gitFolders.Sorted = true;
             this.gitFolders.TabIndex = 5;
             // 
             // clipboard

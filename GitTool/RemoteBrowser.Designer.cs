@@ -180,6 +180,7 @@ namespace GitTool
             this.repositories.Name = "repositories";
             this.repositories.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.repositories.Size = new System.Drawing.Size(325, 212);
+            this.repositories.Sorted = true;
             this.repositories.TabIndex = 7;
             // 
             // label4
