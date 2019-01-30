@@ -94,6 +94,9 @@
     <EmbeddedResource Include="RemoteBrowser.resx">
       <DependentUpon>RemoteBrowser.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="cheatsheet.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

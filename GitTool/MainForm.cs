@@ -25,6 +25,19 @@ namespace GitTool
         public MainForm()
         {
             InitializeComponent();
+            PopulateCheats();
+        }
+
+        private void PopulateCheats()
+        {
+            string[] lines = File.ReadAllLines("cheatsheet.md");
+            foreach(string line in lines)
+            {
+                if (line.StartsWith("$ "))
+                {
+                    cheats.Items.Add(line.Substring(6)); // skip "$ git "
+                }
+            }
         }
 
         private void scan_Click(object sender, EventArgs e)
@@ -251,6 +264,16 @@ namespace GitTool
                     RunGitCommand(path, $"clone {repo}");
                 }
             }
+        }
+
+        private void cheats_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!command.Text.EndsWith(Environment.NewLine))
+            {
+                command.AppendText(Environment.NewLine);
+            }
+            string gitcmd = (string)cheats.SelectedItem;
+            command.AppendText(gitcmd);
         }
     }
 }

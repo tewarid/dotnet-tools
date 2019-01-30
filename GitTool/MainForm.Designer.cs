@@ -42,6 +42,7 @@ namespace GitTool
             this.scan = new System.Windows.Forms.Button();
             this.rootFolder = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.cheats = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.run = new System.Windows.Forms.Button();
             this.command = new System.Windows.Forms.TextBox();
@@ -182,6 +183,7 @@ namespace GitTool
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.cheats);
             this.splitContainer2.Panel1.Controls.Add(this.label3);
             this.splitContainer2.Panel1.Controls.Add(this.run);
             this.splitContainer2.Panel1.Controls.Add(this.command);
@@ -194,6 +196,20 @@ namespace GitTool
             this.splitContainer2.Size = new System.Drawing.Size(448, 450);
             this.splitContainer2.SplitterDistance = 110;
             this.splitContainer2.TabIndex = 20;
+            // 
+            // cheats
+            // 
+            this.cheats.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cheats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cheats.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cheats.FormattingEnabled = true;
+            this.cheats.Location = new System.Drawing.Point(3, 85);
+            this.cheats.Name = "cheats";
+            this.cheats.Size = new System.Drawing.Size(359, 21);
+            this.cheats.Sorted = true;
+            this.cheats.TabIndex = 22;
+            this.cheats.SelectedIndexChanged += new System.EventHandler(this.cheats_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -224,6 +240,7 @@ namespace GitTool
             this.command.Location = new System.Drawing.Point(3, 21);
             this.command.Multiline = true;
             this.command.Name = "command";
+            this.command.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.command.Size = new System.Drawing.Size(440, 58);
             this.command.TabIndex = 18;
             this.command.Text = "status";
@@ -305,6 +322,7 @@ namespace GitTool
         private Button clear;
         private Label label4;
         private TextBox log;
+        private ComboBox cheats;
     }
 }
 
