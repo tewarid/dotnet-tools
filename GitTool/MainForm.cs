@@ -221,9 +221,13 @@ namespace GitTool
             string output = string.Empty;
             while (!proc.StandardOutput.EndOfStream)
             {
-                string line = proc.StandardOutput.ReadLine() + Environment.NewLine;
-                output += line;
-                log.AppendText(line);
+                string line = proc.StandardOutput.ReadLine();
+                if (line == null)
+                {
+                    break;
+                }
+                output += line + Environment.NewLine;
+                log.AppendText(line + Environment.NewLine);
             }
             log.AppendText(proc.StandardError.ReadToEnd().Replace("\n",
                 Environment.NewLine).Replace("\r", Environment.NewLine));
