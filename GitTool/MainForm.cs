@@ -218,18 +218,17 @@ namespace GitTool
             Process proc = new Process();
             proc.StartInfo = info;
             proc.Start();
-            proc.WaitForExit();
-            string error = proc.StandardError.ReadToEnd();
-            log.AppendText(ReplaceNewLine(error).Replace("\r", Environment.NewLine));
-            string output = proc.StandardOutput.ReadToEnd();
-            log.AppendText(ReplaceNewLine(output));
+            string output = string.Empty;
+            while (!proc.StandardOutput.EndOfStream)
+            {
+                string line = proc.StandardOutput.ReadLine() + Environment.NewLine;
+                output += line;
+                log.AppendText(line);
+            }
+            log.AppendText(proc.StandardError.ReadToEnd().Replace("\n",
+                Environment.NewLine).Replace("\r", Environment.NewLine));
             log.AppendText(Environment.NewLine);
             return output;
-        }
-
-        private static string ReplaceNewLine(string old)
-        {
-            return old.Replace("\n", Environment.NewLine);
         }
 
         private void rootFolder_TextChanged(object sender, EventArgs e)
