@@ -26,5 +26,11 @@
     <Setting Name="selectedGitFolder" Type="System.Object" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="commands" Type="System.String" Scope="User">
+      <Value Profile="(Default)">status</Value>
+    </Setting>
+    <Setting Name="output" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

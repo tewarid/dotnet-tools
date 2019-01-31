@@ -44,11 +44,11 @@ namespace GitTool
             this.cheats = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.run = new System.Windows.Forms.Button();
-            this.command = new System.Windows.Forms.TextBox();
             this.clear = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.log = new System.Windows.Forms.TextBox();
             this.rootFolder = new System.Windows.Forms.TextBox();
+            this.command = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -220,20 +220,6 @@ namespace GitTool
             this.run.UseVisualStyleBackColor = true;
             this.run.Click += new System.EventHandler(this.run_Click);
             // 
-            // command
-            // 
-            this.command.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.command.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.command.Location = new System.Drawing.Point(3, 21);
-            this.command.Multiline = true;
-            this.command.Name = "command";
-            this.command.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.command.Size = new System.Drawing.Size(440, 58);
-            this.command.TabIndex = 18;
-            this.command.Text = "status";
-            // 
             // clear
             // 
             this.clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -259,6 +245,7 @@ namespace GitTool
             this.log.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.log.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GitTool.Properties.Settings.Default, "output", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.log.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.log.Location = new System.Drawing.Point(6, 19);
             this.log.Multiline = true;
@@ -267,6 +254,7 @@ namespace GitTool
             this.log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.log.Size = new System.Drawing.Size(437, 286);
             this.log.TabIndex = 20;
+            this.log.Text = global::GitTool.Properties.Settings.Default.output;
             // 
             // rootFolder
             // 
@@ -281,6 +269,21 @@ namespace GitTool
             this.rootFolder.TabIndex = 10;
             this.rootFolder.Text = global::GitTool.Properties.Settings.Default.rootFolder;
             this.rootFolder.TextChanged += new System.EventHandler(this.rootFolder_TextChanged);
+            // 
+            // command
+            // 
+            this.command.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.command.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GitTool.Properties.Settings.Default, "commands", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.command.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.command.Location = new System.Drawing.Point(3, 21);
+            this.command.Multiline = true;
+            this.command.Name = "command";
+            this.command.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.command.Size = new System.Drawing.Size(440, 58);
+            this.command.TabIndex = 18;
+            this.command.Text = global::GitTool.Properties.Settings.Default.commands;
             // 
             // MainForm
             // 

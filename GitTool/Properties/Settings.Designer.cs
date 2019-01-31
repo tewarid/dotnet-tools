@@ -117,5 +117,29 @@ namespace GitTool.Properties {
                 this["selectedGitFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("status")]
+        public string commands {
+            get {
+                return ((string)(this["commands"]));
+            }
+            set {
+                this["commands"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string output {
+            get {
+                return ((string)(this["output"]));
+            }
+            set {
+                this["output"] = value;
+            }
+        }
     }
 }
