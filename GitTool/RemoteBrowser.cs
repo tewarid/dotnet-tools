@@ -37,9 +37,12 @@ namespace GitTool
                     await QueryGitLab().ConfigureAwait(true);
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show(this, "Query failed. Username is optional for GitLab but required for GitHub. Password or token is required to list your projects.");
+                if (!string.IsNullOrWhiteSpace(ex.Message))
+                {
+                    MessageBox.Show(this, ex.Message);
+                }
             }
             query.Enabled = true;
         }
