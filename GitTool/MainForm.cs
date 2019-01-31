@@ -211,30 +211,36 @@ namespace GitTool
                 RedirectStandardError = true,
                 CreateNoWindow = true,
                 WorkingDirectory = gitFolder
-
             };
             Process proc = new Process();
             proc.StartInfo = info;
-            proc.Start();
-            string output = string.Empty;
-            while (!proc.StandardOutput.EndOfStream)
+            proc.ErrorDataReceived += (sender, e) =>
             {
-                string line = proc.StandardOutput.ReadLine();
-                if (line == null)
+                if (e.Data != null)
                 {
-                    break;
+                    log.AppendText(e.Data + Environment.NewLine);
                 }
-                output += line + Environment.NewLine;
-                log.AppendText(line + Environment.NewLine);
-            }
-            log.AppendText(proc.StandardError.ReadToEnd().Replace("\n",
-                Environment.NewLine).Replace("\r", Environment.NewLine));
+            };
+            string output = string.Empty;
+            proc.OutputDataReceived += (sender, e) =>
+            {
+                if (e.Data != null)
+                {
+                    output += e.Data + Environment.NewLine;
+                }
+            };
+            proc.Start();
+            proc.BeginOutputReadLine();
+            proc.BeginErrorReadLine();
+            proc.WaitForExit();
+            log.AppendText(output);
             log.AppendText(Environment.NewLine);
             return output;
         }
 
         private void rootFolder_TextChanged(object sender, EventArgs e)
         {
+            gitFolders.Tag = string.Empty;
             Scan(rootFolder.Text);
         }
 
