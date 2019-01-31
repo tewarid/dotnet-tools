@@ -280,5 +280,10 @@ namespace GitTool
         {
             Properties.Settings.Default.Save();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Scan(rootFolder.Text);
+        }
     }
 }
