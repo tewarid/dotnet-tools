@@ -121,5 +121,37 @@ namespace GitTool
             }
             Properties.Settings.Default.Save();
         }
+
+        private void gitHub_Click(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked == false)
+            {
+                ((RadioButton)sender).Checked = true;
+            }
+        }
+
+        private void gitLab_Click(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked == false)
+            {
+                ((RadioButton)sender).Checked = true;
+            }
+        }
+
+        private void ssh_Click(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked == false)
+            {
+                ((RadioButton)sender).Checked = true;
+            }
+        }
+
+        private void https_Click(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked == false)
+            {
+                ((RadioButton)sender).Checked = true;
+            }
+        }
     }
 }

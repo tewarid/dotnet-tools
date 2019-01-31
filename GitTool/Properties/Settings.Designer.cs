@@ -82,5 +82,29 @@ namespace GitTool.Properties {
                 this["username"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool sshUrl {
+            get {
+                return ((bool)(this["sshUrl"]));
+            }
+            set {
+                this["sshUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool httpUrl {
+            get {
+                return ((bool)(this["httpUrl"]));
+            }
+            set {
+                this["httpUrl"] = value;
+            }
+        }
     }
 }

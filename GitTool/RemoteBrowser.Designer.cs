@@ -106,22 +106,26 @@ namespace GitTool
             this.groupBox2.Size = new System.Drawing.Size(182, 47);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Access Git using";
+            this.groupBox2.Text = "Access listed repositories using";
             // 
             // https
             // 
             this.https.AutoSize = true;
+            this.https.Checked = global::GitTool.Properties.Settings.Default.httpUrl;
+            this.https.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GitTool.Properties.Settings.Default, "httpUrl", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.https.Location = new System.Drawing.Point(98, 20);
             this.https.Name = "https";
             this.https.Size = new System.Drawing.Size(61, 17);
             this.https.TabIndex = 1;
             this.https.Text = "HTTPS";
             this.https.UseVisualStyleBackColor = true;
+            this.https.Click += new System.EventHandler(this.https_Click);
             // 
             // ssh
             // 
             this.ssh.AutoSize = true;
-            this.ssh.Checked = true;
+            this.ssh.Checked = global::GitTool.Properties.Settings.Default.sshUrl;
+            this.ssh.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GitTool.Properties.Settings.Default, "sshUrl", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ssh.Location = new System.Drawing.Point(7, 20);
             this.ssh.Name = "ssh";
             this.ssh.Size = new System.Drawing.Size(47, 17);
@@ -129,6 +133,7 @@ namespace GitTool
             this.ssh.TabStop = true;
             this.ssh.Text = "SSH";
             this.ssh.UseVisualStyleBackColor = true;
+            this.ssh.Click += new System.EventHandler(this.ssh_Click);
             // 
             // password
             // 
@@ -211,6 +216,7 @@ namespace GitTool
             this.gitLab.TabIndex = 1;
             this.gitLab.Text = "GitLab";
             this.gitLab.UseVisualStyleBackColor = true;
+            this.gitLab.Click += new System.EventHandler(this.gitLab_Click);
             // 
             // gitHub
             // 
@@ -223,6 +229,7 @@ namespace GitTool
             this.gitHub.TabIndex = 0;
             this.gitHub.Text = "GitHub";
             this.gitHub.UseVisualStyleBackColor = true;
+            this.gitHub.Click += new System.EventHandler(this.gitHub_Click);
             // 
             // clipboard
             // 
@@ -263,9 +270,9 @@ namespace GitTool
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(3, 8);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 13);
+            this.label4.Size = new System.Drawing.Size(128, 13);
             this.label4.TabIndex = 14;
-            this.label4.Text = "Select repositories";
+            this.label4.Text = "Select remote repositories";
             // 
             // repositories
             // 
