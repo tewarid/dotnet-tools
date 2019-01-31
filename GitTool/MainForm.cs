@@ -60,6 +60,7 @@ namespace GitTool
             }).ContinueWith((task) => {
                 BeginInvoke(new MethodInvoker(() =>
                 {
+                    SelectGitFolders();
                     scan.Enabled = true;
                     browse.Enabled = true;
                 }));
@@ -284,6 +285,35 @@ namespace GitTool
         private void MainForm_Load(object sender, EventArgs e)
         {
             Scan(rootFolder.Text);
+        }
+
+        private void gitFolders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var indices = string.Empty;
+            foreach(var item in gitFolders.SelectedIndices)
+            {
+                indices += item + ",";
+            }
+            gitFolders.Tag = indices;
+        }
+
+        private void SelectGitFolders()
+        {
+            string tag = gitFolders.Tag.ToString();
+            if (string.IsNullOrWhiteSpace(tag))
+            {
+                return;
+            }
+            string [] indices = tag.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            foreach(var strIndex in indices)
+            {
+                int index;
+                if (int.TryParse(strIndex, out index) &&
+                    index < gitFolders.Items.Count)
+                {
+                    gitFolders.SelectedIndices.Add(index);
+                }
+            }
         }
     }
 }

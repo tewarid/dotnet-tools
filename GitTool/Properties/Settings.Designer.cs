@@ -85,6 +85,18 @@ namespace GitTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool httpUrl {
+            get {
+                return ((bool)(this["httpUrl"]));
+            }
+            set {
+                this["httpUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool sshUrl {
             get {
@@ -97,13 +109,12 @@ namespace GitTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool httpUrl {
+        public object selectedGitFolder {
             get {
-                return ((bool)(this["httpUrl"]));
+                return ((object)(this["selectedGitFolder"]));
             }
             set {
-                this["httpUrl"] = value;
+                this["selectedGitFolder"] = value;
             }
         }
     }
