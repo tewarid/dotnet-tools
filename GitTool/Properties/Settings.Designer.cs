@@ -109,17 +109,6 @@ namespace GitTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public object selectedGitFolder {
-            get {
-                return ((object)(this["selectedGitFolder"]));
-            }
-            set {
-                this["selectedGitFolder"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("status")]
         public string commands {
             get {

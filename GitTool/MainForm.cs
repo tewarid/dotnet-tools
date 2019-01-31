@@ -60,7 +60,6 @@ namespace GitTool
             }).ContinueWith((task) => {
                 BeginInvoke(new MethodInvoker(() =>
                 {
-                    SelectGitFolders();
                     scan.Enabled = true;
                     browse.Enabled = true;
                 }));
@@ -214,11 +213,12 @@ namespace GitTool
             };
             Process proc = new Process();
             proc.StartInfo = info;
+            string error = string.Empty;
             proc.ErrorDataReceived += (sender, e) =>
             {
                 if (e.Data != null)
                 {
-                    log.AppendText(e.Data + Environment.NewLine);
+                    error += e.Data + Environment.NewLine;
                 }
             };
             string output = string.Empty;
@@ -233,6 +233,7 @@ namespace GitTool
             proc.BeginOutputReadLine();
             proc.BeginErrorReadLine();
             proc.WaitForExit();
+            log.AppendText(error);
             log.AppendText(output);
             log.AppendText(Environment.NewLine);
             return output;
@@ -240,7 +241,6 @@ namespace GitTool
 
         private void rootFolder_TextChanged(object sender, EventArgs e)
         {
-            gitFolders.Tag = string.Empty;
             Scan(rootFolder.Text);
         }
 
@@ -291,35 +291,6 @@ namespace GitTool
         private void MainForm_Load(object sender, EventArgs e)
         {
             Scan(rootFolder.Text);
-        }
-
-        private void gitFolders_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var indices = string.Empty;
-            foreach(var item in gitFolders.SelectedIndices)
-            {
-                indices += item + ",";
-            }
-            gitFolders.Tag = indices;
-        }
-
-        private void SelectGitFolders()
-        {
-            string tag = gitFolders.Tag.ToString();
-            if (string.IsNullOrWhiteSpace(tag))
-            {
-                return;
-            }
-            string [] indices = tag.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            foreach(var strIndex in indices)
-            {
-                int index;
-                if (int.TryParse(strIndex, out index) &&
-                    index < gitFolders.Items.Count)
-                {
-                    gitFolders.SelectedIndices.Add(index);
-                }
-            }
         }
     }
 }
