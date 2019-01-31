@@ -22,5 +22,17 @@ namespace GitTool.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Z:\\git")]
+        public string rootFolder {
+            get {
+                return ((string)(this["rootFolder"]));
+            }
+            set {
+                this["rootFolder"] = value;
+            }
+        }
     }
 }

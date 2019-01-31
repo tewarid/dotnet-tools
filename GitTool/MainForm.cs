@@ -47,26 +47,23 @@ namespace GitTool
 
         private void Scan(string folder)
         {
-            if (Directory.Exists(folder))
+            if (!Directory.Exists(folder))
             {
-                gitFolders.Items.Clear();
-                scan.Enabled = false;
-                browse.Enabled = false;
-                Task.Run(() =>
+                return;
+            }
+            gitFolders.Items.Clear();
+            scan.Enabled = false;
+            browse.Enabled = false;
+            Task.Run(() =>
+            {
+                Scan(new DirectoryInfo(folder));
+            }).ContinueWith((task) => {
+                BeginInvoke(new MethodInvoker(() =>
                 {
-                    Scan(new DirectoryInfo(folder));
-                }).ContinueWith((task) => {
-                    BeginInvoke(new MethodInvoker(() =>
-                    {
-                        scan.Enabled = true;
-                        browse.Enabled = true;
-                    }));
-                });
-            }
-            else
-            {
-                MessageBox.Show(this, $"Folder {folder} not found.");
-            }
+                    scan.Enabled = true;
+                    browse.Enabled = true;
+                }));
+            });
         }
 
         private void Scan(DirectoryInfo rootDir)
@@ -277,6 +274,11 @@ namespace GitTool
             }
             string gitcmd = (string)cheats.SelectedItem;
             command.AppendText(gitcmd);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
         }
     }
 }

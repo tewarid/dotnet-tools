@@ -164,14 +164,14 @@ namespace GitTool
             // 
             this.rootFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.rootFolder.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GitTool.Properties.Settings.Default, "rootFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rootFolder.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rootFolder.Location = new System.Drawing.Point(7, 24);
             this.rootFolder.Multiline = true;
             this.rootFolder.Name = "rootFolder";
-            this.rootFolder.ReadOnly = true;
             this.rootFolder.Size = new System.Drawing.Size(178, 50);
             this.rootFolder.TabIndex = 10;
-            this.rootFolder.Text = "Z:\\git";
+            this.rootFolder.Text = global::GitTool.Properties.Settings.Default.rootFolder;
             this.rootFolder.TextChanged += new System.EventHandler(this.rootFolder_TextChanged);
             // 
             // splitContainer2
@@ -288,6 +288,7 @@ namespace GitTool
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Git Tool";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
