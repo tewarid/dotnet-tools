@@ -5,5 +5,17 @@
     <Setting Name="rootFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)">Z:\git</Value>
     </Setting>
+    <Setting Name="github" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gitlab" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gitHost" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://github.com</Value>
+    </Setting>
+    <Setting Name="username" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

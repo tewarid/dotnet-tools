@@ -9,9 +9,6 @@ namespace GitTool
 {
     public partial class RemoteBrowser : Form
     {
-        private readonly string GITHUB_HOST = "https://github.com";
-        private readonly string GITLAB_HOST = "https://gitlab.com";
-
         public DialogResult Result { get; private set; }
         public string [] Repositories { get; private set; }
 
@@ -24,22 +21,6 @@ namespace GitTool
         {
             Result = DialogResult.Cancel;
             this.Visible = false;
-        }
-
-        private void gitHub_CheckedChanged(object sender, EventArgs e)
-        {
-            if (gitHub.Checked)
-            {
-                host.Text = GITHUB_HOST;
-            }
-        }
-
-        private void gitLab_CheckedChanged(object sender, EventArgs e)
-        {
-            if (gitLab.Checked)
-            {
-                host.Text = GITLAB_HOST;
-            }
         }
 
         private async void query_Click(object sender, EventArgs e)
@@ -138,6 +119,7 @@ namespace GitTool
             {
                 Result = DialogResult.Cancel;
             }
+            Properties.Settings.Default.Save();
         }
     }
 }
