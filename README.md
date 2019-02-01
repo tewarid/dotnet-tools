@@ -59,6 +59,10 @@ Convert data or text to or from various formats such as Base64, and encoded HTML
 
 Add exceptions to Windows Firewall using native COM library `NetFwTypeLib`. With contributions from Bruno Silveira.
 
+## Git Tool
+
+A simple wrapper around command line Git, that allow running multiple commands on several cloned repos at once. A command can reference all or part of the output of the previous command with `{{OUT:start,length}}` where `start` is zero-indexed. Several repos can be cloned from GitHub or GitLab at once. A customizable cheatsheet is available in [cheatsheet.md](GitTool/cheatsheet.md). Any line starting with `$ git ` is assumed to be a git command and displayed in the tool.
+
 ## HTTP Request Tool
 
 Simple interactive HTTP(S) client built using [System.Net.HttpWebRequest](https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.aspx).

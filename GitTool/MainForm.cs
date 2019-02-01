@@ -18,6 +18,7 @@ namespace GitTool
         private readonly string VARIABLE_END = "}}";
         private readonly string VARIABLE_OUT = "OUT";
         private readonly string REMOTE_PATH_SEPARATOR = "/";
+        private readonly string CHEATSHEET_COMMAND_START = "$ git ";
 
         private ConcurrentDictionary<string, string> context =
             new ConcurrentDictionary<string, string>();
@@ -33,9 +34,9 @@ namespace GitTool
             string[] lines = File.ReadAllLines("cheatsheet.md");
             foreach(string line in lines)
             {
-                if (line.StartsWith("$ "))
+                if (line.StartsWith(CHEATSHEET_COMMAND_START))
                 {
-                    cheats.Items.Add(line.Substring(6)); // skip "$ git "
+                    cheats.Items.Add(line.Substring(CHEATSHEET_COMMAND_START.Length));
                 }
             }
         }
