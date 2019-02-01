@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>GitTool</RootNamespace>
+    <AssemblyName>GitTool</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ApplicationIcon>icon-white.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Common\Properties\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GitLabApiClient" Version="1.0.2" />
+    <PackageReference Include="LibGit2Sharp" Version="0.25.4" />
+    <PackageReference Include="Octokit" Version="0.32.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icon-orange.ico" />
+  </ItemGroup>
+
+</Project>
