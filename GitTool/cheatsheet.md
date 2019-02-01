@@ -1,10 +1,10 @@
-# GIT CHEAT SHEET
+# 1. GIT CHEAT SHEET
 
 Sources  
 https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf  
 https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet
 
-## INSTALL GIT
+## 1.1. INSTALL GIT
 
 Git distributions for Linux and POSIX systems are available on the official Git SCM web site.
 
@@ -25,7 +25,7 @@ https://mac.github.com
 Connecting to GitHub using SSH  
 https://help.github.com/articles/connecting-to-github-with-ssh/
 
-## CONFIGURE TOOLING
+## 1.2. CONFIGURE TOOLING
 
 Configure user information for all local repositories
 
@@ -41,7 +41,7 @@ Enables helpful colorization of command line output
 
 $ git config --global color.ui auto
 
-## CREATE REPOSITORIES
+## 1.3. CREATE REPOSITORIES
 
 Start a new repository or obtain one from an existing URL
 
@@ -53,7 +53,7 @@ Downloads a project and its entire version history
 
 $ git clone [url]
 
-## MAKE CHANGES
+## 1.4. MAKE CHANGES
 
 Review edits and craft a commit transaction
 
@@ -85,7 +85,7 @@ Shows which files would be removed from working directory. Use the -f flag in pl
 
 $ git clean -n
 
-## GROUP CHANGES
+## 1.5. GROUP CHANGES
 
 Name a series of commits and combine completed efforts
 
@@ -109,7 +109,7 @@ Deletes the specified branch
 
 $ git branch -d [branch-name]
 
-## REFACTOR FILENAMES
+## 1.6. REFACTOR FILENAMES
 
 Relocate and remove versioned files
 
@@ -125,7 +125,7 @@ Changes the file name and prepares it for commit
 
 $ git mv [file-original] [file-renamed]
 
-## SUPPRESS TRACKING
+## 1.7. SUPPRESS TRACKING
 
 Exclude temporary files and paths
 
@@ -138,7 +138,7 @@ Lists all ignored files in this project
 
 $ git ls-files --other --ignored --exclude-standard
 
-## SAVE FRAGMENTS
+## 1.8. SAVE FRAGMENTS
 
 Shelve and restore incomplete changes
 
@@ -158,7 +158,7 @@ Discards the most recently stashed changeset
 
 $ git stash drop
 
-## REVIEW HISTORY
+## 1.9. REVIEW HISTORY
 
 Browse and inspect the evolution of project files
 
@@ -182,11 +182,11 @@ Outputs metadata and content changes of the specified commit
 
 $ git show [commit]
 
-Show a log of changes to the local repository’s HEAD . Add --relative-date flag to show date info or --all to show all refs.
+Show a log of changes to the local repository’s HEAD. Add --relative-date flag to show date info or --all to show all refs.
 
 $ git reflog
 
-## REDO COMMITS
+## 1.10. REDO COMMITS
 
 Erase mistakes and craft replacement history
 
@@ -210,7 +210,7 @@ Rebase the current branch onto [base]. [base] can be a commit ID, a branch name,
 
 $ git rebase [base]
 
-## SYNCHRONIZE CHANGES
+## 1.11. SYNCHRONIZE CHANGES
 
 Register a repository bookmark and exchange version history
 
