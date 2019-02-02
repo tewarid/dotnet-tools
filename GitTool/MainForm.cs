@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,9 +15,9 @@ namespace GitTool
     {
         RemoteBrowser browser = new RemoteBrowser();
 
-        private readonly string VARIABLE_START = "{{";
-        private readonly string VARIABLE_END = "}}";
-        private readonly string VARIABLE_OUT = "OUT";
+        private static readonly string VARIABLE_START = "{{";
+        private static readonly string VARIABLE_END = "}}";
+        private static readonly string VARIABLE_OUT = "OUT";
         private readonly string REMOTE_PATH_SEPARATOR = "/";
         private readonly string CHEATSHEET_COMMAND_START = "$ git ";
 
@@ -134,7 +135,7 @@ namespace GitTool
             }
         }
 
-        private string ProcessVariables(string cmd, IDictionary<string, string> context)
+        private static string ProcessVariables(string cmd, IDictionary<string, string> context)
         {
             if (!cmd.Contains(VARIABLE_START))
             {
@@ -142,10 +143,10 @@ namespace GitTool
             }
             int index = 0;
             int startIndex = 0;
-            string cmdReturn = string.Empty;
+            StringBuilder cmdResult = new StringBuilder();
             while ((startIndex = cmd.IndexOf(VARIABLE_START, index)) != -1)
             {
-                cmdReturn += cmd.Substring(index, startIndex - index);
+                cmdResult.Append(cmd.Substring(index, startIndex - index));
                 int endIndex = cmd.IndexOf(VARIABLE_END);
                 if (endIndex == -1)
                 {
@@ -156,7 +157,7 @@ namespace GitTool
                     endIndex - (startIndex + VARIABLE_START.Length));
                 try
                 {
-                    cmdReturn += ProcessVariable(variable, context);
+                    cmdResult.Append(ProcessVariable(variable.Trim(), context));
                 }
                 catch
                 {
@@ -164,13 +165,12 @@ namespace GitTool
                 }
                 index = endIndex + VARIABLE_END.Length;
             }
-            cmdReturn += cmd.Substring(index, cmd.Length - index);
-            return cmdReturn;
+            cmdResult.Append(cmd.Substring(index, cmd.Length - index));
+            return cmdResult.ToString();
         }
 
-        private string ProcessVariable(string variable, IDictionary<string, string> context)
+        private static string ProcessVariable(string variable, IDictionary<string, string> context)
         {
-            variable = variable.Trim();
             string name = variable;
             int startIndex = 0;
             int length = 0;
