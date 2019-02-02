@@ -13,7 +13,7 @@ namespace GitTool
 {
     public partial class MainForm : Form
     {
-        RemoteBrowser browser = new RemoteBrowser();
+        private readonly RemoteBrowser browser = new RemoteBrowser();
 
         private static readonly string VARIABLE_START = "{{";
         private static readonly string VARIABLE_END = "}}";
@@ -21,7 +21,7 @@ namespace GitTool
         private readonly string REMOTE_PATH_SEPARATOR = "/";
         private readonly string CHEATSHEET_COMMAND_START = "$ git ";
 
-        private ConcurrentDictionary<string, string> context =
+        private readonly ConcurrentDictionary<string, string> context =
             new ConcurrentDictionary<string, string>();
 
         public MainForm()
