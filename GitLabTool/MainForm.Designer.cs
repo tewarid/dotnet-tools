@@ -40,14 +40,14 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.milestones = new System.Windows.Forms.ListView();
-            this.query = new System.Windows.Forms.Button();
-            this.username = new System.Windows.Forms.TextBox();
-            this.host = new System.Windows.Forms.TextBox();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.query = new System.Windows.Forms.Button();
+            this.username = new System.Windows.Forms.TextBox();
+            this.host = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -176,6 +176,30 @@
             this.milestones.View = System.Windows.Forms.View.Details;
             this.milestones.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown);
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Due Date";
+            this.columnHeader4.Width = 90;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Project";
+            this.columnHeader5.Width = 160;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Title";
+            this.columnHeader6.Width = 170;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "State";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Start Date";
+            this.columnHeader8.Width = 90;
+            // 
             // query
             // 
             this.query.Location = new System.Drawing.Point(113, 138);
@@ -204,30 +228,6 @@
             this.host.TabIndex = 19;
             this.host.Text = global::GitLabTool.Properties.Settings.Default.host;
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Due Date";
-            this.columnHeader4.Width = 90;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Project";
-            this.columnHeader5.Width = 160;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Title";
-            this.columnHeader6.Width = 170;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "State";
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Start Date";
-            this.columnHeader8.Width = 90;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,6 +243,7 @@
             this.Controls.Add(this.label1);
             this.Name = "MainForm";
             this.Text = "GitLab Tool";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

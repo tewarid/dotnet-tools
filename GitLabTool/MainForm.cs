@@ -100,5 +100,10 @@ namespace GitLabTool
             }
             Clipboard.SetDataObject(sb.ToString());
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
     }
 }
