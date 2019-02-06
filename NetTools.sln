@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncodingTool", "EncodingToo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitTool", "GitTool\GitTool.csproj", "{344D1F03-CA1D-4F20-BA62-3B06A55C12B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLabTool", "GitLabTool\GitLabTool.csproj", "{622DAB06-0A72-48E8-8392-60CF79BAF143}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -149,6 +151,10 @@ Global
 		{344D1F03-CA1D-4F20-BA62-3B06A55C12B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{344D1F03-CA1D-4F20-BA62-3B06A55C12B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{344D1F03-CA1D-4F20-BA62-3B06A55C12B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{622DAB06-0A72-48E8-8392-60CF79BAF143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{622DAB06-0A72-48E8-8392-60CF79BAF143}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{622DAB06-0A72-48E8-8392-60CF79BAF143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{622DAB06-0A72-48E8-8392-60CF79BAF143}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
