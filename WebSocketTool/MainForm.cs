@@ -11,6 +11,8 @@ namespace WebSocketTool
 {
     public partial class MainForm : Form
     {
+        private readonly Version MINIMUM_WINDOWS_VERSION = new Version(6, 2);
+
         delegate void ShowReceivedDataDelegate(byte[] data, int length);
 
         private ClientWebSocket wsClient;
@@ -24,7 +26,7 @@ namespace WebSocketTool
             InitializeComponent();
         }
 
-        private async void sendButton_Click(object sender, EventArgs e)
+        private async void Send(object sender, EventArgs e)
         {
             if (wsClient == null || wsClient.State != WebSocketState.Open)
             {
@@ -256,7 +258,7 @@ namespace WebSocketTool
                 defaultValue);
             if (result == DialogResult.OK)
             {
-                proxyUrl = dialog.Value == null ? null : dialog.Value.AbsoluteUri;
+                proxyUrl = dialog.Value?.AbsoluteUri;
             }
         }
 
@@ -266,6 +268,15 @@ namespace WebSocketTool
             setHeaders.Enabled = enable;
             proxyButton.Enabled = enable;
             location.ReadOnly = !enable;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (Environment.OSVersion.Version < MINIMUM_WINDOWS_VERSION)
+            {
+                MessageBox.Show(this, "This tool requires Windows version 8.1 or better.");
+                Close();
+            }
         }
     }
 }

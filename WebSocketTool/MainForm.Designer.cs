@@ -34,6 +34,7 @@ namespace WebSocketTool
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.sendButton = new System.Windows.Forms.Button();
+            this.sendTextBox = new Common.SendTextBox();
             this.connect = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -45,7 +46,6 @@ namespace WebSocketTool
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.sendTextBox = new Common.SendTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -69,20 +69,31 @@ namespace WebSocketTool
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendButton.Location = new System.Drawing.Point(312, 414);
+            this.sendButton.Location = new System.Drawing.Point(312, 410);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(75, 19);
+            this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 7;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
-            this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
+            this.sendButton.Click += new System.EventHandler(this.Send);
+            // 
+            // sendTextBox
+            // 
+            this.sendTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sendTextBox.Location = new System.Drawing.Point(0, 3);
+            this.sendTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.sendTextBox.MinimumSize = new System.Drawing.Size(280, 130);
+            this.sendTextBox.Name = "sendTextBox";
+            this.sendTextBox.Padding = new System.Windows.Forms.Padding(3);
+            this.sendTextBox.Size = new System.Drawing.Size(390, 433);
+            this.sendTextBox.TabIndex = 8;
             // 
             // connect
             // 
             this.connect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.connect.Location = new System.Drawing.Point(228, 94);
             this.connect.Name = "connect";
-            this.connect.Size = new System.Drawing.Size(75, 19);
+            this.connect.Size = new System.Drawing.Size(75, 23);
             this.connect.TabIndex = 3;
             this.connect.Text = "Connect";
             this.connect.UseVisualStyleBackColor = true;
@@ -118,7 +129,7 @@ namespace WebSocketTool
             // 
             this.proxyButton.Location = new System.Drawing.Point(117, 94);
             this.proxyButton.Name = "proxyButton";
-            this.proxyButton.Size = new System.Drawing.Size(82, 19);
+            this.proxyButton.Size = new System.Drawing.Size(82, 23);
             this.proxyButton.TabIndex = 2;
             this.proxyButton.Text = "HTTP Proxy...";
             this.proxyButton.UseVisualStyleBackColor = true;
@@ -141,7 +152,7 @@ namespace WebSocketTool
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outputText.Location = new System.Drawing.Point(3, 123);
-            this.outputText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.outputText.Margin = new System.Windows.Forms.Padding(4);
             this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
             this.outputText.Size = new System.Drawing.Size(384, 316);
@@ -151,7 +162,7 @@ namespace WebSocketTool
             // 
             this.setHeaders.Location = new System.Drawing.Point(6, 94);
             this.setHeaders.Name = "setHeaders";
-            this.setHeaders.Size = new System.Drawing.Size(105, 19);
+            this.setHeaders.Size = new System.Drawing.Size(105, 23);
             this.setHeaders.TabIndex = 1;
             this.setHeaders.Text = "HTTP Headers...";
             this.setHeaders.UseVisualStyleBackColor = true;
@@ -163,7 +174,7 @@ namespace WebSocketTool
             this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.closeButton.Location = new System.Drawing.Point(309, 94);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 19);
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 4;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
@@ -202,17 +213,6 @@ namespace WebSocketTool
             this.splitContainer1.SplitterDistance = 390;
             this.splitContainer1.TabIndex = 8;
             // 
-            // sendTextBox
-            // 
-            this.sendTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sendTextBox.Location = new System.Drawing.Point(0, 3);
-            this.sendTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.sendTextBox.MinimumSize = new System.Drawing.Size(280, 130);
-            this.sendTextBox.Name = "sendTextBox";
-            this.sendTextBox.Padding = new System.Windows.Forms.Padding(3);
-            this.sendTextBox.Size = new System.Drawing.Size(390, 433);
-            this.sendTextBox.TabIndex = 8;
-            // 
             // MainForm
             // 
             this.AcceptButton = this.connect;
@@ -227,6 +227,7 @@ namespace WebSocketTool
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WebSocket Tool (requires Windows 8 or better)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

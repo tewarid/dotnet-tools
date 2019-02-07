@@ -10,6 +10,8 @@ namespace WebSocketServerTool
 {
     public partial class MainForm : Form
     {
+        private readonly Version MINIMUM_WINDOWS_VERSION = new Version(6, 2);
+
         ServiceHost host;
         HttpListener httpListener;
 
@@ -196,6 +198,15 @@ namespace WebSocketServerTool
             stop.Enabled = !enable;
             subjectName.ReadOnly = !enable;
             url.ReadOnly = !enable;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (Environment.OSVersion.Version < MINIMUM_WINDOWS_VERSION)
+            {
+                MessageBox.Show(this, "Native WebSocket support is only available in  Windows version 8.1 or better.");
+                Close();
+            }
         }
     }
 }
