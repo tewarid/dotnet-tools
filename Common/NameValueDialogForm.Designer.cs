@@ -42,7 +42,7 @@ namespace Common
             this.done.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.done.Location = new System.Drawing.Point(195, 243);
             this.done.Name = "done";
-            this.done.Size = new System.Drawing.Size(75, 19);
+            this.done.Size = new System.Drawing.Size(75, 23);
             this.done.TabIndex = 2;
             this.done.Text = "Done";
             this.done.UseVisualStyleBackColor = true;
@@ -53,7 +53,7 @@ namespace Common
             this.remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.remove.Location = new System.Drawing.Point(114, 243);
             this.remove.Name = "remove";
-            this.remove.Size = new System.Drawing.Size(75, 19);
+            this.remove.Size = new System.Drawing.Size(75, 23);
             this.remove.TabIndex = 1;
             this.remove.Text = "Remove";
             this.remove.UseVisualStyleBackColor = true;
@@ -61,9 +61,12 @@ namespace Common
             // 
             // headers
             // 
+            this.headers.AllowUserToAddRows = true;
+            this.headers.AllowUserToDeleteRows = true;
             this.headers.Location = new System.Drawing.Point(11, 11);
-            this.headers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.headers.Margin = new System.Windows.Forms.Padding(2);
             this.headers.Name = "headers";
+            this.headers.ReadOnly = false;
             this.headers.Size = new System.Drawing.Size(258, 222);
             this.headers.TabIndex = 0;
             // 
