@@ -138,12 +138,12 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "HTTP URL";
-            this.columnHeader2.Width = 100;
+            this.columnHeader2.Width = 150;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "SSH URL";
-            this.columnHeader3.Width = 100;
+            this.columnHeader3.Width = 150;
             // 
             // tabPage2
             // 
