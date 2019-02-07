@@ -293,5 +293,13 @@ namespace GitTool
         {
             Scan(rootFolder.Text);
         }
+
+        private void explore_Click(object sender, EventArgs e)
+        {
+            if (gitFolders.SelectedItem != null)
+            {
+                System.Diagnostics.Process.Start((string)gitFolders.SelectedItem);
+            }
+        }
     }
 }

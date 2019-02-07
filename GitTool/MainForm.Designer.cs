@@ -33,6 +33,7 @@ namespace GitTool
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.explore = new System.Windows.Forms.Button();
             this.clone = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,6 +68,7 @@ namespace GitTool
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.explore);
             this.splitContainer1.Panel1.Controls.Add(this.clone);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
@@ -82,6 +84,17 @@ namespace GitTool
             this.splitContainer1.Size = new System.Drawing.Size(805, 450);
             this.splitContainer1.SplitterDistance = 353;
             this.splitContainer1.TabIndex = 14;
+            // 
+            // explore
+            // 
+            this.explore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.explore.Location = new System.Drawing.Point(272, 424);
+            this.explore.Name = "explore";
+            this.explore.Size = new System.Drawing.Size(75, 23);
+            this.explore.TabIndex = 17;
+            this.explore.Text = "Explore...";
+            this.explore.UseVisualStyleBackColor = true;
+            this.explore.Click += new System.EventHandler(this.explore_Click);
             // 
             // clone
             // 
@@ -115,10 +128,10 @@ namespace GitTool
             // clipboard
             // 
             this.clipboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clipboard.Location = new System.Drawing.Point(222, 422);
+            this.clipboard.Location = new System.Drawing.Point(141, 424);
             this.clipboard.Name = "clipboard";
             this.clipboard.Size = new System.Drawing.Size(125, 23);
-            this.clipboard.TabIndex = 15;
+            this.clipboard.TabIndex = 16;
             this.clipboard.Text = "Copy to Clipboard";
             this.clipboard.UseVisualStyleBackColor = true;
             this.clipboard.Click += new System.EventHandler(this.clipboard_Click);
@@ -328,6 +341,7 @@ namespace GitTool
         private Label label4;
         private TextBox log;
         private ComboBox cheats;
+        private Button explore;
     }
 }
 
