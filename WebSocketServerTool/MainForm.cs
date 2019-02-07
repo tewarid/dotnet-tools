@@ -24,7 +24,6 @@ namespace WebSocketServerTool
         /// Create a new service host with the specified Uri and certificate.
         /// </summary>
         /// <param name="uri">A Uri.</param>
-        /// <param name="subjectName">Subject name of certificate in certificate store.</param>
         /// <returns></returns>
         private ServiceHost CreateServiceHost(Uri uri)
         {
@@ -54,7 +53,7 @@ namespace WebSocketServerTool
             };
             binding.Elements.Add(transport);
 
-            ServiceHost newHost = new ServiceHost(typeof(WebSocketServerTool.Service));
+            ServiceHost newHost = new ServiceHost(typeof(Service));
 
             UriBuilder newUri = new UriBuilder(uri)
             {
@@ -196,7 +195,6 @@ namespace WebSocketServerTool
         {
             start.Enabled = enable;
             stop.Enabled = !enable;
-            subjectName.ReadOnly = !enable;
             url.ReadOnly = !enable;
         }
 

@@ -52,6 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outputText.Location = new System.Drawing.Point(6, 12);
+            this.outputText.Margin = new System.Windows.Forms.Padding(4);
             this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
             this.outputText.Size = new System.Drawing.Size(386, 427);
@@ -70,9 +71,9 @@
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendButton.Location = new System.Drawing.Point(310, 406);
+            this.sendButton.Location = new System.Drawing.Point(310, 413);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(75, 30);
+            this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 15;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
@@ -86,6 +87,7 @@
             this.input.Location = new System.Drawing.Point(0, 12);
             this.input.MinimumSize = new System.Drawing.Size(280, 130);
             this.input.Name = "input";
+            this.input.Padding = new System.Windows.Forms.Padding(4);
             this.input.Size = new System.Drawing.Size(386, 424);
             this.input.TabIndex = 10;
             // 
