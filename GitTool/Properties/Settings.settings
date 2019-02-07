@@ -5,12 +5,6 @@
     <Setting Name="rootFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)">Z:\git</Value>
     </Setting>
-    <Setting Name="github" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="gitlab" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="gitHost" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://github.com</Value>
     </Setting>
@@ -23,14 +17,17 @@
     <Setting Name="sshUrl" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="selectedGitFolder" Type="System.Object" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="commands" Type="System.String" Scope="User">
       <Value Profile="(Default)">status</Value>
     </Setting>
     <Setting Name="output" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gitHub" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gitLab" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

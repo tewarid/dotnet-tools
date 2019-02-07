@@ -37,30 +37,6 @@ namespace GitTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool github {
-            get {
-                return ((bool)(this["github"]));
-            }
-            set {
-                this["github"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool gitlab {
-            get {
-                return ((bool)(this["gitlab"]));
-            }
-            set {
-                this["gitlab"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://github.com")]
         public string gitHost {
             get {
@@ -128,6 +104,30 @@ namespace GitTool.Properties {
             }
             set {
                 this["output"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gitHub {
+            get {
+                return ((bool)(this["gitHub"]));
+            }
+            set {
+                this["gitHub"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gitLab {
+            get {
+                return ((bool)(this["gitLab"]));
+            }
+            set {
+                this["gitLab"] = value;
             }
         }
     }

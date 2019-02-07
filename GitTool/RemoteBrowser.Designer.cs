@@ -119,7 +119,7 @@ namespace GitTool
             this.https.TabIndex = 1;
             this.https.Text = "HTTPS";
             this.https.UseVisualStyleBackColor = true;
-            this.https.Click += new System.EventHandler(this.https_Click);
+            this.https.Click += new System.EventHandler(this.Check);
             // 
             // ssh
             // 
@@ -133,7 +133,7 @@ namespace GitTool
             this.ssh.TabStop = true;
             this.ssh.Text = "SSH";
             this.ssh.UseVisualStyleBackColor = true;
-            this.ssh.Click += new System.EventHandler(this.ssh_Click);
+            this.ssh.Click += new System.EventHandler(this.Check);
             // 
             // password
             // 
@@ -208,28 +208,29 @@ namespace GitTool
             // gitLab
             // 
             this.gitLab.AutoSize = true;
-            this.gitLab.Checked = global::GitTool.Properties.Settings.Default.gitlab;
-            this.gitLab.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GitTool.Properties.Settings.Default, "gitlab", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.gitLab.Checked = global::GitTool.Properties.Settings.Default.gitLab;
+            this.gitLab.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GitTool.Properties.Settings.Default, "gitLab", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.gitLab.Location = new System.Drawing.Point(98, 20);
             this.gitLab.Name = "gitLab";
             this.gitLab.Size = new System.Drawing.Size(56, 17);
             this.gitLab.TabIndex = 1;
             this.gitLab.Text = "GitLab";
             this.gitLab.UseVisualStyleBackColor = true;
-            this.gitLab.Click += new System.EventHandler(this.gitLab_Click);
+            this.gitLab.Click += new System.EventHandler(this.Check);
             // 
             // gitHub
             // 
             this.gitHub.AutoSize = true;
-            this.gitHub.Checked = global::GitTool.Properties.Settings.Default.github;
-            this.gitHub.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GitTool.Properties.Settings.Default, "github", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.gitHub.Checked = global::GitTool.Properties.Settings.Default.gitHub;
+            this.gitHub.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GitTool.Properties.Settings.Default, "gitHub", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.gitHub.Location = new System.Drawing.Point(7, 20);
             this.gitHub.Name = "gitHub";
             this.gitHub.Size = new System.Drawing.Size(58, 17);
             this.gitHub.TabIndex = 0;
+            this.gitHub.TabStop = true;
             this.gitHub.Text = "GitHub";
             this.gitHub.UseVisualStyleBackColor = true;
-            this.gitHub.Click += new System.EventHandler(this.gitHub_Click);
+            this.gitHub.Click += new System.EventHandler(this.Check);
             // 
             // clipboard
             // 
