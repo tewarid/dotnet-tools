@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace WebSocketServerTool
 {
-    public delegate void ClosedHandler();
-    public delegate void MessageHandler(byte[] message, int length,
-        WebSocketMessageType type, bool lastMessage);
-
     public class WcfClientContext : IClientContext
     {
         public event MessageHandler Message;

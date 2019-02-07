@@ -3,6 +3,10 @@ using System.Threading.Tasks;
 
 namespace WebSocketServerTool
 {
+    public delegate void ClosedHandler();
+    public delegate void MessageHandler(byte[] message, int length,
+        WebSocketMessageType type, bool lastMessage);
+
     public interface IClientContext
     {
         event ClosedHandler Closed;
