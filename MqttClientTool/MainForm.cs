@@ -2,6 +2,7 @@
 using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Extensions.ManagedClient;
+using MQTTnet.Serializer;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -96,6 +97,7 @@ namespace MqttClientTool
             }
             status.Text = "Starting";
             var clientOptions = new MqttClientOptionsBuilder();
+            clientOptions.WithProtocolVersion(MqttProtocolVersion.V311);
             if (useTls.Checked)
             {
                 clientOptions.WithTls();
