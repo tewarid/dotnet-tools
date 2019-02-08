@@ -42,7 +42,7 @@ namespace GitTool
             }
         }
 
-        private void scan_Click(object sender, EventArgs e)
+        private void Scan_Click(object sender, EventArgs e)
         {
             Scan(rootFolder.Text);
         }
@@ -99,7 +99,7 @@ namespace GitTool
             return list;
         }
 
-        private void clipboard_Click(object sender, EventArgs e)
+        private void Clipboard_Click(object sender, EventArgs e)
         {
             IList list = GetFolders();
             string[] folders = new string[list.Count];
@@ -107,7 +107,7 @@ namespace GitTool
             Clipboard.SetText(String.Join(Environment.NewLine, folders));
         }
 
-        private void browse_Click(object sender, EventArgs e)
+        private void Browse_Click(object sender, EventArgs e)
         {
             folderBrowser.SelectedPath = rootFolder.Text;
             if (folderBrowser.ShowDialog() == DialogResult.OK)
@@ -116,11 +116,22 @@ namespace GitTool
             }
         }
 
-        private void run_Click(object sender, EventArgs e)
+        private void Run_Click(object sender, EventArgs e)
         {
-            string [] gitCommands = command.Text.Split(new [] { Environment.NewLine },
-                StringSplitOptions.RemoveEmptyEntries);
-            
+            string[] gitCommands;
+            if (!string.IsNullOrWhiteSpace(command.SelectedText))
+            {
+                gitCommands = command.SelectedText.Split(new[] { Environment.NewLine },
+                    StringSplitOptions.RemoveEmptyEntries);
+
+            }
+            else
+            {
+                gitCommands = command.Text.Split(new[] { Environment.NewLine },
+                    StringSplitOptions.RemoveEmptyEntries);
+
+            }
+
             foreach (string folder in GetFolders())
             {
                 foreach(string cmd in gitCommands)
@@ -240,17 +251,17 @@ namespace GitTool
             return output;
         }
 
-        private void rootFolder_TextChanged(object sender, EventArgs e)
+        private void RootFolder_TextChanged(object sender, EventArgs e)
         {
             Scan(rootFolder.Text);
         }
 
-        private void clear_Click(object sender, EventArgs e)
+        private void Clear_Click(object sender, EventArgs e)
         {
             log.Clear();
         }
 
-        private void clone_Click(object sender, EventArgs e)
+        private void Clone_Click(object sender, EventArgs e)
         {
             browser.ShowDialog(this);
             if (browser.Result == DialogResult.OK)
@@ -274,7 +285,7 @@ namespace GitTool
             }
         }
 
-        private void cheats_SelectedIndexChanged(object sender, EventArgs e)
+        private void Cheats_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!command.Text.EndsWith(Environment.NewLine))
             {
@@ -294,12 +305,18 @@ namespace GitTool
             Scan(rootFolder.Text);
         }
 
-        private void explore_Click(object sender, EventArgs e)
+        private void Explore_Click(object sender, EventArgs e)
         {
             if (gitFolders.SelectedItem != null)
             {
-                System.Diagnostics.Process.Start((string)gitFolders.SelectedItem);
+                Process.Start((string)gitFolders.SelectedItem);
             }
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            log.SelectionStart = log.TextLength;
+            log.ScrollToCaret();
         }
     }
 }

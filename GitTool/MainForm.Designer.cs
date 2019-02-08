@@ -94,7 +94,7 @@ namespace GitTool
             this.explore.TabIndex = 17;
             this.explore.Text = "Explore...";
             this.explore.UseVisualStyleBackColor = true;
-            this.explore.Click += new System.EventHandler(this.explore_Click);
+            this.explore.Click += new System.EventHandler(this.Explore_Click);
             // 
             // clone
             // 
@@ -105,7 +105,7 @@ namespace GitTool
             this.clone.TabIndex = 13;
             this.clone.Text = "Clone...";
             this.clone.UseVisualStyleBackColor = true;
-            this.clone.Click += new System.EventHandler(this.clone_Click);
+            this.clone.Click += new System.EventHandler(this.Clone_Click);
             // 
             // label2
             // 
@@ -134,7 +134,7 @@ namespace GitTool
             this.clipboard.TabIndex = 16;
             this.clipboard.Text = "Copy to Clipboard";
             this.clipboard.UseVisualStyleBackColor = true;
-            this.clipboard.Click += new System.EventHandler(this.clipboard_Click);
+            this.clipboard.Click += new System.EventHandler(this.Clipboard_Click);
             // 
             // gitFolders
             // 
@@ -160,7 +160,7 @@ namespace GitTool
             this.browse.TabIndex = 11;
             this.browse.Text = "Browse...";
             this.browse.UseVisualStyleBackColor = true;
-            this.browse.Click += new System.EventHandler(this.browse_Click);
+            this.browse.Click += new System.EventHandler(this.Browse_Click);
             // 
             // scan
             // 
@@ -171,7 +171,7 @@ namespace GitTool
             this.scan.TabIndex = 12;
             this.scan.Text = "Scan...";
             this.scan.UseVisualStyleBackColor = true;
-            this.scan.Click += new System.EventHandler(this.scan_Click);
+            this.scan.Click += new System.EventHandler(this.Scan_Click);
             // 
             // rootFolder
             // 
@@ -185,7 +185,7 @@ namespace GitTool
             this.rootFolder.Size = new System.Drawing.Size(178, 50);
             this.rootFolder.TabIndex = 10;
             this.rootFolder.Text = global::GitTool.Properties.Settings.Default.rootFolder;
-            this.rootFolder.TextChanged += new System.EventHandler(this.rootFolder_TextChanged);
+            this.rootFolder.TextChanged += new System.EventHandler(this.RootFolder_TextChanged);
             // 
             // splitContainer2
             // 
@@ -222,7 +222,7 @@ namespace GitTool
             this.cheats.Size = new System.Drawing.Size(359, 21);
             this.cheats.Sorted = true;
             this.cheats.TabIndex = 22;
-            this.cheats.SelectedIndexChanged += new System.EventHandler(this.cheats_SelectedIndexChanged);
+            this.cheats.SelectedIndexChanged += new System.EventHandler(this.Cheats_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -242,7 +242,7 @@ namespace GitTool
             this.run.TabIndex = 19;
             this.run.Text = "Run...";
             this.run.UseVisualStyleBackColor = true;
-            this.run.Click += new System.EventHandler(this.run_Click);
+            this.run.Click += new System.EventHandler(this.Run_Click);
             // 
             // command
             // 
@@ -251,6 +251,7 @@ namespace GitTool
             | System.Windows.Forms.AnchorStyles.Right)));
             this.command.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GitTool.Properties.Settings.Default, "commands", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.command.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.command.HideSelection = false;
             this.command.Location = new System.Drawing.Point(3, 21);
             this.command.Multiline = true;
             this.command.Name = "command";
@@ -268,7 +269,7 @@ namespace GitTool
             this.clear.TabIndex = 22;
             this.clear.Text = "Clear";
             this.clear.UseVisualStyleBackColor = true;
-            this.clear.Click += new System.EventHandler(this.clear_Click);
+            this.clear.Click += new System.EventHandler(this.Clear_Click);
             // 
             // label4
             // 
@@ -306,6 +307,7 @@ namespace GitTool
             this.Text = "Git Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
