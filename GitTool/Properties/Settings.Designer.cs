@@ -130,5 +130,17 @@ namespace GitTool.Properties {
                 this["gitLab"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int selectedFolder {
+            get {
+                return ((int)(this["selectedFolder"]));
+            }
+            set {
+                this["selectedFolder"] = value;
+            }
+        }
     }
 }

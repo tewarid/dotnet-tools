@@ -62,6 +62,11 @@ namespace GitTool
             }).ContinueWith((task) => {
                 BeginInvoke(new MethodInvoker(() =>
                 {
+                    int index = Properties.Settings.Default.selectedFolder;
+                    if (index != -1 && index < gitFolders.Items.Count)
+                    {
+                        gitFolders.SelectedIndex = index;
+                    }
                     scan.Enabled = true;
                     browse.Enabled = true;
                 }));
@@ -317,6 +322,11 @@ namespace GitTool
         {
             log.SelectionStart = log.TextLength;
             log.ScrollToCaret();
+        }
+
+        private void GitFolders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.selectedFolder = gitFolders.SelectedIndex;
         }
     }
 }
