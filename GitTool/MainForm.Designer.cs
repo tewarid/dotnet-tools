@@ -38,6 +38,7 @@ namespace GitTool
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.clipboard = new System.Windows.Forms.Button();
+            this.gitFolders = new System.Windows.Forms.ListBox();
             this.browse = new System.Windows.Forms.Button();
             this.scan = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -46,7 +47,6 @@ namespace GitTool
             this.run = new System.Windows.Forms.Button();
             this.clear = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.gitFolders = new System.Windows.Forms.ListBox();
             this.rootFolder = new System.Windows.Forms.TextBox();
             this.command = new System.Windows.Forms.TextBox();
             this.log = new System.Windows.Forms.TextBox();
@@ -135,6 +135,24 @@ namespace GitTool
             this.clipboard.Text = "Copy to Clipboard";
             this.clipboard.UseVisualStyleBackColor = true;
             this.clipboard.Click += new System.EventHandler(this.Clipboard_Click);
+            // 
+            // gitFolders
+            // 
+            this.gitFolders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gitFolders.DataBindings.Add(new System.Windows.Forms.Binding("Tag", global::GitTool.Properties.Settings.Default, "selectedFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.gitFolders.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gitFolders.FormattingEnabled = true;
+            this.gitFolders.IntegralHeight = false;
+            this.gitFolders.Location = new System.Drawing.Point(6, 93);
+            this.gitFolders.Name = "gitFolders";
+            this.gitFolders.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.gitFolders.Size = new System.Drawing.Size(341, 323);
+            this.gitFolders.Sorted = true;
+            this.gitFolders.TabIndex = 14;
+            this.gitFolders.Tag = global::GitTool.Properties.Settings.Default.selectedFolder;
+            this.gitFolders.SelectedIndexChanged += new System.EventHandler(this.GitFolders_SelectedIndexChanged);
             // 
             // browse
             // 
@@ -234,22 +252,6 @@ namespace GitTool
             this.label4.Size = new System.Drawing.Size(39, 13);
             this.label4.TabIndex = 21;
             this.label4.Text = "Output";
-            // 
-            // gitFolders
-            // 
-            this.gitFolders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gitFolders.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gitFolders.FormattingEnabled = true;
-            this.gitFolders.IntegralHeight = false;
-            this.gitFolders.Location = new System.Drawing.Point(6, 93);
-            this.gitFolders.Name = "gitFolders";
-            this.gitFolders.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.gitFolders.Size = new System.Drawing.Size(341, 323);
-            this.gitFolders.Sorted = true;
-            this.gitFolders.TabIndex = 14;
-            this.gitFolders.SelectedIndexChanged += new System.EventHandler(this.GitFolders_SelectedIndexChanged);
             // 
             // rootFolder
             // 

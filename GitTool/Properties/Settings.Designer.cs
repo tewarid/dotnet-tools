@@ -133,10 +133,9 @@ namespace GitTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int selectedFolder {
+        public object selectedFolder {
             get {
-                return ((int)(this["selectedFolder"]));
+                return ((object)(this["selectedFolder"]));
             }
             set {
                 this["selectedFolder"] = value;
