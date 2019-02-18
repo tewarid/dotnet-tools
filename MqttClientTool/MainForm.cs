@@ -98,6 +98,17 @@ namespace MqttClientTool
             status.Text = "Starting";
             var clientOptions = new MqttClientOptionsBuilder();
             clientOptions.WithProtocolVersion(MqttProtocolVersion.V311);
+            if (!string.IsNullOrWhiteSpace(username.Text))
+            {
+                if (!string.IsNullOrWhiteSpace(password.Text))
+                {
+                    clientOptions.WithCredentials(username.Text, password.Text);
+                }
+                else
+                {
+                    clientOptions.WithCredentials(username.Text);
+                }
+            }
             if (useTls.Checked)
             {
                 clientOptions.WithTls();
