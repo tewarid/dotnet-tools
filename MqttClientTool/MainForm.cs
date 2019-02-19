@@ -2,6 +2,7 @@
 using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Extensions.ManagedClient;
+using MQTTnet.Protocol;
 using MQTTnet.Serializer;
 using System;
 using System.IO;
@@ -19,17 +20,22 @@ namespace MqttClientTool
             InitializeComponent();
         }
 
-        private async void Send_Click(object sender, EventArgs e)
+        private async void Publish_Click(object sender, EventArgs e)
         {
             if (mqttClient == null || !mqttClient.IsConnected)
             {
                 return;
             }
-            ManagedMqttApplicationMessage message = new ManagedMqttApplicationMessageBuilder()
-                .WithApplicationMessage(new MqttApplicationMessageBuilder()
+            MqttApplicationMessageBuilder messageBuilder = new MqttApplicationMessageBuilder()
                 .WithPayload(new MemoryStream(input.Bytes), input.Bytes.Length)
-                .WithTopic(topic.Text)
-                .Build())
+                .WithTopic(topic.Text);
+            if (qosPublish.SelectedIndex >= 0)
+            {
+                messageBuilder.WithQualityOfServiceLevel((MqttQualityOfServiceLevel)qosPublish.SelectedIndex);
+            }
+            messageBuilder.WithRetainFlag(retain.Checked);
+            ManagedMqttApplicationMessage message = new ManagedMqttApplicationMessageBuilder()
+                .WithApplicationMessage(messageBuilder.Build())
                 .Build();
             await mqttClient.PublishAsync(message);
         }
@@ -59,9 +65,21 @@ namespace MqttClientTool
             {
                 if (!string.IsNullOrWhiteSpace(dialog.Value.Text))
                 {
-                    await mqttClient.SubscribeAsync(new TopicFilterBuilder()
-                        .WithTopic(dialog.Value.Text).Build());
-                    subscriptions.Items.Add(dialog.Value.Text);
+                    TopicFilterBuilder builder = new TopicFilterBuilder()
+                        .WithTopic(dialog.Value.Text);
+                    if (qosSubscribe.SelectedIndex >= 0)
+                    {
+                        builder.WithQualityOfServiceLevel((MqttQualityOfServiceLevel)qosSubscribe.SelectedIndex);
+                    }
+                    try
+                    {
+                        await mqttClient.SubscribeAsync(builder.Build());
+                        subscriptions.Items.Add(dialog.Value.Text);
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message);
+                    }
                 }
             }
         }
@@ -109,6 +127,10 @@ namespace MqttClientTool
                     clientOptions.WithCredentials(username.Text);
                 }
             }
+            if (!string.IsNullOrWhiteSpace(clientId.Text))
+            {
+                clientOptions.WithClientId(clientId.Text);
+            }
             if (useTls.Checked)
             {
                 clientOptions.WithTls();
@@ -126,6 +148,10 @@ namespace MqttClientTool
                 .WithClientOptions(clientOptions)
                 .Build();
             await mqttClient.StartAsync(options);
+            if (string.IsNullOrWhiteSpace(clientId.Text))
+            {
+                clientId.Text = mqttClient.Options.ClientOptions.ClientId;
+            }
         }
 
         private void MqttClient_ConnectingFailed(object sender, MqttManagedProcessFailedEventArgs e)
@@ -151,6 +177,11 @@ namespace MqttClientTool
                 return;
             }
             await mqttClient.StopAsync();
+        }
+
+        private void useWebSocket_CheckedChanged(object sender, EventArgs e)
+        {
+            port.Enabled = !useWebSocket.Checked;
         }
     }
 }

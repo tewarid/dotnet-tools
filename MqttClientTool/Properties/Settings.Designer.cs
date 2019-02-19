@@ -37,7 +37,7 @@ namespace MqttClientTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1883")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string port {
             get {
                 return ((string)(this["port"]));
@@ -92,6 +92,18 @@ namespace MqttClientTool.Properties {
             }
             set {
                 this["username"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string clientId {
+            get {
+                return ((string)(this["clientId"]));
+            }
+            set {
+                this["clientId"] = value;
             }
         }
     }

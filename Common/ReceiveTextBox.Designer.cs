@@ -39,10 +39,10 @@ namespace Common
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(0, 1);
+            this.label.Location = new System.Drawing.Point(4, 0);
             this.label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(105, 17);
+            this.label.Size = new System.Drawing.Size(78, 13);
             this.label.TabIndex = 13;
             this.label.Text = "Output (UTF-8)";
             // 
@@ -52,24 +52,24 @@ namespace Common
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputText.Location = new System.Drawing.Point(0, 21);
+            this.outputText.Location = new System.Drawing.Point(7, 17);
             this.outputText.Margin = new System.Windows.Forms.Padding(4);
             this.outputText.MaxLength = 1000000;
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
             this.outputText.ReadOnly = true;
             this.outputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputText.Size = new System.Drawing.Size(376, 291);
+            this.outputText.Size = new System.Drawing.Size(367, 295);
             this.outputText.TabIndex = 0;
             // 
             // viewInHex
             // 
             this.viewInHex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.viewInHex.AutoSize = true;
-            this.viewInHex.Location = new System.Drawing.Point(0, 322);
+            this.viewInHex.Location = new System.Drawing.Point(11, 320);
             this.viewInHex.Margin = new System.Windows.Forms.Padding(4);
             this.viewInHex.Name = "viewInHex";
-            this.viewInHex.Size = new System.Drawing.Size(267, 21);
+            this.viewInHex.Size = new System.Drawing.Size(203, 17);
             this.viewInHex.TabIndex = 2;
             this.viewInHex.Text = "Display in hexadecimal (e.g. BE 0xad)";
             this.viewInHex.UseVisualStyleBackColor = true;
@@ -77,7 +77,7 @@ namespace Common
             // clearButton
             // 
             this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearButton.Location = new System.Drawing.Point(301, 320);
+            this.clearButton.Location = new System.Drawing.Point(299, 316);
             this.clearButton.Margin = new System.Windows.Forms.Padding(4);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
@@ -94,7 +94,7 @@ namespace Common
             this.Controls.Add(this.clearButton);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ReceiveTextBox";
-            this.Size = new System.Drawing.Size(380, 347);
+            this.Size = new System.Drawing.Size(378, 347);
             this.ResumeLayout(false);
             this.PerformLayout();
 
