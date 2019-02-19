@@ -81,7 +81,7 @@ namespace MqttClientTool
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(157, 11);
+            this.label2.Location = new System.Drawing.Point(221, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 5;
@@ -89,7 +89,7 @@ namespace MqttClientTool
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(567, 62);
+            this.start.Location = new System.Drawing.Point(632, 62);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(75, 23);
             this.start.TabIndex = 12;
@@ -99,7 +99,7 @@ namespace MqttClientTool
             // 
             // stop
             // 
-            this.stop.Location = new System.Drawing.Point(648, 62);
+            this.stop.Location = new System.Drawing.Point(713, 62);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(75, 23);
             this.stop.TabIndex = 13;
@@ -310,7 +310,7 @@ namespace MqttClientTool
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(231, 10);
+            this.label5.Location = new System.Drawing.Point(295, 10);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 13);
             this.label5.TabIndex = 19;
@@ -318,7 +318,7 @@ namespace MqttClientTool
             // 
             // password
             // 
-            this.password.Location = new System.Drawing.Point(334, 26);
+            this.password.Location = new System.Drawing.Point(398, 26);
             this.password.Name = "password";
             this.password.PasswordChar = '*';
             this.password.Size = new System.Drawing.Size(94, 20);
@@ -327,7 +327,7 @@ namespace MqttClientTool
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(331, 10);
+            this.label6.Location = new System.Drawing.Point(395, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 21;
@@ -347,7 +347,7 @@ namespace MqttClientTool
             this.clientId.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "clientId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.clientId.Location = new System.Drawing.Point(5, 64);
             this.clientId.Name = "clientId";
-            this.clientId.Size = new System.Drawing.Size(316, 20);
+            this.clientId.Size = new System.Drawing.Size(280, 20);
             this.clientId.TabIndex = 9;
             this.clientId.Text = global::MqttClientTool.Properties.Settings.Default.clientId;
             // 
@@ -356,14 +356,14 @@ namespace MqttClientTool
             this.host.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "host", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.host.Location = new System.Drawing.Point(5, 26);
             this.host.Name = "host";
-            this.host.Size = new System.Drawing.Size(149, 20);
+            this.host.Size = new System.Drawing.Size(213, 20);
             this.host.TabIndex = 4;
             this.host.Text = global::MqttClientTool.Properties.Settings.Default.host;
             // 
             // username
             // 
             this.username.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "username", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.username.Location = new System.Drawing.Point(234, 26);
+            this.username.Location = new System.Drawing.Point(298, 26);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(94, 20);
             this.username.TabIndex = 7;
@@ -372,7 +372,7 @@ namespace MqttClientTool
             // port
             // 
             this.port.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "port", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.port.Location = new System.Drawing.Point(160, 26);
+            this.port.Location = new System.Drawing.Point(224, 26);
             this.port.Name = "port";
             this.port.Size = new System.Drawing.Size(61, 20);
             this.port.TabIndex = 6;
@@ -383,7 +383,7 @@ namespace MqttClientTool
             this.useWebSocket.AutoSize = true;
             this.useWebSocket.Checked = global::MqttClientTool.Properties.Settings.Default.useWebSocket;
             this.useWebSocket.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::MqttClientTool.Properties.Settings.Default, "useWebSocket", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.useWebSocket.Location = new System.Drawing.Point(449, 28);
+            this.useWebSocket.Location = new System.Drawing.Point(519, 28);
             this.useWebSocket.Name = "useWebSocket";
             this.useWebSocket.Size = new System.Drawing.Size(105, 17);
             this.useWebSocket.TabIndex = 10;
@@ -396,7 +396,7 @@ namespace MqttClientTool
             this.useTls.AutoSize = true;
             this.useTls.Checked = global::MqttClientTool.Properties.Settings.Default.useTls;
             this.useTls.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::MqttClientTool.Properties.Settings.Default, "useTls", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.useTls.Location = new System.Drawing.Point(449, 52);
+            this.useTls.Location = new System.Drawing.Point(519, 52);
             this.useTls.Name = "useTls";
             this.useTls.Size = new System.Drawing.Size(68, 17);
             this.useTls.TabIndex = 11;
