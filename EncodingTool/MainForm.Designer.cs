@@ -42,10 +42,11 @@ namespace EncodingTool
             // 
             this.input.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input.Location = new System.Drawing.Point(13, 13);
+            this.input.Location = new System.Drawing.Point(10, 11);
+            this.input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.input.Name = "input";
-            this.input.Padding = new System.Windows.Forms.Padding(4);
-            this.input.Size = new System.Drawing.Size(775, 210);
+            this.input.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.input.Size = new System.Drawing.Size(581, 171);
             this.input.TabIndex = 0;
             // 
             // output
@@ -53,10 +54,9 @@ namespace EncodingTool
             this.output.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.output.Location = new System.Drawing.Point(13, 258);
-            this.output.Margin = new System.Windows.Forms.Padding(4);
+            this.output.Location = new System.Drawing.Point(10, 210);
             this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(774, 179);
+            this.output.Size = new System.Drawing.Size(580, 145);
             this.output.TabIndex = 1;
             // 
             // convertTo
@@ -65,18 +65,20 @@ namespace EncodingTool
             | System.Windows.Forms.AnchorStyles.Right)));
             this.convertTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.convertTo.FormattingEnabled = true;
-            this.convertTo.Location = new System.Drawing.Point(13, 230);
+            this.convertTo.Location = new System.Drawing.Point(10, 187);
+            this.convertTo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.convertTo.Name = "convertTo";
-            this.convertTo.Size = new System.Drawing.Size(514, 24);
+            this.convertTo.Size = new System.Drawing.Size(386, 21);
             this.convertTo.TabIndex = 2;
             // 
             // saveToClipboard
             // 
             this.saveToClipboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveToClipboard.AutoSize = true;
-            this.saveToClipboard.Location = new System.Drawing.Point(547, 232);
+            this.saveToClipboard.Location = new System.Drawing.Point(400, 188);
+            this.saveToClipboard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.saveToClipboard.Name = "saveToClipboard";
-            this.saveToClipboard.Size = new System.Drawing.Size(142, 21);
+            this.saveToClipboard.Size = new System.Drawing.Size(110, 17);
             this.saveToClipboard.TabIndex = 3;
             this.saveToClipboard.Text = "Save to Clipboard";
             this.saveToClipboard.UseVisualStyleBackColor = true;
@@ -84,7 +86,8 @@ namespace EncodingTool
             // convert
             // 
             this.convert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.convert.Location = new System.Drawing.Point(712, 229);
+            this.convert.Location = new System.Drawing.Point(514, 184);
+            this.convert.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.convert.Name = "convert";
             this.convert.Size = new System.Drawing.Size(75, 23);
             this.convert.TabIndex = 4;
@@ -94,15 +97,16 @@ namespace EncodingTool
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.convert);
             this.Controls.Add(this.saveToClipboard);
             this.Controls.Add(this.convertTo);
             this.Controls.Add(this.output);
             this.Controls.Add(this.input);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Encoding Tool";

@@ -38,6 +38,7 @@ namespace UdpTool
             this.sendButton = new System.Windows.Forms.Button();
             this.destinationPort = new System.Windows.Forms.TextBox();
             this.destinationIPAddress = new System.Windows.Forms.TextBox();
+            this.input = new Common.SendTextBox();
             this.bind = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@ namespace UdpTool
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.input = new Common.SendTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.multicastGroupBox.SuspendLayout();
@@ -105,9 +105,9 @@ namespace UdpTool
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendButton.Location = new System.Drawing.Point(311, 417);
+            this.sendButton.Location = new System.Drawing.Point(308, 410);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(75, 19);
+            this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 15;
             this.sendButton.Text = "Send";
             this.sendButton.UseVisualStyleBackColor = true;
@@ -127,9 +127,22 @@ namespace UdpTool
             this.destinationIPAddress.Size = new System.Drawing.Size(133, 20);
             this.destinationIPAddress.TabIndex = 8;
             // 
+            // input
+            // 
+            this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.input.Location = new System.Drawing.Point(0, 54);
+            this.input.Margin = new System.Windows.Forms.Padding(4);
+            this.input.MinimumSize = new System.Drawing.Size(280, 130);
+            this.input.Name = "input";
+            this.input.Padding = new System.Windows.Forms.Padding(3);
+            this.input.Size = new System.Drawing.Size(388, 385);
+            this.input.TabIndex = 16;
+            // 
             // bind
             // 
-            this.bind.Location = new System.Drawing.Point(9, 84);
+            this.bind.Location = new System.Drawing.Point(55, 84);
             this.bind.Name = "bind";
             this.bind.Size = new System.Drawing.Size(75, 23);
             this.bind.TabIndex = 3;
@@ -197,7 +210,7 @@ namespace UdpTool
             // 
             // join
             // 
-            this.join.Location = new System.Drawing.Point(10, 60);
+            this.join.Location = new System.Drawing.Point(61, 61);
             this.join.Name = "join";
             this.join.Size = new System.Drawing.Size(75, 23);
             this.join.TabIndex = 6;
@@ -264,7 +277,7 @@ namespace UdpTool
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outputText.Location = new System.Drawing.Point(6, 124);
-            this.outputText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.outputText.Margin = new System.Windows.Forms.Padding(4);
             this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
             this.outputText.Size = new System.Drawing.Size(381, 312);
@@ -302,19 +315,6 @@ namespace UdpTool
             this.splitContainer1.Size = new System.Drawing.Size(784, 439);
             this.splitContainer1.SplitterDistance = 391;
             this.splitContainer1.TabIndex = 3;
-            // 
-            // input
-            // 
-            this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.input.Location = new System.Drawing.Point(0, 54);
-            this.input.Margin = new System.Windows.Forms.Padding(4);
-            this.input.MinimumSize = new System.Drawing.Size(280, 130);
-            this.input.Name = "input";
-            this.input.Padding = new System.Windows.Forms.Padding(3);
-            this.input.Size = new System.Drawing.Size(388, 385);
-            this.input.TabIndex = 16;
             // 
             // MainForm
             // 

@@ -69,7 +69,7 @@ namespace WebSocketTool
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendButton.Location = new System.Drawing.Point(312, 410);
+            this.sendButton.Location = new System.Drawing.Point(311, 407);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 7;
@@ -129,7 +129,7 @@ namespace WebSocketTool
             // 
             this.proxyButton.Location = new System.Drawing.Point(117, 94);
             this.proxyButton.Name = "proxyButton";
-            this.proxyButton.Size = new System.Drawing.Size(82, 23);
+            this.proxyButton.Size = new System.Drawing.Size(87, 23);
             this.proxyButton.TabIndex = 2;
             this.proxyButton.Text = "HTTP Proxy...";
             this.proxyButton.UseVisualStyleBackColor = true;
