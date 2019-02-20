@@ -36,17 +36,19 @@ namespace MqttClientTool
             this.start = new System.Windows.Forms.Button();
             this.stop = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label8 = new System.Windows.Forms.Label();
+            this.topicSubscribe = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.qosSubscribe = new System.Windows.Forms.ComboBox();
             this.unsubscribe = new System.Windows.Forms.Button();
             this.subscribe = new System.Windows.Forms.Button();
             this.subscriptions = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.output = new Common.ReceiveTextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.qosPublish = new System.Windows.Forms.ComboBox();
             this.retain = new System.Windows.Forms.CheckBox();
-            this.topic = new System.Windows.Forms.TextBox();
+            this.topicPublish = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.publish = new System.Windows.Forms.Button();
             this.input = new Common.SendTextBox();
@@ -80,6 +82,7 @@ namespace MqttClientTool
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(221, 11);
             this.label2.Name = "label2";
@@ -89,6 +92,7 @@ namespace MqttClientTool
             // 
             // start
             // 
+            this.start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.start.Location = new System.Drawing.Point(632, 62);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(75, 23);
@@ -99,6 +103,7 @@ namespace MqttClientTool
             // 
             // stop
             // 
+            this.stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.stop.Location = new System.Drawing.Point(713, 62);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(75, 23);
@@ -117,20 +122,22 @@ namespace MqttClientTool
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.label8);
+            this.splitContainer1.Panel1.Controls.Add(this.topicSubscribe);
+            this.splitContainer1.Panel1.Controls.Add(this.label10);
             this.splitContainer1.Panel1.Controls.Add(this.qosSubscribe);
             this.splitContainer1.Panel1.Controls.Add(this.unsubscribe);
             this.splitContainer1.Panel1.Controls.Add(this.subscribe);
             this.splitContainer1.Panel1.Controls.Add(this.subscriptions);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.output);
+            this.splitContainer1.Panel1.Controls.Add(this.label8);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.label7);
             this.splitContainer1.Panel2.Controls.Add(this.qosPublish);
             this.splitContainer1.Panel2.Controls.Add(this.retain);
-            this.splitContainer1.Panel2.Controls.Add(this.topic);
+            this.splitContainer1.Panel2.Controls.Add(this.topicPublish);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.publish);
             this.splitContainer1.Panel2.Controls.Add(this.input);
@@ -138,14 +145,23 @@ namespace MqttClientTool
             this.splitContainer1.SplitterDistance = 392;
             this.splitContainer1.TabIndex = 17;
             // 
-            // label8
+            // topicSubscribe
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(4, 67);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(119, 13);
-            this.label8.TabIndex = 30;
-            this.label8.Text = "Quality of Service Level";
+            this.topicSubscribe.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "topicSubscribe", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.topicSubscribe.Location = new System.Drawing.Point(10, 61);
+            this.topicSubscribe.Name = "topicSubscribe";
+            this.topicSubscribe.Size = new System.Drawing.Size(164, 20);
+            this.topicSubscribe.TabIndex = 23;
+            this.topicSubscribe.Text = global::MqttClientTool.Properties.Settings.Default.topicSubscribe;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 45);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.TabIndex = 31;
+            this.label10.Text = "Topic";
             // 
             // qosSubscribe
             // 
@@ -155,30 +171,29 @@ namespace MqttClientTool
             "QoS 0 (at most once)",
             "QoS 1 (at least once)",
             "QoS 2 (exactly once)"});
-            this.qosSubscribe.Location = new System.Drawing.Point(7, 83);
+            this.qosSubscribe.Location = new System.Drawing.Point(10, 21);
             this.qosSubscribe.Name = "qosSubscribe";
             this.qosSubscribe.Size = new System.Drawing.Size(164, 21);
-            this.qosSubscribe.TabIndex = 23;
+            this.qosSubscribe.TabIndex = 22;
             // 
             // unsubscribe
             // 
             this.unsubscribe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.unsubscribe.Location = new System.Drawing.Point(312, 81);
+            this.unsubscribe.Location = new System.Drawing.Point(311, 87);
             this.unsubscribe.Name = "unsubscribe";
             this.unsubscribe.Size = new System.Drawing.Size(75, 23);
-            this.unsubscribe.TabIndex = 25;
+            this.unsubscribe.TabIndex = 26;
             this.unsubscribe.Text = "Remove";
             this.unsubscribe.UseVisualStyleBackColor = true;
             this.unsubscribe.Click += new System.EventHandler(this.Unsubscribe_Click);
             // 
             // subscribe
             // 
-            this.subscribe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.subscribe.Location = new System.Drawing.Point(231, 81);
+            this.subscribe.Location = new System.Drawing.Point(99, 87);
             this.subscribe.Name = "subscribe";
             this.subscribe.Size = new System.Drawing.Size(75, 23);
             this.subscribe.TabIndex = 24;
-            this.subscribe.Text = "Subscribe...";
+            this.subscribe.Text = "Subscribe";
             this.subscribe.UseVisualStyleBackColor = true;
             this.subscribe.Click += new System.EventHandler(this.Subscribe_Click);
             // 
@@ -188,16 +203,16 @@ namespace MqttClientTool
             | System.Windows.Forms.AnchorStyles.Right)));
             this.subscriptions.FormattingEnabled = true;
             this.subscriptions.IntegralHeight = false;
-            this.subscriptions.Location = new System.Drawing.Point(7, 21);
+            this.subscriptions.Location = new System.Drawing.Point(183, 21);
             this.subscriptions.Name = "subscriptions";
-            this.subscriptions.Size = new System.Drawing.Size(380, 40);
+            this.subscriptions.Size = new System.Drawing.Size(203, 60);
             this.subscriptions.Sorted = true;
-            this.subscriptions.TabIndex = 22;
+            this.subscriptions.TabIndex = 25;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 5);
+            this.label4.Location = new System.Drawing.Point(180, 5);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(91, 13);
             this.label4.TabIndex = 18;
@@ -208,11 +223,20 @@ namespace MqttClientTool
             this.output.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.output.Location = new System.Drawing.Point(2, 111);
+            this.output.Location = new System.Drawing.Point(2, 117);
             this.output.Margin = new System.Windows.Forms.Padding(4);
             this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(385, 222);
-            this.output.TabIndex = 26;
+            this.output.Size = new System.Drawing.Size(385, 216);
+            this.output.TabIndex = 27;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 5);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(119, 13);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "Quality of Service Level";
             // 
             // label7
             // 
@@ -249,16 +273,16 @@ namespace MqttClientTool
             this.retain.Text = "Set Retain Flag";
             this.retain.UseVisualStyleBackColor = true;
             // 
-            // topic
+            // topicPublish
             // 
-            this.topic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.topicPublish.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.topic.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "topic", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.topic.Location = new System.Drawing.Point(9, 20);
-            this.topic.Name = "topic";
-            this.topic.Size = new System.Drawing.Size(384, 20);
-            this.topic.TabIndex = 30;
-            this.topic.Text = global::MqttClientTool.Properties.Settings.Default.topic;
+            this.topicPublish.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "topicPublish", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.topicPublish.Location = new System.Drawing.Point(9, 20);
+            this.topicPublish.Name = "topicPublish";
+            this.topicPublish.Size = new System.Drawing.Size(384, 20);
+            this.topicPublish.TabIndex = 30;
+            this.topicPublish.Text = global::MqttClientTool.Properties.Settings.Default.topicPublish;
             // 
             // label3
             // 
@@ -309,6 +333,7 @@ namespace MqttClientTool
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(295, 10);
             this.label5.Name = "label5";
@@ -318,6 +343,7 @@ namespace MqttClientTool
             // 
             // password
             // 
+            this.password.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.password.Location = new System.Drawing.Point(398, 26);
             this.password.Name = "password";
             this.password.PasswordChar = '*';
@@ -326,6 +352,7 @@ namespace MqttClientTool
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(395, 10);
             this.label6.Name = "label6";
@@ -353,6 +380,8 @@ namespace MqttClientTool
             // 
             // host
             // 
+            this.host.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.host.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "host", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.host.Location = new System.Drawing.Point(5, 26);
             this.host.Name = "host";
@@ -362,6 +391,7 @@ namespace MqttClientTool
             // 
             // username
             // 
+            this.username.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.username.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "username", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.username.Location = new System.Drawing.Point(298, 26);
             this.username.Name = "username";
@@ -371,6 +401,7 @@ namespace MqttClientTool
             // 
             // port
             // 
+            this.port.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.port.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "port", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.port.Location = new System.Drawing.Point(224, 26);
             this.port.Name = "port";
@@ -380,6 +411,7 @@ namespace MqttClientTool
             // 
             // useWebSocket
             // 
+            this.useWebSocket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.useWebSocket.AutoSize = true;
             this.useWebSocket.Checked = global::MqttClientTool.Properties.Settings.Default.useWebSocket;
             this.useWebSocket.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::MqttClientTool.Properties.Settings.Default, "useWebSocket", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -389,10 +421,11 @@ namespace MqttClientTool
             this.useWebSocket.TabIndex = 10;
             this.useWebSocket.Text = "Use WebSocket";
             this.useWebSocket.UseVisualStyleBackColor = true;
-            this.useWebSocket.CheckedChanged += new System.EventHandler(this.useWebSocket_CheckedChanged);
+            this.useWebSocket.CheckedChanged += new System.EventHandler(this.UseWebSocket_CheckedChanged);
             // 
             // useTls
             // 
+            this.useTls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.useTls.AutoSize = true;
             this.useTls.Checked = global::MqttClientTool.Properties.Settings.Default.useTls;
             this.useTls.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::MqttClientTool.Properties.Settings.Default, "useTls", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -456,7 +489,7 @@ namespace MqttClientTool
         private System.Windows.Forms.ListBox subscriptions;
         private System.Windows.Forms.Label label4;
         private Common.ReceiveTextBox output;
-        private System.Windows.Forms.TextBox topic;
+        private System.Windows.Forms.TextBox topicPublish;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button publish;
         private Common.SendTextBox input;
@@ -473,6 +506,8 @@ namespace MqttClientTool
         private ComboBox qosSubscribe;
         private Label label9;
         private TextBox clientId;
+        private TextBox topicSubscribe;
+        private Label label10;
     }
 }
 

@@ -74,12 +74,12 @@ namespace MqttClientTool.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("test/topic")]
-        public string topic {
+        public string topicPublish {
             get {
-                return ((string)(this["topic"]));
+                return ((string)(this["topicPublish"]));
             }
             set {
-                this["topic"] = value;
+                this["topicPublish"] = value;
             }
         }
         
@@ -104,6 +104,18 @@ namespace MqttClientTool.Properties {
             }
             set {
                 this["clientId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("test/topic")]
+        public string topicSubscribe {
+            get {
+                return ((string)(this["topicSubscribe"]));
+            }
+            set {
+                this["topicSubscribe"] = value;
             }
         }
     }

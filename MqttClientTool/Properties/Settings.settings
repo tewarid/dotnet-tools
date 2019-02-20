@@ -14,7 +14,7 @@
     <Setting Name="useWebSocket" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="topic" Type="System.String" Scope="User">
+    <Setting Name="topicPublish" Type="System.String" Scope="User">
       <Value Profile="(Default)">test/topic</Value>
     </Setting>
     <Setting Name="username" Type="System.String" Scope="User">
@@ -22,6 +22,9 @@
     </Setting>
     <Setting Name="clientId" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="topicSubscribe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">test/topic</Value>
     </Setting>
   </Settings>
 </SettingsFile>

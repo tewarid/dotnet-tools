@@ -12,7 +12,6 @@ namespace MqttClientTool
 {
     public partial class MainForm : Form
     {
-        private readonly InputDialog<Topic> dialog = new InputDialog<Topic>();
         private IManagedMqttClient mqttClient;
 
         public MainForm()
@@ -28,7 +27,7 @@ namespace MqttClientTool
             }
             MqttApplicationMessageBuilder messageBuilder = new MqttApplicationMessageBuilder()
                 .WithPayload(new MemoryStream(input.Bytes), input.Bytes.Length)
-                .WithTopic(topic.Text);
+                .WithTopic(topicPublish.Text);
             if (qosPublish.SelectedIndex >= 0)
             {
                 messageBuilder.WithQualityOfServiceLevel((MqttQualityOfServiceLevel)qosPublish.SelectedIndex);
@@ -61,25 +60,28 @@ namespace MqttClientTool
             {
                 return;
             }
-            if (dialog.Show(this, "Specify topic to subscribe to", string.Empty) == DialogResult.OK)
+            if (!string.IsNullOrWhiteSpace(topicSubscribe.Text))
             {
-                if (!string.IsNullOrWhiteSpace(dialog.Value.Text))
+                int index = subscriptions.Items.IndexOf(topicSubscribe.Text);
+                if (index >= 0)
                 {
-                    TopicFilterBuilder builder = new TopicFilterBuilder()
-                        .WithTopic(dialog.Value.Text);
-                    if (qosSubscribe.SelectedIndex >= 0)
-                    {
-                        builder.WithQualityOfServiceLevel((MqttQualityOfServiceLevel)qosSubscribe.SelectedIndex);
-                    }
-                    try
-                    {
-                        await mqttClient.SubscribeAsync(builder.Build());
-                        subscriptions.Items.Add(dialog.Value.Text);
-                    }
-                    catch(Exception ex)
-                    {
-                        MessageBox.Show(this, ex.Message);
-                    }
+                    subscriptions.SelectedIndex = index;
+                    return;
+                }
+                TopicFilterBuilder builder = new TopicFilterBuilder()
+                    .WithTopic(topicSubscribe.Text);
+                if (qosSubscribe.SelectedIndex >= 0)
+                {
+                    builder.WithQualityOfServiceLevel((MqttQualityOfServiceLevel)qosSubscribe.SelectedIndex);
+                }
+                try
+                {
+                    await mqttClient.SubscribeAsync(builder.Build());
+                    subscriptions.Items.Add(topicSubscribe.Text);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message);
                 }
             }
         }
@@ -179,7 +181,7 @@ namespace MqttClientTool
             await mqttClient.StopAsync();
         }
 
-        private void useWebSocket_CheckedChanged(object sender, EventArgs e)
+        private void UseWebSocket_CheckedChanged(object sender, EventArgs e)
         {
             port.Enabled = !useWebSocket.Checked;
         }
