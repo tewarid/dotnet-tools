@@ -149,7 +149,14 @@ namespace MqttClientTool
                 .WithAutoReconnectDelay(TimeSpan.FromSeconds(30))
                 .WithClientOptions(clientOptions)
                 .Build();
-            await mqttClient.StartAsync(options);
+            try
+            {
+                await mqttClient.StartAsync(options);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
             if (string.IsNullOrWhiteSpace(clientId.Text))
             {
                 clientId.Text = mqttClient.Options.ClientOptions.ClientId;
@@ -178,6 +185,7 @@ namespace MqttClientTool
             {
                 return;
             }
+            status.Text = "Stopping...";
             await mqttClient.StopAsync();
         }
 
