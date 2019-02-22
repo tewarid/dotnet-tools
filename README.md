@@ -75,6 +75,10 @@ Simple HTTP(S) server built using [System.Net.HttpListener](https://msdn.microso
 
 Interactive client that uses raw sockets to send/receive ICMP messages. Requires administrative privilege.
 
+## MQTT Client Tool
+
+Simple interactive MQTT 3.1.1 client based on the [MQTTnet](https://github.com/chkr1011/MQTTnet) library.
+
 ## Route Tool
 
 Interactive client to add, view, and delete IP v4 routes on Windows. Requires PowerShell, which is available by default on Windows 7 and beyond. Requires administrative privilege.
