@@ -56,7 +56,7 @@ namespace WebSocketServerTool
 
             if (type == WebSocketMessageType.Binary)
             {
-                outputText.Append(message, length);
+                outputText.AppendBinary(message, length);
             }
             else
             {
@@ -76,11 +76,11 @@ namespace WebSocketServerTool
         {
             if (input.Binary)
             {
-                context.Send(input.Bytes, WebSocketMessageType.Binary);
+                context.Send(input.BinaryValue, WebSocketMessageType.Binary);
             }
             else
             {
-                context.Send(input.Bytes, WebSocketMessageType.Text);
+                context.Send(input.BinaryValue, WebSocketMessageType.Text);
             }
         }
 

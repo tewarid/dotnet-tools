@@ -49,7 +49,7 @@ namespace SerialTool
 
             sendButton.Enabled = false;
 
-            byte[] data = input.Bytes;
+            byte[] data = input.BinaryValue;
             if (data.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
@@ -86,9 +86,12 @@ namespace SerialTool
                 return;
             }
 
-            outputText.Append(data, length);
-            outputText.AppendTextInHexMode(Environment.NewLine);
-            outputText.AppendTextInHexMode(Environment.NewLine);
+            outputText.AppendBinary(data, length);
+            if (outputText.AppendBinaryChecked)
+            {
+                outputText.AppendText(Environment.NewLine);
+                outputText.AppendText(Environment.NewLine);
+            }
         }
 
         private void CreateSerialPort()

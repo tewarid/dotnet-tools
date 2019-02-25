@@ -46,7 +46,7 @@ namespace WebSocketTool
 
         private async Task SendAsync()
         {
-            byte[] data = sendTextBox.Bytes;
+            byte[] data = sendTextBox.BinaryValue;
             if (data.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
@@ -83,7 +83,7 @@ namespace WebSocketTool
                     DateTime.Now, Environment.NewLine));
             }
 
-            outputText.Append(data, length);
+            outputText.AppendBinary(data, length);
 
             if (lastMessage)
             {

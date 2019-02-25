@@ -31,8 +31,8 @@ namespace EncodingTool
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.input = new Common.SendTextBox();
-            this.output = new Common.ReceiveTextBox();
+            this.input = new Common.InputTextBox();
+            this.output = new Common.OutputTextBox();
             this.convertTo = new System.Windows.Forms.ComboBox();
             this.saveToClipboard = new System.Windows.Forms.CheckBox();
             this.convert = new System.Windows.Forms.Button();
@@ -117,8 +117,8 @@ namespace EncodingTool
 
         #endregion
 
-        private Common.SendTextBox input;
-        private Common.ReceiveTextBox output;
+        private Common.InputTextBox input;
+        private Common.OutputTextBox output;
         private System.Windows.Forms.ComboBox convertTo;
         private System.Windows.Forms.CheckBox saveToClipboard;
         private System.Windows.Forms.Button convert;

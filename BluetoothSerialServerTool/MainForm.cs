@@ -100,7 +100,7 @@ namespace BluetoothSppServerTool
                 }
 
                 // UI context resumes here
-                outputText.Append(buffer, length);
+                outputText.AppendBinary(buffer, length);
             }
         }
 
@@ -171,7 +171,7 @@ namespace BluetoothSppServerTool
 
         private async void SendButton_Click(object sender, EventArgs e)
         {
-            await SendAsync(input.Bytes).ConfigureAwait(true);
+            await SendAsync(input.BinaryValue).ConfigureAwait(true);
         }
     }
 }

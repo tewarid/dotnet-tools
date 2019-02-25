@@ -31,10 +31,10 @@ namespace WebSocketSharpServerTool
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
-            this.outputText = new Common.ReceiveTextBox();
+            this.outputText = new Common.OutputTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.sendButton = new System.Windows.Forms.Button();
-            this.input = new Common.SendTextBox();
+            this.input = new Common.InputTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -168,10 +168,10 @@ namespace WebSocketSharpServerTool
 
         #endregion
 
-        private Common.ReceiveTextBox outputText;
+        private Common.OutputTextBox outputText;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button sendButton;
-        private Common.SendTextBox input;
+        private Common.InputTextBox input;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.SplitContainer splitContainer1;

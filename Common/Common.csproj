@@ -83,17 +83,17 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfoCommon.cs" />
-    <Compile Include="ReceiveTextBox.cs">
+    <Compile Include="OutputTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReceiveTextBox.Designer.cs">
-      <DependentUpon>ReceiveTextBox.cs</DependentUpon>
+    <Compile Include="OutputTextBox.Designer.cs">
+      <DependentUpon>OutputTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="SendTextBox.cs">
+    <Compile Include="InputTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SendTextBox.Designer.cs">
-      <DependentUpon>SendTextBox.cs</DependentUpon>
+    <Compile Include="InputTextBox.Designer.cs">
+      <DependentUpon>InputTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="TextEncoding.cs" />
   </ItemGroup>
@@ -113,11 +113,11 @@
     <EmbeddedResource Include="NameValueGrid.resx">
       <DependentUpon>NameValueGrid.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReceiveTextBox.resx">
-      <DependentUpon>ReceiveTextBox.cs</DependentUpon>
+    <EmbeddedResource Include="OutputTextBox.resx">
+      <DependentUpon>OutputTextBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SendTextBox.resx">
-      <DependentUpon>SendTextBox.cs</DependentUpon>
+    <EmbeddedResource Include="InputTextBox.resx">
+      <DependentUpon>InputTextBox.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

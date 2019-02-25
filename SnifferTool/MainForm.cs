@@ -130,7 +130,7 @@ namespace SnifferTool
             output.AppendText(string.Format("Received {0} bytes from {1} on {2}:{3}",
                 length, remoteEndPoint.ToString(), dateTime, 
                 Environment.NewLine));
-            output.Append(data, length);
+            output.AppendBinary(data, length);
             output.AppendText(Environment.NewLine);
             output.AppendText(Environment.NewLine);
         }

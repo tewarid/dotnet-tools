@@ -33,11 +33,11 @@ namespace WebSocketSharpTool
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.sendButton = new System.Windows.Forms.Button();
-            this.sendTextBox = new Common.SendTextBox();
+            this.sendTextBox = new Common.InputTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.proxyButton = new System.Windows.Forms.Button();
-            this.outputText = new Common.ReceiveTextBox();
+            this.outputText = new Common.OutputTextBox();
             this.location = new System.Windows.Forms.TextBox();
             this.setHeaders = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
@@ -249,8 +249,8 @@ namespace WebSocketSharpTool
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
-        private Common.SendTextBox sendTextBox;
-        private Common.ReceiveTextBox outputText;
+        private Common.InputTextBox sendTextBox;
+        private Common.OutputTextBox outputText;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button proxyButton;

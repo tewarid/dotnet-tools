@@ -56,7 +56,7 @@ namespace UdpTool
 
             sendButton.Enabled = false;
 
-            byte[] data = input.Bytes;
+            byte[] data = input.BinaryValue;
             if (data.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
@@ -89,7 +89,7 @@ namespace UdpTool
 
             outputText.AppendText(string.Format("{0} sent {1} bytes(s):\r\n", endPoint.ToString(), data.Length));
             status.Text = string.Format("Received {0} byte(s) from {1}", data.Length, endPoint.ToString());
-            outputText.Append(data, data.Length);
+            outputText.AppendBinary(data, data.Length);
             outputText.AppendText(Environment.NewLine);
             outputText.AppendText(Environment.NewLine);
         }

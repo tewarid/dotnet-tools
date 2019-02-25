@@ -46,7 +46,7 @@ namespace HttpListenerTool
             this.responseStatusCode = new System.Windows.Forms.ComboBox();
             this.responseHeaders = new NetTools.Common.NameValueGrid();
             this.responseContentType = new NetTools.Common.ContentTypeSelector();
-            this.responseContent = new Common.SendTextBox();
+            this.responseContent = new Common.InputTextBox();
             this.SuspendLayout();
             // 
             // uri
@@ -265,7 +265,7 @@ namespace HttpListenerTool
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox responseStatusCode;
         private NetTools.Common.ContentTypeSelector responseContentType;
-        private Common.SendTextBox responseContent;
+        private Common.InputTextBox responseContent;
     }
 }
 

@@ -40,7 +40,7 @@ namespace WebSocketSharpTool
             {
                 if (sendTextBox.Binary)
                 {
-                    byte[] data = sendTextBox.Bytes;
+                    byte[] data = sendTextBox.BinaryValue;
 
                     if (data.Length <= 0)
                     {
@@ -64,7 +64,7 @@ namespace WebSocketSharpTool
                 }
                 else
                 {
-                    string text = sendTextBox.Text;
+                    string text = sendTextBox.TextValue;
                     if (text.Length <= 0)
                     {
                         MessageBox.Show(this, "Nothing to send.", this.Text);
@@ -114,7 +114,7 @@ namespace WebSocketSharpTool
                     DateTime.Now, Environment.NewLine));
             }
 
-            outputText.Append(data, length);
+            outputText.AppendBinary(data, length);
 
             if (lastMessage)
             {

@@ -34,13 +34,13 @@ namespace WebSocketTool
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.sendButton = new System.Windows.Forms.Button();
-            this.sendTextBox = new Common.SendTextBox();
+            this.sendTextBox = new Common.InputTextBox();
             this.connect = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.proxyButton = new System.Windows.Forms.Button();
             this.location = new System.Windows.Forms.TextBox();
-            this.outputText = new Common.ReceiveTextBox();
+            this.outputText = new Common.OutputTextBox();
             this.setHeaders = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -254,10 +254,10 @@ namespace WebSocketTool
         private System.Windows.Forms.TextBox location;
         private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.Button setHeaders;
-        private Common.ReceiveTextBox outputText;
+        private Common.OutputTextBox outputText;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button proxyButton;
-        private SendTextBox sendTextBox;
+        private InputTextBox sendTextBox;
     }
 }
 

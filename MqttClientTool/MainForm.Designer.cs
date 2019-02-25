@@ -43,7 +43,6 @@ namespace MqttClientTool
             this.subscribe = new System.Windows.Forms.Button();
             this.subscriptions = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.output = new Common.ReceiveTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.qosPublish = new System.Windows.Forms.ComboBox();
@@ -51,7 +50,6 @@ namespace MqttClientTool
             this.topicPublish = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.publish = new System.Windows.Forms.Button();
-            this.input = new Common.SendTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,6 +62,8 @@ namespace MqttClientTool
             this.port = new System.Windows.Forms.TextBox();
             this.useWebSocket = new System.Windows.Forms.CheckBox();
             this.useTls = new System.Windows.Forms.CheckBox();
+            this.output = new Common.OutputTextBox();
+            this.input = new Common.InputTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -218,17 +218,6 @@ namespace MqttClientTool
             this.label4.TabIndex = 18;
             this.label4.Text = "Subscribed topics";
             // 
-            // output
-            // 
-            this.output.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.output.Location = new System.Drawing.Point(2, 117);
-            this.output.Margin = new System.Windows.Forms.Padding(4);
-            this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(385, 216);
-            this.output.TabIndex = 27;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -303,17 +292,6 @@ namespace MqttClientTool
             this.publish.Text = "Publish";
             this.publish.UseVisualStyleBackColor = true;
             this.publish.Click += new System.EventHandler(this.Publish_Click);
-            // 
-            // input
-            // 
-            this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.input.Location = new System.Drawing.Point(2, 46);
-            this.input.Name = "input";
-            this.input.Padding = new System.Windows.Forms.Padding(4);
-            this.input.Size = new System.Drawing.Size(394, 243);
-            this.input.TabIndex = 31;
             // 
             // statusStrip1
             // 
@@ -436,6 +414,36 @@ namespace MqttClientTool
             this.useTls.Text = "Use TLS";
             this.useTls.UseVisualStyleBackColor = true;
             // 
+            // output
+            // 
+            this.output.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.output.AppendBinaryChecked = false;
+            this.output.DataBindings.Add(new System.Windows.Forms.Binding("TextValue", global::MqttClientTool.Properties.Settings.Default, "outputText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.output.Location = new System.Drawing.Point(2, 117);
+            this.output.Margin = new System.Windows.Forms.Padding(4);
+            this.output.Name = "output";
+            this.output.Size = new System.Drawing.Size(385, 216);
+            this.output.TabIndex = 27;
+            this.output.TextValue = global::MqttClientTool.Properties.Settings.Default.outputText;
+            // 
+            // input
+            // 
+            this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.input.Binary = false;
+            this.input.ChangeEndOfLine = true;
+            this.input.DataBindings.Add(new System.Windows.Forms.Binding("TextValue", global::MqttClientTool.Properties.Settings.Default, "inputText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.input.EndOfLine = Common.EndOfLine.Dos;
+            this.input.Location = new System.Drawing.Point(2, 46);
+            this.input.Name = "input";
+            this.input.Padding = new System.Windows.Forms.Padding(4);
+            this.input.Size = new System.Drawing.Size(394, 243);
+            this.input.TabIndex = 31;
+            this.input.TextValue = global::MqttClientTool.Properties.Settings.Default.inputText;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -488,11 +496,11 @@ namespace MqttClientTool
         private System.Windows.Forms.Button subscribe;
         private System.Windows.Forms.ListBox subscriptions;
         private System.Windows.Forms.Label label4;
-        private Common.ReceiveTextBox output;
+        private Common.OutputTextBox output;
         private System.Windows.Forms.TextBox topicPublish;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button publish;
-        private Common.SendTextBox input;
+        private Common.InputTextBox input;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel status;
         private TextBox username;

@@ -47,11 +47,11 @@ namespace EncodingTool
             string from;
             if (input.Binary)
             {
-                from = Encoding.UTF8.GetString(input.Bytes);
+                from = Encoding.UTF8.GetString(input.BinaryValue);
             }
             else
             {
-                from = input.Text;
+                from = input.TextValue;
             }
             byte[] to;
             switch ((Conversions)convertTo.SelectedValue)
@@ -86,7 +86,7 @@ namespace EncodingTool
                 default:
                     return;
             }
-            output.Append(to, to.Length);
+            output.AppendBinary(to, to.Length);
         }
     }
 }

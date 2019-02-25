@@ -26,5 +26,11 @@
     <Setting Name="topicSubscribe" Type="System.String" Scope="User">
       <Value Profile="(Default)">test/topic</Value>
     </Setting>
+    <Setting Name="inputText" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="outputText" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

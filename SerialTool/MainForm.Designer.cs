@@ -36,7 +36,7 @@ namespace SerialTool
             this.timeOutValue = new System.Windows.Forms.NumericUpDown();
             this.timeOut = new System.Windows.Forms.CheckBox();
             this.sendButton = new System.Windows.Forms.Button();
-            this.input = new Common.SendTextBox();
+            this.input = new Common.InputTextBox();
             this.close = new System.Windows.Forms.Button();
             this.refresh = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,7 +45,7 @@ namespace SerialTool
             this.label4 = new System.Windows.Forms.Label();
             this.serialPortName = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.outputText = new Common.ReceiveTextBox();
+            this.outputText = new Common.OutputTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -332,8 +332,8 @@ namespace SerialTool
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown timeOutValue;
         private System.Windows.Forms.CheckBox timeOut;
-        private Common.SendTextBox input;
-        private Common.ReceiveTextBox outputText;
+        private Common.InputTextBox input;
+        private Common.OutputTextBox outputText;
         private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }

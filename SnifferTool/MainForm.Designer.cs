@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.interfaceSelector = new Common.InterfaceSelectorComboBox();
-            this.output = new Common.ReceiveTextBox();
+            this.output = new Common.OutputTextBox();
             this.bind = new System.Windows.Forms.Button();
             this.close = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -130,7 +130,7 @@
         #endregion
 
         private Common.InterfaceSelectorComboBox interfaceSelector;
-        private Common.ReceiveTextBox output;
+        private Common.OutputTextBox output;
         private System.Windows.Forms.Button bind;
         private System.Windows.Forms.Button close;
         private System.Windows.Forms.Label label1;

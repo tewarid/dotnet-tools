@@ -39,7 +39,7 @@ namespace TcpClientTool
             this.label3 = new System.Windows.Forms.Label();
             this.open = new System.Windows.Forms.Button();
             this.sendButton = new System.Windows.Forms.Button();
-            this.input = new Common.SendTextBox();
+            this.input = new Common.InputTextBox();
             this.useSSL = new System.Windows.Forms.CheckBox();
             this.close = new System.Windows.Forms.Button();
             this.destinationIPAddress = new System.Windows.Forms.TextBox();
@@ -47,7 +47,7 @@ namespace TcpClientTool
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.outputText = new Common.ReceiveTextBox();
+            this.outputText = new Common.OutputTextBox();
             this.reuseAddress = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.sourcePort = new System.Windows.Forms.TextBox();
@@ -373,7 +373,7 @@ namespace TcpClientTool
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.Button close;
-        private Common.SendTextBox input;
+        private Common.InputTextBox input;
         private System.Windows.Forms.CheckBox useSSL;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
@@ -388,7 +388,7 @@ namespace TcpClientTool
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox pfxPassphrase;
         private System.Windows.Forms.Label label6;
-        private Common.ReceiveTextBox outputText;
+        private Common.OutputTextBox outputText;
     }
 }
 

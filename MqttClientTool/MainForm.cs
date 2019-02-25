@@ -26,7 +26,7 @@ namespace MqttClientTool
                 return;
             }
             MqttApplicationMessageBuilder messageBuilder = new MqttApplicationMessageBuilder()
-                .WithPayload(new MemoryStream(input.Bytes), input.Bytes.Length)
+                .WithPayload(new MemoryStream(input.BinaryValue), input.BinaryValue.Length)
                 .WithTopic(topicPublish.Text);
             if (qosPublish.SelectedIndex >= 0)
             {
@@ -43,7 +43,7 @@ namespace MqttClientTool
         {
             BeginInvoke(new MethodInvoker(() => {
                 output.AppendText($"Topic {e.ApplicationMessage.Topic} on {DateTime.Now}:{Environment.NewLine}");
-                output.Append(e.ApplicationMessage.Payload, e.ApplicationMessage.Payload.Length);
+                output.AppendBinary(e.ApplicationMessage.Payload, e.ApplicationMessage.Payload.Length);
                 output.AppendText(Environment.NewLine);
                 output.AppendText(Environment.NewLine);
             }));

@@ -91,7 +91,7 @@ namespace TcpClientTool
             sendButton.Enabled = false;
 
             int tickcount = 0;
-            byte[] data = input.Bytes;
+            byte[] data = input.BinaryValue;
             if (data.Length <= 0)
             {
                 sendButton.Enabled = true;
@@ -120,9 +120,12 @@ namespace TcpClientTool
 
         private void ShowReceivedData(byte[] data, int length)
         {
-            outputText.Append(data, length);
-            outputText.AppendTextInHexMode(Environment.NewLine);
-            outputText.AppendTextInHexMode(Environment.NewLine);
+            outputText.AppendBinary(data, length);
+            if (outputText.AppendBinaryChecked)
+            {
+                outputText.AppendText(Environment.NewLine);
+                outputText.AppendText(Environment.NewLine);
+            }
         }
 
         private void CreateTcpClient()

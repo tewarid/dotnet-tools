@@ -95,7 +95,7 @@ namespace BluetoothSerialClientTool
                     Stop();
                     break;
                 }
-                outputText.Append(buffer, length);
+                outputText.AppendBinary(buffer, length);
             }
         }
 
@@ -154,7 +154,7 @@ namespace BluetoothSerialClientTool
 
         private async void sendButton_Click(object sender, EventArgs e)
         {
-            await SendAsync(input.Bytes).ConfigureAwait(true);
+            await SendAsync(input.BinaryValue).ConfigureAwait(true);
         }
     }
 }

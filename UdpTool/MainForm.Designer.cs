@@ -38,7 +38,7 @@ namespace UdpTool
             this.sendButton = new System.Windows.Forms.Button();
             this.destinationPort = new System.Windows.Forms.TextBox();
             this.destinationIPAddress = new System.Windows.Forms.TextBox();
-            this.input = new Common.SendTextBox();
+            this.input = new Common.InputTextBox();
             this.bind = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@ namespace UdpTool
             this.sourceIPAddress = new Common.InterfaceSelectorComboBox();
             this.close = new System.Windows.Forms.Button();
             this.reuseAddress = new System.Windows.Forms.CheckBox();
-            this.outputText = new Common.ReceiveTextBox();
+            this.outputText = new Common.OutputTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -363,7 +363,7 @@ namespace UdpTool
         private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.Button join;
         private System.Windows.Forms.TextBox multicastGroupAddress;
-        private Common.ReceiveTextBox outputText;
+        private Common.OutputTextBox outputText;
         private System.Windows.Forms.Button close;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.CheckBox reuseAddress;
@@ -372,7 +372,7 @@ namespace UdpTool
         private System.Windows.Forms.GroupBox groupBox1;
         private Common.InterfaceSelectorComboBox sourceIPAddress;
         private System.Windows.Forms.Label label3;
-        private Common.SendTextBox input;
+        private Common.InputTextBox input;
     }
 }
 

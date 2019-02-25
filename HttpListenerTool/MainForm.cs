@@ -101,7 +101,7 @@ namespace HttpListenerTool
             {
                 response.ContentType = responseContentType.Text;
             }
-            byte[] data = responseContent.Bytes;
+            byte[] data = responseContent.BinaryValue;
             response.OutputStream.Write(data, 0, data.Length);
             response.Close();
         }

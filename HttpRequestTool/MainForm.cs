@@ -94,7 +94,7 @@ namespace HttpRequestTool
                     {
                         request.ContentType = requestContentType.Text;
                     }
-                    byte[] dataOut = requestContent.Bytes;
+                    byte[] dataOut = requestContent.BinaryValue;
                     if (dataOut.Length > 0)
                     {
                         request.GetRequestStream().WriteAsync(dataOut, 0, dataOut.Length);
@@ -113,7 +113,7 @@ namespace HttpRequestTool
                 response = w.Response;
             }
             byte[] dataIn = ReadAllBytes(response.GetResponseStream());
-            responseContent.Append(dataIn, dataIn.Length);
+            responseContent.AppendBinary(dataIn, dataIn.Length);
             responseHeaders.Add(response.Headers);
         }
 

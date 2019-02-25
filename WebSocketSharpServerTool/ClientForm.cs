@@ -49,7 +49,7 @@ namespace WebSocketSharpServerTool
 
             if (e.IsBinary)
             {
-                outputText.Append(e.RawData, e.RawData.Length);
+                outputText.AppendBinary(e.RawData, e.RawData.Length);
             }
             else
             {
@@ -64,11 +64,11 @@ namespace WebSocketSharpServerTool
         {
             if (input.Binary)
             {
-                client.Send(input.Bytes);
+                client.Send(input.BinaryValue);
             }
             else
             {
-                client.Send(input.Text);
+                client.Send(input.TextValue);
             }
         }
     }

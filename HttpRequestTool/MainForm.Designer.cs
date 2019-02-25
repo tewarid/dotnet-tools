@@ -58,9 +58,9 @@ namespace HttpRequestTool
             this.requestContentType = new NetTools.Common.ContentTypeSelector();
             this.queryParameters = new NetTools.Common.NameValueGrid();
             this.requestHeaders = new NetTools.Common.NameValueGrid();
-            this.responseContent = new Common.ReceiveTextBox();
+            this.responseContent = new Common.OutputTextBox();
             this.responseHeaders = new NetTools.Common.NameValueGrid();
-            this.requestContent = new Common.SendTextBox();
+            this.requestContent = new Common.InputTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -404,10 +404,10 @@ namespace HttpRequestTool
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox requestMethod;
-        private Common.SendTextBox requestContent;
+        private Common.InputTextBox requestContent;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private Common.ReceiveTextBox responseContent;
+        private Common.OutputTextBox responseContent;
         private NetTools.Common.NameValueGrid requestHeaders;
         private NetTools.Common.NameValueGrid responseHeaders;
         private NetTools.Common.NameValueGrid queryParameters;
