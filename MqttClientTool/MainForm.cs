@@ -25,8 +25,9 @@ namespace MqttClientTool
             {
                 return;
             }
+            byte[] data = input.SelectedBinaryValue;
             MqttApplicationMessageBuilder messageBuilder = new MqttApplicationMessageBuilder()
-                .WithPayload(new MemoryStream(input.BinaryValue), input.BinaryValue.Length)
+                .WithPayload(new MemoryStream(data), data.Length)
                 .WithTopic(topicPublish.Text);
             if (qosPublish.SelectedIndex >= 0)
             {
