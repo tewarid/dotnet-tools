@@ -74,7 +74,7 @@ namespace WebSocketServerTool
 
         private void SendButton_Click(object sender, EventArgs e)
         {
-            if (input.Binary)
+            if (input.BinaryChecked)
             {
                 context.Send(input.BinaryValue, WebSocketMessageType.Binary);
             }

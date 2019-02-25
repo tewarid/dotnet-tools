@@ -62,7 +62,7 @@ namespace WebSocketSharpServerTool
 
         private void SendButton_Click(object sender, EventArgs e)
         {
-            if (input.Binary)
+            if (input.BinaryChecked)
             {
                 client.Send(input.BinaryValue);
             }

@@ -45,7 +45,7 @@ namespace EncodingTool
         {
             output.Clear();
             string from;
-            if (input.Binary)
+            if (input.BinaryChecked)
             {
                 from = Encoding.UTF8.GetString(input.BinaryValue);
             }

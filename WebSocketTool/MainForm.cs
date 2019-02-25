@@ -59,7 +59,7 @@ namespace WebSocketTool
                 CancellationTokenSource cts = new CancellationTokenSource();
                 CancellationToken token = cts.Token;
                 await wsClient.SendAsync(new ArraySegment<byte>(data, 0, data.Length),
-                    sendTextBox.Binary ? WebSocketMessageType.Binary : WebSocketMessageType.Text,
+                    sendTextBox.BinaryChecked ? WebSocketMessageType.Binary : WebSocketMessageType.Text,
                     true, token).ConfigureAwait(true);
                 cts.Dispose();
             }

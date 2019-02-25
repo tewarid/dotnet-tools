@@ -15,7 +15,7 @@ namespace Common
             {
                 byte[] buffer;
 
-                if (Binary)
+                if (BinaryChecked)
                 {
                     MemoryStream output = new MemoryStream();
                     TextReader input = new StringReader(TextValue);
@@ -31,7 +31,7 @@ namespace Common
             }
         }
 
-        public bool Binary
+        public bool BinaryChecked
         {
             get
             {
@@ -47,7 +47,7 @@ namespace Common
         {
             get
             {
-                string text = inputText.Text;
+                string text = inputText.SelectedText;
                 if (changeEndOfLine.Checked)
                 {
                     switch ((EndOfLine)endOfLine.SelectedValue)
@@ -90,7 +90,7 @@ namespace Common
                 }
                 else
                 {
-                    inputText.Text = value;
+                inputText.Text = value;
                 }
             }
         }

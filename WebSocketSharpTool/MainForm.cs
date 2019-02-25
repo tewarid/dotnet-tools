@@ -38,7 +38,7 @@ namespace WebSocketSharpTool
 
             try
             {
-                if (sendTextBox.Binary)
+                if (sendTextBox.BinaryChecked)
                 {
                     byte[] data = sendTextBox.BinaryValue;
 

@@ -433,7 +433,7 @@ namespace MqttClientTool
             this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input.Binary = false;
+            this.input.BinaryChecked = false;
             this.input.ChangeEndOfLine = true;
             this.input.DataBindings.Add(new System.Windows.Forms.Binding("TextValue", global::MqttClientTool.Properties.Settings.Default, "inputText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.input.EndOfLine = Common.EndOfLine.Dos;
