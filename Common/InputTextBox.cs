@@ -188,5 +188,11 @@ namespace Common
 
             return buffer;
         }
+
+        public void ScrollToEnd()
+        {
+            inputText.SelectionStart = inputText.TextLength;
+            inputText.ScrollToCaret();
+        }
     }
 }

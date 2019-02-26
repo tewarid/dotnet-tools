@@ -72,5 +72,11 @@ namespace Common
         {
             outputText.Clear();
         }
+
+        public void ScrollToEnd()
+        {
+            outputText.SelectionStart = outputText.TextLength;
+            outputText.ScrollToCaret();
+        }
     }
 }

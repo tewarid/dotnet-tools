@@ -146,6 +146,10 @@ namespace MqttClientTool
             {
                 clientOptions.WithTcpServer(host.Text, int.Parse(port.Text));
             }
+            if (cleanSession.Checked)
+            {
+                clientOptions.WithCleanSession();
+            }
             var options = new ManagedMqttClientOptionsBuilder()
                 .WithAutoReconnectDelay(TimeSpan.FromSeconds(30))
                 .WithClientOptions(clientOptions)
@@ -193,6 +197,12 @@ namespace MqttClientTool
         private void UseWebSocket_CheckedChanged(object sender, EventArgs e)
         {
             port.Enabled = !useWebSocket.Checked;
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            output.ScrollToEnd();
+            input.ScrollToEnd();
         }
     }
 }

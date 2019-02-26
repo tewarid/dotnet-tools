@@ -142,5 +142,17 @@ namespace MqttClientTool.Properties {
                 this["outputText"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cleanSession {
+            get {
+                return ((bool)(this["cleanSession"]));
+            }
+            set {
+                this["cleanSession"] = value;
+            }
+        }
     }
 }
