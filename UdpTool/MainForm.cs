@@ -41,7 +41,7 @@ namespace UdpTool
             }
             else
             {
-                await SendAsync();
+                await SendAsync().ConfigureAwait(true);
             }
         }
 
