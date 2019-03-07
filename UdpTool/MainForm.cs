@@ -82,8 +82,7 @@ namespace UdpTool
             }
             tickcount = Environment.TickCount - tickcount;
 
-            status.Text = String.Format("Sent {0} bytes in {1} milliseconds",
-                data.Length, tickcount);
+            status.Text = $"Sent {data.Length} bytes in {tickcount} milliseconds";
 
             sendButton.Enabled = true;
         }
@@ -93,8 +92,7 @@ namespace UdpTool
             destinationIPAddress.Text = endPoint.Address.ToString();
             destinationPort.Text = endPoint.Port.ToString();
 
-            outputText.AppendText(string.Format("{0} sent {1} bytes(s):\r\n", endPoint.ToString(), data.Length));
-            status.Text = string.Format("Received {0} byte(s) from {1}", data.Length, endPoint.ToString());
+            outputText.AppendText($"{endPoint} sent {data.Length} bytes(s) on {DateTime.Now}:{Environment.NewLine}");
             outputText.AppendBinary(data, data.Length);
             outputText.AppendText(Environment.NewLine);
             outputText.AppendText(Environment.NewLine);
