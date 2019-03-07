@@ -8,11 +8,13 @@ namespace UdpTool
 {
     public partial class MainForm : Form
     {
-        UdpClient udpClient;
+        private UdpClient udpClient;
+        private TaskScheduler uiTaskScheduler;
 
         public MainForm()
         {
             InitializeComponent();
+            uiTaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
         }
 
@@ -34,9 +36,13 @@ namespace UdpTool
                 {
                     return;
                 }
+                await SendAsync().ConfigureAwait(true);
+                await ReceiveAsync().ConfigureAwait(true);
             }
-            await SendAsync().ConfigureAwait(true);
-            await ReceiveAsync().ConfigureAwait(true);
+            else
+            {
+                await SendAsync();
+            }
         }
 
         private async Task SendAsync()
@@ -56,7 +62,7 @@ namespace UdpTool
 
             sendButton.Enabled = false;
 
-            byte[] data = input.BinaryValue;
+            byte[] data = input.SelectedBinaryValue;
             if (data.Length <= 0)
             {
                 MessageBox.Show(this, "Nothing to send.", this.Text);
@@ -106,11 +112,11 @@ namespace UdpTool
             }
             IPEndPoint localEndPoint = new IPEndPoint(address, 0);
 
-            if(!string.Empty.Equals(sourceIPAddress.Text))
+            if(!string.Empty.Equals(sourceIPAddress.TextValue))
             {
                 try
                 {
-                    address = IPAddress.Parse(sourceIPAddress.Text);
+                    address = IPAddress.Parse(sourceIPAddress.TextValue);
                 }
                 catch (Exception ex)
                 {
@@ -154,7 +160,7 @@ namespace UdpTool
             }
 
             IPEndPoint endPoint = (IPEndPoint)udpClient.Client.LocalEndPoint;
-            sourceIPAddress.Text = endPoint.Address.ToString();
+            sourceIPAddress.TextValue = endPoint.Address.ToString();
             sourcePort.Text = endPoint.Port.ToString();
             EnableDisable(false);
         }
@@ -200,6 +206,7 @@ namespace UdpTool
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Properties.Settings.Default.Save();
             if (udpClient != null)
             {
                 udpClient.Close();
@@ -215,8 +222,8 @@ namespace UdpTool
                 {
                     return;
                 }
+                await ReceiveAsync().ConfigureAwait(true);
             }
-            await ReceiveAsync().ConfigureAwait(true);
         }
 
         private void Join_Click(object sender, EventArgs e)
@@ -255,6 +262,12 @@ namespace UdpTool
         private void Close_Click(object sender, EventArgs e)
         {
             CloseUdpClient();
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            outputText.ScrollToEnd();
+            input.ScrollToEnd();
         }
     }
 }

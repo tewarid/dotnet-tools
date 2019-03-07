@@ -81,11 +81,11 @@ namespace IcmpTool
         private void CreateIcmpSocket() {
             IPEndPoint srcEndPoint = new IPEndPoint(IPAddress.Any, 0);
 
-            if (!string.Empty.Equals(sourceIPAddress.Text))
+            if (!string.Empty.Equals(sourceIPAddress.TextValue))
             {
                 try
                 {
-                    srcEndPoint = new IPEndPoint(IPAddress.Parse(sourceIPAddress.Text), 0);
+                    srcEndPoint = new IPEndPoint(IPAddress.Parse(sourceIPAddress.TextValue), 0);
                 }
                 catch (Exception ex)
                 {
@@ -95,7 +95,7 @@ namespace IcmpTool
             }
             else
             {
-                sourceIPAddress.Text = "";
+                sourceIPAddress.TextValue = "";
             }
 
             try
@@ -111,7 +111,7 @@ namespace IcmpTool
 
             sourceIPAddress.Enabled = false;
             IPEndPoint endPoint = icmpSocket.LocalEndPoint;
-            sourceIPAddress.Text = endPoint.Address.ToString();
+            sourceIPAddress.TextValue = endPoint.Address.ToString();
             bind.Enabled = false;
             close.Enabled = true;
         }

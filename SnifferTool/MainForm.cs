@@ -43,7 +43,7 @@ namespace SnifferTool
 
         private void Bind_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(interfaceSelector.Text))
+            if (string.IsNullOrWhiteSpace(interfaceSelector.TextValue))
             {
                 MessageBox.Show("Please select an interface.", this.Text);
                 interfaceSelector.Focus();
@@ -52,7 +52,7 @@ namespace SnifferTool
 
             try
             {
-                CreateRawSocket(new IPEndPoint(IPAddress.Parse(interfaceSelector.Text), 0));
+                CreateRawSocket(new IPEndPoint(IPAddress.Parse(interfaceSelector.TextValue), 0));
                 close.Enabled = true;
                 bind.Enabled = false;
                 interfaceSelector.Enabled = false;

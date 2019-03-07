@@ -17,7 +17,7 @@ namespace Common
         [DefaultValue(false)]
         public bool IncludeIPAddressAny { get; set; }
 
-        public override string Text
+        public string TextValue
         {
 			get
 			{

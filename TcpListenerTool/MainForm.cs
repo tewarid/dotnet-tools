@@ -49,11 +49,11 @@ namespace TcpListenerTool
                 }
             }
             IPAddress address = IPAddress.Any;
-            if (!string.Empty.Equals(sourceIPAddress.Text))
+            if (!string.Empty.Equals(sourceIPAddress.TextValue))
             {
                 try
                 {
-                    address = IPAddress.Parse(sourceIPAddress.Text);
+                    address = IPAddress.Parse(sourceIPAddress.TextValue);
                 }
                 catch (FormatException ex)
                 {
@@ -68,7 +68,7 @@ namespace TcpListenerTool
                 listener.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             }
             IPEndPoint ipEndPoint = (IPEndPoint)listener.LocalEndpoint;
-            sourceIPAddress.Text = ipEndPoint.Address.ToString();
+            sourceIPAddress.TextValue = ipEndPoint.Address.ToString();
             sourcePort.Text = ipEndPoint.Port.ToString();
             try
             {
@@ -201,7 +201,7 @@ namespace TcpListenerTool
             if (listener != null)
             {
                 StopListener();
-                sourceIPAddress.Text = string.Empty;
+                sourceIPAddress.TextValue = string.Empty;
             }
         }
 

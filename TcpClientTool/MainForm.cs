@@ -61,7 +61,7 @@ namespace TcpClientTool
         private void SourceIPAddress_InterfaceDeleted()
         {
             CloseTcpClient();
-            sourceIPAddress.Text = string.Empty;
+            sourceIPAddress.TextValue = string.Empty;
         }
 
         private async void SendButton_Click(object sender, EventArgs e)
@@ -150,11 +150,11 @@ namespace TcpClientTool
             {
                 ipAddress = IPAddress.IPv6Any;
             }
-            if (!string.Empty.Equals(sourceIPAddress.Text))
+            if (!string.Empty.Equals(sourceIPAddress.TextValue))
             {
                 try
                 {
-                    ipAddress = IPAddress.Parse(sourceIPAddress.Text);
+                    ipAddress = IPAddress.Parse(sourceIPAddress.TextValue);
                 }
                 catch (FormatException ex)
                 {
@@ -238,8 +238,8 @@ namespace TcpClientTool
         {
             IPEndPoint localEndPoint = connected ? 
                 (IPEndPoint)tcpClient.Client.LocalEndPoint : null;
-            sourceIPAddress.Text = connected ? 
-                localEndPoint.Address.ToString() : sourceIPAddress.Text;
+            sourceIPAddress.TextValue = connected ? 
+                localEndPoint.Address.ToString() : sourceIPAddress.TextValue;
             sourcePort.Text = connected ? 
                 localEndPoint.Port.ToString() : sourcePort.Text;
             sourceIPAddress.Enabled = !connected;

@@ -36,27 +36,27 @@ namespace UdpTool
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.sendButton = new System.Windows.Forms.Button();
-            this.destinationPort = new System.Windows.Forms.TextBox();
-            this.destinationIPAddress = new System.Windows.Forms.TextBox();
-            this.input = new Common.InputTextBox();
             this.bind = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.sourcePort = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.multicastGroupBox = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.join = new System.Windows.Forms.Button();
-            this.multicastGroupAddress = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.sourceIPAddress = new Common.InterfaceSelectorComboBox();
             this.close = new System.Windows.Forms.Button();
             this.reuseAddress = new System.Windows.Forms.CheckBox();
-            this.outputText = new Common.OutputTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.multicastGroupAddress = new System.Windows.Forms.TextBox();
+            this.sourceIPAddress = new Common.InterfaceSelectorComboBox();
+            this.sourcePort = new System.Windows.Forms.TextBox();
+            this.outputText = new Common.OutputTextBox();
+            this.destinationPort = new System.Windows.Forms.TextBox();
+            this.destinationIPAddress = new System.Windows.Forms.TextBox();
+            this.input = new Common.InputTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.multicastGroupBox.SuspendLayout();
@@ -113,33 +113,6 @@ namespace UdpTool
             this.sendButton.UseVisualStyleBackColor = true;
             this.sendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
-            // destinationPort
-            // 
-            this.destinationPort.Location = new System.Drawing.Point(153, 25);
-            this.destinationPort.Name = "destinationPort";
-            this.destinationPort.Size = new System.Drawing.Size(95, 20);
-            this.destinationPort.TabIndex = 9;
-            // 
-            // destinationIPAddress
-            // 
-            this.destinationIPAddress.Location = new System.Drawing.Point(6, 25);
-            this.destinationIPAddress.Name = "destinationIPAddress";
-            this.destinationIPAddress.Size = new System.Drawing.Size(133, 20);
-            this.destinationIPAddress.TabIndex = 8;
-            // 
-            // input
-            // 
-            this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.input.Location = new System.Drawing.Point(0, 54);
-            this.input.Margin = new System.Windows.Forms.Padding(4);
-            this.input.MinimumSize = new System.Drawing.Size(280, 130);
-            this.input.Name = "input";
-            this.input.Padding = new System.Windows.Forms.Padding(3);
-            this.input.Size = new System.Drawing.Size(388, 385);
-            this.input.TabIndex = 16;
-            // 
             // bind
             // 
             this.bind.Location = new System.Drawing.Point(55, 84);
@@ -167,13 +140,6 @@ namespace UdpTool
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Interface";
-            // 
-            // sourcePort
-            // 
-            this.sourcePort.Location = new System.Drawing.Point(138, 35);
-            this.sourcePort.Name = "sourcePort";
-            this.sourcePort.Size = new System.Drawing.Size(75, 20);
-            this.sourcePort.TabIndex = 1;
             // 
             // panel2
             // 
@@ -218,14 +184,6 @@ namespace UdpTool
             this.join.UseVisualStyleBackColor = true;
             this.join.Click += new System.EventHandler(this.Join_Click);
             // 
-            // multicastGroupAddress
-            // 
-            this.multicastGroupAddress.Location = new System.Drawing.Point(10, 34);
-            this.multicastGroupAddress.Name = "multicastGroupAddress";
-            this.multicastGroupAddress.Size = new System.Drawing.Size(126, 20);
-            this.multicastGroupAddress.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.multicastGroupAddress, "Multicast IP Address");
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.sourceIPAddress);
@@ -241,14 +199,6 @@ namespace UdpTool
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bind";
-            // 
-            // sourceIPAddress
-            // 
-            this.sourceIPAddress.IncludeIPAddressAny = true;
-            this.sourceIPAddress.Location = new System.Drawing.Point(9, 35);
-            this.sourceIPAddress.Name = "sourceIPAddress";
-            this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
-            this.sourceIPAddress.TabIndex = 0;
             // 
             // close
             // 
@@ -270,18 +220,6 @@ namespace UdpTool
             this.reuseAddress.TabIndex = 2;
             this.reuseAddress.Text = "Reuse Address";
             this.reuseAddress.UseVisualStyleBackColor = true;
-            // 
-            // outputText
-            // 
-            this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputText.Location = new System.Drawing.Point(6, 124);
-            this.outputText.Margin = new System.Windows.Forms.Padding(4);
-            this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
-            this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(381, 312);
-            this.outputText.TabIndex = 7;
             // 
             // statusStrip1
             // 
@@ -316,6 +254,87 @@ namespace UdpTool
             this.splitContainer1.SplitterDistance = 391;
             this.splitContainer1.TabIndex = 3;
             // 
+            // multicastGroupAddress
+            // 
+            this.multicastGroupAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::UdpTool.Properties.Settings.Default, "multicastGroupAddress", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.multicastGroupAddress.Location = new System.Drawing.Point(10, 34);
+            this.multicastGroupAddress.Name = "multicastGroupAddress";
+            this.multicastGroupAddress.Size = new System.Drawing.Size(126, 20);
+            this.multicastGroupAddress.TabIndex = 5;
+            this.multicastGroupAddress.Text = global::UdpTool.Properties.Settings.Default.multicastGroupAddress;
+            this.toolTip1.SetToolTip(this.multicastGroupAddress, "Multicast IP Address");
+            // 
+            // sourceIPAddress
+            // 
+            this.sourceIPAddress.DataBindings.Add(new System.Windows.Forms.Binding("TextValue", global::UdpTool.Properties.Settings.Default, "sourceAddress", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.sourceIPAddress.IncludeIPAddressAny = true;
+            this.sourceIPAddress.Location = new System.Drawing.Point(9, 35);
+            this.sourceIPAddress.Name = "sourceIPAddress";
+            this.sourceIPAddress.Size = new System.Drawing.Size(121, 21);
+            this.sourceIPAddress.TabIndex = 0;
+            this.sourceIPAddress.TextValue = global::UdpTool.Properties.Settings.Default.sourceAddress;
+            // 
+            // sourcePort
+            // 
+            this.sourcePort.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::UdpTool.Properties.Settings.Default, "sourcePort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.sourcePort.Location = new System.Drawing.Point(138, 35);
+            this.sourcePort.Name = "sourcePort";
+            this.sourcePort.Size = new System.Drawing.Size(75, 20);
+            this.sourcePort.TabIndex = 1;
+            this.sourcePort.Text = global::UdpTool.Properties.Settings.Default.sourcePort;
+            // 
+            // outputText
+            // 
+            this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.outputText.AppendBinaryChecked = false;
+            this.outputText.DataBindings.Add(new System.Windows.Forms.Binding("TextValue", global::UdpTool.Properties.Settings.Default, "outputText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.outputText.Location = new System.Drawing.Point(6, 124);
+            this.outputText.Margin = new System.Windows.Forms.Padding(4);
+            this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
+            this.outputText.Name = "outputText";
+            this.outputText.Size = new System.Drawing.Size(381, 312);
+            this.outputText.TabIndex = 7;
+            this.outputText.TextValue = global::UdpTool.Properties.Settings.Default.outputText;
+            // 
+            // destinationPort
+            // 
+            this.destinationPort.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::UdpTool.Properties.Settings.Default, "destinationPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.destinationPort.Location = new System.Drawing.Point(153, 25);
+            this.destinationPort.Name = "destinationPort";
+            this.destinationPort.Size = new System.Drawing.Size(95, 20);
+            this.destinationPort.TabIndex = 9;
+            this.destinationPort.Text = global::UdpTool.Properties.Settings.Default.destinationPort;
+            // 
+            // destinationIPAddress
+            // 
+            this.destinationIPAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::UdpTool.Properties.Settings.Default, "destinationAddress", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.destinationIPAddress.Location = new System.Drawing.Point(6, 25);
+            this.destinationIPAddress.Name = "destinationIPAddress";
+            this.destinationIPAddress.Size = new System.Drawing.Size(133, 20);
+            this.destinationIPAddress.TabIndex = 8;
+            this.destinationIPAddress.Text = global::UdpTool.Properties.Settings.Default.destinationAddress;
+            // 
+            // input
+            // 
+            this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.input.BinaryChecked = false;
+            this.input.ChangeEndOfLine = true;
+            this.input.DataBindings.Add(new System.Windows.Forms.Binding("TextValue", global::UdpTool.Properties.Settings.Default, "inputText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.input.EndOfLine = Common.EndOfLine.Dos;
+            this.input.Location = new System.Drawing.Point(0, 54);
+            this.input.Margin = new System.Windows.Forms.Padding(4);
+            this.input.MinimumSize = new System.Drawing.Size(280, 130);
+            this.input.Name = "input";
+            this.input.Padding = new System.Windows.Forms.Padding(3);
+            this.input.SelectedTextValue = "";
+            this.input.Size = new System.Drawing.Size(388, 385);
+            this.input.TabIndex = 16;
+            this.input.TextValue = global::UdpTool.Properties.Settings.Default.inputText;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,6 +347,7 @@ namespace UdpTool
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UDP Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
