@@ -57,7 +57,6 @@ namespace AmqpClientTool
             this.username = new System.Windows.Forms.TextBox();
             this.port = new System.Windows.Forms.TextBox();
             this.useTls = new System.Windows.Forms.CheckBox();
-            this.useWebSocket = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -346,26 +345,12 @@ namespace AmqpClientTool
             this.useTls.AutoSize = true;
             this.useTls.Checked = global::AmqpClientTool.Properties.Settings.Default.useTls;
             this.useTls.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::AmqpClientTool.Properties.Settings.Default, "useTls", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.useTls.Location = new System.Drawing.Point(507, 12);
+            this.useTls.Location = new System.Drawing.Point(506, 24);
             this.useTls.Name = "useTls";
             this.useTls.Size = new System.Drawing.Size(68, 17);
             this.useTls.TabIndex = 31;
             this.useTls.Text = "Use TLS";
             this.useTls.UseVisualStyleBackColor = true;
-            // 
-            // useWebSocket
-            // 
-            this.useWebSocket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.useWebSocket.AutoSize = true;
-            this.useWebSocket.Checked = global::AmqpClientTool.Properties.Settings.Default.useWebSocket;
-            this.useWebSocket.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::AmqpClientTool.Properties.Settings.Default, "useWebSocket", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.useWebSocket.Enabled = false;
-            this.useWebSocket.Location = new System.Drawing.Point(507, 35);
-            this.useWebSocket.Name = "useWebSocket";
-            this.useWebSocket.Size = new System.Drawing.Size(105, 17);
-            this.useWebSocket.TabIndex = 32;
-            this.useWebSocket.Text = "Use WebSocket";
-            this.useWebSocket.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -381,7 +366,6 @@ namespace AmqpClientTool
             this.Controls.Add(this.port);
             this.Controls.Add(this.useTls);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.useWebSocket);
             this.Controls.Add(this.close);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -414,7 +398,6 @@ namespace AmqpClientTool
         private CheckBox useTls;
         private ToolStripStatusLabel status;
         private StatusStrip statusStrip1;
-        private CheckBox useWebSocket;
         private Button close;
         private Label label2;
         private Label label1;

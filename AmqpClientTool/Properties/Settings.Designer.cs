@@ -70,17 +70,5 @@ namespace AmqpClientTool.Properties {
                 this["useTls"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool useWebSocket {
-            get {
-                return ((bool)(this["useWebSocket"]));
-            }
-            set {
-                this["useWebSocket"] = value;
-            }
-        }
     }
 }
