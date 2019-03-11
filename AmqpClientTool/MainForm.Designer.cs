@@ -45,10 +45,7 @@ namespace AmqpClientTool
             this.label7 = new System.Windows.Forms.Label();
             this.receiverLinkAddress = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.unsubscribe = new System.Windows.Forms.Button();
             this.receive = new System.Windows.Forms.Button();
-            this.receiverLinks = new System.Windows.Forms.ListBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.output = new Common.OutputTextBox();
             this.senderLinkName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -170,10 +167,7 @@ namespace AmqpClientTool
             this.splitContainer1.Panel1.Controls.Add(this.label7);
             this.splitContainer1.Panel1.Controls.Add(this.receiverLinkAddress);
             this.splitContainer1.Panel1.Controls.Add(this.label10);
-            this.splitContainer1.Panel1.Controls.Add(this.unsubscribe);
             this.splitContainer1.Panel1.Controls.Add(this.receive);
-            this.splitContainer1.Panel1.Controls.Add(this.receiverLinks);
-            this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.output);
             // 
             // splitContainer1.Panel2
@@ -190,9 +184,11 @@ namespace AmqpClientTool
             // 
             // receiverLinkName
             // 
+            this.receiverLinkName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.receiverLinkName.Location = new System.Drawing.Point(10, 21);
             this.receiverLinkName.Name = "receiverLinkName";
-            this.receiverLinkName.Size = new System.Drawing.Size(164, 20);
+            this.receiverLinkName.Size = new System.Drawing.Size(373, 20);
             this.receiverLinkName.TabIndex = 22;
             this.receiverLinkName.Text = "receiver-link";
             // 
@@ -201,15 +197,17 @@ namespace AmqpClientTool
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(7, 5);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 13);
+            this.label7.Size = new System.Drawing.Size(98, 13);
             this.label7.TabIndex = 33;
-            this.label7.Text = "Receiver Link Name";
+            this.label7.Text = "Receiver link name";
             // 
             // receiverLinkAddress
             // 
+            this.receiverLinkAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.receiverLinkAddress.Location = new System.Drawing.Point(10, 61);
             this.receiverLinkAddress.Name = "receiverLinkAddress";
-            this.receiverLinkAddress.Size = new System.Drawing.Size(164, 20);
+            this.receiverLinkAddress.Size = new System.Drawing.Size(373, 20);
             this.receiverLinkAddress.TabIndex = 23;
             this.receiverLinkAddress.Text = "test";
             // 
@@ -218,50 +216,19 @@ namespace AmqpClientTool
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(7, 45);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 13);
+            this.label10.Size = new System.Drawing.Size(163, 13);
             this.label10.TabIndex = 31;
-            this.label10.Text = "Address";
-            // 
-            // unsubscribe
-            // 
-            this.unsubscribe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.unsubscribe.Location = new System.Drawing.Point(311, 87);
-            this.unsubscribe.Name = "unsubscribe";
-            this.unsubscribe.Size = new System.Drawing.Size(75, 23);
-            this.unsubscribe.TabIndex = 26;
-            this.unsubscribe.Text = "Remove";
-            this.unsubscribe.UseVisualStyleBackColor = true;
+            this.label10.Text = "Address to receive message from";
             // 
             // receive
             // 
-            this.receive.Location = new System.Drawing.Point(99, 87);
+            this.receive.Location = new System.Drawing.Point(308, 87);
             this.receive.Name = "receive";
             this.receive.Size = new System.Drawing.Size(75, 23);
             this.receive.TabIndex = 24;
             this.receive.Text = "Receive";
             this.receive.UseVisualStyleBackColor = true;
             this.receive.Click += new System.EventHandler(this.Receive_Click);
-            // 
-            // receiverLinks
-            // 
-            this.receiverLinks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.receiverLinks.FormattingEnabled = true;
-            this.receiverLinks.IntegralHeight = false;
-            this.receiverLinks.Location = new System.Drawing.Point(183, 21);
-            this.receiverLinks.Name = "receiverLinks";
-            this.receiverLinks.Size = new System.Drawing.Size(203, 60);
-            this.receiverLinks.Sorted = true;
-            this.receiverLinks.TabIndex = 25;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(180, 5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 13);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Receiver Links";
             // 
             // output
             // 
@@ -291,9 +258,9 @@ namespace AmqpClientTool
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(6, 5);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(104, 13);
+            this.label8.Size = new System.Drawing.Size(89, 13);
             this.label8.TabIndex = 36;
-            this.label8.Text = "Receiver Link Name";
+            this.label8.Text = "Sender link name";
             // 
             // senderLinkAddress
             // 
@@ -455,10 +422,7 @@ namespace AmqpClientTool
         private SplitContainer splitContainer1;
         private TextBox receiverLinkAddress;
         private Label label10;
-        private Button unsubscribe;
         private Button receive;
-        private ListBox receiverLinks;
-        private Label label4;
         private Common.OutputTextBox output;
         private TextBox senderLinkAddress;
         private Label label3;
