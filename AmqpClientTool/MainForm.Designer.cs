@@ -216,9 +216,9 @@ namespace AmqpClientTool
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(7, 45);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(163, 13);
+            this.label10.Size = new System.Drawing.Size(197, 13);
             this.label10.TabIndex = 31;
-            this.label10.Text = "Address to receive message from";
+            this.label10.Text = "Queue address to receive message from";
             // 
             // receive
             // 
@@ -277,9 +277,9 @@ namespace AmqpClientTool
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 43);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 13);
+            this.label3.Size = new System.Drawing.Size(174, 13);
             this.label3.TabIndex = 15;
-            this.label3.Text = "Address to send message to";
+            this.label3.Text = "Queue address to send message to";
             // 
             // send
             // 

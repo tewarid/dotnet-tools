@@ -1,4 +1,5 @@
 ﻿using Amqp;
+using Amqp.Framing;
 using System;
 using System.Windows.Forms;
 
@@ -67,6 +68,11 @@ namespace AmqpClientTool
         private void Connection_Closed(IAmqpObject sender, Amqp.Framing.Error error)
         {
             status.Text = "Closed";
+            receiver = null;
+            senderLink = null;
+            session = null;
+            connection.Closed -= Connection_Closed;
+            connection = null;
         }
 
         private void Close_Click(object sender, EventArgs e)
@@ -81,9 +87,17 @@ namespace AmqpClientTool
                 senderLink.Close();
                 senderLink = null;
             }
-            session.Close();
-            connection.Close();
-            connection.Closed -= Connection_Closed;
+            if (session != null)
+            {
+                session.Close();
+                session = null;
+            }
+            if (connection != null)
+            {
+                connection.Close();
+                connection.Closed -= Connection_Closed;
+                connection = null;
+            }
         }
 
         private void Send_Click(object sender, EventArgs e)
@@ -98,15 +112,45 @@ namespace AmqpClientTool
                 body = input.TextValue;
             }
             Amqp.Message message = new Amqp.Message(body);
+            message.Header = new Header()
+            {
+                Durable = true
+            };
             if (senderLink == null)
             {
-                senderLink = new SenderLink(session,
-                    senderLinkName.Text, senderLinkAddress.Text);
+                if (session == null)
+                {
+                    return;
+                }
+                Target sendTarget = new Target()
+                {
+                    Address = senderLinkAddress.Text,
+                    //Durable = 1,
+                };
+                try
+                {
+                    senderLink = new SenderLink(session, senderLinkName.Text, sendTarget, (link, attach) =>
+                    {
+                    });
+                }
+                catch (AmqpException ex)
+                {
+                    MessageBox.Show(this, ex.Message);
+                    return;
+                }
             }
-            senderLink.Send(message, (s, m, outcome, state) =>
+            try
             {
+                senderLink.Send(message, (s, m, outcome, state) =>
+                {
 
-            }, null);
+                }, null);
+            }
+            catch (AmqpException ex)
+            {
+                MessageBox.Show(this, ex.Message);
+                return;
+            }
         }
 
         private async void Receive_Click(object sender, EventArgs e)
@@ -115,17 +159,49 @@ namespace AmqpClientTool
             {
                 return;
             }
-            receiver = new ReceiverLink(session,
-                receiverLinkName.Text, receiverLinkAddress.Text);
+            if (session == null)
+            {
+                return;
+            }
+            Source receiveSource = new Source()
+            {
+                Address = receiverLinkAddress.Text,
+                //Durable = 1,
+            };
+            receiver = new ReceiverLink(session, receiverLinkName.Text, receiveSource, (link, attach) =>
+            {
+            });
+            status.Text = $"Receiver {receiverLinkName.Text} listening on address {receiverLinkAddress.Text}";
             while (receiver != null && !receiver.IsClosed)
             {
-                Amqp.Message message = await receiver.ReceiveAsync(TimeSpan.FromSeconds(5));
-                if (message == null)
+                Amqp.Message message;
+                try
                 {
-                    continue;
+                    message = await receiver.ReceiveAsync(TimeSpan.FromSeconds(5));
+                    if (message == null)
+                    {
+                        continue;
+                    }
+                    receiver.Accept(message);
                 }
-                receiver.Accept(message);
-                output.AppendText(message.Body.ToString());
+                catch (AmqpException)
+                {
+                    return;
+                }
+                output.AppendText($"Message received on {DateTime.Now}:{Environment.NewLine}");
+                if (message.Body is byte[])
+                {
+                    byte[] data = (byte[])message.Body;
+                    output.AppendBinaryChecked = true;
+                    output.AppendBinary(data, data.Length);
+                }
+                else
+                {
+                    output.AppendBinaryChecked = false;
+                    output.AppendText(message.Body.ToString());
+                }
+                output.AppendText($"{Environment.NewLine}");
+                output.AppendText($"{Environment.NewLine}");
             }
         }
     }
