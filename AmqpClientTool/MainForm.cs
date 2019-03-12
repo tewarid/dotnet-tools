@@ -100,20 +100,6 @@ namespace AmqpClientTool
 
         private void Send_Click(object sender, EventArgs e)
         {
-            object body;
-            if (input.BinaryChecked)
-            {
-                body = input.BinaryValue;
-            }
-            else
-            {
-                body = input.TextValue;
-            }
-            Amqp.Message message = new Amqp.Message(body);
-            message.Header = new Header()
-            {
-                Durable = true
-            };
             if (senderLink == null)
             {
                 if (session == null)
@@ -136,6 +122,25 @@ namespace AmqpClientTool
                     MessageBox.Show(this, ex.Message);
                     return;
                 }
+            }
+            object body;
+            if (input.BinaryChecked)
+            {
+                body = input.BinaryValue;
+            }
+            else
+            {
+                body = input.TextValue;
+            }
+            Amqp.Message message = new Amqp.Message(body);
+            message.Header = new Header()
+            {
+                Durable = true
+            };
+            message.Properties = new Amqp.Framing.Properties();
+            if (!string.IsNullOrWhiteSpace(subject.Text))
+            {
+                message.Properties.Subject = subject.Text;
             }
             try
             {

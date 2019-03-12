@@ -41,18 +41,20 @@ namespace AmqpClientTool
             this.label1 = new System.Windows.Forms.Label();
             this.open = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.receiverLinkName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.receiverLinkAddress = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.receive = new System.Windows.Forms.Button();
             this.output = new Common.OutputTextBox();
-            this.senderLinkName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.senderLinkAddress = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.send = new System.Windows.Forms.Button();
             this.input = new Common.InputTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.receiverLinkName = new System.Windows.Forms.TextBox();
+            this.receiverLinkAddress = new System.Windows.Forms.TextBox();
+            this.subject = new System.Windows.Forms.TextBox();
+            this.senderLinkName = new System.Windows.Forms.TextBox();
             this.host = new System.Windows.Forms.TextBox();
             this.username = new System.Windows.Forms.TextBox();
             this.port = new System.Windows.Forms.TextBox();
@@ -171,6 +173,8 @@ namespace AmqpClientTool
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.subject);
+            this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.senderLinkName);
             this.splitContainer1.Panel2.Controls.Add(this.label8);
             this.splitContainer1.Panel2.Controls.Add(this.senderLinkAddress);
@@ -181,16 +185,6 @@ namespace AmqpClientTool
             this.splitContainer1.SplitterDistance = 392;
             this.splitContainer1.TabIndex = 39;
             // 
-            // receiverLinkName
-            // 
-            this.receiverLinkName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.receiverLinkName.Location = new System.Drawing.Point(10, 21);
-            this.receiverLinkName.Name = "receiverLinkName";
-            this.receiverLinkName.Size = new System.Drawing.Size(373, 20);
-            this.receiverLinkName.TabIndex = 22;
-            this.receiverLinkName.Text = "receiver-link";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -199,16 +193,6 @@ namespace AmqpClientTool
             this.label7.Size = new System.Drawing.Size(98, 13);
             this.label7.TabIndex = 33;
             this.label7.Text = "Receiver link name";
-            // 
-            // receiverLinkAddress
-            // 
-            this.receiverLinkAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.receiverLinkAddress.Location = new System.Drawing.Point(10, 61);
-            this.receiverLinkAddress.Name = "receiverLinkAddress";
-            this.receiverLinkAddress.Size = new System.Drawing.Size(373, 20);
-            this.receiverLinkAddress.TabIndex = 23;
-            this.receiverLinkAddress.Text = "test";
             // 
             // label10
             // 
@@ -242,16 +226,6 @@ namespace AmqpClientTool
             this.output.TabIndex = 27;
             this.output.TextValue = "";
             // 
-            // senderLinkName
-            // 
-            this.senderLinkName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.senderLinkName.Location = new System.Drawing.Point(10, 21);
-            this.senderLinkName.Name = "senderLinkName";
-            this.senderLinkName.Size = new System.Drawing.Size(383, 20);
-            this.senderLinkName.TabIndex = 29;
-            this.senderLinkName.Text = "sender-link";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -265,11 +239,12 @@ namespace AmqpClientTool
             // 
             this.senderLinkAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.senderLinkAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AmqpClientTool.Properties.Settings.Default, "senderLinkAddress", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.senderLinkAddress.Location = new System.Drawing.Point(9, 59);
             this.senderLinkAddress.Name = "senderLinkAddress";
             this.senderLinkAddress.Size = new System.Drawing.Size(384, 20);
             this.senderLinkAddress.TabIndex = 30;
-            this.senderLinkAddress.Text = "test";
+            this.senderLinkAddress.Text = global::AmqpClientTool.Properties.Settings.Default.senderLinkAddress;
             // 
             // label3
             // 
@@ -299,13 +274,66 @@ namespace AmqpClientTool
             this.input.BinaryChecked = false;
             this.input.ChangeEndOfLine = true;
             this.input.EndOfLine = Common.EndOfLine.Dos;
-            this.input.Location = new System.Drawing.Point(2, 85);
+            this.input.Location = new System.Drawing.Point(2, 124);
             this.input.Name = "input";
             this.input.Padding = new System.Windows.Forms.Padding(4);
             this.input.SelectedTextValue = "test";
-            this.input.Size = new System.Drawing.Size(394, 216);
-            this.input.TabIndex = 31;
+            this.input.Size = new System.Drawing.Size(394, 177);
+            this.input.TabIndex = 33;
             this.input.TextValue = "test";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 82);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "Subject";
+            // 
+            // receiverLinkName
+            // 
+            this.receiverLinkName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.receiverLinkName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AmqpClientTool.Properties.Settings.Default, "receiverLinkName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.receiverLinkName.Location = new System.Drawing.Point(10, 21);
+            this.receiverLinkName.Name = "receiverLinkName";
+            this.receiverLinkName.Size = new System.Drawing.Size(373, 20);
+            this.receiverLinkName.TabIndex = 22;
+            this.receiverLinkName.Text = global::AmqpClientTool.Properties.Settings.Default.receiverLinkName;
+            // 
+            // receiverLinkAddress
+            // 
+            this.receiverLinkAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.receiverLinkAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AmqpClientTool.Properties.Settings.Default, "receiverLinkAddress", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.receiverLinkAddress.Location = new System.Drawing.Point(10, 61);
+            this.receiverLinkAddress.Name = "receiverLinkAddress";
+            this.receiverLinkAddress.Size = new System.Drawing.Size(373, 20);
+            this.receiverLinkAddress.TabIndex = 23;
+            this.receiverLinkAddress.Text = global::AmqpClientTool.Properties.Settings.Default.receiverLinkAddress;
+            // 
+            // subject
+            // 
+            this.subject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.subject.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AmqpClientTool.Properties.Settings.Default, "subject", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.subject.Location = new System.Drawing.Point(9, 98);
+            this.subject.Name = "subject";
+            this.subject.Size = new System.Drawing.Size(384, 20);
+            this.subject.TabIndex = 32;
+            this.subject.Text = global::AmqpClientTool.Properties.Settings.Default.subject;
+            // 
+            // senderLinkName
+            // 
+            this.senderLinkName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.senderLinkName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AmqpClientTool.Properties.Settings.Default, "senderLinkName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.senderLinkName.Location = new System.Drawing.Point(10, 21);
+            this.senderLinkName.Name = "senderLinkName";
+            this.senderLinkName.Size = new System.Drawing.Size(383, 20);
+            this.senderLinkName.TabIndex = 29;
+            this.senderLinkName.Text = global::AmqpClientTool.Properties.Settings.Default.senderLinkName;
             // 
             // host
             // 
@@ -415,6 +443,8 @@ namespace AmqpClientTool
         private Label label7;
         private TextBox senderLinkName;
         private Label label8;
+        private TextBox subject;
+        private Label label4;
     }
 }
 

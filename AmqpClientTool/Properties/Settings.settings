@@ -14,5 +14,20 @@
     <Setting Name="useTls" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="subject" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="receiverLinkName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">receiver-link</Value>
+    </Setting>
+    <Setting Name="receiverLinkAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">test</Value>
+    </Setting>
+    <Setting Name="senderLinkName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sender-link</Value>
+    </Setting>
+    <Setting Name="senderLinkAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">test</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

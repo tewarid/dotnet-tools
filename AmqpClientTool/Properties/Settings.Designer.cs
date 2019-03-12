@@ -70,5 +70,65 @@ namespace AmqpClientTool.Properties {
                 this["useTls"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string subject {
+            get {
+                return ((string)(this["subject"]));
+            }
+            set {
+                this["subject"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("receiver-link")]
+        public string receiverLinkName {
+            get {
+                return ((string)(this["receiverLinkName"]));
+            }
+            set {
+                this["receiverLinkName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        public string receiverLinkAddress {
+            get {
+                return ((string)(this["receiverLinkAddress"]));
+            }
+            set {
+                this["receiverLinkAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("sender-link")]
+        public string senderLinkName {
+            get {
+                return ((string)(this["senderLinkName"]));
+            }
+            set {
+                this["senderLinkName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        public string senderLinkAddress {
+            get {
+                return ((string)(this["senderLinkAddress"]));
+            }
+            set {
+                this["senderLinkAddress"] = value;
+            }
+        }
     }
 }
