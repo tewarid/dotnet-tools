@@ -195,12 +195,10 @@ namespace AmqpClientTool
                 if (message.Body is byte[])
                 {
                     byte[] data = (byte[])message.Body;
-                    output.AppendBinaryChecked = true;
                     output.AppendBinary(data, data.Length);
                 }
                 else
                 {
-                    output.AppendBinaryChecked = false;
                     output.AppendText(message.Body.ToString());
                 }
                 output.AppendText($"{Environment.NewLine}");
