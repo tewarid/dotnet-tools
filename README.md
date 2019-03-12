@@ -43,6 +43,10 @@ dotnet build NetTools.NetCore.sln
 
 You can also use Visual Studio 2019 Preview to build.
 
+## AMQP 1.0 Client Tool
+
+A minimal interactive AMQP 1.0 client based on the [AMQPNetLite](https://github.com/Azure/amqpnetlite) library.
+
 ## Bluetooth Serial Client Tool
 
 Interactive client that may be used to open a Bluetooth serial socket, send, and receive data. It is built with [32feet.NET](https://www.nuget.org/packages/32feet.NET), a .NET library layered over Windows Bluetooth socket API.
