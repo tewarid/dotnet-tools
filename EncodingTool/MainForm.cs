@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Windows.Forms;
@@ -20,7 +21,9 @@ namespace EncodingTool
         [Description("URL Decode")]
         UrlDecode,
         [Description("URL Encode")]
-        UrlEncode
+        UrlEncode,
+        [Description("SHA1 Hash")]
+        Sha1Hash,
     }
 
     public partial class MainForm : Form
@@ -44,22 +47,13 @@ namespace EncodingTool
         private void Convert(object sender, EventArgs e)
         {
             output.Clear();
-            string from;
-            if (input.BinaryChecked)
-            {
-                from = Encoding.UTF8.GetString(input.BinaryValue);
-            }
-            else
-            {
-                from = input.TextValue;
-            }
             byte[] to;
             switch ((Conversions)convertTo.SelectedValue)
             {
                 case Conversions.Base64Decode:
                     try
                     {
-                        to = System.Convert.FromBase64String(from);
+                        to = System.Convert.FromBase64String(input.TextValue);
                     }
                     catch (FormatException ex)
                     {
@@ -69,19 +63,22 @@ namespace EncodingTool
                     break;
                 case Conversions.Base64Encode:
                     to = Encoding.UTF8.GetBytes(System.Convert
-                        .ToBase64String(Encoding.UTF8.GetBytes(from)));
+                        .ToBase64String(input.BinaryValue));
                     break;
                 case Conversions.XmlDecode:
-                    to = Encoding.UTF8.GetBytes(HttpUtility.HtmlDecode(from));
+                    to = Encoding.UTF8.GetBytes(HttpUtility.HtmlDecode(input.TextValue));
                     break;
                 case Conversions.XmlEncode:
-                    to = Encoding.UTF8.GetBytes(HttpUtility.HtmlEncode(from));
+                    to = Encoding.UTF8.GetBytes(HttpUtility.HtmlEncode(input.TextValue));
                     break;
                 case Conversions.UrlDecode:
-                    to = Encoding.UTF8.GetBytes(Uri.UnescapeDataString(from));
+                    to = Encoding.UTF8.GetBytes(Uri.UnescapeDataString(input.TextValue));
                     break;
                 case Conversions.UrlEncode:
-                    to = Encoding.UTF8.GetBytes(Uri.EscapeDataString(from));
+                    to = Encoding.UTF8.GetBytes(Uri.EscapeDataString(input.TextValue));
+                    break;
+                case Conversions.Sha1Hash:
+                    to = SHA1CryptoServiceProvider.Create().ComputeHash(input.BinaryValue);
                     break;
                 default:
                     return;
