@@ -95,8 +95,6 @@ namespace AmqpClientTool
             if (connection != null)
             {
                 connection.Close();
-                connection.Closed -= Connection_Closed;
-                connection = null;
             }
         }
 
