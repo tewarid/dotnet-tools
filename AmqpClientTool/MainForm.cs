@@ -191,7 +191,12 @@ namespace AmqpClientTool
                 {
                     return;
                 }
-                output.AppendText($"Message received on {DateTime.Now}:{Environment.NewLine}");
+                string subject = string.Empty;
+                if (!string.IsNullOrEmpty(message.Properties.Subject))
+                {
+                    subject = $"with subject { message.Properties.Subject} ";
+                }
+                output.AppendText($"Message {subject}received on {DateTime.Now}:{Environment.NewLine}");
                 if (message.Body is byte[])
                 {
                     byte[] data = (byte[])message.Body;
