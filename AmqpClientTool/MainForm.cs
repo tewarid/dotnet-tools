@@ -66,16 +66,33 @@ namespace AmqpClientTool
             Properties.Settings.Default.Save();
         }
 
-        private void Open_Click(object sender, EventArgs e)
+        private async void Open_Click(object sender, EventArgs e)
         {
             string scheme = "AMQP";
-            if (useTls.Checked)
+            if (useWebSocket.Checked && useTls.Checked)
+            {
+                scheme = "WSS";
+            }
+            else if (useWebSocket.Checked && !useTls.Checked)
+            {
+                scheme = "WS";
+            }
+            else if (!useWebSocket.Checked && useTls.Checked)
             {
                 scheme = "AMQPS";
             }
             Address amqpAddress = new Address(host.Text, int.Parse(port.Text),
                 username.Text, password.Text, scheme: scheme);
-            connection = new Connection(amqpAddress);
+            try
+            {
+                connection = await Connection.Factory.CreateAsync(amqpAddress);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+                connection = null;
+                return;
+            }
             connection.Closed += Connection_Closed;
             session = new Session(connection);
             sendersListBox.DataSource = senders;
@@ -87,7 +104,7 @@ namespace AmqpClientTool
             status.Text = "Opened";
         }
 
-        private void Connection_Closed(IAmqpObject sender, Amqp.Framing.Error error)
+        private void Connection_Closed(IAmqpObject sender, Error error)
         {
             status.Text = "Closed";
             senderLink = null;
@@ -262,7 +279,6 @@ namespace AmqpClientTool
 
         private void RemoveSender_Click(object sender, EventArgs e)
         {
-
         }
 
         private void ReceiversListBox_SelectedIndexChanged(object sender, EventArgs e)
