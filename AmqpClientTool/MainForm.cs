@@ -149,6 +149,10 @@ namespace AmqpClientTool
             if (senderLink == null)
             {
                 AddSender();
+                if (senderLink == null)
+                {
+                    return;
+                }
             }
             object body;
             if (input.BinaryChecked)
@@ -221,7 +225,7 @@ namespace AmqpClientTool
                 }
                 catch (AmqpException)
                 {
-                    return;
+                    break;
                 }
                 string subject = string.Empty;
                 if (!string.IsNullOrEmpty(message.Properties.Subject))
@@ -243,8 +247,16 @@ namespace AmqpClientTool
             }
         }
 
-        private void RemoveReceiver_Click(object sender, EventArgs e)
+        private async void RemoveReceiver_Click(object sender, EventArgs e)
         {
+            if (receiversListBox.SelectedItem == null)
+            {
+                return;
+            }
+            ReceiverLinkWrapper wrapper = (ReceiverLinkWrapper)receiversListBox.SelectedItem;
+            IReceiverLink receiverLink = wrapper.ReceiverLink;
+            await receiverLink.CloseAsync();
+            receivers.Remove(wrapper);
         }
 
         private void AddSender_Click(object sender, EventArgs e)
@@ -277,12 +289,25 @@ namespace AmqpClientTool
             }
         }
 
-        private void RemoveSender_Click(object sender, EventArgs e)
+        private async void RemoveSender_Click(object sender, EventArgs e)
         {
+            if (sendersListBox.SelectedItem == null)
+            {
+                return;
+            }
+            SenderLinkWrapper wrapper = (SenderLinkWrapper)sendersListBox.SelectedItem;
+            ISenderLink senderLink = wrapper.SenderLink;
+            if (senderLink.Equals(this.senderLink))
+            {
+                this.senderLink = null;
+            }
+            await senderLink.CloseAsync();
+            senders.Remove(wrapper);
         }
 
         private void ReceiversListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // not needed at the moment
         }
 
         private void SendersListBox_SelectedIndexChanged(object sender, EventArgs e)
