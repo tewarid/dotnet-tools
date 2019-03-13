@@ -1,16 +1,56 @@
 ﻿using Amqp;
 using Amqp.Framing;
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace AmqpClientTool
 {
     public partial class MainForm : Form
     {
+        class SenderLinkWrapper
+        {
+            public ISenderLink SenderLink { get; set; }
+            public string Name
+            {
+                get
+                {
+                    return SenderLink.Name;
+                }
+                set
+                {
+                }
+            }
+            public SenderLinkWrapper(ISenderLink sender)
+            {
+                SenderLink = sender;
+            }
+        }
+
+        class ReceiverLinkWrapper
+        {
+            public IReceiverLink ReceiverLink { get; set; }
+            public string Name
+            {
+                get
+                {
+                    return ReceiverLink.Name;
+                }
+                set
+                {
+                }
+            }
+            public ReceiverLinkWrapper(IReceiverLink receiver)
+            {
+                ReceiverLink = receiver;
+            }
+        }
+
         private Connection connection;
         private Session session;
-        SenderLink senderLink;
-        ReceiverLink receiver;
+        private BindingList<SenderLinkWrapper> senders = new BindingList<SenderLinkWrapper>();
+        private BindingList<ReceiverLinkWrapper> receivers = new BindingList<ReceiverLinkWrapper>();
+        ISenderLink senderLink;
 
         public MainForm()
         {
@@ -19,30 +59,6 @@ namespace AmqpClientTool
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Address amqpAddress = new Address("amqp://guest:guest@172.24.6.221:5672");
-            Connection connection = new Connection(amqpAddress);
-            Session session = new Session(connection);
-
-            Amqp.Message message = new Amqp.Message("Hello AMQP!");
-            SenderLink senderLink = new SenderLink(session, "sender-link", "q1");
-            senderLink.Send(message);
-            Console.WriteLine("Sent Hello AMQP!");
-
-            ReceiverLink receiver = new ReceiverLink(session, "receiver-link", "q1");
-
-            Console.WriteLine("Receiver connected to broker.");
-            message = receiver.Receive(TimeSpan.FromSeconds(5));
-            Console.WriteLine("Received " + message.GetBody<string>());
-            receiver.Accept(message);
-
-            receiver.Close();
-            senderLink.Close();
-            session.Close();
-            connection.Close();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -62,26 +78,39 @@ namespace AmqpClientTool
             connection = new Connection(amqpAddress);
             connection.Closed += Connection_Closed;
             session = new Session(connection);
+            sendersListBox.DataSource = senders;
+            sendersListBox.DisplayMember = "Name";
+            sendersListBox.ValueMember = "Name";
+            receiversListBox.DataSource = receivers;
+            receiversListBox.DisplayMember = "Name";
+            receiversListBox.ValueMember = "Name";
             status.Text = "Opened";
         }
 
         private void Connection_Closed(IAmqpObject sender, Amqp.Framing.Error error)
         {
             status.Text = "Closed";
-            receiver = null;
             senderLink = null;
             session = null;
             connection.Closed -= Connection_Closed;
             connection = null;
+            for(int i = senders.Count - 1; i >= 0; i--)
+            {
+                senders.RemoveAt(i);
+            }
+            for (int i = receivers.Count - 1; i >= 0; i--)
+            {
+                receivers.RemoveAt(i);
+            }
+            BeginInvoke(new MethodInvoker(() =>
+            {
+                sendersListBox.DataSource = null;
+                receiversListBox.DataSource = null;
+            }));
         }
 
         private void Close_Click(object sender, EventArgs e)
         {
-            if (receiver != null)
-            {
-                receiver.Close();
-                receiver = null;
-            }
             if (senderLink != null)
             {
                 senderLink.Close();
@@ -102,26 +131,7 @@ namespace AmqpClientTool
         {
             if (senderLink == null)
             {
-                if (session == null)
-                {
-                    return;
-                }
-                Target sendTarget = new Target()
-                {
-                    Address = senderLinkAddress.Text,
-                    //Durable = 1,
-                };
-                try
-                {
-                    senderLink = new SenderLink(session, senderLinkName.Text, sendTarget, (link, attach) =>
-                    {
-                    });
-                }
-                catch (AmqpException ex)
-                {
-                    MessageBox.Show(this, ex.Message);
-                    return;
-                }
+                AddSender();
             }
             object body;
             if (input.BinaryChecked)
@@ -156,36 +166,41 @@ namespace AmqpClientTool
             }
         }
 
-        private async void Receive_Click(object sender, EventArgs e)
+        private async void AddReceiver_Click(object sender, EventArgs e)
         {
-            if (receiver != null)
-            {
-                return;
-            }
             if (session == null)
             {
                 return;
             }
+            IReceiverLink receiverLink;
             Source receiveSource = new Source()
             {
                 Address = receiverLinkAddress.Text,
                 //Durable = 1,
             };
-            receiver = new ReceiverLink(session, receiverLinkName.Text, receiveSource, (link, attach) =>
+            try
             {
-            });
-            status.Text = $"Receiver {receiverLinkName.Text} listening on address {receiverLinkAddress.Text}";
-            while (receiver != null && !receiver.IsClosed)
+                receiverLink = new ReceiverLink(session, receiverLinkName.Text, receiveSource, (link, attach) =>
+                {
+                });
+                receivers.Add(new ReceiverLinkWrapper(receiverLink));
+            }
+            catch(AmqpException ex)
+            {
+                MessageBox.Show(this, ex.Message);
+                return;
+            }
+            while (receiverLink != null && !receiverLink.IsClosed)
             {
                 Amqp.Message message;
                 try
                 {
-                    message = await receiver.ReceiveAsync(TimeSpan.FromSeconds(5));
+                    message = await receiverLink.ReceiveAsync(TimeSpan.FromSeconds(5));
                     if (message == null)
                     {
                         continue;
                     }
-                    receiver.Accept(message);
+                    receiverLink.Accept(message);
                 }
                 catch (AmqpException)
                 {
@@ -194,9 +209,9 @@ namespace AmqpClientTool
                 string subject = string.Empty;
                 if (!string.IsNullOrEmpty(message.Properties.Subject))
                 {
-                    subject = $"with subject { message.Properties.Subject} ";
+                    subject = $"received message with subject { message.Properties.Subject} ";
                 }
-                output.AppendText($"Message {subject}received on {DateTime.Now}:{Environment.NewLine}");
+                output.AppendText($"Receiver {receiverLink.Name} {subject}on {DateTime.Now}:{Environment.NewLine}");
                 if (message.Body is byte[])
                 {
                     byte[] data = (byte[])message.Body;
@@ -209,6 +224,58 @@ namespace AmqpClientTool
                 output.AppendText($"{Environment.NewLine}");
                 output.AppendText($"{Environment.NewLine}");
             }
+        }
+
+        private void RemoveReceiver_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void AddSender_Click(object sender, EventArgs e)
+        {
+            AddSender();
+        }
+
+        private void AddSender()
+        {
+            if (session == null)
+            {
+                return;
+            }
+            Target sendTarget = new Target()
+            {
+                Address = senderLinkAddress.Text,
+                //Durable = 1,
+            };
+            try
+            {
+                senderLink = new SenderLink(session, senderLinkName.Text, sendTarget, (link, attach) =>
+                {
+                });
+                senders.Add(new SenderLinkWrapper(senderLink));
+            }
+            catch (AmqpException ex)
+            {
+                MessageBox.Show(this, ex.Message);
+                return;
+            }
+        }
+
+        private void RemoveSender_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ReceiversListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void SendersListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (sendersListBox.SelectedItem == null)
+            {
+                return;
+            }
+            senderLink = ((SenderLinkWrapper)sendersListBox.SelectedItem).SenderLink;
         }
     }
 }
