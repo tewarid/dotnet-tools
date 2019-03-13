@@ -2,6 +2,7 @@
 using Amqp.Framing;
 using System;
 using System.ComponentModel;
+using System.Text;
 using System.Windows.Forms;
 
 namespace AmqpClientTool
@@ -154,16 +155,16 @@ namespace AmqpClientTool
                     return;
                 }
             }
-            object body;
+            byte[] data;
             if (input.BinaryChecked)
             {
-                body = input.BinaryValue;
+                data = input.BinaryValue;
             }
             else
             {
-                body = input.TextValue;
+                data = Encoding.UTF8.GetBytes(input.TextValue);
             }
-            Amqp.Message message = new Amqp.Message(body);
+            Amqp.Message message = new Amqp.Message(data);
             message.Header = new Header()
             {
                 Durable = true
@@ -233,15 +234,16 @@ namespace AmqpClientTool
                     subject = $"received message with subject { message.Properties.Subject} ";
                 }
                 output.AppendText($"Receiver {receiverLink.Name} {subject}on {DateTime.Now}:{Environment.NewLine}");
+                byte[] data;
                 if (message.Body is byte[])
                 {
-                    byte[] data = (byte[])message.Body;
-                    output.AppendBinary(data, data.Length);
+                    data = (byte[])message.Body;
                 }
                 else
                 {
-                    output.AppendText(message.Body.ToString());
+                    data = Encoding.UTF8.GetBytes(message.Body.ToString());
                 }
+                output.AppendBinary(data, data.Length);
                 output.AppendText($"{Environment.NewLine}");
                 output.AppendText($"{Environment.NewLine}");
             }
