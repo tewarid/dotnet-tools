@@ -130,5 +130,29 @@ namespace AmqpClientTool.Properties {
                 this["senderLinkAddress"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string outputText {
+            get {
+                return ((string)(this["outputText"]));
+            }
+            set {
+                this["outputText"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        public string inputText {
+            get {
+                return ((string)(this["inputText"]));
+            }
+            set {
+                this["inputText"] = value;
+            }
+        }
     }
 }

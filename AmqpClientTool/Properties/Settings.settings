@@ -29,5 +29,11 @@
     <Setting Name="senderLinkAddress" Type="System.String" Scope="User">
       <Value Profile="(Default)">test</Value>
     </Setting>
+    <Setting Name="outputText" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="inputText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">test</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
