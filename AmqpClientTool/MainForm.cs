@@ -156,16 +156,17 @@ namespace AmqpClientTool
                     return;
                 }
             }
-            byte[] data;
+            Data data = new Data();
             if (input.BinaryChecked)
             {
-                data = input.BinaryValue;
+                data.Binary = input.BinaryValue;
             }
             else
             {
-                data = Encoding.UTF8.GetBytes(input.TextValue);
+                data.Binary = Encoding.UTF8.GetBytes(input.TextValue);
             }
-            Amqp.Message message = new Amqp.Message(data);
+            Amqp.Message message = new Amqp.Message();
+            message.BodySection = data;
             message.Header = new Header()
             {
                 Durable = true
