@@ -64,6 +64,7 @@ namespace AmqpClientTool
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            CloseConnection();
             Properties.Settings.Default.Save();
         }
 
@@ -129,11 +130,11 @@ namespace AmqpClientTool
 
         private void Close_Click(object sender, EventArgs e)
         {
-            if (senderLink != null)
-            {
-                senderLink.Close();
-                senderLink = null;
-            }
+            CloseConnection();
+        }
+
+        private void CloseConnection()
+        {
             if (session != null)
             {
                 session.Close();
@@ -198,7 +199,7 @@ namespace AmqpClientTool
             Source receiveSource = new Source()
             {
                 Address = receiverLinkAddress.Text,
-                //Durable = 1,
+                Durable = 0,
             };
             try
             {
