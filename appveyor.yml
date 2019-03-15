@@ -15,36 +15,46 @@ build:
   project: NetTools.sln
   verbosity: minimal
 after_build:
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\README.md
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\Common\bin\Debug\*.dll
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\websocket-sharp\websocket-sharp\bin\Debug\*.dll
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\FirewallTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\*.md
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\*.dll
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\lib
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\EncodingTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\IcmpTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\TcpClientTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\SerialTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\TcpListenerTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\UdpTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketSharpTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketSharpServerTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\RouteTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\SnifferTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\AmqpClientTool\bin\Debug\*.config
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\AmqpClientTool\bin\Debug\*.dll
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\AmqpClientTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\BluetoothSerialClientTool\bin\Debug\*.exe
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\BluetoothSerialServerTool\bin\Debug\*.dll
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\BluetoothSerialServerTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\BluetoothSerialClientTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\Common\bin\Debug\*.dll
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\EncodingTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\FirewallTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitLabTool\bin\Debug\*.config
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitLabTool\bin\Debug\*.dll
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitLabTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\*.config
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\*.dll
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\*.md
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\GitTool\bin\Debug\lib
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\HttpListenerTool\bin\Debug\*.exe
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\HttpRequestTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\SmtpServerTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\SmtpServerTool\bin\Debug\*.dll
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\IcmpTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\README.md
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\MqttClientTool\bin\Debug\*.config
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\MqttClientTool\bin\Debug\*.dll
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\MqttClientTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\RouteTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\SerialTool\bin\Debug\*.exe
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\SmtpClientTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketTool\bin\Debug\*.dll
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketServerTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\SmtpServerTool\bin\Debug\*.dll
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\SmtpServerTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\SnifferTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\TcpClientTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\TcpListenerTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\UdpTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\websocket-sharp\websocket-sharp\bin\Debug\*.dll
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketServerTool\bin\Debug\*.config
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketServerTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketSharpServerTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketSharpTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketTool\bin\Debug\*.dll
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketTool\bin\Debug\*.exe
 artifacts:
 - path: '**\*.zip'
   name: NetTools
