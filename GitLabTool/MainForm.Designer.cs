@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.password = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -121,6 +122,7 @@
             this.columnHeader3});
             this.projects.Dock = System.Windows.Forms.DockStyle.Fill;
             this.projects.FullRowSelect = true;
+            this.projects.HideSelection = false;
             this.projects.Location = new System.Drawing.Point(3, 3);
             this.projects.Name = "projects";
             this.projects.Size = new System.Drawing.Size(575, 408);
@@ -167,6 +169,7 @@
             this.columnHeader8});
             this.milestones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.milestones.FullRowSelect = true;
+            this.milestones.HideSelection = false;
             this.milestones.Location = new System.Drawing.Point(3, 3);
             this.milestones.Name = "milestones";
             this.milestones.Size = new System.Drawing.Size(575, 408);
@@ -241,6 +244,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.host);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "GitLab Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);

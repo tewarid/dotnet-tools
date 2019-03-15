@@ -9,12 +9,10 @@ namespace UdpTool
     public partial class MainForm : Form
     {
         private UdpClient udpClient;
-        private TaskScheduler uiTaskScheduler;
 
         public MainForm()
         {
             InitializeComponent();
-            uiTaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             sourceIPAddress.InterfaceDeleted += SourceIPAddress_InterfaceDeleted;
         }
 

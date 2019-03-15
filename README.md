@@ -25,7 +25,7 @@ You may have to download nuget from nuget.org.
 
 ### Mono
 
-A solution file is available for building some of the tools for Linux using Mono.
+A solution file is available for building some of the tools for Linux or macOS using [Mono](https://www.mono-project.com/download/stable/).
 
 Use the msbuild version supplied by Mono to build
 
