@@ -56,6 +56,7 @@ namespace GitTool
             gitFolders.Items.Clear();
             scan.Enabled = false;
             browse.Enabled = false;
+            rootFolder.ReadOnly = true;
             Task.Run(() =>
             {
                 Scan(new DirectoryInfo(folder));
@@ -68,6 +69,7 @@ namespace GitTool
                     }
                     scan.Enabled = true;
                     browse.Enabled = true;
+                    rootFolder.ReadOnly = false;
                 }));
             });
         }
