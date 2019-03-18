@@ -1,5 +1,4 @@
-﻿using Common;
-using MQTTnet;
+﻿using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Extensions.ManagedClient;
 using MQTTnet.Protocol;
@@ -107,6 +106,7 @@ namespace MqttClientTool
             if (mqttClient == null)
             {
                 mqttClient = new MqttFactory().CreateManagedMqttClient();
+                mqttClient.ApplicationMessageProcessed += MqttClient_ApplicationMessageProcessed;
                 mqttClient.ApplicationMessageReceived += MqttClient_ApplicationMessageReceived;
                 mqttClient.Disconnected += MqttClient_Disconnected;
                 mqttClient.Connected += MqttClient_Connected;
@@ -166,6 +166,11 @@ namespace MqttClientTool
             {
                 clientId.Text = mqttClient.Options.ClientOptions.ClientId;
             }
+        }
+
+        private void MqttClient_ApplicationMessageProcessed(object sender, ApplicationMessageProcessedEventArgs e)
+        {
+            // Unused at the moment
         }
 
         private void MqttClient_ConnectingFailed(object sender, MqttManagedProcessFailedEventArgs e)
