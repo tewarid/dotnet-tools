@@ -46,6 +46,7 @@ namespace GitLabTool
             {
                 projects.Items.Add(new ListViewItem(new string[] {
                     project.PathWithNamespace,
+                    project.Namespace.Name,
                     project.HttpUrlToRepo,
                     project.SshUrlToRepo }));
                 try

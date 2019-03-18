@@ -49,6 +49,7 @@
             this.query = new System.Windows.Forms.Button();
             this.username = new System.Windows.Forms.TextBox();
             this.host = new System.Windows.Forms.TextBox();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -118,6 +119,7 @@
             this.projects.AllowColumnReorder = true;
             this.projects.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
+            this.columnHeader9,
             this.columnHeader2,
             this.columnHeader3});
             this.projects.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -135,7 +137,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 250;
+            this.columnHeader1.Width = 200;
             // 
             // columnHeader2
             // 
@@ -231,6 +233,11 @@
             this.host.TabIndex = 19;
             this.host.Text = global::GitLabTool.Properties.Settings.Default.host;
             // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Group";
+            this.columnHeader9.Width = 100;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -278,6 +285,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }
 
