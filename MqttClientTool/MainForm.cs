@@ -111,6 +111,7 @@ namespace MqttClientTool
                 mqttClient.Disconnected += MqttClient_Disconnected;
                 mqttClient.Connected += MqttClient_Connected;
                 mqttClient.ConnectingFailed += MqttClient_ConnectingFailed;
+                mqttClient.SynchronizingSubscriptionsFailed += MqttClient_SynchronizingSubscriptionsFailed;
             }
             if (mqttClient.IsConnected)
             {
@@ -157,15 +158,17 @@ namespace MqttClientTool
             try
             {
                 await mqttClient.StartAsync(options);
+                clientId.Text = mqttClient.Options.ClientOptions.ClientId;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message);
             }
-            if (string.IsNullOrWhiteSpace(clientId.Text))
-            {
-                clientId.Text = mqttClient.Options.ClientOptions.ClientId;
-            }
+        }
+
+        private void MqttClient_SynchronizingSubscriptionsFailed(object sender, MqttManagedProcessFailedEventArgs e)
+        {
+            // Unused at the moment
         }
 
         private void MqttClient_ApplicationMessageProcessed(object sender, ApplicationMessageProcessedEventArgs e)
@@ -176,7 +179,6 @@ namespace MqttClientTool
         private void MqttClient_ConnectingFailed(object sender, MqttManagedProcessFailedEventArgs e)
         {
             status.Text = "Failed";
-            mqttClient.StopAsync();
         }
 
         private void MqttClient_Connected(object sender, MqttClientConnectedEventArgs e)
@@ -191,7 +193,7 @@ namespace MqttClientTool
 
         private async void Stop_Click(object sender, EventArgs e)
         {
-            if (mqttClient == null || !mqttClient.IsConnected)
+            if (mqttClient == null)
             {
                 return;
             }
