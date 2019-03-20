@@ -169,7 +169,6 @@ namespace AmqpClientTool
             message.BodySection = data;
             message.Header = new Header()
             {
-                Durable = true
             };
             message.Properties = new Amqp.Framing.Properties();
             if (!string.IsNullOrWhiteSpace(subject.Text))
@@ -200,7 +199,6 @@ namespace AmqpClientTool
             Source receiveSource = new Source()
             {
                 Address = receiverLinkAddress.Text,
-                Durable = 0,
             };
             try
             {
@@ -277,7 +275,6 @@ namespace AmqpClientTool
             Target sendTarget = new Target()
             {
                 Address = senderLinkAddress.Text,
-                //Durable = 1,
             };
             try
             {
