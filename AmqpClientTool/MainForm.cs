@@ -157,14 +157,7 @@ namespace AmqpClientTool
                 }
             }
             Data data = new Data();
-            if (input.BinaryChecked)
-            {
-                data.Binary = input.BinaryValue;
-            }
-            else
-            {
-                data.Binary = Encoding.UTF8.GetBytes(input.TextValue);
-            }
+            data.Binary = input.SelectedBinaryValue;
             Amqp.Message message = new Amqp.Message();
             message.BodySection = data;
             message.Header = new Header()
