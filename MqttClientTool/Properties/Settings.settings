@@ -20,9 +20,6 @@
     <Setting Name="username" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="clientId" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="topicSubscribe" Type="System.String" Scope="User">
       <Value Profile="(Default)">test/topic</Value>
     </Setting>

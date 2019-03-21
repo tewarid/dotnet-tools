@@ -65,6 +65,7 @@ namespace MqttClientTool
             this.port = new System.Windows.Forms.TextBox();
             this.useWebSocket = new System.Windows.Forms.CheckBox();
             this.useTls = new System.Windows.Forms.CheckBox();
+            this.setWill = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -97,7 +98,7 @@ namespace MqttClientTool
             this.start.Location = new System.Drawing.Point(510, 101);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(75, 23);
-            this.start.TabIndex = 13;
+            this.start.TabIndex = 14;
             this.start.Text = "Start";
             this.start.UseVisualStyleBackColor = true;
             this.start.Click += new System.EventHandler(this.Start_Click);
@@ -108,7 +109,7 @@ namespace MqttClientTool
             this.stop.Location = new System.Drawing.Point(591, 101);
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(75, 23);
-            this.stop.TabIndex = 14;
+            this.stop.TabIndex = 15;
             this.stop.Text = "Stop";
             this.stop.UseVisualStyleBackColor = true;
             this.stop.Click += new System.EventHandler(this.Stop_Click);
@@ -359,7 +360,7 @@ namespace MqttClientTool
             this.password.Name = "password";
             this.password.PasswordChar = '*';
             this.password.Size = new System.Drawing.Size(165, 20);
-            this.password.TabIndex = 8;
+            this.password.TabIndex = 10;
             // 
             // label6
             // 
@@ -389,10 +390,10 @@ namespace MqttClientTool
             this.cleanSession.Checked = global::MqttClientTool.Properties.Settings.Default.cleanSession;
             this.cleanSession.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cleanSession.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::MqttClientTool.Properties.Settings.Default, "cleanSession", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cleanSession.Location = new System.Drawing.Point(510, 24);
+            this.cleanSession.Location = new System.Drawing.Point(228, 107);
             this.cleanSession.Name = "cleanSession";
             this.cleanSession.Size = new System.Drawing.Size(93, 17);
-            this.cleanSession.TabIndex = 10;
+            this.cleanSession.TabIndex = 12;
             this.cleanSession.Text = "Clean Session";
             this.cleanSession.UseVisualStyleBackColor = true;
             // 
@@ -400,12 +401,10 @@ namespace MqttClientTool
             // 
             this.clientId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.clientId.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "clientId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.clientId.Location = new System.Drawing.Point(5, 104);
             this.clientId.Name = "clientId";
-            this.clientId.Size = new System.Drawing.Size(316, 20);
-            this.clientId.TabIndex = 9;
-            this.clientId.Text = global::MqttClientTool.Properties.Settings.Default.clientId;
+            this.clientId.Size = new System.Drawing.Size(217, 20);
+            this.clientId.TabIndex = 11;
             // 
             // host
             // 
@@ -426,7 +425,7 @@ namespace MqttClientTool
             this.username.Location = new System.Drawing.Point(5, 65);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(316, 20);
-            this.username.TabIndex = 7;
+            this.username.TabIndex = 9;
             this.username.Text = global::MqttClientTool.Properties.Settings.Default.username;
             // 
             // port
@@ -445,10 +444,10 @@ namespace MqttClientTool
             this.useWebSocket.AutoSize = true;
             this.useWebSocket.Checked = global::MqttClientTool.Properties.Settings.Default.useWebSocket;
             this.useWebSocket.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::MqttClientTool.Properties.Settings.Default, "useWebSocket", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.useWebSocket.Location = new System.Drawing.Point(510, 70);
+            this.useWebSocket.Location = new System.Drawing.Point(399, 26);
             this.useWebSocket.Name = "useWebSocket";
             this.useWebSocket.Size = new System.Drawing.Size(105, 17);
-            this.useWebSocket.TabIndex = 12;
+            this.useWebSocket.TabIndex = 7;
             this.useWebSocket.Text = "Use WebSocket";
             this.useWebSocket.UseVisualStyleBackColor = true;
             this.useWebSocket.CheckedChanged += new System.EventHandler(this.UseWebSocket_CheckedChanged);
@@ -459,18 +458,29 @@ namespace MqttClientTool
             this.useTls.AutoSize = true;
             this.useTls.Checked = global::MqttClientTool.Properties.Settings.Default.useTls;
             this.useTls.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::MqttClientTool.Properties.Settings.Default, "useTls", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.useTls.Location = new System.Drawing.Point(510, 47);
+            this.useTls.Location = new System.Drawing.Point(510, 26);
             this.useTls.Name = "useTls";
             this.useTls.Size = new System.Drawing.Size(68, 17);
-            this.useTls.TabIndex = 11;
+            this.useTls.TabIndex = 8;
             this.useTls.Text = "Use TLS";
             this.useTls.UseVisualStyleBackColor = true;
+            // 
+            // setWill
+            // 
+            this.setWill.AutoSize = true;
+            this.setWill.Location = new System.Drawing.Point(327, 107);
+            this.setWill.Name = "setWill";
+            this.setWill.Size = new System.Drawing.Size(159, 17);
+            this.setWill.TabIndex = 13;
+            this.setWill.Text = "Set Last Will and Testament";
+            this.setWill.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.setWill);
             this.Controls.Add(this.cleanSession);
             this.Controls.Add(this.clientId);
             this.Controls.Add(this.label9);
@@ -541,6 +551,7 @@ namespace MqttClientTool
         private TextBox topicSubscribe;
         private Label label10;
         private CheckBox cleanSession;
+        private CheckBox setWill;
     }
 }
 

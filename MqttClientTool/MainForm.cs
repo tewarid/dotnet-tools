@@ -24,6 +24,14 @@ namespace MqttClientTool
             {
                 return;
             }
+            ManagedMqttApplicationMessage message = new ManagedMqttApplicationMessageBuilder()
+                .WithApplicationMessage(BuildMessage())
+                .Build();
+            await mqttClient.PublishAsync();
+        }
+
+        private MqttApplicationMessage BuildMessage()
+        {
             byte[] data = input.SelectedBinaryValue;
             MqttApplicationMessageBuilder messageBuilder = new MqttApplicationMessageBuilder()
                 .WithPayload(new MemoryStream(data), data.Length)
@@ -33,10 +41,7 @@ namespace MqttClientTool
                 messageBuilder.WithQualityOfServiceLevel((MqttQualityOfServiceLevel)qosPublish.SelectedIndex);
             }
             messageBuilder.WithRetainFlag(retain.Checked);
-            ManagedMqttApplicationMessage message = new ManagedMqttApplicationMessageBuilder()
-                .WithApplicationMessage(messageBuilder.Build())
-                .Build();
-            await mqttClient.PublishAsync(message);
+            return messageBuilder.Build();
         }
 
         private void MqttClient_ApplicationMessageReceived(object sender, MqttApplicationMessageReceivedEventArgs e)
@@ -150,6 +155,10 @@ namespace MqttClientTool
             if (cleanSession.Checked)
             {
                 clientOptions.WithCleanSession();
+            }
+            if(setWill.Checked && !string.IsNullOrWhiteSpace(input.TextValue))
+            {
+                clientOptions.WithWillMessage(BuildMessage());
             }
             var options = new ManagedMqttClientOptionsBuilder()
                 .WithAutoReconnectDelay(TimeSpan.FromSeconds(30))
