@@ -27,7 +27,7 @@ namespace MqttClientTool
             ManagedMqttApplicationMessage message = new ManagedMqttApplicationMessageBuilder()
                 .WithApplicationMessage(BuildMessage())
                 .Build();
-            await mqttClient.PublishAsync();
+            await mqttClient.PublishAsync(message);
         }
 
         private MqttApplicationMessage BuildMessage()
