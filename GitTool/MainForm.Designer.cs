@@ -210,7 +210,7 @@ namespace GitTool
             this.splitContainer2.Panel2.Controls.Add(this.label4);
             this.splitContainer2.Panel2.Controls.Add(this.log);
             this.splitContainer2.Size = new System.Drawing.Size(448, 450);
-            this.splitContainer2.SplitterDistance = 110;
+            this.splitContainer2.SplitterDistance = 150;
             this.splitContainer2.TabIndex = 20;
             // 
             // cheats
@@ -220,7 +220,7 @@ namespace GitTool
             this.cheats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cheats.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cheats.FormattingEnabled = true;
-            this.cheats.Location = new System.Drawing.Point(3, 85);
+            this.cheats.Location = new System.Drawing.Point(3, 125);
             this.cheats.Name = "cheats";
             this.cheats.Size = new System.Drawing.Size(359, 21);
             this.cheats.Sorted = true;
@@ -239,7 +239,7 @@ namespace GitTool
             // run
             // 
             this.run.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.run.Location = new System.Drawing.Point(368, 84);
+            this.run.Location = new System.Drawing.Point(368, 124);
             this.run.Name = "run";
             this.run.Size = new System.Drawing.Size(75, 23);
             this.run.TabIndex = 19;
@@ -258,8 +258,8 @@ namespace GitTool
             this.command.Location = new System.Drawing.Point(3, 21);
             this.command.Multiline = true;
             this.command.Name = "command";
-            this.command.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.command.Size = new System.Drawing.Size(440, 58);
+            this.command.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.command.Size = new System.Drawing.Size(440, 98);
             this.command.TabIndex = 18;
             this.command.Text = global::GitTool.Properties.Settings.Default.commands;
             this.command.WordWrap = false;
@@ -267,7 +267,7 @@ namespace GitTool
             // clear
             // 
             this.clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clear.Location = new System.Drawing.Point(368, 310);
+            this.clear.Location = new System.Drawing.Point(368, 270);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(75, 23);
             this.clear.TabIndex = 22;
@@ -295,10 +295,11 @@ namespace GitTool
             this.log.Multiline = true;
             this.log.Name = "log";
             this.log.ReadOnly = true;
-            this.log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.log.Size = new System.Drawing.Size(437, 286);
+            this.log.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.log.Size = new System.Drawing.Size(437, 246);
             this.log.TabIndex = 20;
             this.log.Text = global::GitTool.Properties.Settings.Default.output;
+            this.log.WordWrap = false;
             // 
             // MainForm
             // 
