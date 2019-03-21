@@ -51,7 +51,7 @@ namespace Common
             this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputText.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputText.Location = new System.Drawing.Point(7, 17);
             this.outputText.Margin = new System.Windows.Forms.Padding(4);
             this.outputText.MaxLength = 1000000;
@@ -86,14 +86,14 @@ namespace Common
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // ReceiveTextBox
+            // OutputTextBox
             // 
             this.Controls.Add(this.label);
             this.Controls.Add(this.viewInHex);
             this.Controls.Add(this.outputText);
             this.Controls.Add(this.clearButton);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "ReceiveTextBox";
+            this.Name = "OutputTextBox";
             this.Size = new System.Drawing.Size(378, 347);
             this.ResumeLayout(false);
             this.PerformLayout();

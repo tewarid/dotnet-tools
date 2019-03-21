@@ -66,7 +66,7 @@ namespace Common
             this.inputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputText.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputText.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputText.HideSelection = false;
             this.inputText.Location = new System.Drawing.Point(7, 16);
             this.inputText.MaxLength = 1000000;
@@ -100,14 +100,14 @@ namespace Common
             this.endOfLine.Size = new System.Drawing.Size(151, 21);
             this.endOfLine.TabIndex = 23;
             // 
-            // SendTextBox
+            // InputTextBox
             // 
             this.Controls.Add(this.endOfLine);
             this.Controls.Add(this.changeEndOfLine);
             this.Controls.Add(this.inputTextLabel);
             this.Controls.Add(this.inputText);
             this.Controls.Add(this.inputInHex);
-            this.Name = "SendTextBox";
+            this.Name = "InputTextBox";
             this.Padding = new System.Windows.Forms.Padding(4);
             this.Size = new System.Drawing.Size(502, 307);
             this.ResumeLayout(false);
