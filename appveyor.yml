@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: 1.1.{build}
 image: Visual Studio 2017
 environment:
   priv_key:
@@ -68,3 +68,14 @@ deploy:
   package: net-tools
   publish: true
   override: true
+- provider: GitHub
+  release: net-tools-v$(appveyor_build_version)
+  description: 'See project readme file for additional information.'
+  auth_token:
+    secure: XPLv6H4axGa1OAN9MRiFgYY0fL1a/ddMiTH3MHhv4B62/mX4LOX+2LTwKZACI2qK
+  artifact: /.*\.zip/
+  draft: false
+  prerelease: false
+  on:
+    branch: master
+    APPVEYOR_REPO_TAG: true

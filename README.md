@@ -1,10 +1,14 @@
 # Networking Tools [![Build status](https://ci.appveyor.com/api/projects/status/d3bn7jnje8rtts7v?svg=true)](https://ci.appveyor.com/project/tewarid/nettools) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9272afa7d6494d7fa5a885e8e02a2999)](https://www.codacy.com/app/tewarid/net-tools?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tewarid/net-tools&amp;utm_campaign=Badge_Grade) [![Join the chat at https://gitter.im/tewarid-net-tools/Lobby](https://badges.gitter.im/tewarid-net-tools/Lobby.svg)](https://gitter.im/tewarid-net-tools/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Simple tools for experimenting with network communications written primarily for Windows in .NET. To get the latest working build head to https://dl.bintray.com/tewarid/net-tools/.
+Simple tools for experimenting with network communications written primarily for Windows in .NET.
 
-## Build
+## Download latest build
 
-To build all the tools, clone the repository, and initialize submodules
+To download the latest working build, see releases section of this project, or head to https://dl.bintray.com/tewarid/net-tools/.
+
+## Build from source
+
+To build all the tools, clone this repository, and initialize submodules
 
 ```bash
 git clone https://github.com/tewarid/net-tools.git
@@ -12,7 +16,7 @@ cd net-tools
 git submodule update --init --recursive
 ```
 
-You can open the solution file `NeTools.sln` using Visual Studio 2017 and build.
+Then, open the solution file `NeTools.sln` using Visual Studio 2017 and build.
 
 To build from the command line, open Developer Command Prompt for VS 2017, change to the `net-tools` directory, and run
 
