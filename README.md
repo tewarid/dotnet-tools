@@ -2,9 +2,9 @@
 
 Simple tools for experimenting with network communications written primarily for Windows in .NET.
 
-## Download latest build
+## Download
 
-To download the latest working build, see releases section of this project, or head to https://dl.bintray.com/tewarid/net-tools/.
+To download the latest build, see releases section of this GitHub project. For older builds, head to https://dl.bintray.com/tewarid/net-tools/.
 
 ## Build from source
 
