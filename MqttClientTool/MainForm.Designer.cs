@@ -99,9 +99,9 @@ namespace MqttClientTool
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(75, 23);
             this.start.TabIndex = 14;
-            this.start.Text = "Start";
+            this.start.Text = "Connect";
             this.start.UseVisualStyleBackColor = true;
-            this.start.Click += new System.EventHandler(this.Start_Click);
+            this.start.Click += new System.EventHandler(this.Connect_Click);
             // 
             // stop
             // 
@@ -110,9 +110,9 @@ namespace MqttClientTool
             this.stop.Name = "stop";
             this.stop.Size = new System.Drawing.Size(75, 23);
             this.stop.TabIndex = 15;
-            this.stop.Text = "Stop";
+            this.stop.Text = "Disconnect";
             this.stop.UseVisualStyleBackColor = true;
-            this.stop.Click += new System.EventHandler(this.Stop_Click);
+            this.stop.Click += new System.EventHandler(this.Disconnect_Click);
             // 
             // splitContainer1
             // 
@@ -404,10 +404,12 @@ namespace MqttClientTool
             // 
             this.clientId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.clientId.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::MqttClientTool.Properties.Settings.Default, "clientId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.clientId.Location = new System.Drawing.Point(5, 104);
             this.clientId.Name = "clientId";
             this.clientId.Size = new System.Drawing.Size(316, 20);
             this.clientId.TabIndex = 9;
+            this.clientId.Text = global::MqttClientTool.Properties.Settings.Default.clientId;
             // 
             // host
             // 

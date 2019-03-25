@@ -45,9 +45,6 @@
     <Reference Include="MQTTnet, Version=2.8.5.0, Culture=neutral, PublicKeyToken=b69712f52770c0a7, processorArchitecture=MSIL">
       <HintPath>..\packages\MQTTnet.2.8.5\lib\net462\MQTTnet.dll</HintPath>
     </Reference>
-    <Reference Include="MQTTnet.Extensions.ManagedClient, Version=2.8.5.0, Culture=neutral, PublicKeyToken=b69712f52770c0a7, processorArchitecture=MSIL">
-      <HintPath>..\packages\MQTTnet.Extensions.ManagedClient.2.8.5\lib\net462\MQTTnet.Extensions.ManagedClient.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

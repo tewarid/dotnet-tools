@@ -1,6 +1,5 @@
 ﻿using MQTTnet;
 using MQTTnet.Client;
-using MQTTnet.Extensions.ManagedClient;
 using MQTTnet.Protocol;
 using MQTTnet.Serializer;
 using System;
@@ -11,7 +10,7 @@ namespace MqttClientTool
 {
     public partial class MainForm : Form
     {
-        private IManagedMqttClient mqttClient;
+        private IMqttClient mqttClient;
 
         public MainForm()
         {
@@ -24,10 +23,7 @@ namespace MqttClientTool
             {
                 return;
             }
-            ManagedMqttApplicationMessage message = new ManagedMqttApplicationMessageBuilder()
-                .WithApplicationMessage(BuildMessage())
-                .Build();
-            await mqttClient.PublishAsync(message);
+            await mqttClient.PublishAsync(BuildMessage());
         }
 
         private MqttApplicationMessage BuildMessage()
@@ -106,88 +102,70 @@ namespace MqttClientTool
             subscriptions.Items.RemoveAt(index);
         }
 
-        private async void Start_Click(object sender, EventArgs e)
+        private async void Connect_Click(object sender, EventArgs e)
         {
             if (mqttClient == null)
             {
-                mqttClient = new MqttFactory().CreateManagedMqttClient();
-                mqttClient.ApplicationMessageProcessed += MqttClient_ApplicationMessageProcessed;
+                mqttClient = new MqttFactory().CreateMqttClient();
                 mqttClient.ApplicationMessageReceived += MqttClient_ApplicationMessageReceived;
                 mqttClient.Disconnected += MqttClient_Disconnected;
                 mqttClient.Connected += MqttClient_Connected;
-                mqttClient.ConnectingFailed += MqttClient_ConnectingFailed;
-                mqttClient.SynchronizingSubscriptionsFailed += MqttClient_SynchronizingSubscriptionsFailed;
             }
             if (mqttClient.IsConnected)
             {
                 return;
             }
-            status.Text = "Starting";
-            var clientOptions = new MqttClientOptionsBuilder();
-            clientOptions.WithProtocolVersion(MqttProtocolVersion.V311);
+            status.Text = "Connecting...";
+            var clientOptionsBuilder = new MqttClientOptionsBuilder();
+            clientOptionsBuilder.WithProtocolVersion(MqttProtocolVersion.V311);
             if (!string.IsNullOrWhiteSpace(username.Text))
             {
                 if (!string.IsNullOrWhiteSpace(password.Text))
                 {
-                    clientOptions.WithCredentials(username.Text, password.Text);
+                    clientOptionsBuilder.WithCredentials(username.Text, password.Text);
                 }
                 else
                 {
-                    clientOptions.WithCredentials(username.Text);
+                    clientOptionsBuilder.WithCredentials(username.Text);
                 }
             }
             if (!string.IsNullOrWhiteSpace(clientId.Text))
             {
-                clientOptions.WithClientId(clientId.Text);
+                clientOptionsBuilder.WithClientId(clientId.Text);
             }
             if (useTls.Checked)
             {
-                clientOptions.WithTls();
+                clientOptionsBuilder.WithTls();
             }
             if (useWebSocket.Checked)
             {
-                clientOptions.WithWebSocketServer(host.Text);
+                clientOptionsBuilder.WithWebSocketServer(host.Text);
             }
             else
             {
-                clientOptions.WithTcpServer(host.Text, int.Parse(port.Text));
+                clientOptionsBuilder.WithTcpServer(host.Text, int.Parse(port.Text));
             }
             if (cleanSession.Checked)
             {
-                clientOptions.WithCleanSession();
+                clientOptionsBuilder.WithCleanSession(true);
+            }
+            else
+            {
+                clientOptionsBuilder.WithCleanSession(false);
             }
             if(setWill.Checked && !string.IsNullOrWhiteSpace(input.TextValue))
             {
-                clientOptions.WithWillMessage(BuildMessage());
+                clientOptionsBuilder.WithWillMessage(BuildMessage());
             }
-            var options = new ManagedMqttClientOptionsBuilder()
-                .WithAutoReconnectDelay(TimeSpan.FromSeconds(30))
-                .WithClientOptions(clientOptions)
-                .Build();
             try
             {
-                await mqttClient.StartAsync(options);
-                clientId.Text = mqttClient.Options.ClientOptions.ClientId;
+                await mqttClient.ConnectAsync(clientOptionsBuilder.Build());
+                clientId.Text = mqttClient.Options.ClientId;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message);
             }
-        }
-
-        private void MqttClient_SynchronizingSubscriptionsFailed(object sender, MqttManagedProcessFailedEventArgs e)
-        {
-            // Unused at the moment
-        }
-
-        private void MqttClient_ApplicationMessageProcessed(object sender, ApplicationMessageProcessedEventArgs e)
-        {
-            // Unused at the moment
-        }
-
-        private void MqttClient_ConnectingFailed(object sender, MqttManagedProcessFailedEventArgs e)
-        {
-            status.Text = "Failed";
         }
 
         private void MqttClient_Connected(object sender, MqttClientConnectedEventArgs e)
@@ -198,16 +176,27 @@ namespace MqttClientTool
         private void MqttClient_Disconnected(object sender, MqttClientDisconnectedEventArgs e)
         {
             status.Text = "Disconnected";
+            ClearSubscriptions();
         }
 
-        private async void Stop_Click(object sender, EventArgs e)
+        private void ClearSubscriptions()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(ClearSubscriptions));
+                return;
+            }
+            subscriptions.Items.Clear();
+        }
+
+        private async void Disconnect_Click(object sender, EventArgs e)
         {
             if (mqttClient == null)
             {
                 return;
             }
-            status.Text = "Stopping...";
-            await mqttClient.StopAsync();
+            status.Text = "Disconnecting...";
+            await mqttClient.DisconnectAsync();
         }
 
         private void UseWebSocket_CheckedChanged(object sender, EventArgs e)
