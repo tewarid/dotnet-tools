@@ -32,10 +32,11 @@ namespace MqttClientTool
             MqttApplicationMessageBuilder messageBuilder = new MqttApplicationMessageBuilder()
                 .WithPayload(new MemoryStream(data), data.Length)
                 .WithTopic(topicPublish.Text);
-            if (qosPublish.SelectedIndex >= 0)
+            if (qosPublish.SelectedIndex == -1)
             {
-                messageBuilder.WithQualityOfServiceLevel((MqttQualityOfServiceLevel)qosPublish.SelectedIndex);
+                qosPublish.SelectedIndex = 0;
             }
+            messageBuilder.WithQualityOfServiceLevel((MqttQualityOfServiceLevel)qosPublish.SelectedIndex);
             messageBuilder.WithRetainFlag(retain.Checked);
             return messageBuilder.Build();
         }
@@ -63,22 +64,20 @@ namespace MqttClientTool
             }
             if (!string.IsNullOrWhiteSpace(topicSubscribe.Text))
             {
-                int index = subscriptions.Items.IndexOf(topicSubscribe.Text);
-                if (index >= 0)
-                {
-                    subscriptions.SelectedIndex = index;
-                    return;
-                }
                 TopicFilterBuilder builder = new TopicFilterBuilder()
                     .WithTopic(topicSubscribe.Text);
-                if (qosSubscribe.SelectedIndex >= 0)
+                if (qosSubscribe.SelectedIndex == -1)
                 {
-                    builder.WithQualityOfServiceLevel((MqttQualityOfServiceLevel)qosSubscribe.SelectedIndex);
+                    qosSubscribe.SelectedIndex = 0;
                 }
+                builder.WithQualityOfServiceLevel((MqttQualityOfServiceLevel)qosSubscribe.SelectedIndex);
                 try
                 {
                     await mqttClient.SubscribeAsync(builder.Build());
-                    subscriptions.Items.Add(topicSubscribe.Text);
+                    if (!subscriptions.Items.Contains(topicSubscribe.Text))
+                    {
+                        subscriptions.Items.Add(topicSubscribe.Text);
+                    }
                 }
                 catch(Exception ex)
                 {
