@@ -200,34 +200,46 @@ namespace GitLabTool
             }
             for (int i = 1; i < path.Length; i++)
             {
+                Group subgroup = await GetSubgroup(group.Id, path[i]).ConfigureAwait(true);
+                if (subgroup != null)
+                {
+                    group = subgroup;
+                    continue;
+                }
                 try
                 {
                     CreateGroupRequest request = new CreateGroupRequest(path[i], path[i]);
                     request.ParentId = group.Id;
                     request.Visibility = group.Visibility;
-                    group = await client.Groups.CreateAsync(request);
+                    group = await client.Groups.CreateAsync(request).ConfigureAwait(false);
                 }
-                catch (GitLabException)
+                catch (GitLabException ex)
                 {
-                    try
-                    {
-                        IList<Group> subGroups = await client.Groups.GetSubgroupsAsync(group.Id.ToString());
-                        foreach (Group subGroup in subGroups)
-                        {
-                            if (subGroup.Path.Equals(path[i]))
-                            {
-                                group = subGroup;
-                                break;
-                            }
-                        }
-                    }
-                    catch (GitLabException)
-                    {
-                        break;
-                    }
+                    group = null;
+                    break;
                 }
             }
             return group;
+        }
+
+        private async Task<Group> GetSubgroup(int parentId, string path)
+        {
+            try
+            {
+                IList<Group> subGroups = await client.Groups.GetSubgroupsAsync(parentId.ToString());
+                foreach (Group subGroup in subGroups)
+                {
+                    if (subGroup.Path.Equals(path))
+                    {
+                        return subGroup;
+                    }
+                }
+            }
+            catch (GitLabException)
+            {
+                // do nothing
+            }
+            return null;
         }
 
         private async void Delete_Click(object sender, EventArgs e)
