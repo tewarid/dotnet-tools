@@ -23,7 +23,7 @@ namespace SmtpServerTool
                 TimeSpan.FromSeconds(Decimal.ToDouble(timeout.Value));
             LoggingMessageStore store = new LoggingMessageStore();
             store.Message += Store_Message;
-            ISmtpServerOptions options = new OptionsBuilder()
+            ISmtpServerOptions options = new SmtpServerOptionsBuilder()
                 .ServerName(serverName.Text)
                 .Port(Decimal.ToInt32(port.Value))
                 .CommandWaitTimeout(seconds)

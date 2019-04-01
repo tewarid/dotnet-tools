@@ -57,8 +57,8 @@
     <ApplicationIcon>icon-white.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HexToBinLib, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HexToBin.1.1.0\lib\net40\HexToBinLib.dll</HintPath>
+    <Reference Include="HexToBinLib, Version=1.1.23.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HexToBin.1.1.23\lib\net40\HexToBinLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

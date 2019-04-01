@@ -35,8 +35,8 @@
     <ApplicationIcon>icon-green-base.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SmtpServer, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SmtpServer.4.3.0\lib\net45\SmtpServer.dll</HintPath>
+    <Reference Include="SmtpServer, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SmtpServer.6.1.0\lib\netstandard2.0\SmtpServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
