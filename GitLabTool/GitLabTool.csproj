@@ -96,5 +96,11 @@
   <ItemGroup>
     <Content Include="icon-white.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{e1fee78b-cbec-4a3e-9252-581406417ce0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

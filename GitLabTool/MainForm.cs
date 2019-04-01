@@ -1,6 +1,12 @@
-﻿using GitLabApiClient;
+﻿using Common;
+using GitLabApiClient;
+using GitLabApiClient.Models.Groups.Requests;
+using GitLabApiClient.Models.Groups.Responses;
 using GitLabApiClient.Models.Milestones.Responses;
+using GitLabApiClient.Models.Projects.Requests;
+using GitLabApiClient.Models.Projects.Responses;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +16,8 @@ namespace GitLabTool
 {
     public partial class MainForm : Form
     {
+        private GitLabClient client;
+
         public MainForm()
         {
             InitializeComponent();
@@ -17,38 +25,43 @@ namespace GitLabTool
 
         private async void query_Click(object sender, EventArgs e)
         {
+            query.Enabled = false;
             try
             {
-                await Query().ConfigureAwait(true);
+                await Query(filter.Text).ConfigureAwait(true);
             }
             catch(Exception ex)
             {
                 MessageBox.Show(this, ex.Message);
             }
+            query.Enabled = true;
         }
 
-        private async Task Query()
+        private async Task Query(string filter)
         {
-            GitLabClient client;
-            if (string.IsNullOrEmpty(username.Text))
+            CreateClient();
+            IList<Project> projectList;
+            if (string.IsNullOrWhiteSpace(filter))
             {
-                client = new GitLabClient(host.Text, password.Text);
+                projectList = await client.Projects.GetAsync().ConfigureAwait(true);
             }
             else
             {
-                client = new GitLabClient(host.Text);
-                var session = await client.LoginAsync(username.Text, password.Text);
+                projectList = await client.Projects.GetAsync((o) =>
+                {
+                    o.Filter = filter;
+                }).ConfigureAwait(true);
             }
-            var projectList = await client.Projects.GetAsync().ConfigureAwait(true);
             projects.Items.Clear();
             milestones.Items.Clear();
             foreach (var project in projectList)
             {
-                projects.Items.Add(new ListViewItem(new string[] {
+                ListViewItem projectListItem = new ListViewItem(new string[] {
                     project.PathWithNamespace,
-                    project.Namespace.Name,
                     project.HttpUrlToRepo,
-                    project.SshUrlToRepo }));
+                    project.SshUrlToRepo });
+                projectListItem.Tag = project;
+                projects.Items.Add(projectListItem);
                 try
                 {
                     var milestoneList = await client.Projects
@@ -58,12 +71,14 @@ namespace GitLabTool
                         }).ConfigureAwait(true);
                     foreach (var milestone in milestoneList)
                     {
-                        milestones.Items.Add(new ListViewItem(new string[] {
+                        ListViewItem milestoneListItem = new ListViewItem(new string[] {
                             milestone.DueDate,
                             project.PathWithNamespace,
                             milestone.Title,
                             milestone.State.ToString(),
-                            milestone.StartDate}));
+                            milestone.StartDate});
+                        milestoneListItem.Tag = milestone;
+                        milestones.Items.Add(milestoneListItem);
                     }
                 }
                 catch (GitLabException ex)
@@ -76,7 +91,20 @@ namespace GitLabTool
             }
         }
 
-        private void KeyDown(object sender, KeyEventArgs e)
+        private async void CreateClient()
+        {
+            if (string.IsNullOrEmpty(username.Text))
+            {
+                client = new GitLabClient(host.Text, password.Text);
+            }
+            else
+            {
+                client = new GitLabClient(host.Text);
+                var session = await client.LoginAsync(username.Text, password.Text);
+            }
+        }
+
+        private void Projects_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.C)
             {
@@ -105,6 +133,124 @@ namespace GitLabTool
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Save();
+        }
+
+        private async void Create_Click(object sender, EventArgs e)
+        {
+            InputDialog<string> dialog = new InputDialog<string>();
+            DialogResult result = dialog.Show(this,
+                "Input project namespace and name", string.Empty);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+            CreateClient();
+            string path;
+            Group group = null;
+            int index = dialog.Value.LastIndexOf("/");
+            if (index == -1)
+            {
+                path = dialog.Value;
+            }
+            else
+            {
+                path = dialog.Value.Substring(index + 1);
+                string groupPathWithNamespace = dialog.Value.Substring(0, index);
+                group = await GetOrCreateGroup(groupPathWithNamespace)
+                    .ConfigureAwait(true);
+                if (group == null)
+                {
+                    MessageBox.Show(this, $"Could not create group {groupPathWithNamespace}");
+                    return;
+                }
+            }
+            CreateProjectRequest request = CreateProjectRequest.FromPath(path);
+            request.NamespaceId = group.Id;
+            try
+            {
+                await client.Projects.CreateAsync(request).ConfigureAwait(true);
+            }
+            catch(GitLabException ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
+            dialog.Dispose();
+        }
+
+        private async Task<Group> GetOrCreateGroup(string pathWithNamespace)
+        {
+            string[] path = pathWithNamespace.Split('/');
+            Group group;
+            try
+            {
+                group = await client.Groups.GetAsync(path[0])
+                    .ConfigureAwait(true);
+            }
+            catch (GitLabException ex)
+            {
+                try
+                {
+                    CreateGroupRequest request = new CreateGroupRequest(path[0], path[0]);
+                    group = await client.Groups.CreateAsync(request);
+                }
+                catch (GitLabException)
+                {
+                    return null;
+                }
+            }
+            for (int i = 1; i < path.Length; i++)
+            {
+                try
+                {
+                    CreateGroupRequest request = new CreateGroupRequest(path[i], path[i]);
+                    request.ParentId = group.Id;
+                    request.Visibility = group.Visibility;
+                    group = await client.Groups.CreateAsync(request);
+                }
+                catch (GitLabException)
+                {
+                    try
+                    {
+                        IList<Group> subGroups = await client.Groups.GetSubgroupsAsync(group.Id.ToString());
+                        foreach (Group subGroup in subGroups)
+                        {
+                            if (subGroup.Path.Equals(path[i]))
+                            {
+                                group = subGroup;
+                                break;
+                            }
+                        }
+                    }
+                    catch (GitLabException)
+                    {
+                        break;
+                    }
+                }
+            }
+            return group;
+        }
+
+        private async void Delete_Click(object sender, EventArgs e)
+        {
+            if (projects.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            Project project = (Project)projects.Items[projects.SelectedIndices[0]].Tag;
+            DialogResult result = MessageBox.Show(this,
+                $"Are you sure you want to delete project {project.PathWithNamespace}?",
+                Text, MessageBoxButtons.YesNoCancel);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    await client.Projects.DeleteAsync(project.Id).ConfigureAwait(true);
+                }
+                catch (GitLabException ex)
+                {
+                    MessageBox.Show(this, ex.Message);
+                }
+            }
         }
     }
 }

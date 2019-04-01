@@ -13,40 +13,43 @@ namespace Common
             InitializeComponent();
         }
 
-        public DialogResult Show(IWin32Window owner, string label,
+        public DialogResult Show(IWin32Window owner, string labelText,
             string defaultValue)
         {
-            this.Text = label;
-            this.label.Text = label;
-            this.value.Text = defaultValue;
+            Text = labelText;
+            label.Text = labelText;
+            value.Text = defaultValue;
             DialogResult result = DialogResult.None;
-            this.ok.Click += (o, a) =>
+            ok.Click += (o, a) =>
             {
                 try
                 {
-                    if (!string.IsNullOrEmpty(this.value.Text))
+                    if (typeof(T) == typeof(String))
+                    {
+                        Value = (T)((object)value.Text);
+                    }
+                    else if (!string.IsNullOrWhiteSpace(value.Text))
                     {
                         Value = (T)Activator.CreateInstance(typeof(T),
-                            new object[] { this.value.Text });
+                            new object[] { value.Text });
                     }
                 }
-                catch(TargetInvocationException ex)
+                catch (TargetInvocationException ex)
                 {
                     if (ex.InnerException != null)
                     {
-                        MessageBox.Show(this, ex.InnerException.Message,
-                            this.Text);
+                        MessageBox.Show(this, ex.InnerException.Message, Text);
                     }
                     return;
                 }
                 result = DialogResult.OK;
-                this.Close();
+                Close();
             };
-            this.cancel.Click += (o, a) =>
+            cancel.Click += (o, a) =>
             {
                 result = DialogResult.Cancel;
             };
-            this.ShowDialog(owner);
+            ShowDialog(owner);
             return result;
         }
     }
