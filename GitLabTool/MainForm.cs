@@ -186,7 +186,7 @@ namespace GitLabTool
                 group = await client.Groups.GetAsync(path[0])
                     .ConfigureAwait(true);
             }
-            catch (GitLabException ex)
+            catch (GitLabException)
             {
                 try
                 {
@@ -213,7 +213,7 @@ namespace GitLabTool
                     request.Visibility = group.Visibility;
                     group = await client.Groups.CreateAsync(request).ConfigureAwait(false);
                 }
-                catch (GitLabException ex)
+                catch (GitLabException)
                 {
                     group = null;
                     break;

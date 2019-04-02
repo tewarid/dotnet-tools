@@ -35,6 +35,7 @@
     <ApplicationIcon>icon-green-base.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="SmtpServer, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SmtpServer.6.1.0\lib\netstandard2.0\SmtpServer.dll</HintPath>
     </Reference>
