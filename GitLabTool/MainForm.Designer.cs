@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.delete = new System.Windows.Forms.Button();
             this.create = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.query = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.username = new System.Windows.Forms.TextBox();
             this.host = new System.Windows.Forms.TextBox();
-            this.delete = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -124,8 +124,20 @@
             this.tabPage1.Text = "Projects and Milestones";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // delete
+            // 
+            this.delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.delete.Location = new System.Drawing.Point(503, 16);
+            this.delete.Name = "delete";
+            this.delete.Size = new System.Drawing.Size(75, 23);
+            this.delete.TabIndex = 30;
+            this.delete.Text = "Delete";
+            this.delete.UseVisualStyleBackColor = true;
+            this.delete.Click += new System.EventHandler(this.Delete_Click);
+            // 
             // create
             // 
+            this.create.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.create.Location = new System.Drawing.Point(386, 16);
             this.create.Name = "create";
             this.create.Size = new System.Drawing.Size(111, 23);
@@ -267,16 +279,6 @@
             this.host.Size = new System.Drawing.Size(176, 20);
             this.host.TabIndex = 1;
             this.host.Text = global::GitLabTool.Properties.Settings.Default.host;
-            // 
-            // delete
-            // 
-            this.delete.Location = new System.Drawing.Point(503, 16);
-            this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(75, 23);
-            this.delete.TabIndex = 30;
-            this.delete.Text = "Delete";
-            this.delete.UseVisualStyleBackColor = true;
-            this.delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // MainForm
             // 
