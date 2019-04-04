@@ -83,6 +83,21 @@ Simple HTTP(S) server built using [System.Net.HttpListener](https://msdn.microso
 
 Interactive client that uses raw sockets to send/receive ICMP messages. Requires administrative privilege.
 
+## Kafka Client Tool
+
+A simple interactive Kafka client based on the Confluent.Kafka library. To run Kafka using Docker
+
+```bash
+git clone https://github.com/wurstmeister/kafka-docker
+cd kafka-docker
+```
+
+Adjust `KAFKA_ADVERTISED_HOST_NAME` to IP address of host in file docker-compose-single-broker.yml and run
+
+```bash
+docker-compose -f docker-compose-single-broker.yml up
+```
+
 ## MQTT Client Tool
 
 Simple interactive MQTT 3.1.1 client based on the [MQTTnet](https://github.com/chkr1011/MQTTnet) library.
