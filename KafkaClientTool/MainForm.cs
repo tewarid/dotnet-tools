@@ -9,6 +9,7 @@ namespace KafkaClientTool
     public partial class MainForm : Form
     {
         IConsumer<Ignore, string> consumer;
+        IProducer<Null, string> producer;
 
         public MainForm()
         {
@@ -17,23 +18,20 @@ namespace KafkaClientTool
 
         private async void Produce_Click(object sender, EventArgs e)
         {
-            var config = new ProducerConfig { BootstrapServers = bootstrapServers.Text };
-
-            // If serializers are not specified, default serializers from
-            // `Confluent.Kafka.Serializers` will be automatically used where
-            // available. Note: by default strings are encoded as UTF8.
-            using (var p = new ProducerBuilder<Null, string>(config).Build())
+            if (producer == null)
             {
-                try
-                {
-                    var dr = await p.ProduceAsync(produceToTopic.Text,
-                        new Message<Null, string> { Value = input.TextValue }).ConfigureAwait(true);
-                    status.Text = $"Delivered to '{dr.TopicPartitionOffset}'";
-                }
-                catch (ProduceException<Null, string> ex)
-                {
-                    MessageBox.Show(this, $"Delivery failed: {ex.Error.Reason}");
-                }
+                var config = new ProducerConfig { BootstrapServers = bootstrapServers.Text };
+                producer = new ProducerBuilder<Null, string>(config).Build();
+            }
+            try
+            {
+                var dr = await producer.ProduceAsync(produceToTopic.Text,
+                    new Message<Null, string> { Value = input.TextValue }).ConfigureAwait(true);
+                status.Text = $"Delivered to '{dr.TopicPartitionOffset}'";
+            }
+            catch (ProduceException<Null, string> ex)
+            {
+                MessageBox.Show(this, $"Delivery failed: {ex.Error.Reason}");
             }
         }
 
@@ -57,11 +55,6 @@ namespace KafkaClientTool
             {
                 GroupId = clientGroupId.Text,
                 BootstrapServers = bootstrapServers.Text,
-                // Note: The AutoOffsetReset property determines the start offset in the event
-                // there are not yet any committed offsets for the consumer group for the
-                // topic/partitions of interest. By default, offsets are committed
-                // automatically, so in this example, consumption will only start from the
-                // earliest message in the topic 'my-topic' the first time you run the program.
                 AutoOffsetReset = AutoOffsetReset.Earliest
             };
 
@@ -101,6 +94,7 @@ namespace KafkaClientTool
                 }
             }
             consumer.Dispose();
+            consumer = null;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
