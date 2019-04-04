@@ -15,6 +15,13 @@ namespace MqttClientTool
         public MainForm()
         {
             InitializeComponent();
+            EnableDisable();
+        }
+
+        private void EnableDisable()
+        {
+            port.Enabled = !useWebSocket.Checked;
+            useTls.Enabled = !useWebSocket.Checked;
         }
 
         private async void Publish_Click(object sender, EventArgs e)
@@ -200,7 +207,7 @@ namespace MqttClientTool
 
         private void UseWebSocket_CheckedChanged(object sender, EventArgs e)
         {
-            port.Enabled = !useWebSocket.Checked;
+            EnableDisable();
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
