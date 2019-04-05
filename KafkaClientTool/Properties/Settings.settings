@@ -5,5 +5,20 @@
     <Setting Name="bootstrapServers" Type="System.String" Scope="User">
       <Value Profile="(Default)">127.0.0.1:9092</Value>
     </Setting>
+    <Setting Name="clientGroupId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">test-group</Value>
+    </Setting>
+    <Setting Name="subscribeToTopic" Type="System.String" Scope="User">
+      <Value Profile="(Default)">test</Value>
+    </Setting>
+    <Setting Name="produceToTopic" Type="System.String" Scope="User">
+      <Value Profile="(Default)">test</Value>
+    </Setting>
+    <Setting Name="output" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="input" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

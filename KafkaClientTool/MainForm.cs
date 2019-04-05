@@ -9,6 +9,7 @@ namespace KafkaClientTool
     public partial class MainForm : Form
     {
         IConsumer<Ignore, string> consumer;
+        CancellationTokenSource consumerCancellationTS;
         IProducer<Null, string> producer;
 
         public MainForm()
@@ -37,12 +38,6 @@ namespace KafkaClientTool
 
         private void Subscribe_Click(object sender, EventArgs e)
         {
-            if (consumer != null)
-            {
-                consumer.Subscribe(subscribeToTopic.Text);
-                return;
-            }
-
             Task.Run(() =>
             {
                 CreateConsumer();
@@ -51,6 +46,27 @@ namespace KafkaClientTool
 
         private void CreateConsumer()
         {
+            char[] separators = new char[] {',', ' '};
+            string[] topics = subscribeToTopic.Text.Split(separators,
+                StringSplitOptions.RemoveEmptyEntries);
+            if (topics.Length == 0)
+            {
+                return;
+            }
+
+            if (consumer != null)
+            {
+                if (topics.Length == 1)
+                {
+                    consumer.Subscribe(topics[0]);
+                }
+                else
+                {
+                    consumer.Subscribe(topics);
+                }
+                return;
+            }
+
             var conf = new ConsumerConfig
             {
                 GroupId = clientGroupId.Text,
@@ -59,17 +75,24 @@ namespace KafkaClientTool
             };
 
             consumer = new ConsumerBuilder<Ignore, string>(conf).Build();
-            consumer.Subscribe(subscribeToTopic.Text);
-            CancellationTokenSource cts = new CancellationTokenSource();
+            if (topics.Length == 1)
+            {
+                consumer.Subscribe(topics[0]);
+            }
+            else
+            {
+                consumer.Subscribe(topics);
+            }
+            consumerCancellationTS = new CancellationTokenSource();
             while (true)
             {
                 try
                 {
                     BeginInvoke(new MethodInvoker(() =>
                     {
-                        status.Text = $"Consuming...";
+                        status.Text = $"Consuming";
                     }));
-                    var cr = consumer.Consume(cts.Token);
+                    var cr = consumer.Consume(consumerCancellationTS.Token);
                     BeginInvoke(new MethodInvoker(() =>
                     {
                         output.AppendText($"Consumed message at '{cr.TopicPartitionOffset}' on {DateTime.Now}:");
@@ -100,6 +123,27 @@ namespace KafkaClientTool
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Save();
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            if (consumer != null)
+            {
+                consumer.Unsubscribe();
+                consumerCancellationTS.Cancel();
+                consumerCancellationTS.Dispose();
+            }
+            if (producer != null)
+            {
+                producer.Dispose();
+                producer = null;
+            }
+            status.Text = "Reset complete";
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            output.ScrollToEnd();
         }
     }
 }

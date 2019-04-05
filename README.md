@@ -98,6 +98,13 @@ Adjust `KAFKA_ADVERTISED_HOST_NAME` to IP address of host in file docker-compose
 docker-compose -f docker-compose-single-broker.yml up
 ```
 
+To start the containers again, use `docker ps -a` to find container ids and run in the following order
+
+```bash
+docker start kafka-docker_zookeeper_1
+docker start -ai kafka-docker_kafka_1
+```
+
 ## MQTT Client Tool
 
 Simple interactive MQTT 3.1.1 client based on the [MQTTnet](https://github.com/chkr1011/MQTTnet) library.

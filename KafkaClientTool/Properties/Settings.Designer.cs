@@ -34,5 +34,65 @@ namespace KafkaClientTool.Properties {
                 this["bootstrapServers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("test-group")]
+        public string clientGroupId {
+            get {
+                return ((string)(this["clientGroupId"]));
+            }
+            set {
+                this["clientGroupId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        public string subscribeToTopic {
+            get {
+                return ((string)(this["subscribeToTopic"]));
+            }
+            set {
+                this["subscribeToTopic"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        public string produceToTopic {
+            get {
+                return ((string)(this["produceToTopic"]));
+            }
+            set {
+                this["produceToTopic"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string output {
+            get {
+                return ((string)(this["output"]));
+            }
+            set {
+                this["output"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string input {
+            get {
+                return ((string)(this["input"]));
+            }
+            set {
+                this["input"] = value;
+            }
+        }
     }
 }
