@@ -34,17 +34,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.subscribe = new System.Windows.Forms.Button();
-            this.clientGroupId = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.subscribeToTopic = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.output = new Common.OutputTextBox();
             this.produce = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.reset = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.securityProtocol = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.saslMechanism = new System.Windows.Forms.ComboBox();
+            this.password = new System.Windows.Forms.TextBox();
+            this.username = new System.Windows.Forms.TextBox();
+            this.clientGroupId = new System.Windows.Forms.TextBox();
+            this.subscribeToTopic = new System.Windows.Forms.TextBox();
+            this.output = new Common.OutputTextBox();
             this.produceToTopic = new System.Windows.Forms.TextBox();
             this.input = new Common.InputTextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.bootstrapServers = new System.Windows.Forms.TextBox();
-            this.reset = new System.Windows.Forms.Button();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -70,7 +78,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 9);
+            this.label1.Location = new System.Drawing.Point(7, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(203, 13);
             this.label1.TabIndex = 1;
@@ -81,7 +89,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(6, 51);
+            this.splitContainer1.Location = new System.Drawing.Point(6, 95);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -99,7 +107,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.produceToTopic);
             this.splitContainer1.Panel2.Controls.Add(this.input);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
-            this.splitContainer1.Size = new System.Drawing.Size(788, 374);
+            this.splitContainer1.Size = new System.Drawing.Size(788, 330);
             this.splitContainer1.SplitterDistance = 384;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -114,6 +122,134 @@
             this.subscribe.UseVisualStyleBackColor = true;
             this.subscribe.Click += new System.EventHandler(this.Subscribe_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Client Group ID";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(250, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Comma separated list of subscription topics or regex";
+            // 
+            // produce
+            // 
+            this.produce.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.produce.Location = new System.Drawing.Point(319, 303);
+            this.produce.Name = "produce";
+            this.produce.Size = new System.Drawing.Size(75, 23);
+            this.produce.TabIndex = 3;
+            this.produce.Text = "Produce";
+            this.produce.UseVisualStyleBackColor = true;
+            this.produce.Click += new System.EventHandler(this.Produce_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Produce to topic";
+            // 
+            // reset
+            // 
+            this.reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.reset.Location = new System.Drawing.Point(713, 22);
+            this.reset.Name = "reset";
+            this.reset.Size = new System.Drawing.Size(75, 23);
+            this.reset.TabIndex = 4;
+            this.reset.Text = "Reset";
+            this.reset.UseVisualStyleBackColor = true;
+            this.reset.Click += new System.EventHandler(this.Reset_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(387, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Username";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(577, 48);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Password";
+            // 
+            // securityProtocol
+            // 
+            this.securityProtocol.DataBindings.Add(new System.Windows.Forms.Binding("Tag", global::KafkaClientTool.Properties.Settings.Default, "securityProtocol", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.securityProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.securityProtocol.FormattingEnabled = true;
+            this.securityProtocol.Location = new System.Drawing.Point(10, 64);
+            this.securityProtocol.Name = "securityProtocol";
+            this.securityProtocol.Size = new System.Drawing.Size(184, 21);
+            this.securityProtocol.TabIndex = 9;
+            this.securityProtocol.Tag = global::KafkaClientTool.Properties.Settings.Default.securityProtocol;
+            this.securityProtocol.SelectedIndexChanged += new System.EventHandler(this.securityProtocol_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 48);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(87, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Security Protocol";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(197, 48);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(91, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "SASL Mechanism";
+            // 
+            // saslMechanism
+            // 
+            this.saslMechanism.DataBindings.Add(new System.Windows.Forms.Binding("Tag", global::KafkaClientTool.Properties.Settings.Default, "saslMechanism", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.saslMechanism.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.saslMechanism.FormattingEnabled = true;
+            this.saslMechanism.Location = new System.Drawing.Point(200, 64);
+            this.saslMechanism.Name = "saslMechanism";
+            this.saslMechanism.Size = new System.Drawing.Size(184, 21);
+            this.saslMechanism.TabIndex = 11;
+            this.saslMechanism.Tag = global::KafkaClientTool.Properties.Settings.Default.saslMechanism;
+            this.saslMechanism.SelectedIndexChanged += new System.EventHandler(this.saslMechanism_SelectedIndexChanged);
+            // 
+            // password
+            // 
+            this.password.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::KafkaClientTool.Properties.Settings.Default, "password", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.password.Location = new System.Drawing.Point(580, 64);
+            this.password.Name = "password";
+            this.password.PasswordChar = '*';
+            this.password.Size = new System.Drawing.Size(208, 20);
+            this.password.TabIndex = 8;
+            this.password.Text = global::KafkaClientTool.Properties.Settings.Default.password;
+            // 
+            // username
+            // 
+            this.username.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::KafkaClientTool.Properties.Settings.Default, "username", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.username.Location = new System.Drawing.Point(390, 64);
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(184, 20);
+            this.username.TabIndex = 6;
+            this.username.Text = global::KafkaClientTool.Properties.Settings.Default.username;
+            // 
             // clientGroupId
             // 
             this.clientGroupId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -125,15 +261,6 @@
             this.clientGroupId.Size = new System.Drawing.Size(296, 20);
             this.clientGroupId.TabIndex = 4;
             this.clientGroupId.Text = global::KafkaClientTool.Properties.Settings.Default.clientGroupId;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Client Group ID";
             // 
             // subscribeToTopic
             // 
@@ -148,15 +275,6 @@
             this.subscribeToTopic.TabIndex = 2;
             this.subscribeToTopic.Text = global::KafkaClientTool.Properties.Settings.Default.subscribeToTopic;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(250, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Comma separated list of subscription topics or regex";
-            // 
             // output
             // 
             this.output.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -167,20 +285,9 @@
             this.output.Location = new System.Drawing.Point(4, 112);
             this.output.Margin = new System.Windows.Forms.Padding(4);
             this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(376, 258);
+            this.output.Size = new System.Drawing.Size(376, 214);
             this.output.TabIndex = 0;
             this.output.TextValue = global::KafkaClientTool.Properties.Settings.Default.output;
-            // 
-            // produce
-            // 
-            this.produce.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.produce.Location = new System.Drawing.Point(319, 347);
-            this.produce.Name = "produce";
-            this.produce.Size = new System.Drawing.Size(75, 23);
-            this.produce.TabIndex = 3;
-            this.produce.Text = "Produce";
-            this.produce.UseVisualStyleBackColor = true;
-            this.produce.Click += new System.EventHandler(this.Produce_Click);
             // 
             // produceToTopic
             // 
@@ -207,44 +314,35 @@
             this.input.Name = "input";
             this.input.Padding = new System.Windows.Forms.Padding(4);
             this.input.SelectedTextValue = "";
-            this.input.Size = new System.Drawing.Size(391, 289);
+            this.input.Size = new System.Drawing.Size(391, 245);
             this.input.TabIndex = 1;
             this.input.TextValue = global::KafkaClientTool.Properties.Settings.Default.input;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Produce to topic";
-            // 
             // bootstrapServers
             // 
+            this.bootstrapServers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bootstrapServers.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::KafkaClientTool.Properties.Settings.Default, "bootstrapServers", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.bootstrapServers.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bootstrapServers.Location = new System.Drawing.Point(6, 25);
+            this.bootstrapServers.Location = new System.Drawing.Point(9, 25);
             this.bootstrapServers.Name = "bootstrapServers";
-            this.bootstrapServers.Size = new System.Drawing.Size(380, 20);
+            this.bootstrapServers.Size = new System.Drawing.Size(698, 20);
             this.bootstrapServers.TabIndex = 2;
             this.bootstrapServers.Text = global::KafkaClientTool.Properties.Settings.Default.bootstrapServers;
-            // 
-            // reset
-            // 
-            this.reset.Location = new System.Drawing.Point(392, 23);
-            this.reset.Name = "reset";
-            this.reset.Size = new System.Drawing.Size(75, 23);
-            this.reset.TabIndex = 4;
-            this.reset.Text = "Reset";
-            this.reset.UseVisualStyleBackColor = true;
-            this.reset.Click += new System.EventHandler(this.Reset_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.saslMechanism);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.securityProtocol);
+            this.Controls.Add(this.password);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.username);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.reset);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.bootstrapServers);
@@ -286,6 +384,14 @@
         private System.Windows.Forms.TextBox produceToTopic;
         private System.Windows.Forms.Button produce;
         private System.Windows.Forms.Button reset;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox username;
+        private System.Windows.Forms.TextBox password;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox securityProtocol;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox saslMechanism;
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using Confluent.Kafka;
+﻿using Common;
+using Confluent.Kafka;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +16,14 @@ namespace KafkaClientTool
         public MainForm()
         {
             InitializeComponent();
+            securityProtocol.Items.Add(new ComboboxItem<SecurityProtocol>("Plain Text", SecurityProtocol.Plaintext));
+            securityProtocol.Items.Add(new ComboboxItem<SecurityProtocol>("SASL Plain Text", SecurityProtocol.SaslPlaintext));
+            securityProtocol.Items.Add(new ComboboxItem<SecurityProtocol>("SASL SSL", SecurityProtocol.SaslSsl));
+            securityProtocol.Items.Add(new ComboboxItem<SecurityProtocol>("SSL", SecurityProtocol.Ssl));
+            saslMechanism.Items.Add(new ComboboxItem<SaslMechanism>("GSS-API", SaslMechanism.Gssapi));
+            saslMechanism.Items.Add(new ComboboxItem<SaslMechanism>("Plain", SaslMechanism.Plain));
+            saslMechanism.Items.Add(new ComboboxItem<SaslMechanism>("SCRAM-SHA-256", SaslMechanism.ScramSha256));
+            saslMechanism.Items.Add(new ComboboxItem<SaslMechanism>("SCRAM-SHA-512", SaslMechanism.ScramSha512));
         }
 
         private async void Produce_Click(object sender, EventArgs e)
@@ -22,6 +31,20 @@ namespace KafkaClientTool
             if (producer == null)
             {
                 var config = new ProducerConfig { BootstrapServers = bootstrapServers.Text };
+                if (!string.IsNullOrWhiteSpace(username.Text) &&
+                    !string.IsNullOrWhiteSpace(password.Text))
+                {
+                    config.SaslUsername = username.Text;
+                    config.SaslPassword = password.Text;
+                    if (securityProtocol.SelectedItem != null)
+                    {
+                        config.SecurityProtocol = ((ComboboxItem<SecurityProtocol>)securityProtocol.SelectedItem).Value;
+                    }
+                    if (saslMechanism.SelectedItem != null)
+                    {
+                        config.SaslMechanism = ((ComboboxItem<SaslMechanism>)saslMechanism.SelectedItem).Value;
+                    }
+                }
                 producer = new ProducerBuilder<Null, string>(config).Build();
             }
             try
@@ -38,22 +61,13 @@ namespace KafkaClientTool
 
         private void Subscribe_Click(object sender, EventArgs e)
         {
-            Task.Run(() =>
-            {
-                CreateConsumer();
-            });
-        }
-
-        private void CreateConsumer()
-        {
-            char[] separators = new char[] {',', ' '};
+            char[] separators = new char[] { ',', ' ' };
             string[] topics = subscribeToTopic.Text.Split(separators,
                 StringSplitOptions.RemoveEmptyEntries);
             if (topics.Length == 0)
             {
                 return;
             }
-
             if (consumer != null)
             {
                 if (topics.Length == 1)
@@ -66,15 +80,49 @@ namespace KafkaClientTool
                 }
                 return;
             }
-
-            var conf = new ConsumerConfig
+            var config = new ConsumerConfig
             {
-                GroupId = clientGroupId.Text,
                 BootstrapServers = bootstrapServers.Text,
-                AutoOffsetReset = AutoOffsetReset.Earliest
+                AutoOffsetReset = AutoOffsetReset.Earliest,
             };
+            if (!string.IsNullOrWhiteSpace(clientGroupId.Text))
+            {
+                config.GroupId = clientGroupId.Text;
+            }
+            if (!string.IsNullOrWhiteSpace(username.Text) &&
+                !string.IsNullOrWhiteSpace(password.Text))
+            {
+                config.SaslUsername = username.Text;
+                config.SaslPassword = password.Text;
+                if (securityProtocol.SelectedItem != null)
+                {
+                    config.SecurityProtocol = ((ComboboxItem<SecurityProtocol>)securityProtocol.SelectedItem).Value;
+                }
+                if (saslMechanism.SelectedItem != null)
+                {
+                    config.SaslMechanism = ((ComboboxItem<SaslMechanism>)saslMechanism.SelectedItem).Value;
+                }
+            }
+            Task.Run(() =>
+            {
+                CreateConsumer(config, topics);
+            });
+        }
 
-            consumer = new ConsumerBuilder<Ignore, string>(conf).Build();
+        private void CreateConsumer(ConsumerConfig config, string[] topics)
+        {
+            try
+            {
+                consumer = new ConsumerBuilder<Ignore, string>(config).Build();
+            }
+            catch (Exception ex)
+            {
+                BeginInvoke(new MethodInvoker(() =>
+                {
+                    status.Text = $"Could not create consumer: {ex.Message}";
+                }));
+                return;
+            }
             if (topics.Length == 1)
             {
                 consumer.Subscribe(topics[0]);
@@ -138,12 +186,58 @@ namespace KafkaClientTool
                 producer.Dispose();
                 producer = null;
             }
+            securityProtocol.SelectedIndex = -1;
+            saslMechanism.SelectedIndex = -1;
             status.Text = "Reset complete";
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
             output.ScrollToEnd();
+            if (securityProtocol.Tag is SecurityProtocol)
+            {
+                int i = 0;
+                foreach(ComboboxItem<SecurityProtocol> item in securityProtocol.Items)
+                {
+                    if ((SecurityProtocol)securityProtocol.Tag == item.Value)
+                    {
+                        securityProtocol.SelectedIndex = i;
+                        break;
+                    }
+                    i++;
+                }
+            }
+            if (saslMechanism.Tag is SaslMechanism)
+            {
+                int i = 0;
+                foreach (ComboboxItem<SaslMechanism> item in saslMechanism.Items)
+                {
+                    if ((SaslMechanism)saslMechanism.Tag == item.Value)
+                    {
+                        saslMechanism.SelectedIndex = i;
+                        break;
+                    }
+                    i++;
+                }
+            }
+        }
+
+        private void securityProtocol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (securityProtocol.SelectedItem == null)
+            {
+                return;
+            }
+            securityProtocol.Tag = ((ComboboxItem<SecurityProtocol>)securityProtocol.SelectedItem).Value;
+        }
+
+        private void saslMechanism_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (saslMechanism.SelectedItem == null)
+            {
+                return;
+            }
+            saslMechanism.Tag = ((ComboboxItem<SaslMechanism>)saslMechanism.SelectedItem).Value;
         }
     }
 }

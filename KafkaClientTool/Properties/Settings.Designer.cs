@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Confluent.Kafka;
+
 namespace KafkaClientTool.Properties {
     
     
@@ -92,6 +94,52 @@ namespace KafkaClientTool.Properties {
             }
             set {
                 this["input"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string username {
+            get {
+                return ((string)(this["username"]));
+            }
+            set {
+                this["username"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string password {
+            get {
+                return ((string)(this["password"]));
+            }
+            set {
+                this["password"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public SecurityProtocol securityProtocol {
+            get {
+                return ((SecurityProtocol)(this["securityProtocol"]));
+            }
+            set {
+                this["securityProtocol"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public SaslMechanism saslMechanism {
+            get {
+                return ((SaslMechanism)(this["saslMechanism"]));
+            }
+            set {
+                this["saslMechanism"] = value;
             }
         }
     }
