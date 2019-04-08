@@ -68,7 +68,7 @@ namespace WebSocketSharpTool
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendButton.Location = new System.Drawing.Point(310, 407);
+            this.sendButton.Location = new System.Drawing.Point(312, 413);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 7;
@@ -78,14 +78,19 @@ namespace WebSocketSharpTool
             // 
             // sendTextBox
             // 
-            this.sendTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sendTextBox.Location = new System.Drawing.Point(0, 3);
-            this.sendTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.sendTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sendTextBox.BinaryChecked = false;
+            this.sendTextBox.ChangeEndOfLine = true;
+            this.sendTextBox.EndOfLine = Common.EndOfLine.Dos;
+            this.sendTextBox.Location = new System.Drawing.Point(3, 3);
             this.sendTextBox.MinimumSize = new System.Drawing.Size(280, 130);
             this.sendTextBox.Name = "sendTextBox";
-            this.sendTextBox.Padding = new System.Windows.Forms.Padding(3);
-            this.sendTextBox.Size = new System.Drawing.Size(390, 433);
+            this.sendTextBox.SelectedTextValue = "";
+            this.sendTextBox.Size = new System.Drawing.Size(384, 404);
             this.sendTextBox.TabIndex = 6;
+            this.sendTextBox.TextValue = "";
             // 
             // panel2
             // 
@@ -117,7 +122,7 @@ namespace WebSocketSharpTool
             // 
             this.proxyButton.Location = new System.Drawing.Point(106, 92);
             this.proxyButton.Name = "proxyButton";
-            this.proxyButton.Size = new System.Drawing.Size(82, 19);
+            this.proxyButton.Size = new System.Drawing.Size(82, 23);
             this.proxyButton.TabIndex = 2;
             this.proxyButton.Text = "HTTP Proxy...";
             this.proxyButton.UseVisualStyleBackColor = true;
@@ -128,12 +133,13 @@ namespace WebSocketSharpTool
             this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputText.Location = new System.Drawing.Point(3, 121);
-            this.outputText.Margin = new System.Windows.Forms.Padding(4);
+            this.outputText.AppendBinaryChecked = false;
+            this.outputText.Location = new System.Drawing.Point(3, 117);
             this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(387, 318);
+            this.outputText.Size = new System.Drawing.Size(384, 319);
             this.outputText.TabIndex = 5;
+            this.outputText.TextValue = "";
             // 
             // location
             // 
@@ -151,7 +157,7 @@ namespace WebSocketSharpTool
             // 
             this.setHeaders.Location = new System.Drawing.Point(3, 92);
             this.setHeaders.Name = "setHeaders";
-            this.setHeaders.Size = new System.Drawing.Size(97, 19);
+            this.setHeaders.Size = new System.Drawing.Size(97, 23);
             this.setHeaders.TabIndex = 1;
             this.setHeaders.Text = "HTTP Headers...";
             this.setHeaders.UseVisualStyleBackColor = true;
@@ -163,7 +169,7 @@ namespace WebSocketSharpTool
             this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.closeButton.Location = new System.Drawing.Point(313, 92);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 19);
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 4;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
@@ -174,7 +180,7 @@ namespace WebSocketSharpTool
             this.connect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.connect.Location = new System.Drawing.Point(231, 92);
             this.connect.Name = "connect";
-            this.connect.Size = new System.Drawing.Size(75, 19);
+            this.connect.Size = new System.Drawing.Size(75, 23);
             this.connect.TabIndex = 3;
             this.connect.Text = "Connect";
             this.connect.UseVisualStyleBackColor = true;

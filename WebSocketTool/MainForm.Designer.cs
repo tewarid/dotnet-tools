@@ -69,7 +69,7 @@ namespace WebSocketTool
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.sendButton.Location = new System.Drawing.Point(311, 407);
+            this.sendButton.Location = new System.Drawing.Point(312, 410);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 7;
@@ -79,14 +79,19 @@ namespace WebSocketTool
             // 
             // sendTextBox
             // 
-            this.sendTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sendTextBox.Location = new System.Drawing.Point(0, 3);
-            this.sendTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.sendTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sendTextBox.BinaryChecked = false;
+            this.sendTextBox.ChangeEndOfLine = true;
+            this.sendTextBox.EndOfLine = Common.EndOfLine.Dos;
+            this.sendTextBox.Location = new System.Drawing.Point(3, 9);
             this.sendTextBox.MinimumSize = new System.Drawing.Size(280, 130);
             this.sendTextBox.Name = "sendTextBox";
-            this.sendTextBox.Padding = new System.Windows.Forms.Padding(3);
-            this.sendTextBox.Size = new System.Drawing.Size(390, 433);
+            this.sendTextBox.SelectedTextValue = "";
+            this.sendTextBox.Size = new System.Drawing.Size(384, 395);
             this.sendTextBox.TabIndex = 8;
+            this.sendTextBox.TextValue = "";
             // 
             // connect
             // 
@@ -139,10 +144,10 @@ namespace WebSocketTool
             // 
             this.location.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.location.Location = new System.Drawing.Point(3, 25);
+            this.location.Location = new System.Drawing.Point(6, 25);
             this.location.Multiline = true;
             this.location.Name = "location";
-            this.location.Size = new System.Drawing.Size(381, 63);
+            this.location.Size = new System.Drawing.Size(378, 63);
             this.location.TabIndex = 0;
             this.location.Text = "wss://localhost:8088";
             // 
@@ -151,12 +156,13 @@ namespace WebSocketTool
             this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputText.Location = new System.Drawing.Point(3, 123);
-            this.outputText.Margin = new System.Windows.Forms.Padding(4);
+            this.outputText.AppendBinaryChecked = false;
+            this.outputText.Location = new System.Drawing.Point(6, 123);
             this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(384, 316);
+            this.outputText.Size = new System.Drawing.Size(378, 310);
             this.outputText.TabIndex = 5;
+            this.outputText.TextValue = "";
             // 
             // setHeaders
             // 

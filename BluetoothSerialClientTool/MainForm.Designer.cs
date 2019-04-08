@@ -64,8 +64,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(746, 436);
-            this.splitContainer1.SplitterDistance = 373;
+            this.splitContainer1.Size = new System.Drawing.Size(773, 434);
+            this.splitContainer1.SplitterDistance = 368;
             this.splitContainer1.TabIndex = 5;
             // 
             // panel2
@@ -79,7 +79,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(373, 436);
+            this.panel2.Size = new System.Drawing.Size(368, 434);
             this.panel2.TabIndex = 1;
             // 
             // outputText
@@ -87,17 +87,19 @@
             this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.outputText.AppendBinaryChecked = false;
             this.outputText.Location = new System.Drawing.Point(6, 56);
             this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(365, 377);
+            this.outputText.Size = new System.Drawing.Size(360, 375);
             this.outputText.TabIndex = 5;
+            this.outputText.TextValue = "";
             // 
             // closeButton
             // 
             this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeButton.Enabled = false;
-            this.closeButton.Location = new System.Drawing.Point(298, 25);
+            this.closeButton.Location = new System.Drawing.Point(293, 25);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(64, 23);
             this.closeButton.TabIndex = 4;
@@ -108,7 +110,7 @@
             // refreshButton
             // 
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.refreshButton.Location = new System.Drawing.Point(158, 25);
+            this.refreshButton.Location = new System.Drawing.Point(153, 25);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(64, 23);
             this.refreshButton.TabIndex = 1;
@@ -124,7 +126,7 @@
             this.deviceList.FormattingEnabled = true;
             this.deviceList.Location = new System.Drawing.Point(7, 27);
             this.deviceList.Name = "deviceList";
-            this.deviceList.Size = new System.Drawing.Size(145, 21);
+            this.deviceList.Size = new System.Drawing.Size(140, 21);
             this.deviceList.TabIndex = 0;
             this.deviceList.SelectedIndexChanged += new System.EventHandler(this.deviceList_SelectedIndexChanged);
             // 
@@ -142,7 +144,7 @@
             // 
             this.connectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.connectButton.Enabled = false;
-            this.connectButton.Location = new System.Drawing.Point(228, 25);
+            this.connectButton.Location = new System.Drawing.Point(223, 25);
             this.connectButton.Name = "connectButton";
             this.connectButton.Size = new System.Drawing.Size(64, 23);
             this.connectButton.TabIndex = 3;
@@ -157,16 +159,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(369, 436);
+            this.panel1.Size = new System.Drawing.Size(401, 434);
             this.panel1.TabIndex = 0;
             // 
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.sendButton.Enabled = false;
-            this.sendButton.Location = new System.Drawing.Point(287, 401);
+            this.sendButton.Location = new System.Drawing.Point(319, 405);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(75, 30);
+            this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 15;
             this.sendButton.Text = "&Send";
             this.sendButton.UseVisualStyleBackColor = true;
@@ -177,19 +179,24 @@
             this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.input.BinaryChecked = false;
+            this.input.ChangeEndOfLine = true;
+            this.input.EndOfLine = Common.EndOfLine.Dos;
             this.input.Location = new System.Drawing.Point(3, 4);
             this.input.MinimumSize = new System.Drawing.Size(280, 130);
             this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(359, 426);
+            this.input.SelectedTextValue = "";
+            this.input.Size = new System.Drawing.Size(391, 395);
             this.input.TabIndex = 12;
+            this.input.TextValue = "";
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.status});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 436);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 434);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(746, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(773, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -202,7 +209,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(746, 458);
+            this.ClientSize = new System.Drawing.Size(773, 456);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

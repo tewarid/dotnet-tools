@@ -92,7 +92,6 @@ namespace Common
             this.Controls.Add(this.viewInHex);
             this.Controls.Add(this.outputText);
             this.Controls.Add(this.clearButton);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "OutputTextBox";
             this.Size = new System.Drawing.Size(378, 347);
             this.ResumeLayout(false);

@@ -321,12 +321,13 @@ namespace HttpRequestTool
             this.responseContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.responseContent.AppendBinaryChecked = false;
             this.responseContent.Location = new System.Drawing.Point(252, 328);
-            this.responseContent.Margin = new System.Windows.Forms.Padding(4);
             this.responseContent.MinimumSize = new System.Drawing.Size(285, 95);
             this.responseContent.Name = "responseContent";
             this.responseContent.Size = new System.Drawing.Size(383, 275);
             this.responseContent.TabIndex = 25;
+            this.responseContent.TextValue = "";
             // 
             // responseHeaders
             // 
@@ -345,12 +346,17 @@ namespace HttpRequestTool
             // 
             this.requestContent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.requestContent.BinaryChecked = false;
+            this.requestContent.ChangeEndOfLine = true;
             this.requestContent.Enabled = false;
+            this.requestContent.EndOfLine = Common.EndOfLine.Dos;
             this.requestContent.Location = new System.Drawing.Point(250, 139);
             this.requestContent.MinimumSize = new System.Drawing.Size(280, 130);
             this.requestContent.Name = "requestContent";
+            this.requestContent.SelectedTextValue = "";
             this.requestContent.Size = new System.Drawing.Size(384, 165);
             this.requestContent.TabIndex = 18;
+            this.requestContent.TextValue = "";
             // 
             // MainForm
             // 

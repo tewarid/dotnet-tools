@@ -33,12 +33,12 @@ namespace RouteTool
                 var data = from dynamic item in outputCollection
                            select new
                            {
-                               DestinationPrefix = item.DestinationPrefix,
-                               NextHop = item.NextHop,
-                               RouteMetric = item.RouteMetric,
+                               item.DestinationPrefix,
+                               item.NextHop,
+                               item.RouteMetric,
                                Persistent = item.Store == 0,
-                               InterfaceIndex = item.InterfaceIndex,
-                               InterfaceAlias = item.InterfaceAlias
+                               item.InterfaceIndex,
+                               item.InterfaceAlias
                            };
                 BindingSource bs = new BindingSource();
                 bs.DataSource = data;

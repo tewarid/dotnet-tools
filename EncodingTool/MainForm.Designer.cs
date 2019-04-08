@@ -83,10 +83,9 @@ namespace EncodingTool
             | System.Windows.Forms.AnchorStyles.Right)));
             this.output.AppendBinaryChecked = false;
             this.output.DataBindings.Add(new System.Windows.Forms.Binding("TextValue", global::EncodingTool.Properties.Settings.Default, "outputTextValue", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.output.Location = new System.Drawing.Point(10, 210);
-            this.output.Margin = new System.Windows.Forms.Padding(4);
+            this.output.Location = new System.Drawing.Point(10, 212);
             this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(580, 145);
+            this.output.Size = new System.Drawing.Size(578, 145);
             this.output.TabIndex = 1;
             this.output.TextValue = global::EncodingTool.Properties.Settings.Default.outputTextValue;
             // 
@@ -98,12 +97,10 @@ namespace EncodingTool
             this.input.ChangeEndOfLine = true;
             this.input.DataBindings.Add(new System.Windows.Forms.Binding("TextValue", global::EncodingTool.Properties.Settings.Default, "inputTextValue", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.input.EndOfLine = Common.EndOfLine.Dos;
-            this.input.Location = new System.Drawing.Point(10, 11);
-            this.input.Margin = new System.Windows.Forms.Padding(2);
+            this.input.Location = new System.Drawing.Point(10, 8);
             this.input.Name = "input";
-            this.input.Padding = new System.Windows.Forms.Padding(3);
             this.input.SelectedTextValue = "";
-            this.input.Size = new System.Drawing.Size(581, 171);
+            this.input.Size = new System.Drawing.Size(579, 171);
             this.input.TabIndex = 0;
             this.input.TextValue = global::EncodingTool.Properties.Settings.Default.inputTextValue;
             // 

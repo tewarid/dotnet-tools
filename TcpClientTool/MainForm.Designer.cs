@@ -161,13 +161,16 @@ namespace TcpClientTool
             this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.input.Location = new System.Drawing.Point(2, 118);
-            this.input.Margin = new System.Windows.Forms.Padding(4);
+            this.input.BinaryChecked = false;
+            this.input.ChangeEndOfLine = true;
+            this.input.EndOfLine = Common.EndOfLine.Dos;
+            this.input.Location = new System.Drawing.Point(6, 121);
             this.input.MinimumSize = new System.Drawing.Size(280, 130);
             this.input.Name = "input";
-            this.input.Padding = new System.Windows.Forms.Padding(3);
-            this.input.Size = new System.Drawing.Size(383, 322);
+            this.input.SelectedTextValue = "";
+            this.input.Size = new System.Drawing.Size(379, 286);
             this.input.TabIndex = 25;
+            this.input.TextValue = "";
             // 
             // useSSL
             // 
@@ -244,12 +247,13 @@ namespace TcpClientTool
             this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputText.Location = new System.Drawing.Point(4, 47);
-            this.outputText.Margin = new System.Windows.Forms.Padding(4);
+            this.outputText.AppendBinaryChecked = false;
+            this.outputText.Location = new System.Drawing.Point(4, 50);
             this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(382, 389);
+            this.outputText.Size = new System.Drawing.Size(382, 386);
             this.outputText.TabIndex = 10;
+            this.outputText.TextValue = "";
             // 
             // reuseAddress
             // 
@@ -293,6 +297,7 @@ namespace TcpClientTool
             this.sourceIPAddress.Name = "sourceIPAddress";
             this.sourceIPAddress.Size = new System.Drawing.Size(144, 21);
             this.sourceIPAddress.TabIndex = 0;
+            this.sourceIPAddress.TextValue = "";
             // 
             // statusStrip
             // 

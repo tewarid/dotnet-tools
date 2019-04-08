@@ -94,11 +94,13 @@ namespace BluetoothSppServerTool
             this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputText.Location = new System.Drawing.Point(6, 41);
+            this.outputText.AppendBinaryChecked = false;
+            this.outputText.Location = new System.Drawing.Point(3, 41);
             this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(365, 392);
+            this.outputText.Size = new System.Drawing.Size(367, 392);
             this.outputText.TabIndex = 5;
+            this.outputText.TextValue = "";
             // 
             // startButton
             // 
@@ -124,9 +126,9 @@ namespace BluetoothSppServerTool
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.sendButton.Enabled = false;
-            this.sendButton.Location = new System.Drawing.Point(287, 401);
+            this.sendButton.Location = new System.Drawing.Point(287, 410);
             this.sendButton.Name = "sendButton";
-            this.sendButton.Size = new System.Drawing.Size(75, 30);
+            this.sendButton.Size = new System.Drawing.Size(75, 23);
             this.sendButton.TabIndex = 15;
             this.sendButton.Text = "&Send";
             this.sendButton.UseVisualStyleBackColor = true;
@@ -137,11 +139,16 @@ namespace BluetoothSppServerTool
             this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.input.BinaryChecked = false;
+            this.input.ChangeEndOfLine = true;
+            this.input.EndOfLine = Common.EndOfLine.Dos;
             this.input.Location = new System.Drawing.Point(3, 4);
             this.input.MinimumSize = new System.Drawing.Size(280, 130);
             this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(359, 429);
+            this.input.SelectedTextValue = "";
+            this.input.Size = new System.Drawing.Size(359, 400);
             this.input.TabIndex = 12;
+            this.input.TextValue = "";
             // 
             // statusStrip1
             // 

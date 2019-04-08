@@ -41,7 +41,7 @@ namespace Common
             // 
             this.inputInHex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.inputInHex.AutoSize = true;
-            this.inputInHex.Location = new System.Drawing.Point(0, 261);
+            this.inputInHex.Location = new System.Drawing.Point(0, 265);
             this.inputInHex.MinimumSize = new System.Drawing.Size(272, 17);
             this.inputInHex.Name = "inputInHex";
             this.inputInHex.Size = new System.Drawing.Size(272, 17);
@@ -53,7 +53,7 @@ namespace Common
             // inputTextLabel
             // 
             this.inputTextLabel.AutoSize = true;
-            this.inputTextLabel.Location = new System.Drawing.Point(0, 0);
+            this.inputTextLabel.Location = new System.Drawing.Point(-3, 0);
             this.inputTextLabel.Name = "inputTextLabel";
             this.inputTextLabel.Size = new System.Drawing.Size(94, 13);
             this.inputTextLabel.TabIndex = 21;
@@ -73,7 +73,7 @@ namespace Common
             this.inputText.Multiline = true;
             this.inputText.Name = "inputText";
             this.inputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputText.Size = new System.Drawing.Size(502, 239);
+            this.inputText.Size = new System.Drawing.Size(502, 243);
             this.inputText.TabIndex = 0;
             // 
             // changeEndOfLine
@@ -82,7 +82,7 @@ namespace Common
             this.changeEndOfLine.AutoSize = true;
             this.changeEndOfLine.Checked = true;
             this.changeEndOfLine.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.changeEndOfLine.Location = new System.Drawing.Point(0, 287);
+            this.changeEndOfLine.Location = new System.Drawing.Point(0, 288);
             this.changeEndOfLine.Name = "changeEndOfLine";
             this.changeEndOfLine.Size = new System.Drawing.Size(115, 17);
             this.changeEndOfLine.TabIndex = 22;
@@ -95,7 +95,7 @@ namespace Common
             this.endOfLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.endOfLine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.endOfLine.FormattingEnabled = true;
-            this.endOfLine.Location = new System.Drawing.Point(120, 284);
+            this.endOfLine.Location = new System.Drawing.Point(121, 286);
             this.endOfLine.Name = "endOfLine";
             this.endOfLine.Size = new System.Drawing.Size(180, 21);
             this.endOfLine.TabIndex = 23;
@@ -108,7 +108,6 @@ namespace Common
             this.Controls.Add(this.inputText);
             this.Controls.Add(this.inputInHex);
             this.Name = "InputTextBox";
-            this.Padding = new System.Windows.Forms.Padding(4);
             this.Size = new System.Drawing.Size(502, 307);
             this.ResumeLayout(false);
             this.PerformLayout();
