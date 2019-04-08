@@ -186,8 +186,6 @@ namespace KafkaClientTool
                 producer.Dispose();
                 producer = null;
             }
-            securityProtocol.SelectedIndex = -1;
-            saslMechanism.SelectedIndex = -1;
             status.Text = "Reset complete";
         }
 

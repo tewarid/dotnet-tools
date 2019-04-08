@@ -36,6 +36,11 @@ after_build:
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\HttpListenerTool\bin\Debug\*.exe
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\HttpRequestTool\bin\Debug\*.exe
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\IcmpTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\KafkaClientTool\bin\Debug\*.config
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\KafkaClientTool\bin\Debug\*.dll
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\KafkaClientTool\bin\Debug\*.exe
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\KafkaClientTool\bin\Debug\*.md
+  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\KafkaClientTool\bin\Debug\librdkafka
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\README.md
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\MqttClientTool\bin\Debug\*.config
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\MqttClientTool\bin\Debug\*.dll
