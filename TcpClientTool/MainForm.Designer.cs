@@ -174,6 +174,7 @@ namespace TcpClientTool
             // 
             // useSSL
             // 
+            this.useSSL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.useSSL.AutoSize = true;
             this.useSSL.Location = new System.Drawing.Point(257, 25);
             this.useSSL.Name = "useSSL";
@@ -196,6 +197,8 @@ namespace TcpClientTool
             // 
             // destinationIPAddress
             // 
+            this.destinationIPAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.destinationIPAddress.Location = new System.Drawing.Point(6, 24);
             this.destinationIPAddress.Name = "destinationIPAddress";
             this.destinationIPAddress.Size = new System.Drawing.Size(145, 20);
@@ -203,6 +206,7 @@ namespace TcpClientTool
             // 
             // destinationPort
             // 
+            this.destinationPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.destinationPort.Location = new System.Drawing.Point(157, 24);
             this.destinationPort.Name = "destinationPort";
             this.destinationPort.Size = new System.Drawing.Size(94, 20);
@@ -220,6 +224,7 @@ namespace TcpClientTool
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(154, 7);
@@ -257,6 +262,7 @@ namespace TcpClientTool
             // 
             // reuseAddress
             // 
+            this.reuseAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.reuseAddress.AutoSize = true;
             this.reuseAddress.Location = new System.Drawing.Point(256, 25);
             this.reuseAddress.Name = "reuseAddress";
@@ -276,6 +282,7 @@ namespace TcpClientTool
             // 
             // sourcePort
             // 
+            this.sourcePort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.sourcePort.Location = new System.Drawing.Point(156, 23);
             this.sourcePort.Name = "sourcePort";
             this.sourcePort.Size = new System.Drawing.Size(94, 20);
@@ -283,6 +290,7 @@ namespace TcpClientTool
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(153, 9);
             this.label5.Name = "label5";
@@ -292,6 +300,8 @@ namespace TcpClientTool
             // 
             // sourceIPAddress
             // 
+            this.sourceIPAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.sourceIPAddress.IncludeIPAddressAny = true;
             this.sourceIPAddress.Location = new System.Drawing.Point(6, 23);
             this.sourceIPAddress.Name = "sourceIPAddress";

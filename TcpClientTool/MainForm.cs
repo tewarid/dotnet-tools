@@ -68,7 +68,7 @@ namespace TcpClientTool
         {
             if (tcpClient == null || !tcpClient.Connected)
             {
-                CreateTcpClient();
+                await CreateTcpClient();
                 if (tcpClient == null || !tcpClient.Connected)
                 {
                     return;
@@ -128,7 +128,7 @@ namespace TcpClientTool
             }
         }
 
-        private void CreateTcpClient()
+        private async Task CreateTcpClient()
         {
             if (tcpClient != null && tcpClient.Connected)
             {
@@ -141,12 +141,12 @@ namespace TcpClientTool
                 MessageBox.Show(this, "Please specify the destination IP address and/or port.", this.Text);
                 return;
             }
-            IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Parse(destinationIPAddress.Text),
-                int.Parse(destinationPort.Text));
 
             int port = 0;
             IPAddress ipAddress = IPAddress.Any;
-            if (remoteEndPoint.AddressFamily == AddressFamily.InterNetworkV6)
+            IPAddress remoteIPAddress;
+            if (IPAddress.TryParse(destinationIPAddress.Text, out remoteIPAddress)
+                && remoteIPAddress.AddressFamily == AddressFamily.InterNetworkV6)
             {
                 ipAddress = IPAddress.IPv6Any;
             }
@@ -162,7 +162,7 @@ namespace TcpClientTool
                     return;
                 }
             }
-            if(!string.Empty.Equals(sourcePort.Text))
+            if (!string.Empty.Equals(sourcePort.Text))
             {
                 port = int.Parse(sourcePort.Text);
             }
@@ -180,15 +180,18 @@ namespace TcpClientTool
             }
             catch (SocketException ex)
             {
+                tcpClient.Dispose();
+                tcpClient = null;
                 MessageBox.Show(this, ex.Message, this.Text);
                 return;
             }
 
             try
             {
-                tcpClient.Connect(remoteEndPoint);
+                await tcpClient.ConnectAsync(destinationIPAddress.Text,
+                    int.Parse(destinationPort.Text)).ConfigureAwait(true);
             }
-            catch (SocketException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, this.Text);
                 CloseTcpClient();
