@@ -39,13 +39,26 @@ namespace KafkaClientTool
                     if (securityProtocol.SelectedItem != null)
                     {
                         config.SecurityProtocol = ((ComboboxItem<SecurityProtocol>)securityProtocol.SelectedItem).Value;
+                        if (config.SecurityProtocol == SecurityProtocol.SaslSsl
+                            || config.SecurityProtocol == SecurityProtocol.Ssl)
+                        {
+                            config.SslCaLocation = caCertificateFileLocation.Text;
+                        }
                     }
                     if (saslMechanism.SelectedItem != null)
                     {
                         config.SaslMechanism = ((ComboboxItem<SaslMechanism>)saslMechanism.SelectedItem).Value;
                     }
                 }
-                producer = new ProducerBuilder<Null, string>(config).Build();
+                try
+                {
+                    producer = new ProducerBuilder<Null, string>(config).Build();
+                }
+                catch (ProduceException<Null, string> ex)
+                {
+                    MessageBox.Show(this, ex.Message);
+                    return;
+                }
             }
             try
             {
@@ -97,6 +110,11 @@ namespace KafkaClientTool
                 if (securityProtocol.SelectedItem != null)
                 {
                     config.SecurityProtocol = ((ComboboxItem<SecurityProtocol>)securityProtocol.SelectedItem).Value;
+                    if (config.SecurityProtocol == SecurityProtocol.SaslSsl
+                        || config.SecurityProtocol == SecurityProtocol.Ssl)
+                    {
+                        config.SslCaLocation = caCertificateFileLocation.Text;
+                    }
                 }
                 if (saslMechanism.SelectedItem != null)
                 {

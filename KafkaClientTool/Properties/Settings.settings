@@ -24,7 +24,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">cacert.pem</Value>
     </Setting>
     <Setting Name="securityProtocol" Type="System.Object" Scope="User">
       <Value Profile="(Default)" />

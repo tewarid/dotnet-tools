@@ -8,13 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Confluent.Kafka;
-
 namespace KafkaClientTool.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -111,7 +109,7 @@ namespace KafkaClientTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("cacert.pem")]
         public string password {
             get {
                 return ((string)(this["password"]));
@@ -123,9 +121,9 @@ namespace KafkaClientTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public SecurityProtocol securityProtocol {
+        public object securityProtocol {
             get {
-                return ((SecurityProtocol)(this["securityProtocol"]));
+                return ((object)(this["securityProtocol"]));
             }
             set {
                 this["securityProtocol"] = value;
@@ -134,9 +132,9 @@ namespace KafkaClientTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public SaslMechanism saslMechanism {
+        public object saslMechanism {
             get {
-                return ((SaslMechanism)(this["saslMechanism"]));
+                return ((object)(this["saslMechanism"]));
             }
             set {
                 this["saslMechanism"] = value;
