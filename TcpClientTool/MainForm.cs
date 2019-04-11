@@ -68,7 +68,7 @@ namespace TcpClientTool
         {
             if (tcpClient == null || !tcpClient.Connected)
             {
-                await CreateTcpClient();
+                await CreateTcpClient().ConfigureAwait(true);
                 if (tcpClient == null || !tcpClient.Connected)
                 {
                     return;
@@ -330,7 +330,7 @@ namespace TcpClientTool
             {
                 return;
             }
-            CreateTcpClient();
+            await CreateTcpClient().ConfigureAwait(true);
             if (tcpClient == null || !tcpClient.Connected)
             {
                 return;
