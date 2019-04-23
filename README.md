@@ -85,14 +85,16 @@ Interactive client that uses raw sockets to send/receive ICMP messages. Requires
 
 ## Kafka Client Tool
 
-A simple interactive Kafka client based on the Confluent.Kafka library. To run Kafka using Docker
+A simple interactive Kafka client based on the Confluent.Kafka library.
+
+To try out Kafka using Docker
 
 ```bash
 git clone https://github.com/wurstmeister/kafka-docker
 cd kafka-docker
 ```
 
-Adjust `KAFKA_ADVERTISED_HOST_NAME` to IP address of host in file docker-compose-single-broker.yml and run
+Adjust `KAFKA_ADVERTISED_HOST_NAME` to IP address of host in file `docker-compose-single-broker.yml` and run
 
 ```bash
 docker-compose -f docker-compose-single-broker.yml up
