@@ -154,5 +154,17 @@ namespace MqttClientTool.Properties {
                 this["clientId"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string version {
+            get {
+                return ((string)(this["version"]));
+            }
+            set {
+                this["version"] = value;
+            }
+        }
     }
 }

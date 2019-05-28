@@ -1,8 +1,12 @@
 ﻿using MQTTnet;
 using MQTTnet.Client;
+using MQTTnet.Client.Connecting;
+using MQTTnet.Client.Disconnecting;
+using MQTTnet.Client.Options;
+using MQTTnet.Formatter;
 using MQTTnet.Protocol;
-using MQTTnet.Serializer;
 using System;
+using System.Collections;
 using System.IO;
 using System.Windows.Forms;
 
@@ -11,10 +15,20 @@ namespace MqttClientTool
     public partial class MainForm : Form
     {
         private IMqttClient mqttClient;
+        private readonly ArrayList MqttVersion = new ArrayList()
+        {
+            new { Value = MqttProtocolVersion.V310, Description = "3.1.0" },
+            new { Value = MqttProtocolVersion.V311, Description = "3.1.1" },
+            new { Value = MqttProtocolVersion.V500, Description = "5.0.0" }
+        };
 
         public MainForm()
         {
             InitializeComponent();
+            version.DisplayMember = "Description";
+            version.ValueMember = "Value";
+            version.DataSource = MqttVersion;
+            version.SelectedValue = MqttProtocolVersion.V311;
             EnableDisable();
         }
 
@@ -48,7 +62,7 @@ namespace MqttClientTool
             return messageBuilder.Build();
         }
 
-        private void MqttClient_ApplicationMessageReceived(object sender, MqttApplicationMessageReceivedEventArgs e)
+        private void MqttClient_ApplicationMessageReceived(MqttApplicationMessageReceivedEventArgs e)
         {
             BeginInvoke(new MethodInvoker(() => {
                 output.AppendText($"Topic {e.ApplicationMessage.Topic} on {DateTime.Now}:{Environment.NewLine}");
@@ -113,9 +127,12 @@ namespace MqttClientTool
             if (mqttClient == null)
             {
                 mqttClient = new MqttFactory().CreateMqttClient();
-                mqttClient.ApplicationMessageReceived += MqttClient_ApplicationMessageReceived;
-                mqttClient.Disconnected += MqttClient_Disconnected;
-                mqttClient.Connected += MqttClient_Connected;
+                mqttClient.UseApplicationMessageReceivedHandler(new
+                    Action<MqttApplicationMessageReceivedEventArgs>(MqttClient_ApplicationMessageReceived));
+                mqttClient.UseDisconnectedHandler(new
+                    Action<MqttClientDisconnectedEventArgs>(MqttClient_Disconnected));
+                mqttClient.UseConnectedHandler(new
+                    Action<MqttClientConnectedEventArgs>(MqttClient_Connected));
             }
             if (mqttClient.IsConnected)
             {
@@ -123,7 +140,7 @@ namespace MqttClientTool
             }
             status.Text = "Connecting...";
             var clientOptionsBuilder = new MqttClientOptionsBuilder();
-            clientOptionsBuilder.WithProtocolVersion(MqttProtocolVersion.V311);
+            clientOptionsBuilder.WithProtocolVersion((MqttProtocolVersion)version.SelectedValue);
             if (!string.IsNullOrWhiteSpace(username.Text))
             {
                 if (!string.IsNullOrWhiteSpace(password.Text))
@@ -174,12 +191,12 @@ namespace MqttClientTool
             }
         }
 
-        private void MqttClient_Connected(object sender, MqttClientConnectedEventArgs e)
+        private void MqttClient_Connected(MqttClientConnectedEventArgs e)
         {
             status.Text = "Connected";
         }
 
-        private void MqttClient_Disconnected(object sender, MqttClientDisconnectedEventArgs e)
+        private void MqttClient_Disconnected(MqttClientDisconnectedEventArgs e)
         {
             status.Text = "Disconnected";
             ClearSubscriptions();

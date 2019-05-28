@@ -1,10 +1,10 @@
 # Networking Tools [![Build status](https://ci.appveyor.com/api/projects/status/d3bn7jnje8rtts7v?svg=true)](https://ci.appveyor.com/project/tewarid/nettools) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9272afa7d6494d7fa5a885e8e02a2999)](https://www.codacy.com/app/tewarid/net-tools?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tewarid/net-tools&amp;utm_campaign=Badge_Grade) [![Join the chat at https://gitter.im/tewarid-net-tools/Lobby](https://badges.gitter.im/tewarid-net-tools/Lobby.svg)](https://gitter.im/tewarid-net-tools/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Simple tools for experimenting with network communications written primarily for Windows in .NET.
+Tools for experimenting with network communications written primarily for Windows in .NET.
 
 ## Download
 
-To download the latest build, see releases section of this GitHub project. For older builds, head to https://dl.bintray.com/tewarid/net-tools/.
+See releases section of this GitHub project. For older builds, head to https://dl.bintray.com/tewarid/net-tools/.
 
 ## Build from source
 
@@ -69,15 +69,15 @@ Add exceptions to Windows Firewall using native COM library `NetFwTypeLib`. With
 
 ## Git Tool
 
-A simple wrapper around command line Git, that allows running multiple commands on several cloned repos at once. A command can reference all or part of the output of the previous command with `{{OUT:start,length}}` where `start` is zero-indexed. Several repos can be cloned from GitHub or GitLab at once. A customizable cheatsheet is available in [cheatsheet.md](GitTool/cheatsheet.md). Any line starting with `$ git ` is assumed to be a git command and displayed in the tool.
+A wrapper around command line Git, that allows running multiple commands on several cloned repos at once. A command can reference all or part of the output of the previous command with `{{OUT:start,length}}` where `start` is zero-indexed. Several repos can be cloned from GitHub or GitLab at once. A customizable cheatsheet is available in [cheatsheet.md](GitTool/cheatsheet.md). Any line starting with `$ git ` is assumed to be a git command and displayed in the tool.
 
 ## HTTP Request Tool
 
-Simple interactive HTTP(S) client built using [System.Net.HttpWebRequest](https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.aspx).
+Interactive HTTP(S) client built using [System.Net.HttpWebRequest](https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.aspx).
 
 ## HTTP Listener Tool
 
-Simple HTTP(S) server built using [System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx).
+HTTP(S) server built using [System.Net.HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx).
 
 ## ICMP Tool
 
@@ -85,7 +85,7 @@ Interactive client that uses raw sockets to send/receive ICMP messages. Requires
 
 ## Kafka Client Tool
 
-A simple interactive Kafka client based on the Confluent.Kafka library.
+An interactive Kafka client based on the Confluent.Kafka library.
 
 To try out Kafka using Docker
 
@@ -109,7 +109,7 @@ docker start -ai kafka-docker_kafka_1
 
 ## MQTT Client Tool
 
-Simple interactive MQTT 3.1.1 client based on the [MQTTnet](https://github.com/chkr1011/MQTTnet) library.
+Interactive MQTT client based on the [MQTTnet](https://github.com/chkr1011/MQTTnet) library.
 
 ## Route Tool
 
@@ -121,11 +121,11 @@ Interactive client that may be used to open a serial port, send, and receive dat
 
 ## SMTP Client Tool
 
-A simple SMTP client.
+An SMTP client.
 
 ## SMTP Server Tool
 
-A simple SMTP server based on the [SmtpServer](https://www.nuget.org/packages/SmtpServer/) library that logs messages to a text box.
+An SMTP server based on the [SmtpServer](https://www.nuget.org/packages/SmtpServer/) library that logs messages to a text box.
 
 ## Sniffer Tool
 
