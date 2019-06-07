@@ -12,7 +12,7 @@ namespace KafkaClientTool.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,18 +25,6 @@ namespace KafkaClientTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1:9092")]
-        public string bootstrapServers {
-            get {
-                return ((string)(this["bootstrapServers"]));
-            }
-            set {
-                this["bootstrapServers"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("test-group")]
         public string clientGroupId {
             get {
@@ -44,18 +32,6 @@ namespace KafkaClientTool.Properties {
             }
             set {
                 this["clientGroupId"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("test\n")]
-        public string subscribeToTopic {
-            get {
-                return ((string)(this["subscribeToTopic"]));
-            }
-            set {
-                this["subscribeToTopic"] = value;
             }
         }
         
@@ -109,7 +85,7 @@ namespace KafkaClientTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("cacert.pem")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string password {
             get {
                 return ((string)(this["password"]));
@@ -138,6 +114,42 @@ namespace KafkaClientTool.Properties {
             }
             set {
                 this["saslMechanism"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("localhost:9092")]
+        public string bootstrapServers {
+            get {
+                return ((string)(this["bootstrapServers"]));
+            }
+            set {
+                this["bootstrapServers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        public string subscribeToTopic {
+            get {
+                return ((string)(this["subscribeToTopic"]));
+            }
+            set {
+                this["subscribeToTopic"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cacert.pem")]
+        public string cacert {
+            get {
+                return ((string)(this["cacert"]));
+            }
+            set {
+                this["cacert"] = value;
             }
         }
     }

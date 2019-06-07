@@ -2,15 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="KafkaClientTool.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="bootstrapServers" Type="System.String" Scope="User">
-      <Value Profile="(Default)">127.0.0.1:9092</Value>
-    </Setting>
     <Setting Name="clientGroupId" Type="System.String" Scope="User">
       <Value Profile="(Default)">test-group</Value>
-    </Setting>
-    <Setting Name="subscribeToTopic" Type="System.String" Scope="User">
-      <Value Profile="(Default)">test
-</Value>
     </Setting>
     <Setting Name="produceToTopic" Type="System.String" Scope="User">
       <Value Profile="(Default)">test</Value>
@@ -25,13 +18,22 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">cacert.pem</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="securityProtocol" Type="System.Object" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="saslMechanism" Type="System.Object" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="bootstrapServers" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost:9092</Value>
+    </Setting>
+    <Setting Name="subscribeToTopic" Type="System.String" Scope="User">
+      <Value Profile="(Default)">test</Value>
+    </Setting>
+    <Setting Name="cacert" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cacert.pem</Value>
     </Setting>
   </Settings>
 </SettingsFile>
