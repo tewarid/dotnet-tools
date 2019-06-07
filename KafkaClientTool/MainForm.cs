@@ -161,15 +161,15 @@ namespace KafkaClientTool
             {
                 consumer.Subscribe(topics);
             }
+            BeginInvoke(new MethodInvoker(() =>
+            {
+                status.Text = $"Consuming";
+            }));
             consumerCancellationTS = new CancellationTokenSource();
             while (true)
             {
                 try
                 {
-                    BeginInvoke(new MethodInvoker(() =>
-                    {
-                        status.Text = $"Consuming";
-                    }));
                     var cr = consumer.Consume(consumerCancellationTS.Token);
                     BeginInvoke(new MethodInvoker(() =>
                     {
