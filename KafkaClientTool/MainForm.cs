@@ -50,8 +50,14 @@ namespace KafkaClientTool
                         config.SaslMechanism = ((ComboboxItem<SaslMechanism>)saslMechanism.SelectedItem).Value;
                     }
                 }
+                config.Debug = "all";
                 try
                 {
+                    var builder = new ProducerBuilder<Null, string>(config);
+                    builder.SetLogHandler((producer, message) =>
+                    {
+                        // add logging
+                    });
                     producer = new ProducerBuilder<Null, string>(config).Build();
                 }
                 catch (ProduceException<Null, string> ex)
@@ -121,6 +127,7 @@ namespace KafkaClientTool
                     config.SaslMechanism = ((ComboboxItem<SaslMechanism>)saslMechanism.SelectedItem).Value;
                 }
             }
+            config.Debug = "all";
             Task.Run(() =>
             {
                 CreateConsumer(config, topics);
@@ -131,7 +138,12 @@ namespace KafkaClientTool
         {
             try
             {
-                consumer = new ConsumerBuilder<Ignore, string>(config).Build();
+                var builder = new ConsumerBuilder<Ignore, string>(config);
+                builder.SetLogHandler((producer, message) =>
+                {
+                    // add logging
+                });
+                consumer = builder.Build();
             }
             catch (Exception ex)
             {
