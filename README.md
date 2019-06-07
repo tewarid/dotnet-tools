@@ -94,7 +94,7 @@ git clone https://github.com/wurstmeister/kafka-docker
 cd kafka-docker
 ```
 
-Adjust `KAFKA_ADVERTISED_HOST_NAME` to IP address of host in file `docker-compose-single-broker.yml` and run
+Adjust value of `KAFKA_ADVERTISED_HOST_NAME` in file `docker-compose-single-broker.yml` to IP address of host and run
 
 ```bash
 docker-compose -f docker-compose-single-broker.yml up

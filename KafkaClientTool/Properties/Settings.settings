@@ -9,7 +9,8 @@
       <Value Profile="(Default)">test-group</Value>
     </Setting>
     <Setting Name="subscribeToTopic" Type="System.String" Scope="User">
-      <Value Profile="(Default)">test</Value>
+      <Value Profile="(Default)">test
+</Value>
     </Setting>
     <Setting Name="produceToTopic" Type="System.String" Scope="User">
       <Value Profile="(Default)">test</Value>

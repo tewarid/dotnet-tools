@@ -49,7 +49,7 @@ namespace KafkaClientTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        [global::System.Configuration.DefaultSettingValueAttribute("test\n")]
         public string subscribeToTopic {
             get {
                 return ((string)(this["subscribeToTopic"]));
