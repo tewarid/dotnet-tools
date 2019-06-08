@@ -85,27 +85,7 @@ Interactive client that uses raw sockets to send/receive ICMP messages. Requires
 
 ## Kafka Client Tool
 
-An interactive Kafka client based on the Confluent.Kafka library.
-
-To try out Kafka using Docker
-
-```bash
-git clone https://github.com/wurstmeister/kafka-docker
-cd kafka-docker
-```
-
-Adjust value of `KAFKA_ADVERTISED_HOST_NAME` in file `docker-compose-single-broker.yml` to IP address of host and run
-
-```bash
-docker-compose -f docker-compose-single-broker.yml up
-```
-
-To start the containers again, use `docker ps -a` to find container ids and run in the following order
-
-```bash
-docker start kafka-docker_zookeeper_1
-docker start -ai kafka-docker_kafka_1
-```
+An interactive Kafka client based on the Confluent.Kafka library. The tool has been tested with [cloudkarafka](https://www.cloudkarafka.com/) and [Docker](https://tewarid.github.io/2019/06/07/developing-with-kafka-using-docker.html).
 
 ## MQTT Client Tool
 

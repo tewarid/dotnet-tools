@@ -20,10 +20,10 @@
     <Setting Name="password" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="securityProtocol" Type="System.Object" Scope="User">
+    <Setting Name="securityProtocol" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="saslMechanism" Type="System.Object" Scope="User">
+    <Setting Name="saslMechanism" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="bootstrapServers" Type="System.String" Scope="User">

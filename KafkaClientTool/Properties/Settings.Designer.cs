@@ -12,7 +12,7 @@ namespace KafkaClientTool.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -97,9 +97,10 @@ namespace KafkaClientTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public object securityProtocol {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string securityProtocol {
             get {
-                return ((object)(this["securityProtocol"]));
+                return ((string)(this["securityProtocol"]));
             }
             set {
                 this["securityProtocol"] = value;
@@ -108,9 +109,10 @@ namespace KafkaClientTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public object saslMechanism {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string saslMechanism {
             get {
-                return ((object)(this["saslMechanism"]));
+                return ((string)(this["saslMechanism"]));
             }
             set {
                 this["saslMechanism"] = value;

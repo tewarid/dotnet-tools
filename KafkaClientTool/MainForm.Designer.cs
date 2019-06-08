@@ -193,15 +193,14 @@
             // 
             // securityProtocol
             // 
-            this.securityProtocol.DataBindings.Add(new System.Windows.Forms.Binding("Tag", global::KafkaClientTool.Properties.Settings.Default, "securityProtocol", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.securityProtocol.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::KafkaClientTool.Properties.Settings.Default, "securityProtocol", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.securityProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.securityProtocol.FormattingEnabled = true;
             this.securityProtocol.Location = new System.Drawing.Point(10, 64);
             this.securityProtocol.Name = "securityProtocol";
             this.securityProtocol.Size = new System.Drawing.Size(168, 21);
             this.securityProtocol.TabIndex = 5;
-            this.securityProtocol.Tag = global::KafkaClientTool.Properties.Settings.Default.securityProtocol;
-            this.securityProtocol.SelectedIndexChanged += new System.EventHandler(this.securityProtocol_SelectedIndexChanged);
+            this.securityProtocol.Text = global::KafkaClientTool.Properties.Settings.Default.securityProtocol;
             // 
             // label7
             // 
@@ -223,15 +222,15 @@
             // 
             // saslMechanism
             // 
-            this.saslMechanism.DataBindings.Add(new System.Windows.Forms.Binding("Tag", global::KafkaClientTool.Properties.Settings.Default, "saslMechanism", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.saslMechanism.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::KafkaClientTool.Properties.Settings.Default, "saslMechanism", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.saslMechanism.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.saslMechanism.FormattingEnabled = true;
             this.saslMechanism.Location = new System.Drawing.Point(184, 64);
             this.saslMechanism.Name = "saslMechanism";
             this.saslMechanism.Size = new System.Drawing.Size(164, 21);
             this.saslMechanism.TabIndex = 7;
-            this.saslMechanism.Tag = global::KafkaClientTool.Properties.Settings.Default.saslMechanism;
-            this.saslMechanism.SelectedIndexChanged += new System.EventHandler(this.saslMechanism_SelectedIndexChanged);
+            this.saslMechanism.Tag = "";
+            this.saslMechanism.Text = global::KafkaClientTool.Properties.Settings.Default.saslMechanism;
             // 
             // label9
             // 
