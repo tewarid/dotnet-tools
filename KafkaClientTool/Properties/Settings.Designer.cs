@@ -97,9 +97,9 @@ namespace KafkaClientTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public object securityProtocol {
+        public string securityProtocol {
             get {
-                return ((object)(this["securityProtocol"]));
+                return ((string)(this["securityProtocol"]));
             }
             set {
                 this["securityProtocol"] = value;
@@ -108,9 +108,9 @@ namespace KafkaClientTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public object saslMechanism {
+        public string saslMechanism {
             get {
-                return ((object)(this["saslMechanism"]));
+                return ((string)(this["saslMechanism"]));
             }
             set {
                 this["saslMechanism"] = value;
@@ -150,6 +150,30 @@ namespace KafkaClientTool.Properties {
             }
             set {
                 this["cacert"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal fetchMinBytes {
+            get {
+                return ((decimal)(this["fetchMinBytes"]));
+            }
+            set {
+                this["fetchMinBytes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal fetchMaxWaitMs {
+            get {
+                return ((decimal)(this["fetchMaxWaitMs"]));
+            }
+            set {
+                this["fetchMaxWaitMs"] = value;
             }
         }
     }

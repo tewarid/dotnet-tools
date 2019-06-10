@@ -12,7 +12,6 @@ namespace KafkaClientTool
         IConsumer<Ignore, string> consumer;
         CancellationTokenSource consumerCancellationTS;
         IProducer<Null, string> producer;
-
         public MainForm()
         {
             InitializeComponent();
@@ -127,6 +126,8 @@ namespace KafkaClientTool
                     config.SaslMechanism = ((ComboboxItem<SaslMechanism>)saslMechanism.SelectedItem).Value;
                 }
             }
+            config.FetchMinBytes = (int)fetchMinBytes.Value;
+            config.FetchWaitMaxMs = (int)fetchMaxWaitMs.Value;
             config.Debug = "all";
             Task.Run(() =>
             {
@@ -222,50 +223,6 @@ namespace KafkaClientTool
         private void MainForm_Shown(object sender, EventArgs e)
         {
             output.ScrollToEnd();
-            if (securityProtocol.Tag is SecurityProtocol)
-            {
-                int i = 0;
-                foreach(ComboboxItem<SecurityProtocol> item in securityProtocol.Items)
-                {
-                    if ((SecurityProtocol)securityProtocol.Tag == item.Value)
-                    {
-                        securityProtocol.SelectedIndex = i;
-                        break;
-                    }
-                    i++;
-                }
-            }
-            if (saslMechanism.Tag is SaslMechanism)
-            {
-                int i = 0;
-                foreach (ComboboxItem<SaslMechanism> item in saslMechanism.Items)
-                {
-                    if ((SaslMechanism)saslMechanism.Tag == item.Value)
-                    {
-                        saslMechanism.SelectedIndex = i;
-                        break;
-                    }
-                    i++;
-                }
-            }
-        }
-
-        private void securityProtocol_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (securityProtocol.SelectedItem == null)
-            {
-                return;
-            }
-            securityProtocol.Tag = ((ComboboxItem<SecurityProtocol>)securityProtocol.SelectedItem).Value;
-        }
-
-        private void saslMechanism_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (saslMechanism.SelectedItem == null)
-            {
-                return;
-            }
-            saslMechanism.Tag = ((ComboboxItem<SaslMechanism>)saslMechanism.SelectedItem).Value;
         }
     }
 }
