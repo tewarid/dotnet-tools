@@ -247,7 +247,17 @@ namespace GitTool
                     output += e.Data + Environment.NewLine;
                 }
             };
-            proc.Start();
+            try
+            {
+                proc.Start();
+            }
+            catch (Exception ex)
+            {
+                log.AppendText(ex.Message);
+                log.AppendText(Environment.NewLine);
+                log.AppendText(Environment.NewLine);
+                return string.Empty;
+            }
             proc.BeginOutputReadLine();
             proc.BeginErrorReadLine();
             proc.WaitForExit();
