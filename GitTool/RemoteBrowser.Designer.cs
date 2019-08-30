@@ -82,14 +82,14 @@ namespace GitTool
             this.splitContainer1.Panel2.Controls.Add(this.ok);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.repositories);
-            this.splitContainer1.Size = new System.Drawing.Size(567, 282);
-            this.splitContainer1.SplitterDistance = 194;
+            this.splitContainer1.Size = new System.Drawing.Size(580, 282);
+            this.splitContainer1.SplitterDistance = 212;
             this.splitContainer1.TabIndex = 13;
             // 
             // query
             // 
             this.query.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.query.Location = new System.Drawing.Point(111, 242);
+            this.query.Location = new System.Drawing.Point(134, 242);
             this.query.Name = "query";
             this.query.Size = new System.Drawing.Size(75, 23);
             this.query.TabIndex = 18;
@@ -103,17 +103,17 @@ namespace GitTool
             this.groupBox2.Controls.Add(this.ssh);
             this.groupBox2.Location = new System.Drawing.Point(4, 189);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(182, 47);
+            this.groupBox2.Size = new System.Drawing.Size(133, 47);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Access listed repositories using";
+            this.groupBox2.Text = "Clone using";
             // 
             // https
             // 
             this.https.AutoSize = true;
             this.https.Checked = global::GitTool.Properties.Settings.Default.httpUrl;
             this.https.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GitTool.Properties.Settings.Default, "httpUrl", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.https.Location = new System.Drawing.Point(98, 20);
+            this.https.Location = new System.Drawing.Point(60, 20);
             this.https.Name = "https";
             this.https.Size = new System.Drawing.Size(61, 17);
             this.https.TabIndex = 1;
@@ -142,7 +142,7 @@ namespace GitTool
             this.password.Location = new System.Drawing.Point(5, 163);
             this.password.Name = "password";
             this.password.PasswordChar = '*';
-            this.password.Size = new System.Drawing.Size(181, 20);
+            this.password.Size = new System.Drawing.Size(204, 20);
             this.password.TabIndex = 17;
             // 
             // label3
@@ -161,7 +161,7 @@ namespace GitTool
             this.username.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GitTool.Properties.Settings.Default, "username", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.username.Location = new System.Drawing.Point(5, 119);
             this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(181, 20);
+            this.username.Size = new System.Drawing.Size(204, 20);
             this.username.TabIndex = 15;
             this.username.Text = global::GitTool.Properties.Settings.Default.username;
             // 
@@ -181,7 +181,7 @@ namespace GitTool
             this.host.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GitTool.Properties.Settings.Default, "gitHost", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.host.Location = new System.Drawing.Point(5, 75);
             this.host.Name = "host";
-            this.host.Size = new System.Drawing.Size(181, 20);
+            this.host.Size = new System.Drawing.Size(204, 20);
             this.host.TabIndex = 13;
             this.host.Text = global::GitTool.Properties.Settings.Default.gitHost;
             // 
@@ -200,7 +200,7 @@ namespace GitTool
             this.groupBox1.Controls.Add(this.gitHub);
             this.groupBox1.Location = new System.Drawing.Point(5, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(185, 47);
+            this.groupBox1.Size = new System.Drawing.Size(132, 47);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Git Hosting Provider";
@@ -210,7 +210,7 @@ namespace GitTool
             this.gitLab.AutoSize = true;
             this.gitLab.Checked = global::GitTool.Properties.Settings.Default.gitLab;
             this.gitLab.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GitTool.Properties.Settings.Default, "gitLab", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.gitLab.Location = new System.Drawing.Point(98, 20);
+            this.gitLab.Location = new System.Drawing.Point(70, 19);
             this.gitLab.Name = "gitLab";
             this.gitLab.Size = new System.Drawing.Size(56, 17);
             this.gitLab.TabIndex = 1;
@@ -223,7 +223,7 @@ namespace GitTool
             this.gitHub.AutoSize = true;
             this.gitHub.Checked = global::GitTool.Properties.Settings.Default.gitHub;
             this.gitHub.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GitTool.Properties.Settings.Default, "gitHub", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.gitHub.Location = new System.Drawing.Point(7, 20);
+            this.gitHub.Location = new System.Drawing.Point(6, 19);
             this.gitHub.Name = "gitHub";
             this.gitHub.Size = new System.Drawing.Size(58, 17);
             this.gitHub.TabIndex = 0;
@@ -247,7 +247,7 @@ namespace GitTool
             // 
             this.cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancel.Location = new System.Drawing.Point(282, 249);
+            this.cancel.Location = new System.Drawing.Point(286, 249);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(75, 23);
             this.cancel.TabIndex = 16;
@@ -258,7 +258,7 @@ namespace GitTool
             // ok
             // 
             this.ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ok.Location = new System.Drawing.Point(201, 249);
+            this.ok.Location = new System.Drawing.Point(205, 249);
             this.ok.Name = "ok";
             this.ok.Size = new System.Drawing.Size(75, 23);
             this.ok.TabIndex = 15;
@@ -285,7 +285,7 @@ namespace GitTool
             this.repositories.Location = new System.Drawing.Point(1, 24);
             this.repositories.Name = "repositories";
             this.repositories.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.repositories.Size = new System.Drawing.Size(356, 217);
+            this.repositories.Size = new System.Drawing.Size(360, 217);
             this.repositories.Sorted = true;
             this.repositories.TabIndex = 13;
             // 
@@ -294,7 +294,7 @@ namespace GitTool
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancel;
-            this.ClientSize = new System.Drawing.Size(567, 282);
+            this.ClientSize = new System.Drawing.Size(580, 282);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "RemoteBrowser";

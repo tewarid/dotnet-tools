@@ -6,7 +6,7 @@
       <Value Profile="(Default)">Z:\git</Value>
     </Setting>
     <Setting Name="gitHost" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://github.com</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="username" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

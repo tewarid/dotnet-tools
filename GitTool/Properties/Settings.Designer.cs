@@ -37,7 +37,7 @@ namespace GitTool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string gitHost {
             get {
                 return ((string)(this["gitHost"]));

@@ -2,6 +2,7 @@
 using Octokit;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,40 +27,63 @@ namespace GitTool
         private async void query_Click(object sender, EventArgs e)
         {
             query.Enabled = false;
-            try
+            if (gitHub.Checked)
             {
-                if (gitHub.Checked)
-                {
-                    await QueryGitHub().ConfigureAwait(true);
-                }
-                else
-                {
-                    await QueryGitLab().ConfigureAwait(true);
-                }
+                await QueryGitHub().ConfigureAwait(true);
             }
-            catch(Exception ex)
+            else
             {
-                if (!string.IsNullOrWhiteSpace(ex.Message))
-                {
-                    MessageBox.Show(this, ex.Message);
-                }
+                await QueryGitLab().ConfigureAwait(true);
             }
             query.Enabled = true;
         }
 
+        private string GetOrSetHost(string defaultValue)
+        {
+            if (string.IsNullOrWhiteSpace(host.Text))
+            {
+                host.Text = defaultValue;
+                return defaultValue;
+            }
+            return host.Text;
+        }
+
         private async Task QueryGitLab()
         {
+            string baseUrl = GetOrSetHost("https://gitlab.com");
             GitLabClient client;
+            if (string.IsNullOrWhiteSpace(password.Text))
+            {
+                MessageBox.Show("Please specify password or access token.");
+                return;
+            }
             if (string.IsNullOrEmpty(username.Text))
             {
-                client = new GitLabClient(host.Text, password.Text);
+                client = new GitLabClient(baseUrl, password.Text);
             }
             else
             {
-                client = new GitLabClient(host.Text);
-                var session = await client.LoginAsync(username.Text, password.Text);
+                client = new GitLabClient(baseUrl);
+                try
+                {
+                    var session = await client.LoginAsync(username.Text, password.Text);
+                }
+                catch (GitLabException ex)
+                {
+                    MessageBox.Show("Login failed.");
+                    return;
+                }
             }
-            var list = await client.Projects.GetAsync();
+            IList<GitLabApiClient.Models.Projects.Responses.Project> list;
+            try
+            {
+                list = await client.Projects.GetAsync();
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show($"Failed to query GitLab instance at {baseUrl}.");
+                return;
+            }
             repositories.Items.Clear();
             foreach (var project in list)
             {
@@ -76,12 +100,37 @@ namespace GitTool
 
         private async Task QueryGitHub()
         {
+            string baseUrl = GetOrSetHost("https://github.com");
+            if (string.IsNullOrWhiteSpace(username.Text))
+            {
+                MessageBox.Show("Please specify username.");
+                return;
+            }
             var phv = new ProductHeaderValue(username.Text);
-            GitHubClient client = new GitHubClient(phv, new Uri(host.Text));
+            GitHubClient client = new GitHubClient(phv, new Uri(baseUrl));
             IReadOnlyList<Repository> list;
-            Credentials credentials = new Credentials(username.Text, password.Text);
+            Credentials credentials = Credentials.Anonymous;
+            if (string.IsNullOrWhiteSpace(password.Text))
+            {
+                MessageBox.Show("Please specify password or token.");
+                return;
+            }
+            credentials = new Credentials(username.Text, password.Text);
             client.Credentials = credentials;
-            list = await client.Repository.GetAllForCurrent().ConfigureAwait(true);
+            try
+            {
+                list = await client.Repository.GetAllForCurrent().ConfigureAwait(true);
+            }
+            catch (AuthorizationException ex)
+            {
+                MessageBox.Show("Authorization failed.");
+                return;
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show($"Failed to query GitHub instance at {baseUrl}.");
+                return;
+            }
             repositories.Items.Clear();
             foreach (var repo in list)
             {
