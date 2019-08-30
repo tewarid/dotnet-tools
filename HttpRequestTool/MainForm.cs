@@ -64,7 +64,7 @@ namespace HttpRequestTool
             responseContent.Clear();
             responseHeaders.Clear();
 
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url.Text);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url.Text);
             if (setClientCertificate.Checked)
             {
                 X509Certificate2Collection certificates = new X509Certificate2Collection();
@@ -74,9 +74,15 @@ namespace HttpRequestTool
                         certificatePassword.Text, X509KeyStorageFlags.DefaultKeySet);
                     request.ClientCertificates = certificates;
                 }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(this, ex.Message, clientCertificateFileLabel.Text);
+                    return;
+                }
                 catch (CryptographicException ex)
                 {
-                    MessageBox.Show(this, ex.Message);
+                    MessageBox.Show(this, ex.Message, clientCertificateFileLabel.Text);
+                    return;
                 }
             }
             NameValueCollection headers = requestHeaders.Get();

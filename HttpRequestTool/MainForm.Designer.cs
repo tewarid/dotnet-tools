@@ -35,7 +35,7 @@ namespace HttpRequestTool
             this.url = new System.Windows.Forms.TextBox();
             this.setClientCertificate = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.clientCertificateFileLabel = new System.Windows.Forms.Label();
             this.certificatePassword = new System.Windows.Forms.TextBox();
             this.clientCertificateFile = new System.Windows.Forms.TextBox();
             this.selectCertificateFile = new System.Windows.Forms.Button();
@@ -108,15 +108,15 @@ namespace HttpRequestTool
             this.label2.TabIndex = 3;
             this.label2.Text = "Password";
             // 
-            // label3
+            // clientCertificateFileLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(163, 48);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Certificate file";
+            this.clientCertificateFileLabel.AutoSize = true;
+            this.clientCertificateFileLabel.Location = new System.Drawing.Point(163, 48);
+            this.clientCertificateFileLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.clientCertificateFileLabel.Name = "clientCertificateFileLabel";
+            this.clientCertificateFileLabel.Size = new System.Drawing.Size(70, 13);
+            this.clientCertificateFileLabel.TabIndex = 4;
+            this.clientCertificateFileLabel.Text = "Certificate file";
             // 
             // certificatePassword
             // 
@@ -379,7 +379,7 @@ namespace HttpRequestTool
             this.Controls.Add(this.selectCertificateFile);
             this.Controls.Add(this.clientCertificateFile);
             this.Controls.Add(this.certificatePassword);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.clientCertificateFileLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.setClientCertificate);
             this.Controls.Add(this.url);
@@ -399,7 +399,7 @@ namespace HttpRequestTool
         private System.Windows.Forms.TextBox url;
         private System.Windows.Forms.CheckBox setClientCertificate;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label clientCertificateFileLabel;
         private System.Windows.Forms.TextBox certificatePassword;
         private System.Windows.Forms.TextBox clientCertificateFile;
         private System.Windows.Forms.Button selectCertificateFile;
