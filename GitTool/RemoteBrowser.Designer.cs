@@ -42,6 +42,7 @@ namespace GitTool
             this.host = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bitBucket = new System.Windows.Forms.RadioButton();
             this.gitLab = new System.Windows.Forms.RadioButton();
             this.gitHub = new System.Windows.Forms.RadioButton();
             this.clipboard = new System.Windows.Forms.Button();
@@ -196,14 +197,27 @@ namespace GitTool
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.bitBucket);
             this.groupBox1.Controls.Add(this.gitLab);
             this.groupBox1.Controls.Add(this.gitHub);
             this.groupBox1.Location = new System.Drawing.Point(5, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(132, 47);
+            this.groupBox1.Size = new System.Drawing.Size(204, 47);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Git Hosting Provider";
+            // 
+            // bitBucket
+            // 
+            this.bitBucket.AutoSize = true;
+            this.bitBucket.Checked = global::GitTool.Properties.Settings.Default.gitLab;
+            this.bitBucket.Location = new System.Drawing.Point(129, 19);
+            this.bitBucket.Name = "bitBucket";
+            this.bitBucket.Size = new System.Drawing.Size(71, 17);
+            this.bitBucket.TabIndex = 2;
+            this.bitBucket.Text = "BitBucket";
+            this.bitBucket.UseVisualStyleBackColor = true;
+            this.bitBucket.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // gitLab
             // 
@@ -216,6 +230,7 @@ namespace GitTool
             this.gitLab.TabIndex = 1;
             this.gitLab.Text = "GitLab";
             this.gitLab.UseVisualStyleBackColor = true;
+            this.gitLab.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             this.gitLab.Click += new System.EventHandler(this.Check);
             // 
             // gitHub
@@ -230,6 +245,7 @@ namespace GitTool
             this.gitHub.TabStop = true;
             this.gitHub.Text = "GitHub";
             this.gitHub.UseVisualStyleBackColor = true;
+            this.gitHub.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             this.gitHub.Click += new System.EventHandler(this.Check);
             // 
             // clipboard
@@ -336,5 +352,6 @@ namespace GitTool
         private Button ok;
         private Label label4;
         private ListBox repositories;
+        private RadioButton bitBucket;
     }
 }

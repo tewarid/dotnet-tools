@@ -1,8 +1,13 @@
 ﻿using GitLabApiClient;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Octokit;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -31,9 +36,13 @@ namespace GitTool
             {
                 await QueryGitHub().ConfigureAwait(true);
             }
-            else
+            else if (gitLab.Checked)
             {
                 await QueryGitLab().ConfigureAwait(true);
+            }
+            else
+            {
+                await QueryBitBucket().ConfigureAwait(true);
             }
             query.Enabled = true;
         }
@@ -46,6 +55,48 @@ namespace GitTool
                 return defaultValue;
             }
             return host.Text;
+        }
+        private static byte[] ReadAllBytes(Stream s)
+        {
+            MemoryStream m = new MemoryStream();
+            s.CopyTo(m);
+            return m.ToArray();
+        }
+
+        private async Task QueryBitBucket()
+        {
+            Uri baseUri;
+            try
+            {
+                baseUri = new Uri(GetOrSetHost("https://api.bitbucket.org"));
+            }
+            catch(UriFormatException ex)
+            {
+                MessageBox.Show("Invalid host name specified.");
+                return;
+            }
+            Uri uri = new Uri(baseUri, $"2.0/repositories/{username.Text}");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            request.Headers.Add(HttpRequestHeader.Authorization,
+                $"Basic {Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username.Text}:{password.Text}"))}");
+            JObject result;
+            try
+            {
+                WebResponse response = await request.GetResponseAsync();
+                result = JObject.Parse(Encoding.UTF8.GetString(ReadAllBytes(response.GetResponseStream())));
+            }
+            catch (WebException ex)
+            {
+                MessageBox.Show($"{ex.Message}", this.Text);
+                return;
+            }
+            string linkType = https.Checked ? "https" : "ssh";
+            IEnumerable<JToken> links = result.SelectTokens($"values[*].links.clone[?(@.name == '{linkType}')]");
+            repositories.Items.Clear();
+            foreach (JToken token in links)
+            {
+                repositories.Items.Add(token.Value<String>("href"));
+            }
         }
 
         private async Task QueryGitLab()
@@ -180,6 +231,11 @@ namespace GitTool
             {
                 ((RadioButton)sender).Checked = true;
             }
+        }
+
+        private void CheckedChanged(object sender, EventArgs e)
+        {
+            host.Text = string.Empty;
         }
     }
 }
