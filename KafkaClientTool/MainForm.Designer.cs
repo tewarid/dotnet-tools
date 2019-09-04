@@ -127,7 +127,7 @@
             // 
             this.fetchMaxWaitMs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fetchMaxWaitMs.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::KafkaClientTool.Properties.Settings.Default, "fetchMaxWaitMs", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.fetchMaxWaitMs.Location = new System.Drawing.Point(272, 26);
+            this.fetchMaxWaitMs.Location = new System.Drawing.Point(273, 93);
             this.fetchMaxWaitMs.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -139,7 +139,7 @@
             0,
             0});
             this.fetchMaxWaitMs.Name = "fetchMaxWaitMs";
-            this.fetchMaxWaitMs.Size = new System.Drawing.Size(100, 20);
+            this.fetchMaxWaitMs.Size = new System.Drawing.Size(107, 20);
             this.fetchMaxWaitMs.TabIndex = 18;
             this.fetchMaxWaitMs.Value = global::KafkaClientTool.Properties.Settings.Default.fetchMaxWaitMs;
             // 
@@ -147,7 +147,7 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(269, 10);
+            this.label11.Location = new System.Drawing.Point(270, 77);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(104, 13);
             this.label11.TabIndex = 23;
@@ -157,7 +157,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(163, 9);
+            this.label10.Location = new System.Drawing.Point(164, 76);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(88, 13);
             this.label10.TabIndex = 21;
@@ -180,7 +180,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.clientGroupId.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::KafkaClientTool.Properties.Settings.Default, "clientGroupId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.clientGroupId.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clientGroupId.Location = new System.Drawing.Point(3, 26);
+            this.clientGroupId.Location = new System.Drawing.Point(4, 93);
             this.clientGroupId.Name = "clientGroupId";
             this.clientGroupId.Size = new System.Drawing.Size(157, 20);
             this.clientGroupId.TabIndex = 14;
@@ -189,7 +189,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 9);
+            this.label3.Location = new System.Drawing.Point(4, 76);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 13);
             this.label3.TabIndex = 3;
@@ -201,7 +201,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.subscribeToTopic.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::KafkaClientTool.Properties.Settings.Default, "subscribeToTopic", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.subscribeToTopic.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subscribeToTopic.Location = new System.Drawing.Point(3, 65);
+            this.subscribeToTopic.Location = new System.Drawing.Point(3, 25);
             this.subscribeToTopic.Multiline = true;
             this.subscribeToTopic.Name = "subscribeToTopic";
             this.subscribeToTopic.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -212,11 +212,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 49);
+            this.label2.Location = new System.Drawing.Point(3, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(250, 13);
+            this.label2.Size = new System.Drawing.Size(258, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Comma separated list of subscription topics or regex";
+            this.label2.Text = "Subscirbe to (comma separated list of topics or regex)";
             // 
             // output
             // 
@@ -236,7 +236,7 @@
             // 
             this.fetchMinBytes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fetchMinBytes.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::KafkaClientTool.Properties.Settings.Default, "fetchMinBytes", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.fetchMinBytes.Location = new System.Drawing.Point(166, 26);
+            this.fetchMinBytes.Location = new System.Drawing.Point(167, 93);
             this.fetchMinBytes.Maximum = new decimal(new int[] {
             52428800,
             0,
