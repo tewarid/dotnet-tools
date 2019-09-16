@@ -90,6 +90,11 @@ namespace GitTool
                 MessageBox.Show($"{ex.Message}", this.Text);
                 return;
             }
+            catch (JsonReaderException ex)
+            {
+                MessageBox.Show($"{ex.Message}", this.Text);
+                return;
+            }
             string linkType = https.Checked ? "https" : "ssh";
             IEnumerable<JToken> links = result.SelectTokens($"values[*].links.clone[?(@.name == '{linkType}')]");
             repositories.Items.Clear();
@@ -178,6 +183,11 @@ namespace GitTool
                 return;
             }
             catch (HttpRequestException ex)
+            {
+                MessageBox.Show($"Failed to query GitHub instance at {baseUrl}.");
+                return;
+            }
+            catch(ApiException ex)
             {
                 MessageBox.Show($"Failed to query GitHub instance at {baseUrl}.");
                 return;
