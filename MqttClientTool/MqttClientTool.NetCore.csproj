@@ -20,10 +20,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.NetCore.csproj">
-      <Project>{E1FEE78B-CBEC-4A3E-9252-581406417CE0}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.NetCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,8 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MQTTnet" Version="2.8.5" />
-    <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="2.8.5" />
+    <PackageReference Include="MQTTnet" Version="3.0.2" />
   </ItemGroup>
 
 </Project>
