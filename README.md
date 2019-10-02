@@ -1,6 +1,6 @@
-# Networking Tools [![Build status](https://ci.appveyor.com/api/projects/status/d3bn7jnje8rtts7v?svg=true)](https://ci.appveyor.com/project/tewarid/nettools) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9272afa7d6494d7fa5a885e8e02a2999)](https://www.codacy.com/app/tewarid/net-tools?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tewarid/net-tools&amp;utm_campaign=Badge_Grade) [![Join the chat at https://gitter.im/tewarid-net-tools/Lobby](https://badges.gitter.im/tewarid-net-tools/Lobby.svg)](https://gitter.im/tewarid-net-tools/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# .NET Tools [![Build status](https://ci.appveyor.com/api/projects/status/d3bn7jnje8rtts7v?svg=true)](https://ci.appveyor.com/project/tewarid/nettools) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9272afa7d6494d7fa5a885e8e02a2999)](https://www.codacy.com/app/tewarid/net-tools?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tewarid/net-tools&amp;utm_campaign=Badge_Grade) [![Join the chat at https://gitter.im/tewarid-net-tools/Lobby](https://badges.gitter.im/tewarid-net-tools/Lobby.svg)](https://gitter.im/tewarid-net-tools/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Tools for experimenting with network communications written primarily for Windows in .NET.
+.NET tools written primarily for Windows.
 
 ## Download
 
@@ -138,19 +138,3 @@ Interactive WebSocket client that may be used to establish WebSocket sessions, s
 ## WebSocketSharp Server Tool
 
 Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works on Windows 7, or better. Data can be sent to and received from WebSocket clients. Supports SSL.
-
-## Related Tools
-
-* [ncat](https://nmap.org/ncat/)
-* [SoapUI](https://www.soapui.org/)
-* [Telerik Fiddler](https://www.telerik.com/fiddler)
-* [Tera Term](https://ttssh2.osdn.jp/)
-
-## Useful Tools
-
-* netstat
-* tcpdump
-* [Sysinternals Suite](https://technet.microsoft.com/en-us/sysinternals/bb842062)
-  * TCP View
-* WinDump
-* Wireshark (recommend replacing WinPcap with [npcap](https://nmap.org/npcap/) on Windows)
