@@ -45,7 +45,7 @@ A solution file is available to build some of the tools for Windows using .NET C
 dotnet build NetTools.NetCore.sln
 ```
 
-You can also use Visual Studio 2019 Preview to build.
+You can also use Visual Studio 2019 to build.
 
 ## AMQP 1.0 Client Tool
 
@@ -138,3 +138,7 @@ Interactive WebSocket client that may be used to establish WebSocket sessions, s
 ## WebSocketSharp Server Tool
 
 Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works on Windows 7, or better. Data can be sent to and received from WebSocket clients. Supports SSL.
+
+## WMI Query Tool
+
+A simple tool to query WMI classes and their properties.
