@@ -102,6 +102,11 @@ namespace HttpListenerTool
                 response.ContentType = responseContentType.Text;
             }
             byte[] data = responseContent.BinaryValue;
+            response.SendChunked = chunked.Checked;
+            if (!chunked.Checked)
+            {
+                response.ContentLength64 = data.Length;
+            }
             response.OutputStream.Write(data, 0, data.Length);
             response.Close();
         }
@@ -123,6 +128,11 @@ namespace HttpListenerTool
             start.Enabled = enable;
             stop.Enabled = !enable;
             uri.ReadOnly = !enable;
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            log.Clear();
         }
     }
 }
