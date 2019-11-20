@@ -269,7 +269,7 @@ namespace TcpClientTool
             CloseTcpClient();
         }
 
-        public async Task ReadAsync(CancellationToken cancellationToken)
+        private async Task ReadAsync(CancellationToken cancellationToken)
         {
             byte[] data = new byte[1024];
 
