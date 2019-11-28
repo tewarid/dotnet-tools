@@ -233,3 +233,7 @@ $ git push --force [remote]
 Downloads bookmark history and incorporates changes
 
 $ git pull
+
+Clones missing submodules and updates their working trees.
+
+$ git submodule update --init --recursive
