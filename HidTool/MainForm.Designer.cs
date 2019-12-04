@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.hidDevicesCombo = new System.Windows.Forms.ComboBox();
             this.refresh = new System.Windows.Forms.Button();
             this.open = new System.Windows.Forms.Button();
@@ -223,6 +224,7 @@
             this.Controls.Add(this.open);
             this.Controls.Add(this.refresh);
             this.Controls.Add(this.hidDevicesCombo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "HID Tool";
             this.Load += new System.EventHandler(this.MainForm_Load);
