@@ -67,6 +67,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HidTool", "HidTool\HidTool.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmiQuery", "WmiQuery\WmiQuery.csproj", "{EAD17954-85E2-4105-A66B-045084BF4851}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalizationTool", "GlobalizationTool\GlobalizationTool.csproj", "{DC2E13E2-91B2-4BE4-950D-97F2226E2AD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -185,6 +187,10 @@ Global
 		{EAD17954-85E2-4105-A66B-045084BF4851}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAD17954-85E2-4105-A66B-045084BF4851}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAD17954-85E2-4105-A66B-045084BF4851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC2E13E2-91B2-4BE4-950D-97F2226E2AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC2E13E2-91B2-4BE4-950D-97F2226E2AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC2E13E2-91B2-4BE4-950D-97F2226E2AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC2E13E2-91B2-4BE4-950D-97F2226E2AD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
