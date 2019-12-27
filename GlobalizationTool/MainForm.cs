@@ -27,6 +27,7 @@ namespace GlobalizationTool
                     item.EnglishName,
                     item.Name,
                     SpecificName = CultureInfo.CreateSpecificCulture(item.Name).Name,
+                    item.LCID,
                     item.DateTimeFormat.ShortDatePattern,
                     item.NumberFormat.NumberDecimalSeparator,
                     item.TwoLetterISOLanguageName,

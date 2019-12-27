@@ -54,6 +54,7 @@
             this.culturesGrid.Location = new System.Drawing.Point(3, 26);
             this.culturesGrid.Name = "culturesGrid";
             this.culturesGrid.ReadOnly = true;
+            this.culturesGrid.RowHeadersVisible = false;
             this.culturesGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.culturesGrid.Size = new System.Drawing.Size(777, 523);
             this.culturesGrid.TabIndex = 0;
