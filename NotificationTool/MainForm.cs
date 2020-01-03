@@ -47,6 +47,7 @@ namespace NotificationTool
             WindowState = FormWindowState.Normal;
             Visible = true;
             ShowInTaskbar = true;
+            Activate();
         }
 
         private void PeriodicNotification_CheckedChanged(object sender, EventArgs e)
