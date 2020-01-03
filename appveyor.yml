@@ -55,11 +55,8 @@ after_build:
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\TcpClientTool\bin\Debug\*.exe
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\TcpListenerTool\bin\Debug\*.exe
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\UdpTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\websocket-sharp\websocket-sharp\bin\Debug\*.dll
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketServerTool\bin\Debug\*.config
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketServerTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketSharpServerTool\bin\Debug\*.exe
-  - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketSharpTool\bin\Debug\*.exe
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketTool\bin\Debug\*.dll
   - cmd: 7z u NetTools-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\WebSocketTool\bin\Debug\*.exe
 artifacts:

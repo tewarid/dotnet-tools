@@ -125,19 +125,11 @@ Interactive UDP/IP client that may be used to establish IPv4 UDP sockets, send, 
 
 ## WebSocket Tool
 
-Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, send, and receive data. It is built with .NET's native implementation of WebSockets, and requires at least Windows 8.
+Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, send, and receive data. It is built with .NET's native implementation of WebSockets, and requires Windows 10.
 
 ## WebSocket Server Tool
 
-Interactive WebSocket server based on either System.Net.HttpListener or a self-hosted WCF service. WCF service is configured through `App.config` to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires at least Windows 8.
-
-## WebSocketSharp Tool
-
-Interactive WebSocket client that may be used to establish WebSocket sessions, send, and receive data. It is built with [WebSocketSharp](https://github.com/sta/websocket-sharp) and works on Windows 7, or better. An HTTP proxy may be specified so WebSocket sessions can be debugged using [Fiddler](http://www.telerik.com/fiddler).
-
-## WebSocketSharp Server Tool
-
-Self-hosted service built with [WebSocketSharp](https://github.com/sta/websocket-sharp), and works on Windows 7, or better. Data can be sent to and received from WebSocket clients. Supports SSL.
+Interactive WebSocket server based on either System.Net.HttpListener or a self-hosted WCF service. WCF service is configured through `App.config` to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires Windows 10.
 
 ## WMI Query Tool
 
