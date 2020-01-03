@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace NotificationTool
@@ -14,6 +13,14 @@ namespace NotificationTool
         [STAThread]
         static void Main()
         {
+            string appName = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>().Title;
+            bool createdNew;
+            new Mutex(true, appName, out createdNew);
+            if (!createdNew)
+            {
+                return;
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
