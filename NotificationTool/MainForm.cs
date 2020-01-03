@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Win32;
+using System;
 using System.Windows.Forms;
 
 namespace NotificationTool
@@ -15,6 +9,7 @@ namespace NotificationTool
         public MainForm()
         {
             InitializeComponent();
+            SetStartup();
         }
 
         private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -67,6 +62,25 @@ namespace NotificationTool
         private void Timer_Tick(object sender, EventArgs e)
         {
             notifyIcon.ShowBalloonTip(0, this.Text, periodicTip.Text, ToolTipIcon.Warning);
+        }
+
+        private void RunAtStartup_CheckedChanged(object sender, EventArgs e)
+        {
+            SetStartup();
+        }
+
+        private void SetStartup()
+        {
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            if (runAtStartup.Checked)
+            {
+                rk.SetValue(this.Text, Application.ExecutablePath);
+            }
+            else
+            {
+                rk.DeleteValue(this.Text, false);
+            }
         }
     }
 }

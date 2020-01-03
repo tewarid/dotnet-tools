@@ -44,6 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.periodicTip = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.runAtStartup = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.period)).BeginInit();
             this.SuspendLayout();
@@ -186,11 +187,25 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Tip for periodic notification";
             // 
+            // runAtStartup
+            // 
+            this.runAtStartup.AutoSize = true;
+            this.runAtStartup.Checked = true;
+            this.runAtStartup.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.runAtStartup.Location = new System.Drawing.Point(12, 164);
+            this.runAtStartup.Name = "runAtStartup";
+            this.runAtStartup.Size = new System.Drawing.Size(93, 17);
+            this.runAtStartup.TabIndex = 9;
+            this.runAtStartup.Text = "Run at startup";
+            this.runAtStartup.UseVisualStyleBackColor = true;
+            this.runAtStartup.CheckedChanged += new System.EventHandler(this.RunAtStartup_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 171);
+            this.ClientSize = new System.Drawing.Size(584, 198);
+            this.Controls.Add(this.runAtStartup);
             this.Controls.Add(this.periodicTip);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -229,6 +244,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox periodicTip;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox runAtStartup;
     }
 }
 
