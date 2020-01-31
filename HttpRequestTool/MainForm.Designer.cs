@@ -40,27 +40,42 @@ namespace HttpRequestTool
             this.clientCertificateFile = new System.Windows.Forms.TextBox();
             this.selectCertificateFile = new System.Windows.Forms.Button();
             this.fileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.go = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.tlsVersion = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.requestMethod = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label9 = new System.Windows.Forms.Label();
-            this.requestContentType = new NetTools.Common.ContentTypeSelector();
             this.queryParameters = new NetTools.Common.NameValueGrid();
             this.requestHeaders = new NetTools.Common.NameValueGrid();
-            this.responseContent = new Common.OutputTextBox();
-            this.responseHeaders = new NetTools.Common.NameValueGrid();
+            this.label5 = new System.Windows.Forms.Label();
+            this.requestContentType = new NetTools.Common.ContentTypeSelector();
+            this.go = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.requestContent = new Common.InputTextBox();
+            this.requestMethod = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.responseHeaders = new NetTools.Common.NameValueGrid();
+            this.label8 = new System.Windows.Forms.Label();
+            this.responseContent = new Common.OutputTextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -80,7 +95,7 @@ namespace HttpRequestTool
             this.url.Location = new System.Drawing.Point(7, 24);
             this.url.Margin = new System.Windows.Forms.Padding(2);
             this.url.Name = "url";
-            this.url.Size = new System.Drawing.Size(512, 20);
+            this.url.Size = new System.Drawing.Size(433, 20);
             this.url.TabIndex = 9;
             this.url.Text = "https://localhost:8443/";
             this.url.TextChanged += new System.EventHandler(this.Url_TextChanged);
@@ -88,7 +103,7 @@ namespace HttpRequestTool
             // setClientCertificate
             // 
             this.setClientCertificate.AutoSize = true;
-            this.setClientCertificate.Location = new System.Drawing.Point(9, 68);
+            this.setClientCertificate.Location = new System.Drawing.Point(8, 66);
             this.setClientCertificate.Margin = new System.Windows.Forms.Padding(2);
             this.setClientCertificate.Name = "setClientCertificate";
             this.setClientCertificate.Size = new System.Drawing.Size(119, 17);
@@ -101,7 +116,7 @@ namespace HttpRequestTool
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(529, 47);
+            this.label2.Location = new System.Drawing.Point(520, 48);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
@@ -122,11 +137,11 @@ namespace HttpRequestTool
             // 
             this.certificatePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.certificatePassword.Enabled = false;
-            this.certificatePassword.Location = new System.Drawing.Point(529, 66);
+            this.certificatePassword.Location = new System.Drawing.Point(523, 67);
             this.certificatePassword.Margin = new System.Windows.Forms.Padding(2);
             this.certificatePassword.Name = "certificatePassword";
             this.certificatePassword.PasswordChar = '*';
-            this.certificatePassword.Size = new System.Drawing.Size(102, 20);
+            this.certificatePassword.Size = new System.Drawing.Size(108, 20);
             this.certificatePassword.TabIndex = 5;
             // 
             // clientCertificateFile
@@ -144,7 +159,7 @@ namespace HttpRequestTool
             // 
             this.selectCertificateFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.selectCertificateFile.Enabled = false;
-            this.selectCertificateFile.Location = new System.Drawing.Point(444, 66);
+            this.selectCertificateFile.Location = new System.Drawing.Point(444, 65);
             this.selectCertificateFile.Margin = new System.Windows.Forms.Padding(2);
             this.selectCertificateFile.Name = "selectCertificateFile";
             this.selectCertificateFile.Size = new System.Drawing.Size(75, 23);
@@ -158,23 +173,11 @@ namespace HttpRequestTool
             this.fileDialog.FileName = "client.pfx";
             this.fileDialog.Filter = "PFX file (*.pfx)|*.pfx";
             // 
-            // go
-            // 
-            this.go.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.go.Location = new System.Drawing.Point(559, 309);
-            this.go.Margin = new System.Windows.Forms.Padding(2);
-            this.go.Name = "go";
-            this.go.Size = new System.Drawing.Size(75, 23);
-            this.go.TabIndex = 10;
-            this.go.Text = "Go";
-            this.go.UseVisualStyleBackColor = true;
-            this.go.Click += new System.EventHandler(this.Go_Click);
-            // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(529, 5);
+            this.label4.Location = new System.Drawing.Point(441, 7);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 13);
@@ -186,65 +189,12 @@ namespace HttpRequestTool
             this.tlsVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tlsVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tlsVersion.FormattingEnabled = true;
-            this.tlsVersion.Location = new System.Drawing.Point(529, 24);
+            this.tlsVersion.Location = new System.Drawing.Point(444, 24);
             this.tlsVersion.Margin = new System.Windows.Forms.Padding(2);
             this.tlsVersion.Name = "tlsVersion";
-            this.tlsVersion.Size = new System.Drawing.Size(102, 21);
+            this.tlsVersion.Size = new System.Drawing.Size(187, 21);
             this.tlsVersion.TabIndex = 12;
             this.tlsVersion.SelectedIndexChanged += new System.EventHandler(this.TlsVersion_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 230);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Request Headers";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(249, 91);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Request Method";
-            // 
-            // requestMethod
-            // 
-            this.requestMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.requestMethod.FormattingEnabled = true;
-            this.requestMethod.Location = new System.Drawing.Point(252, 110);
-            this.requestMethod.Margin = new System.Windows.Forms.Padding(2);
-            this.requestMethod.Name = "requestMethod";
-            this.requestMethod.Size = new System.Drawing.Size(129, 21);
-            this.requestMethod.TabIndex = 15;
-            this.requestMethod.SelectedIndexChanged += new System.EventHandler(this.RequestMethod_SelectedIndexChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(393, 91);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(114, 13);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "Request Content Type";
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 328);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(98, 13);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Response Headers";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -276,45 +226,213 @@ namespace HttpRequestTool
             this.dataGridViewTextBoxColumn6.HeaderText = "Value";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer3.Location = new System.Drawing.Point(-1, 92);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.splitContainer1);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer3.Size = new System.Drawing.Size(644, 520);
+            this.splitContainer3.SplitterDistance = 260;
+            this.splitContainer3.TabIndex = 31;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(4, 6);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.label9);
+            this.splitContainer1.Panel1.Controls.Add(this.queryParameters);
+            this.splitContainer1.Panel1.Controls.Add(this.requestHeaders);
+            this.splitContainer1.Panel1.Controls.Add(this.label5);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.requestContentType);
+            this.splitContainer1.Panel2.Controls.Add(this.go);
+            this.splitContainer1.Panel2.Controls.Add(this.label7);
+            this.splitContainer1.Panel2.Controls.Add(this.requestContent);
+            this.splitContainer1.Panel2.Controls.Add(this.requestMethod);
+            this.splitContainer1.Panel2.Controls.Add(this.label6);
+            this.splitContainer1.Size = new System.Drawing.Size(637, 249);
+            this.splitContainer1.SplitterDistance = 243;
+            this.splitContainer1.TabIndex = 30;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 91);
+            this.label9.Location = new System.Drawing.Point(3, 4);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(134, 13);
-            this.label9.TabIndex = 28;
+            this.label9.TabIndex = 32;
             this.label9.Text = "Request Query Parameters";
-            // 
-            // requestContentType
-            // 
-            this.requestContentType.AutoSize = true;
-            this.requestContentType.Location = new System.Drawing.Point(396, 110);
-            this.requestContentType.Name = "requestContentType";
-            this.requestContentType.Size = new System.Drawing.Size(150, 21);
-            this.requestContentType.TabIndex = 17;
             // 
             // queryParameters
             // 
             this.queryParameters.AllowUserToAddRows = false;
             this.queryParameters.AllowUserToDeleteRows = false;
-            this.queryParameters.Location = new System.Drawing.Point(7, 110);
+            this.queryParameters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.queryParameters.Location = new System.Drawing.Point(3, 23);
             this.queryParameters.Margin = new System.Windows.Forms.Padding(2);
             this.queryParameters.Name = "queryParameters";
             this.queryParameters.ReadOnly = true;
-            this.queryParameters.Size = new System.Drawing.Size(238, 118);
-            this.queryParameters.TabIndex = 27;
+            this.queryParameters.Size = new System.Drawing.Size(236, 118);
+            this.queryParameters.TabIndex = 31;
             // 
             // requestHeaders
             // 
             this.requestHeaders.AllowUserToAddRows = true;
             this.requestHeaders.AllowUserToDeleteRows = true;
-            this.requestHeaders.Location = new System.Drawing.Point(7, 249);
+            this.requestHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.requestHeaders.Location = new System.Drawing.Point(3, 162);
             this.requestHeaders.Margin = new System.Windows.Forms.Padding(2);
             this.requestHeaders.Name = "requestHeaders";
             this.requestHeaders.ReadOnly = false;
-            this.requestHeaders.Size = new System.Drawing.Size(238, 76);
-            this.requestHeaders.TabIndex = 26;
+            this.requestHeaders.Size = new System.Drawing.Size(236, 79);
+            this.requestHeaders.TabIndex = 30;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 143);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(90, 13);
+            this.label5.TabIndex = 29;
+            this.label5.Text = "Request Headers";
+            // 
+            // requestContentType
+            // 
+            this.requestContentType.AutoSize = true;
+            this.requestContentType.Location = new System.Drawing.Point(151, 22);
+            this.requestContentType.Name = "requestContentType";
+            this.requestContentType.Size = new System.Drawing.Size(150, 21);
+            this.requestContentType.TabIndex = 23;
+            // 
+            // go
+            // 
+            this.go.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.go.Location = new System.Drawing.Point(311, 224);
+            this.go.Margin = new System.Windows.Forms.Padding(2);
+            this.go.Name = "go";
+            this.go.Size = new System.Drawing.Size(75, 23);
+            this.go.TabIndex = 20;
+            this.go.Text = "Go";
+            this.go.UseVisualStyleBackColor = true;
+            this.go.Click += new System.EventHandler(this.Go_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(148, 3);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(114, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Request Content Type";
+            // 
+            // requestContent
+            // 
+            this.requestContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.requestContent.BinaryChecked = false;
+            this.requestContent.ChangeEndOfLine = true;
+            this.requestContent.Enabled = false;
+            this.requestContent.EndOfLine = Common.EndOfLine.Dos;
+            this.requestContent.Location = new System.Drawing.Point(5, 51);
+            this.requestContent.MinimumSize = new System.Drawing.Size(280, 130);
+            this.requestContent.Name = "requestContent";
+            this.requestContent.SelectedTextValue = "";
+            this.requestContent.Size = new System.Drawing.Size(381, 168);
+            this.requestContent.TabIndex = 24;
+            this.requestContent.TextValue = "";
+            // 
+            // requestMethod
+            // 
+            this.requestMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.requestMethod.FormattingEnabled = true;
+            this.requestMethod.Location = new System.Drawing.Point(7, 22);
+            this.requestMethod.Margin = new System.Windows.Forms.Padding(2);
+            this.requestMethod.Name = "requestMethod";
+            this.requestMethod.Size = new System.Drawing.Size(129, 21);
+            this.requestMethod.TabIndex = 22;
+            this.requestMethod.SelectedIndexChanged += new System.EventHandler(this.RequestMethod_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(4, 3);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 13);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Request Method";
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer2.Location = new System.Drawing.Point(3, -2);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.responseHeaders);
+            this.splitContainer2.Panel1.Controls.Add(this.label8);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.responseContent);
+            this.splitContainer2.Size = new System.Drawing.Size(641, 258);
+            this.splitContainer2.SplitterDistance = 243;
+            this.splitContainer2.TabIndex = 31;
+            // 
+            // responseHeaders
+            // 
+            this.responseHeaders.AllowUserToAddRows = false;
+            this.responseHeaders.AllowUserToDeleteRows = false;
+            this.responseHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.responseHeaders.Location = new System.Drawing.Point(3, 20);
+            this.responseHeaders.Margin = new System.Windows.Forms.Padding(2);
+            this.responseHeaders.Name = "responseHeaders";
+            this.responseHeaders.ReadOnly = true;
+            this.responseHeaders.Size = new System.Drawing.Size(234, 236);
+            this.responseHeaders.TabIndex = 26;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1, 3);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(98, 13);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Response Headers";
             // 
             // responseContent
             // 
@@ -322,58 +440,17 @@ namespace HttpRequestTool
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.responseContent.AppendBinaryChecked = false;
-            this.responseContent.Location = new System.Drawing.Point(252, 328);
+            this.responseContent.Location = new System.Drawing.Point(3, 3);
             this.responseContent.MinimumSize = new System.Drawing.Size(285, 95);
             this.responseContent.Name = "responseContent";
-            this.responseContent.Size = new System.Drawing.Size(383, 275);
-            this.responseContent.TabIndex = 25;
+            this.responseContent.Size = new System.Drawing.Size(387, 253);
+            this.responseContent.TabIndex = 26;
             this.responseContent.TextValue = "";
-            // 
-            // responseHeaders
-            // 
-            this.responseHeaders.AllowUserToAddRows = false;
-            this.responseHeaders.AllowUserToDeleteRows = false;
-            this.responseHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.responseHeaders.Location = new System.Drawing.Point(9, 345);
-            this.responseHeaders.Margin = new System.Windows.Forms.Padding(2);
-            this.responseHeaders.Name = "responseHeaders";
-            this.responseHeaders.ReadOnly = true;
-            this.responseHeaders.Size = new System.Drawing.Size(236, 258);
-            this.responseHeaders.TabIndex = 24;
-            // 
-            // requestContent
-            // 
-            this.requestContent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.requestContent.BinaryChecked = false;
-            this.requestContent.ChangeEndOfLine = true;
-            this.requestContent.Enabled = false;
-            this.requestContent.EndOfLine = Common.EndOfLine.Dos;
-            this.requestContent.Location = new System.Drawing.Point(250, 139);
-            this.requestContent.MinimumSize = new System.Drawing.Size(280, 130);
-            this.requestContent.Name = "requestContent";
-            this.requestContent.SelectedTextValue = "";
-            this.requestContent.Size = new System.Drawing.Size(384, 165);
-            this.requestContent.TabIndex = 18;
-            this.requestContent.TextValue = "";
             // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(642, 613);
-            this.Controls.Add(this.requestContentType);
-            this.Controls.Add(this.go);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.queryParameters);
-            this.Controls.Add(this.requestHeaders);
-            this.Controls.Add(this.responseContent);
-            this.Controls.Add(this.responseHeaders);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.requestContent);
-            this.Controls.Add(this.requestMethod);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.splitContainer3);
             this.Controls.Add(this.tlsVersion);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.selectCertificateFile);
@@ -388,6 +465,21 @@ namespace HttpRequestTool
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "HTTP Request Tool";
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,27 +496,30 @@ namespace HttpRequestTool
         private System.Windows.Forms.TextBox clientCertificateFile;
         private System.Windows.Forms.Button selectCertificateFile;
         private System.Windows.Forms.OpenFileDialog fileDialog;
-        private System.Windows.Forms.Button go;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox tlsVersion;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox requestMethod;
-        private Common.InputTextBox requestContent;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private Common.OutputTextBox responseContent;
-        private NetTools.Common.NameValueGrid requestHeaders;
-        private NetTools.Common.NameValueGrid responseHeaders;
-        private NetTools.Common.NameValueGrid queryParameters;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private SplitContainer splitContainer3;
+        private SplitContainer splitContainer1;
+        private Label label9;
+        private NetTools.Common.NameValueGrid queryParameters;
+        private NetTools.Common.NameValueGrid requestHeaders;
+        private Label label5;
         private NetTools.Common.ContentTypeSelector requestContentType;
+        private Button go;
+        private Label label7;
+        private Common.InputTextBox requestContent;
+        private ComboBox requestMethod;
+        private Label label6;
+        private SplitContainer splitContainer2;
+        private NetTools.Common.NameValueGrid responseHeaders;
+        private Label label8;
+        private Common.OutputTextBox responseContent;
     }
 }
 
