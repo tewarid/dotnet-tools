@@ -163,7 +163,16 @@ namespace GitTool
                 return;
             }
             var phv = new ProductHeaderValue(username.Text);
-            GitHubClient client = new GitHubClient(phv, new Uri(baseUrl));
+            GitHubClient client;
+            try
+            {
+                 client = new GitHubClient(phv, new Uri(baseUrl));
+            }
+            catch (UriFormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
             IReadOnlyList<Repository> list;
             Credentials credentials = Credentials.Anonymous;
             if (string.IsNullOrWhiteSpace(password.Text))
