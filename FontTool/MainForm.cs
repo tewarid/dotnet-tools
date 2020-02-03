@@ -80,7 +80,7 @@ namespace FontTool
             PrivateFontCollection fontCollection = new PrivateFontCollection();
             fontCollection.AddFontFile(openFileDialog.FileName);
             display.Font = new Font(fontCollection.Families[0], (float)size.Value,
-               FontStyle.Regular, GraphicsUnit.Point);
+               (FontStyle)style.SelectedValue, GraphicsUnit.Point);
             font.Text = display.Font.Name;
         }
 
