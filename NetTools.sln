@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalizationTool", "Global
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationTool", "NotificationTool\NotificationTool.csproj", "{4E4B6A30-4155-4AA9-A639-B3D35D4D2FB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontTool", "FontTool\FontTool.csproj", "{3F41ABED-041C-4BAF-82BD-1145BB61C3EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,10 @@ Global
 		{4E4B6A30-4155-4AA9-A639-B3D35D4D2FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E4B6A30-4155-4AA9-A639-B3D35D4D2FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E4B6A30-4155-4AA9-A639-B3D35D4D2FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F41ABED-041C-4BAF-82BD-1145BB61C3EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F41ABED-041C-4BAF-82BD-1145BB61C3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F41ABED-041C-4BAF-82BD-1145BB61C3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F41ABED-041C-4BAF-82BD-1145BB61C3EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
