@@ -9,6 +9,8 @@ namespace FontTool
 {
     public partial class MainForm : Form
     {
+        PrivateFontCollection fontCollection;
+
         public MainForm()
         {
             InitializeComponent();
@@ -77,7 +79,7 @@ namespace FontTool
             {
                 return;
             }
-            PrivateFontCollection fontCollection = new PrivateFontCollection();
+            fontCollection = new PrivateFontCollection();
             fontCollection.AddFontFile(openFileDialog.FileName);
             display.Font = new Font(fontCollection.Families[0], (float)size.Value,
                (FontStyle)style.SelectedValue, GraphicsUnit.Point);
