@@ -1,9 +1,9 @@
 ﻿using CsvHelper;
+using System;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
+using System.Text;
 using System.Windows.Forms;
-
 
 namespace GlobalizationTool
 {
@@ -78,6 +78,46 @@ namespace GlobalizationTool
                     });
                 }
             }
+        }
+
+        private void UpperCase_Click(object sender, System.EventArgs e)
+        {
+            text.Text = text.Text.ToUpper();
+        }
+
+        private void LowerCase_Click(object sender, System.EventArgs e)
+        {
+            text.Text = text.Text.ToLower();
+        }
+
+        private void RemoveDiacritics_Click(object sender, System.EventArgs e)
+        {
+            text.Text = RemoveDiacritics(text.Text);
+        }
+
+        private static string RemoveDiacritics(string text)
+        {
+            var normalizedString = text.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+        }
+
+        private void Sort_Click(object sender, System.EventArgs e)
+        {
+            string[] words = text.Text.Split(new string[] { Environment.NewLine, " " },
+                StringSplitOptions.RemoveEmptyEntries);
+            Array.Sort(words);
+            text.Text = string.Join(Environment.NewLine, words);
         }
     }
 }
