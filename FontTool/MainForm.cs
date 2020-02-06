@@ -106,5 +106,15 @@ namespace FontTool
             underline.Checked = ((fontStyle & FontStyle.Underline) != FontStyle.Regular);
             strikeout.Checked = ((fontStyle & FontStyle.Strikeout) != FontStyle.Regular);
         }
+
+        private void Color_Click(object sender, EventArgs e)
+        {
+            DialogResult result = colorDialog.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
+            display.ForeColor = colorDialog.Color;
+        }
     }
 }

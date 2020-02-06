@@ -44,6 +44,8 @@
             this.italic = new System.Windows.Forms.CheckBox();
             this.underline = new System.Windows.Forms.CheckBox();
             this.strikeout = new System.Windows.Forms.CheckBox();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.color = new System.Windows.Forms.Button();
             this.display = new FontTool.CustomLabel();
             ((System.ComponentModel.ISupportInitialize)(this.size)).BeginInit();
             this.SuspendLayout();
@@ -63,7 +65,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.text.Location = new System.Drawing.Point(16, 30);
             this.text.Name = "text";
-            this.text.Size = new System.Drawing.Size(756, 20);
+            this.text.Size = new System.Drawing.Size(675, 20);
             this.text.TabIndex = 1;
             this.text.TextChanged += new System.EventHandler(this.Text_TextChanged);
             // 
@@ -137,6 +139,11 @@
             // 
             this.size.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.size.Location = new System.Drawing.Point(418, 75);
+            this.size.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.size.Name = "size";
             this.size.Size = new System.Drawing.Size(59, 20);
             this.size.TabIndex = 8;
@@ -159,6 +166,7 @@
             // 
             // bold
             // 
+            this.bold.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bold.Appearance = System.Windows.Forms.Appearance.Button;
             this.bold.Location = new System.Drawing.Point(483, 73);
             this.bold.Name = "bold";
@@ -170,6 +178,7 @@
             // 
             // italic
             // 
+            this.italic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.italic.Appearance = System.Windows.Forms.Appearance.Button;
             this.italic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.italic.Location = new System.Drawing.Point(513, 73);
@@ -182,6 +191,7 @@
             // 
             // underline
             // 
+            this.underline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.underline.Appearance = System.Windows.Forms.Appearance.Button;
             this.underline.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.underline.Location = new System.Drawing.Point(543, 73);
@@ -194,6 +204,7 @@
             // 
             // strikeout
             // 
+            this.strikeout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.strikeout.Appearance = System.Windows.Forms.Appearance.Button;
             this.strikeout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.strikeout.Location = new System.Drawing.Point(573, 73);
@@ -203,6 +214,17 @@
             this.strikeout.Text = "S";
             this.strikeout.UseVisualStyleBackColor = true;
             this.strikeout.CheckedChanged += new System.EventHandler(this.Style_CheckedChanged);
+            // 
+            // color
+            // 
+            this.color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.color.Location = new System.Drawing.Point(697, 28);
+            this.color.Name = "color";
+            this.color.Size = new System.Drawing.Size(75, 23);
+            this.color.TabIndex = 2;
+            this.color.Text = "Color...";
+            this.color.UseVisualStyleBackColor = true;
+            this.color.Click += new System.EventHandler(this.Color_Click);
             // 
             // display
             // 
@@ -224,6 +246,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 441);
+            this.Controls.Add(this.color);
             this.Controls.Add(this.strikeout);
             this.Controls.Add(this.underline);
             this.Controls.Add(this.italic);
@@ -266,6 +289,8 @@
         private System.Windows.Forms.CheckBox italic;
         private System.Windows.Forms.CheckBox underline;
         private System.Windows.Forms.CheckBox strikeout;
+        private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.Button color;
     }
 }
 
