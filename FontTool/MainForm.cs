@@ -29,22 +29,12 @@ namespace FontTool
                     Value = value
                 })
                 .ToList();
-            style.DisplayMember = "Description";
-            style.ValueMember = "Value";
-            style.DataSource = Enum.GetValues(typeof(FontStyle))
-                .Cast<Enum>()
-                .Select(value => new
-                {
-                    Description = value.ToString(),
-                    Value = value
-                })
-                .ToList();
             font.Text = display.Font.Name;
             size.Value = (decimal)display.Font.Size;
-            style.SelectedValue = display.Font.Style;
+            ShowStyle(display.Font.Style);
         }
 
-        private void pick_Click(object sender, EventArgs e)
+        private void Pick_Click(object sender, EventArgs e)
         {
             DialogResult result = fontDialog.ShowDialog();
             if (result != DialogResult.OK)
@@ -54,6 +44,7 @@ namespace FontTool
             display.Font = fontDialog.Font;
             font.Text = display.Font.Name;
             size.Value = (decimal)display.Font.Size;
+            ShowStyle(display.Font.Style);
         }
 
         private void Text_TextChanged(object sender, EventArgs e)
@@ -82,22 +73,38 @@ namespace FontTool
             fontCollection = new PrivateFontCollection();
             fontCollection.AddFontFile(openFileDialog.FileName);
             display.Font = new Font(fontCollection.Families[0], (float)size.Value,
-               (FontStyle)style.SelectedValue, GraphicsUnit.Point);
+               GetStyle(), GraphicsUnit.Point);
             font.Text = display.Font.Name;
         }
 
         private void Size_ValueChanged(object sender, EventArgs e)
         {
             Font f = display.Font;
-            display.Font = new Font(f.FontFamily.Name, (float)size.Value,
-               (FontStyle)style.SelectedValue, f.Unit);
+            display.Font = new Font(f.FontFamily, (float)size.Value,
+               GetStyle(), f.Unit);
         }
 
-        private void Style_SelectedIndexChanged(object sender, EventArgs e)
+        private void Style_CheckedChanged(object sender, EventArgs e)
         {
             Font f = display.Font;
-            display.Font = new Font(f.FontFamily.Name, (float)size.Value,
-               (FontStyle)style.SelectedValue, f.Unit);
+            display.Font = new Font(f.FontFamily, (float)size.Value,
+               GetStyle(), f.Unit);
+        }
+
+        private FontStyle GetStyle()
+        {
+            return ((bold.Checked ? FontStyle.Bold : FontStyle.Regular)
+                | (italic.Checked ? FontStyle.Italic : FontStyle.Regular)
+                | (underline.Checked ? FontStyle.Underline : FontStyle.Regular)
+                | (strikeout.Checked ? FontStyle.Strikeout : FontStyle.Regular));
+        }
+
+        private void ShowStyle(FontStyle fontStyle)
+        {
+            bold.Checked = ((fontStyle & FontStyle.Bold) != FontStyle.Regular);
+            italic.Checked = ((fontStyle & FontStyle.Italic) != FontStyle.Regular);
+            underline.Checked = ((fontStyle & FontStyle.Underline) != FontStyle.Regular);
+            strikeout.Checked = ((fontStyle & FontStyle.Strikeout) != FontStyle.Regular);
         }
     }
 }

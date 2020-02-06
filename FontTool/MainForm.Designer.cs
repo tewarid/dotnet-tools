@@ -40,8 +40,10 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.size = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.style = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.bold = new System.Windows.Forms.CheckBox();
+            this.italic = new System.Windows.Forms.CheckBox();
+            this.underline = new System.Windows.Forms.CheckBox();
+            this.strikeout = new System.Windows.Forms.CheckBox();
             this.display = new FontTool.CustomLabel();
             ((System.ComponentModel.ISupportInitialize)(this.size)).BeginInit();
             this.SuspendLayout();
@@ -81,25 +83,25 @@
             this.font.Location = new System.Drawing.Point(16, 74);
             this.font.Name = "font";
             this.font.ReadOnly = true;
-            this.font.Size = new System.Drawing.Size(213, 20);
+            this.font.Size = new System.Drawing.Size(231, 20);
             this.font.TabIndex = 3;
             // 
             // pick
             // 
             this.pick.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pick.Location = new System.Drawing.Point(428, 71);
+            this.pick.Location = new System.Drawing.Point(253, 72);
             this.pick.Name = "pick";
             this.pick.Size = new System.Drawing.Size(75, 23);
             this.pick.TabIndex = 4;
             this.pick.Text = "Pick...";
             this.pick.UseVisualStyleBackColor = true;
-            this.pick.Click += new System.EventHandler(this.pick_Click);
+            this.pick.Click += new System.EventHandler(this.Pick_Click);
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(587, 58);
+            this.label3.Location = new System.Drawing.Point(605, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 13);
             this.label3.TabIndex = 5;
@@ -110,16 +112,16 @@
             this.hint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.hint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.hint.FormattingEnabled = true;
-            this.hint.Location = new System.Drawing.Point(590, 73);
+            this.hint.Location = new System.Drawing.Point(608, 75);
             this.hint.Name = "hint";
             this.hint.Size = new System.Drawing.Size(164, 21);
-            this.hint.TabIndex = 6;
+            this.hint.TabIndex = 13;
             this.hint.SelectedIndexChanged += new System.EventHandler(this.Hint_SelectedIndexChanged);
             // 
             // browse
             // 
             this.browse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browse.Location = new System.Drawing.Point(509, 71);
+            this.browse.Location = new System.Drawing.Point(334, 72);
             this.browse.Name = "browse";
             this.browse.Size = new System.Drawing.Size(75, 23);
             this.browse.TabIndex = 5;
@@ -134,7 +136,7 @@
             // size
             // 
             this.size.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.size.Location = new System.Drawing.Point(235, 74);
+            this.size.Location = new System.Drawing.Point(418, 75);
             this.size.Name = "size";
             this.size.Size = new System.Drawing.Size(59, 20);
             this.size.TabIndex = 8;
@@ -149,32 +151,58 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(232, 58);
+            this.label4.Location = new System.Drawing.Point(415, 59);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 13);
             this.label4.TabIndex = 9;
             this.label4.Text = "Size";
             // 
-            // style
+            // bold
             // 
-            this.style.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.style.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.style.FormattingEnabled = true;
-            this.style.Location = new System.Drawing.Point(301, 72);
-            this.style.Name = "style";
-            this.style.Size = new System.Drawing.Size(121, 21);
-            this.style.TabIndex = 10;
-            this.style.SelectedIndexChanged += new System.EventHandler(this.Style_SelectedIndexChanged);
+            this.bold.Appearance = System.Windows.Forms.Appearance.Button;
+            this.bold.Location = new System.Drawing.Point(483, 73);
+            this.bold.Name = "bold";
+            this.bold.Size = new System.Drawing.Size(24, 23);
+            this.bold.TabIndex = 9;
+            this.bold.Text = "B";
+            this.bold.UseVisualStyleBackColor = true;
+            this.bold.CheckedChanged += new System.EventHandler(this.Style_CheckedChanged);
             // 
-            // label5
+            // italic
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(298, 58);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Style";
+            this.italic.Appearance = System.Windows.Forms.Appearance.Button;
+            this.italic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.italic.Location = new System.Drawing.Point(513, 73);
+            this.italic.Name = "italic";
+            this.italic.Size = new System.Drawing.Size(24, 23);
+            this.italic.TabIndex = 10;
+            this.italic.Text = "I";
+            this.italic.UseVisualStyleBackColor = true;
+            this.italic.CheckedChanged += new System.EventHandler(this.Style_CheckedChanged);
+            // 
+            // underline
+            // 
+            this.underline.Appearance = System.Windows.Forms.Appearance.Button;
+            this.underline.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.underline.Location = new System.Drawing.Point(543, 73);
+            this.underline.Name = "underline";
+            this.underline.Size = new System.Drawing.Size(24, 23);
+            this.underline.TabIndex = 11;
+            this.underline.Text = "U";
+            this.underline.UseVisualStyleBackColor = true;
+            this.underline.CheckedChanged += new System.EventHandler(this.Style_CheckedChanged);
+            // 
+            // strikeout
+            // 
+            this.strikeout.Appearance = System.Windows.Forms.Appearance.Button;
+            this.strikeout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.strikeout.Location = new System.Drawing.Point(573, 73);
+            this.strikeout.Name = "strikeout";
+            this.strikeout.Size = new System.Drawing.Size(24, 23);
+            this.strikeout.TabIndex = 12;
+            this.strikeout.Text = "S";
+            this.strikeout.UseVisualStyleBackColor = true;
+            this.strikeout.CheckedChanged += new System.EventHandler(this.Style_CheckedChanged);
             // 
             // display
             // 
@@ -186,7 +214,7 @@
             this.display.Name = "display";
             this.display.Padding = new System.Windows.Forms.Padding(3);
             this.display.Size = new System.Drawing.Size(756, 322);
-            this.display.TabIndex = 7;
+            this.display.TabIndex = 20;
             this.display.Text = "text";
             this.display.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.display.Paint += new System.Windows.Forms.PaintEventHandler(this.Display_Paint);
@@ -196,10 +224,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 441);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.style);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.size);
+            this.Controls.Add(this.strikeout);
+            this.Controls.Add(this.underline);
+            this.Controls.Add(this.italic);
+            this.Controls.Add(this.bold);
             this.Controls.Add(this.browse);
             this.Controls.Add(this.display);
             this.Controls.Add(this.hint);
@@ -209,6 +237,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.text);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.size);
             this.Name = "MainForm";
             this.Text = "Font Tool";
             ((System.ComponentModel.ISupportInitialize)(this.size)).EndInit();
@@ -232,8 +262,10 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.NumericUpDown size;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox style;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox bold;
+        private System.Windows.Forms.CheckBox italic;
+        private System.Windows.Forms.CheckBox underline;
+        private System.Windows.Forms.CheckBox strikeout;
     }
 }
 
