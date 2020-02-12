@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -45,7 +44,7 @@ namespace HidTool
             hidDevices.Clear();
             foreach (HidDevice device in DeviceList.Local.GetHidDevices())
             {
-                hidDevicesCombo.Items.Add($"{device.GetFriendlyName()} [{device.GetSerialNumber()}] [VID 0x{device.VendorID:X}] [PID 0x{device.ProductID:X}]");
+                hidDevicesCombo.Items.Add($"{GetFriendlyName(device)} [{GetSerialNumber(device)}] [VID 0x{device.VendorID:X}] [PID 0x{device.ProductID:X}]");
                 hidDevices.Add(device);
             }
         }
@@ -182,7 +181,7 @@ namespace HidTool
         {
             HidDevice device = hidDevices[hidDevicesCombo.SelectedIndex];
             outputText.AppendText(string.Format("Selected {0}, Serial Number {1}, Vendor ID 0x{2:X}, Product ID 0x{3:X}{4}",
-                device.GetFriendlyName(), device.GetSerialNumber(), device.VendorID, device.ProductID, Environment.NewLine));
+                GetFriendlyName(device), GetSerialNumber(device), device.VendorID, device.ProductID, Environment.NewLine));
             ReportDescriptor reportDescriptor;
             try
             {
@@ -217,6 +216,34 @@ namespace HidTool
                 }
             }
             outputText.AppendText(Environment.NewLine);
+        }
+
+        private string GetFriendlyName(HidDevice device)
+        {
+            string friendlyName;
+            try
+            {
+                friendlyName = device.GetFriendlyName();
+            }
+            catch
+            {
+                friendlyName = "Friendly Name Unavailable";
+            }
+            return friendlyName;
+        }
+
+        private string GetSerialNumber(HidDevice device)
+        {
+            string serialNumber;
+            try
+            {
+                serialNumber = device.GetSerialNumber();
+            }
+            catch
+            {
+                serialNumber = "Serial Number Unavailable";
+            }
+            return serialNumber;
         }
     }
 }
