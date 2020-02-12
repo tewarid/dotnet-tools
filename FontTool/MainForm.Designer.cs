@@ -67,6 +67,7 @@
             this.text.Name = "text";
             this.text.Size = new System.Drawing.Size(675, 20);
             this.text.TabIndex = 1;
+            this.text.Text = "αάβγδεέζηήθιίϊκλμνξςοόπρστυύϋφχψωώ ΑΆΒΓΔΕΈΖΗΉΘΙΊΚΛΜΝΞΟΌΠΡΣΤΥΎΦΧΨΩΏ 0123456789";
             this.text.TextChanged += new System.EventHandler(this.Text_TextChanged);
             // 
             // label2

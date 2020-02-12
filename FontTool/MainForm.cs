@@ -17,8 +17,8 @@ namespace FontTool
             if (string.IsNullOrWhiteSpace(text.Text))
             {
                 text.Text = "aáàâãäåbcçdefghijklmnopqrstuvwxyzAÁÀÂÃÄÅBCDEFGHIJKLMNOPQRSTUVWXYZ1¹2²3³4567890";
-                display.Text = text.Text;
             }
+            display.Text = text.Text;
             hint.DisplayMember = "Description";
             hint.ValueMember = "Value";
             hint.DataSource = Enum.GetValues(typeof(TextRenderingHint))
