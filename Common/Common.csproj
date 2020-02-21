@@ -95,6 +95,7 @@
     <Compile Include="InputTextBox.Designer.cs">
       <DependentUpon>InputTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaskBar.cs" />
     <Compile Include="TextEncoding.cs" />
   </ItemGroup>
   <ItemGroup>

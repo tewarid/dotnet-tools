@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Common;
+using Microsoft.Win32;
 using System;
 using System.Windows.Forms;
 
@@ -10,11 +11,6 @@ namespace NotificationTool
         {
             InitializeComponent();
             SetStartup();
-        }
-
-        private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            OpenToolStripMenuItem_Click(sender, e);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -82,6 +78,21 @@ namespace NotificationTool
             {
                 rk.DeleteValue(this.Text, false);
             }
+        }
+
+        private void NotifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            OpenToolStripMenuItem_Click(sender, e);
+        }
+
+        private void NotifyIcon_Click(object sender, EventArgs e)
+        {
+            OpenToolStripMenuItem_Click(sender, e);
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            TaskBar.Dock(this);
         }
     }
 }
