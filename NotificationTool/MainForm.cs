@@ -80,14 +80,12 @@ namespace NotificationTool
             }
         }
 
-        private void NotifyIcon_DoubleClick(object sender, EventArgs e)
-        {
-            OpenToolStripMenuItem_Click(sender, e);
-        }
-
         private void NotifyIcon_Click(object sender, EventArgs e)
         {
-            OpenToolStripMenuItem_Click(sender, e);
+            if (e is MouseEventArgs && ((MouseEventArgs)e).Button == MouseButtons.Left)
+            {
+                OpenToolStripMenuItem_Click(sender, e);
+            }
         }
 
         private void MainForm_Activated(object sender, EventArgs e)

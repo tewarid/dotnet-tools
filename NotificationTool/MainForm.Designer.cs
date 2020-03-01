@@ -56,7 +56,6 @@
             this.notifyIcon.Text = "Notification Tool";
             this.notifyIcon.Visible = true;
             this.notifyIcon.Click += new System.EventHandler(this.NotifyIcon_Click);
-            this.notifyIcon.DoubleClick += new System.EventHandler(this.NotifyIcon_DoubleClick);
             // 
             // contextMenuStrip
             // 
