@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Ports;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,6 +25,46 @@ namespace SerialTool
             foreach (string portName in SerialPort.GetPortNames())
             {
                 serialPortName.Items.Add(portName);
+            }
+        }
+
+        private void ShowSerialPorts(string vid)
+        {
+            ShowSerialPorts(vid, new string[] { "...." });
+        }
+
+        private void ShowSerialPorts(string vid, string[] pid)
+        {
+            serialPortName.Items.Clear();
+            string pids = string.Join("|", pid);
+            String pattern = String.Format("VID.0001{0}.PID.({1})", vid, pids);
+            Regex _rx = new Regex(pattern, RegexOptions.IgnoreCase);
+            RegistryKey rk1 = Registry.LocalMachine;
+            RegistryKey rk2 = rk1.OpenSubKey("SYSTEM\\CurrentControlSet\\Enum");
+            foreach (String s3 in rk2.GetSubKeyNames())
+            {
+                RegistryKey rk3 = rk2.OpenSubKey(s3);
+                foreach (String s in rk3.GetSubKeyNames())
+                {
+                    if (string.IsNullOrEmpty(vid) || _rx.Match(s).Success)
+                    {
+                        RegistryKey rk4 = rk3.OpenSubKey(s);
+                        foreach (String s2 in rk4.GetSubKeyNames())
+                        {
+                            RegistryKey rk5 = rk4.OpenSubKey(s2);
+                            RegistryKey rk6 = rk5.OpenSubKey("Device Parameters");
+                            if (rk6 == null)
+                            {
+                                continue;
+                            }
+                            string port = (string)rk6.GetValue("PortName");
+                            if (port != null && port.StartsWith("COM"))
+                            {
+                                serialPortName.Items.Add(port);
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -213,6 +256,18 @@ namespace SerialTool
             {
                 port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
                     : SerialPort.InfiniteTimeout;
+            }
+        }
+
+        private void showAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (showAll.Checked)
+            {
+                ShowSerialPorts(null);
+            }
+            else
+            {
+                ShowSerialPorts();
             }
         }
     }

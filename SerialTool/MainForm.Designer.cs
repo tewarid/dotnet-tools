@@ -49,6 +49,7 @@ namespace SerialTool
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.showAll = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeOutValue)).BeginInit();
             this.panel2.SuspendLayout();
@@ -135,13 +136,18 @@ namespace SerialTool
             this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.input.BinaryChecked = false;
+            this.input.ChangeEndOfLine = true;
+            this.input.EndOfLine = Common.EndOfLine.Dos;
             this.input.Location = new System.Drawing.Point(3, 4);
-            this.input.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.input.Margin = new System.Windows.Forms.Padding(4);
             this.input.MinimumSize = new System.Drawing.Size(280, 130);
             this.input.Name = "input";
-            this.input.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.input.Padding = new System.Windows.Forms.Padding(3);
+            this.input.SelectedTextValue = "";
             this.input.Size = new System.Drawing.Size(380, 398);
             this.input.TabIndex = 12;
+            this.input.TextValue = "";
             // 
             // close
             // 
@@ -149,17 +155,17 @@ namespace SerialTool
             this.close.Location = new System.Drawing.Point(213, 72);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(75, 23);
-            this.close.TabIndex = 4;
+            this.close.TabIndex = 8;
             this.close.Text = "&Close";
             this.close.UseVisualStyleBackColor = true;
             this.close.Click += new System.EventHandler(this.Close_Click);
             // 
             // refresh
             // 
-            this.refresh.Location = new System.Drawing.Point(132, 27);
+            this.refresh.Location = new System.Drawing.Point(213, 27);
             this.refresh.Name = "refresh";
             this.refresh.Size = new System.Drawing.Size(75, 23);
-            this.refresh.TabIndex = 1;
+            this.refresh.TabIndex = 3;
             this.refresh.Text = "&Refresh";
             this.refresh.UseVisualStyleBackColor = true;
             this.refresh.Click += new System.EventHandler(this.Refresh_Click);
@@ -195,14 +201,14 @@ namespace SerialTool
             this.baudRate.Location = new System.Drawing.Point(7, 72);
             this.baudRate.Name = "baudRate";
             this.baudRate.Size = new System.Drawing.Size(119, 21);
-            this.baudRate.TabIndex = 2;
+            this.baudRate.TabIndex = 6;
             // 
             // open
             // 
             this.open.Location = new System.Drawing.Point(132, 72);
             this.open.Name = "open";
             this.open.Size = new System.Drawing.Size(75, 23);
-            this.open.TabIndex = 3;
+            this.open.TabIndex = 7;
             this.open.Text = "&Open";
             this.open.UseVisualStyleBackColor = true;
             this.open.Click += new System.EventHandler(this.Open_Click);
@@ -223,10 +229,11 @@ namespace SerialTool
             this.serialPortName.Location = new System.Drawing.Point(7, 27);
             this.serialPortName.Name = "serialPortName";
             this.serialPortName.Size = new System.Drawing.Size(119, 21);
-            this.serialPortName.TabIndex = 0;
+            this.serialPortName.TabIndex = 1;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.showAll);
             this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.close);
             this.panel2.Controls.Add(this.refresh);
@@ -246,12 +253,14 @@ namespace SerialTool
             this.outputText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.outputText.AppendBinaryChecked = false;
             this.outputText.Location = new System.Drawing.Point(6, 99);
-            this.outputText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.outputText.Margin = new System.Windows.Forms.Padding(4);
             this.outputText.MinimumSize = new System.Drawing.Size(355, 95);
             this.outputText.Name = "outputText";
             this.outputText.Size = new System.Drawing.Size(382, 337);
-            this.outputText.TabIndex = 5;
+            this.outputText.TabIndex = 10;
+            this.outputText.TextValue = "";
             // 
             // statusStrip1
             // 
@@ -285,6 +294,17 @@ namespace SerialTool
             this.splitContainer1.Size = new System.Drawing.Size(784, 439);
             this.splitContainer1.SplitterDistance = 391;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // showAll
+            // 
+            this.showAll.AutoSize = true;
+            this.showAll.Location = new System.Drawing.Point(133, 30);
+            this.showAll.Name = "showAll";
+            this.showAll.Size = new System.Drawing.Size(67, 17);
+            this.showAll.TabIndex = 2;
+            this.showAll.Text = "Show All";
+            this.showAll.UseVisualStyleBackColor = true;
+            this.showAll.CheckedChanged += new System.EventHandler(this.showAll_CheckedChanged);
             // 
             // MainForm
             // 
@@ -335,6 +355,7 @@ namespace SerialTool
         private Common.InputTextBox input;
         private Common.OutputTextBox outputText;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private CheckBox showAll;
     }
 }
 
