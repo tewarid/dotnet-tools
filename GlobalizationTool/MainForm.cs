@@ -9,6 +9,9 @@ namespace GlobalizationTool
 {
     public partial class MainForm : Form
     {
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool LockWindowUpdate(IntPtr hWndLock);
+        
         public MainForm()
         {
             InitializeComponent();
@@ -39,22 +42,12 @@ namespace GlobalizationTool
                     ci.TwoLetterISOLanguageName
                 });
             }
-        }
-
-        private void Tab_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            if (tab.SelectedIndex == 1)
-            {
-                LoadUnicodeGrid();
-            }
+            LoadUnicodeGrid();
         }
 
         private void LoadUnicodeGrid()
         {
-            if (unicodeGrid.Rows.Count != 0)
-            {
-                return;
-            }
+            LockWindowUpdate(unicodeGrid.Handle);
             unicodeGrid.Columns.Clear();
             unicodeGrid.Columns.Add("Code", "Code (hex)");
             unicodeGrid.Columns.Add("Code", "Code (dec)");
@@ -78,6 +71,7 @@ namespace GlobalizationTool
                     });
                 }
             }
+            LockWindowUpdate(IntPtr.Zero);
         }
 
         private void UpperCase_Click(object sender, System.EventArgs e)
