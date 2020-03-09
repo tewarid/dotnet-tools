@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ApplicationIcon>icon-blue.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Common\Properties\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icon-blue.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.EventHubs" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Azure.EventHubs.Processor" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.NetCore.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitTool", "GitTool\GitTool.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitLabTool", "GitLabTool\GitLabTool.csproj", "{622DAB06-0A72-48E8-8392-60CF79BAF143}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureEventHubClientTool", "AzureEventHubClientTool\AzureEventHubClientTool.csproj", "{622DAB06-0A72-48E8-8392-60CF79BAF143}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Ubuntu|Any CPU = Debug_Ubuntu|Any CPU

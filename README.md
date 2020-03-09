@@ -51,6 +51,10 @@ You can also use Visual Studio 2019 to build.
 
 A minimal interactive AMQP 1.0 client based on the [AMQPNetLite](https://github.com/Azure/amqpnetlite) library.
 
+## Azure EventHub Client Tool
+
+An interactive EventHub client for Azure based on the official library [Microsoft.Azure.EventHubs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.eventhubs).
+
 ## Bluetooth Serial Client Tool
 
 Interactive client that may be used to open a Bluetooth serial socket, send, and receive data. It is built with [32feet.NET](https://www.nuget.org/packages/32feet.NET), a .NET library layered over Windows Bluetooth socket API.

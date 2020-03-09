@@ -67,6 +67,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationTool", "Notific
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontTool", "FontTool\FontTool.csproj", "{3F41ABED-041C-4BAF-82BD-1145BB61C3EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureEventHubClientTool", "AzureEventHubClientTool\AzureEventHubClientTool.csproj", "{D4C55038-9BB0-4290-8543-702A75D62558}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -185,6 +187,10 @@ Global
 		{3F41ABED-041C-4BAF-82BD-1145BB61C3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F41ABED-041C-4BAF-82BD-1145BB61C3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F41ABED-041C-4BAF-82BD-1145BB61C3EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4C55038-9BB0-4290-8543-702A75D62558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4C55038-9BB0-4290-8543-702A75D62558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4C55038-9BB0-4290-8543-702A75D62558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C55038-9BB0-4290-8543-702A75D62558}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
