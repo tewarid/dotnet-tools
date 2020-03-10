@@ -2,8 +2,6 @@
 using Microsoft.Azure.EventHubs.Processor;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AzureEventHubClientTool
@@ -12,19 +10,21 @@ namespace AzureEventHubClientTool
     {
         public static EventHandler<EventData> OnEventReceived;
 
-        public Task CloseAsync(PartitionContext context, CloseReason reason)
-        {
-            return Task.CompletedTask;
-        }
+        public static EventHandler<Exception> OnErrorProcessed;
 
         public Task OpenAsync(PartitionContext context)
         {
             return Task.CompletedTask;
         }
 
+        public Task CloseAsync(PartitionContext context, CloseReason reason)
+        {
+            return Task.CompletedTask;
+        }
+
         public Task ProcessErrorAsync(PartitionContext context, Exception error)
         {
-            //Console.WriteLine($"Error on Partition: {context.PartitionId}, Error: {error.Message}");
+            OnErrorProcessed?.Invoke(this, error);
             return Task.CompletedTask;
         }
 
@@ -33,8 +33,6 @@ namespace AzureEventHubClientTool
             foreach (EventData eventData in messages)
             {
                 OnEventReceived?.Invoke(this, eventData);
-                //string data = Encoding.UTF8.GetString(eventData.Body.Array, eventData.Body.Offset, eventData.Body.Count);
-                //Console.WriteLine($"Message received. Partition: '{context.PartitionId}', Data: '{data}'");
             }
 
             return context.CheckpointAsync();

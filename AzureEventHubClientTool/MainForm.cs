@@ -34,11 +34,14 @@ namespace AzureEventHubClientTool
             {
                 string message = Encoding.UTF8.GetString(eventData.Body.Array, eventData.Body.Offset, eventData.Body.Count);
 
-                this.outputTextBox.BeginInvoke((Action)(() => this.outputTextBox.AppendText($"Consumed message at '{eventData.Body.Offset}' on {DateTime.Now}:")));
-                this.outputTextBox.BeginInvoke((Action)(() => this.outputTextBox.AppendText(Environment.NewLine)));
-                this.outputTextBox.BeginInvoke((Action)(() => this.outputTextBox.AppendText(message)));
-                this.outputTextBox.BeginInvoke((Action)(() => this.outputTextBox.AppendText(Environment.NewLine)));
-                this.outputTextBox.BeginInvoke((Action)(() => this.outputTextBox.AppendText(Environment.NewLine)));
+                this.outputTextBox.BeginInvoke((Action)(() =>
+                {
+                    this.outputTextBox.AppendText($"Consumed message at offset '{eventData.Body.Offset}' on {DateTime.Now}:");
+                    this.outputTextBox.AppendText(Environment.NewLine);
+                    this.outputTextBox.AppendText(message);
+                    this.outputTextBox.AppendText(Environment.NewLine);
+                    this.outputTextBox.AppendText(Environment.NewLine);
+                }));
             };
 
             this.eventReceiver = new EventReceiver();
@@ -61,23 +64,49 @@ namespace AzureEventHubClientTool
             this.outputTextBox.ScrollToEnd();
         }
 
+        private void SetStatusBarInfo(string msg)
+        {
+            toolStripStatusLabel.Text = msg;
+            toolStripStatusLabel.ForeColor = Color.Black;
+        }
+
+        private void SetStatusBarError(string errorMsg)
+        {
+            toolStripStatusLabel.Text = errorMsg;
+            toolStripStatusLabel.ForeColor = Color.Red;
+        }
+
+        private void SetStatusBarSuccess(string errorMsg)
+        {
+            toolStripStatusLabel.Text = errorMsg;
+            toolStripStatusLabel.ForeColor = Color.Green;
+        }
+
         private async void buttonSend_Click(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel.Text = "Sending message...";
+            this.SetStatusBarInfo("Sending message...");
 
             await EventSender.SendMessageAsync(this.inputTextBox.TextValue, this.textBoxSenEvHubConn.Text)
                 .ContinueWith(t =>
                 {
                     if(!t.IsFaulted)
-                        statusStrip.BeginInvoke((Action)(() => toolStripStatusLabel.Text = "Message Sent"));
+                        statusStrip.BeginInvoke((Action)(() => this.SetStatusBarSuccess("Message Sent")));
                     else
-                        statusStrip.BeginInvoke((Action)(() => toolStripStatusLabel.Text = "Error while sending message"));
+                    {
+                        this.BeginInvoke((Action)(() =>
+                        {
+                            string errorMessage = "Error while sending message";
+                            this.SetStatusBarError(errorMessage);
+                            MessageBox.Show($"{t.Exception.InnerException.GetType()}: {t.Exception.InnerException.Message}",
+                                errorMessage, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }));
+                    }
                 });
         }
 
         private void buttonRecConnect_Click(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel.Text = "Connecting...";
+            this.SetStatusBarInfo("Connecting...");
 
             this.buttonRecConnect.Enabled = false;
             this.buttonRecDisconnect.Enabled = false;
@@ -88,22 +117,31 @@ namespace AzureEventHubClientTool
                 {
                     if(t.IsFaulted)
                     {
-                        this.BeginInvoke((Action)(() => this.buttonRecConnect.Enabled = true));
-                        this.BeginInvoke((Action)(() => this.buttonRecDisconnect.Enabled = false));
-                        statusStrip.BeginInvoke((Action)(() => toolStripStatusLabel.Text = "Error while connecting"));
+                        this.BeginInvoke((Action)(() =>
+                        {
+                            this.buttonRecConnect.Enabled = true;
+                            this.buttonRecDisconnect.Enabled = false;
+                            string errorMessage = "Error while connecting";
+                            this.SetStatusBarError(errorMessage);
+                            MessageBox.Show($"{t.Exception.InnerException.GetType()}: {t.Exception.InnerException.Message}", 
+                                errorMessage, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }));
                     }
                     else
                     {
-                        this.BeginInvoke((Action)(() => this.buttonRecConnect.Enabled = false));
-                        this.BeginInvoke((Action)(() => this.buttonRecDisconnect.Enabled = true));
-                        statusStrip.BeginInvoke((Action)(() => toolStripStatusLabel.Text = "Connected"));
+                        this.BeginInvoke((Action)(() =>
+                        {
+                            this.buttonRecConnect.Enabled = false;
+                            this.buttonRecDisconnect.Enabled = true;
+                            this.SetStatusBarSuccess("Connected");
+                        }));
                     }
                 });
         }
 
         private void buttonRecDisconnect_Click(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel.Text = "Disconnecting... (It might take a while)";
+            this.SetStatusBarInfo("Disconnecting... (It might take a while)");
 
             this.buttonRecConnect.Enabled = false;
             this.buttonRecDisconnect.Enabled = false;
@@ -111,9 +149,12 @@ namespace AzureEventHubClientTool
             this.eventReceiver.Disconnect()
                 .ContinueWith((t) =>
                 {
-                    this.BeginInvoke((Action)(() => this.buttonRecConnect.Enabled = true));
-                    this.BeginInvoke((Action)(() => this.buttonRecDisconnect.Enabled = false));
-                    statusStrip.BeginInvoke((Action)(() => toolStripStatusLabel.Text = "Disconnected"));
+                    this.BeginInvoke((Action)(() =>
+                    {
+                        this.buttonRecConnect.Enabled = true;
+                        this.buttonRecDisconnect.Enabled = false;
+                        this.SetStatusBarInfo("Disconnected");
+                    }));
                 });
         }
     }
