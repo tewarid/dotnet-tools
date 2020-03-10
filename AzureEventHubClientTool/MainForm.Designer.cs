@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBoxReceiver = new System.Windows.Forms.GroupBox();
             this.outputTextBox = new Common.OutputTextBox();
             this.buttonRecDisconnect = new System.Windows.Forms.Button();
@@ -47,10 +48,11 @@
             this.inputTextBox = new Common.InputTextBox();
             this.textBoxSenEvHubConn = new System.Windows.Forms.TextBox();
             this.labelSenEvHubConn = new System.Windows.Forms.Label();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip.SuspendLayout();
             this.groupBoxReceiver.SuspendLayout();
             this.groupBoxSender.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -63,8 +65,16 @@
             this.statusStrip.TabIndex = 0;
             this.statusStrip.Text = "statusStrip1";
             // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // groupBoxReceiver
             // 
+            this.groupBoxReceiver.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxReceiver.Controls.Add(this.outputTextBox);
             this.groupBoxReceiver.Controls.Add(this.buttonRecDisconnect);
             this.groupBoxReceiver.Controls.Add(this.buttonRecConnect);
@@ -76,15 +86,18 @@
             this.groupBoxReceiver.Controls.Add(this.labelRecEvHubConn);
             this.groupBoxReceiver.Controls.Add(this.textBoxRecEvHubName);
             this.groupBoxReceiver.Controls.Add(this.labelRecEvHubName);
-            this.groupBoxReceiver.Location = new System.Drawing.Point(4, 5);
+            this.groupBoxReceiver.Location = new System.Drawing.Point(3, 3);
             this.groupBoxReceiver.Name = "groupBoxReceiver";
-            this.groupBoxReceiver.Size = new System.Drawing.Size(409, 497);
+            this.groupBoxReceiver.Size = new System.Drawing.Size(408, 499);
             this.groupBoxReceiver.TabIndex = 1;
             this.groupBoxReceiver.TabStop = false;
             this.groupBoxReceiver.Text = "RECEIVER";
             // 
             // outputTextBox
             // 
+            this.outputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.outputTextBox.AppendBinaryChecked = false;
             this.outputTextBox.Location = new System.Drawing.Point(12, 141);
             this.outputTextBox.Name = "outputTextBox";
@@ -114,9 +127,11 @@
             // 
             // textBoxRecStorageConn
             // 
+            this.textBoxRecStorageConn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRecStorageConn.Location = new System.Drawing.Point(171, 84);
             this.textBoxRecStorageConn.Name = "textBoxRecStorageConn";
-            this.textBoxRecStorageConn.Size = new System.Drawing.Size(232, 20);
+            this.textBoxRecStorageConn.Size = new System.Drawing.Size(228, 20);
             this.textBoxRecStorageConn.TabIndex = 7;
             // 
             // labelRecStorageConn
@@ -146,9 +161,11 @@
             // 
             // textBoxRecEvHubConn
             // 
+            this.textBoxRecEvHubConn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRecEvHubConn.Location = new System.Drawing.Point(171, 42);
             this.textBoxRecEvHubConn.Name = "textBoxRecEvHubConn";
-            this.textBoxRecEvHubConn.Size = new System.Drawing.Size(232, 20);
+            this.textBoxRecEvHubConn.Size = new System.Drawing.Size(228, 20);
             this.textBoxRecEvHubConn.TabIndex = 3;
             // 
             // labelRecEvHubConn
@@ -178,20 +195,24 @@
             // 
             // groupBoxSender
             // 
+            this.groupBoxSender.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSender.Controls.Add(this.buttonSend);
             this.groupBoxSender.Controls.Add(this.inputTextBox);
             this.groupBoxSender.Controls.Add(this.textBoxSenEvHubConn);
             this.groupBoxSender.Controls.Add(this.labelSenEvHubConn);
-            this.groupBoxSender.Location = new System.Drawing.Point(415, 5);
+            this.groupBoxSender.Location = new System.Drawing.Point(417, 3);
             this.groupBoxSender.Name = "groupBoxSender";
-            this.groupBoxSender.Size = new System.Drawing.Size(409, 497);
+            this.groupBoxSender.Size = new System.Drawing.Size(408, 499);
             this.groupBoxSender.TabIndex = 2;
             this.groupBoxSender.TabStop = false;
             this.groupBoxSender.Text = "SENDER";
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(326, 468);
+            this.buttonSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSend.Location = new System.Drawing.Point(327, 468);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(75, 23);
             this.buttonSend.TabIndex = 11;
@@ -201,6 +222,9 @@
             // 
             // inputTextBox
             // 
+            this.inputTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.inputTextBox.BinaryChecked = false;
             this.inputTextBox.ChangeEndOfLine = true;
             this.inputTextBox.EndOfLine = Common.EndOfLine.Dos;
@@ -213,6 +237,8 @@
             // 
             // textBoxSenEvHubConn
             // 
+            this.textBoxSenEvHubConn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxSenEvHubConn.Location = new System.Drawing.Point(9, 42);
             this.textBoxSenEvHubConn.Name = "textBoxSenEvHubConn";
             this.textBoxSenEvHubConn.Size = new System.Drawing.Size(392, 20);
@@ -227,20 +253,30 @@
             this.labelSenEvHubConn.TabIndex = 11;
             this.labelSenEvHubConn.Text = "EventHub Connection String";
             // 
-            // toolStripStatusLabel
+            // tableLayoutPanel1
             // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.groupBoxReceiver, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBoxSender, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(828, 505);
+            this.tableLayoutPanel1.TabIndex = 3;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(828, 527);
-            this.Controls.Add(this.groupBoxSender);
-            this.Controls.Add(this.groupBoxReceiver);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.statusStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(844, 566);
             this.Name = "MainForm";
             this.Text = "Azure EventHub Client Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -250,6 +286,7 @@
             this.groupBoxReceiver.PerformLayout();
             this.groupBoxSender.ResumeLayout(false);
             this.groupBoxSender.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,5 +313,6 @@
         private System.Windows.Forms.TextBox textBoxSenEvHubConn;
         private System.Windows.Forms.Label labelSenEvHubConn;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
