@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -49,6 +50,7 @@
             this.textBoxSenEvHubConn = new System.Windows.Forms.TextBox();
             this.labelSenEvHubConn = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip.SuspendLayout();
             this.groupBoxReceiver.SuspendLayout();
             this.groupBoxSender.SuspendLayout();
@@ -268,6 +270,12 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(828, 505);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+            // toolTip
+            // 
+            this.toolTip.AutoPopDelay = 8000;
+            this.toolTip.InitialDelay = 250;
+            this.toolTip.ReshowDelay = 50;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,5 +322,6 @@
         private System.Windows.Forms.Label labelSenEvHubConn;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

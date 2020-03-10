@@ -156,6 +156,7 @@
     <Compile Include="..\Common\Properties\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
+    <Compile Include="ConstantMessages.cs" />
     <Compile Include="CustomEventProcessor.cs" />
     <Compile Include="EventReceiver.cs" />
     <Compile Include="EventSender.cs" />
