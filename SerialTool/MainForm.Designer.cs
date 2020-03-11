@@ -49,7 +49,6 @@ namespace SerialTool
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.showAll = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeOutValue)).BeginInit();
             this.panel2.SuspendLayout();
@@ -162,7 +161,7 @@ namespace SerialTool
             // 
             // refresh
             // 
-            this.refresh.Location = new System.Drawing.Point(213, 27);
+            this.refresh.Location = new System.Drawing.Point(132, 25);
             this.refresh.Name = "refresh";
             this.refresh.Size = new System.Drawing.Size(75, 23);
             this.refresh.TabIndex = 3;
@@ -233,7 +232,6 @@ namespace SerialTool
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.showAll);
             this.panel2.Controls.Add(this.outputText);
             this.panel2.Controls.Add(this.close);
             this.panel2.Controls.Add(this.refresh);
@@ -295,17 +293,6 @@ namespace SerialTool
             this.splitContainer1.SplitterDistance = 391;
             this.splitContainer1.TabIndex = 3;
             // 
-            // showAll
-            // 
-            this.showAll.AutoSize = true;
-            this.showAll.Location = new System.Drawing.Point(133, 30);
-            this.showAll.Name = "showAll";
-            this.showAll.Size = new System.Drawing.Size(67, 17);
-            this.showAll.TabIndex = 2;
-            this.showAll.Text = "Show All";
-            this.showAll.UseVisualStyleBackColor = true;
-            this.showAll.CheckedChanged += new System.EventHandler(this.showAll_CheckedChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,7 +342,6 @@ namespace SerialTool
         private Common.InputTextBox input;
         private Common.OutputTextBox outputText;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private CheckBox showAll;
     }
 }
 
