@@ -91,12 +91,13 @@ namespace SerialTool
             catch (TimeoutException ex)
             {
                 MessageBox.Show(this, ex.Message);
-                sendButton.Enabled = true;
+                return;
             }
             catch (InvalidOperationException ex)
             {
                 MessageBox.Show(this, ex.Message);
                 CloseSerialPort();
+                return;
             }
 
             // caller's context gets resumed at this point
@@ -250,7 +251,6 @@ namespace SerialTool
             refresh.Enabled = true;
             serialPortName.Enabled = true;
             baudRate.Enabled = true;
-            timeOut.Checked = false;
         }
 
         private void Close_Click(object sender, EventArgs e)
