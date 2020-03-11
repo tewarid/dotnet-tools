@@ -65,6 +65,7 @@
             "Win32_PnPEntity",
             "Win32_PnPSignedDriver",
             "Win32_Processor",
+            "WIN32_SerialPort",
             "Win32_SystemDriver"});
             this.queryClass.Location = new System.Drawing.Point(119, 10);
             this.queryClass.Name = "queryClass";
@@ -75,6 +76,8 @@
             // 
             this.queryProperty.FormattingEnabled = true;
             this.queryProperty.Items.AddRange(new object[] {
+            "Caption",
+            "DeviceID",
             "IdentificationCode",
             "InfName",
             "Manufacturer",
@@ -111,7 +114,7 @@
             this.query.TabIndex = 3;
             this.query.Text = "Query";
             this.query.UseVisualStyleBackColor = true;
-            this.query.Click += new System.EventHandler(this.query_Click);
+            this.query.Click += new System.EventHandler(this.Query_Click);
             // 
             // WmiQueryForm
             // 

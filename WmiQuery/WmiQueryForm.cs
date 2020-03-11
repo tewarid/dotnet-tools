@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Management;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WmiQuery
@@ -18,22 +11,18 @@ namespace WmiQuery
             InitializeComponent();
         }
 
-        private void query_Click(object sender, EventArgs e)
+        private void Query_Click(object sender, EventArgs e)
         {
             if (string.Empty.Equals(queryClass.Text.Trim()) || string.Empty.Equals(queryProperty.Text.Trim()))
             {
                 MessageBox.Show("Class and property need to be specified.", "Error");
                 return;
             }
-            if (!queryClass.Items.Contains(queryClass.Text))
-                queryClass.Items.Add(queryClass.Text);
-            if (!queryProperty.Items.Contains(queryProperty.Text))
-                queryProperty.Items.Add(queryProperty.Text);
 
-            ManagementClass mc = new System.Management.ManagementClass(queryClass.Text);
+            ManagementClass mc = new ManagementClass(queryClass.Text);
             ManagementObjectCollection moc = mc.GetInstances();
-            string value = string.Empty;
-            foreach (System.Management.ManagementObject mo in moc)
+            string value;
+            foreach (ManagementObject mo in moc)
             {
                 try
                 {
