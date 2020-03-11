@@ -15,6 +15,32 @@ namespace SerialTool
         public MainForm()
         {
             InitializeComponent();
+
+            string query = "SELECT * FROM __InstanceCreationEvent WITHIN 1 WHERE TargetInstance isa \"WIN32_SerialPort\"";
+            ManagementEventWatcher watcher = new ManagementEventWatcher(query);
+            watcher.EventArrived += Watcher_SerialPortCreation;
+            watcher.Start();
+
+            query = "SELECT * FROM __InstanceDeletionEvent WITHIN 1 WHERE TargetInstance isa \"WIN32_SerialPort\"";
+            watcher = new ManagementEventWatcher(query);
+            watcher.EventArrived += Watcher_SerialPortDeletion;
+            watcher.Start();
+        }
+
+        private void Watcher_SerialPortCreation(object sender, EventArrivedEventArgs e)
+        {
+            Invoke((MethodInvoker)delegate {
+                ManagementBaseObject target = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
+                serialPortName.Items.Add(target.Properties["DeviceId"].Value.ToString());
+            });
+        }
+
+        private void Watcher_SerialPortDeletion(object sender, EventArrivedEventArgs e)
+        {
+            Invoke((MethodInvoker)delegate {
+                ManagementBaseObject target = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
+                serialPortName.Items.Remove(target.Properties["DeviceId"].Value.ToString());
+            });
         }
 
         private void ShowSerialPorts()
@@ -33,14 +59,7 @@ namespace SerialTool
 
         private async void SendButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                await SendAsync().ConfigureAwait(true);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            await SendAsync().ConfigureAwait(true);
         }
 
         private async Task SendAsync()
@@ -59,13 +78,26 @@ namespace SerialTool
             }
 
             // this will run in a worker thread
-            await Task.Run(delegate {
-                port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
-                    : SerialPort.InfiniteTimeout;
-                startTickCount = Environment.TickCount;
-                port.Write(data, 0, data.Length);
-                endTickCount = Environment.TickCount;
-            });
+            try
+            {
+                await Task.Run(delegate {
+                    port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
+                        : SerialPort.InfiniteTimeout;
+                    startTickCount = Environment.TickCount;
+                    port.Write(data, 0, data.Length);
+                    endTickCount = Environment.TickCount;
+                }).ConfigureAwait(true);
+            }
+            catch (TimeoutException ex)
+            {
+                MessageBox.Show(this, ex.Message);
+                sendButton.Enabled = true;
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(this, ex.Message);
+                CloseSerialPort();
+            }
 
             // caller's context gets resumed at this point
             if (endTickCount != 0)
