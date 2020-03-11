@@ -46,7 +46,7 @@ namespace BluetoothSerialClientTool
             }
         }
 
-        private async void connectButton_Click(object sender, EventArgs e)
+        private async void ConnectButton_Click(object sender, EventArgs e)
         {
             if (deviceList.SelectedIndex >= devices.Length)
             {
@@ -118,17 +118,17 @@ namespace BluetoothSerialClientTool
             Initialize();
         }
 
-        private void refreshButton_Click(object sender, EventArgs e)
+        private void RefreshButton_Click(object sender, EventArgs e)
         {
             Initialize();
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e)
         {
             client.Close();
         }
 
-        private void deviceList_SelectedIndexChanged(object sender, EventArgs e)
+        private void DeviceList_SelectedIndexChanged(object sender, EventArgs e)
         {
             connectButton.Enabled = deviceList.SelectedIndex >= 0;
         }
@@ -152,7 +152,7 @@ namespace BluetoothSerialClientTool
             }
         }
 
-        private async void sendButton_Click(object sender, EventArgs e)
+        private async void SendButton_Click(object sender, EventArgs e)
         {
             await SendAsync(input.BinaryValue).ConfigureAwait(true);
         }

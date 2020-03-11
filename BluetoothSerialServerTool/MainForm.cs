@@ -21,7 +21,7 @@ namespace BluetoothSppServerTool
             InitializeComponent();
         }
 
-        private void startButton_Click(object sender, EventArgs e)
+        private void StartButton_Click(object sender, EventArgs e)
         {
             Start();
         }

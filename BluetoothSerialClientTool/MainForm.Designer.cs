@@ -105,7 +105,7 @@
             this.closeButton.TabIndex = 4;
             this.closeButton.Text = "&Close";
             this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // refreshButton
             // 
@@ -116,7 +116,7 @@
             this.refreshButton.TabIndex = 1;
             this.refreshButton.Text = "&Refresh";
             this.refreshButton.UseVisualStyleBackColor = true;
-            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            this.refreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // deviceList
             // 
@@ -128,7 +128,7 @@
             this.deviceList.Name = "deviceList";
             this.deviceList.Size = new System.Drawing.Size(140, 21);
             this.deviceList.TabIndex = 0;
-            this.deviceList.SelectedIndexChanged += new System.EventHandler(this.deviceList_SelectedIndexChanged);
+            this.deviceList.SelectedIndexChanged += new System.EventHandler(this.DeviceList_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -150,7 +150,7 @@
             this.connectButton.TabIndex = 3;
             this.connectButton.Text = "C&onnect";
             this.connectButton.UseVisualStyleBackColor = true;
-            this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
+            this.connectButton.Click += new System.EventHandler(this.ConnectButton_Click);
             // 
             // panel1
             // 
@@ -172,7 +172,7 @@
             this.sendButton.TabIndex = 15;
             this.sendButton.Text = "&Send";
             this.sendButton.UseVisualStyleBackColor = true;
-            this.sendButton.Click += new System.EventHandler(this.sendButton_Click);
+            this.sendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
             // input
             // 
