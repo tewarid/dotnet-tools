@@ -16,6 +16,13 @@ namespace GlobalizationTool
         {
             InitializeComponent();
 
+            LoadCultureGrid();
+            LoadUnicodeGrid();
+        }
+
+        private void LoadCultureGrid()
+        {
+            LockWindowUpdate(culturesGrid.Handle);
             culturesGrid.Columns.Clear();
             culturesGrid.Columns.Add("EnglishName", "English Name");
             culturesGrid.Columns.Add("Name", "Name");
@@ -42,7 +49,7 @@ namespace GlobalizationTool
                     ci.TwoLetterISOLanguageName
                 });
             }
-            LoadUnicodeGrid();
+            LockWindowUpdate(IntPtr.Zero);
         }
 
         private void LoadUnicodeGrid()
