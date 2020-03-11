@@ -155,25 +155,6 @@ namespace SerialTool
                 return;
             }
 
-            string description = string.Empty;
-            string pnpDeviceID = string.Empty;
-            string query = $"SELECT * FROM WIN32_SerialPort WHERE DeviceID=\"{serialPortName.Text}\"";
-            using (var searcher = new ManagementObjectSearcher(query))
-            {
-                var ports = searcher.Get();
-                foreach(var port in ports)
-                {
-                    description = port.Properties["Description"].Value.ToString();
-                    pnpDeviceID = port.Properties["PNPDeviceID"].Value.ToString();
-                    break;
-                }
-            }
-            outputText.AppendText($"{description}");
-            outputText.AppendText($"{Environment.NewLine}");
-            outputText.AppendText($"{pnpDeviceID}");
-            outputText.AppendText($"{Environment.NewLine}");
-            outputText.AppendText($"{Environment.NewLine}");
-
             serialPortName.Enabled = false;
             baudRate.Enabled = false;
             open.Enabled = false;
@@ -266,6 +247,28 @@ namespace SerialTool
                 port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
                     : SerialPort.InfiniteTimeout;
             }
+        }
+
+        private void serialPortName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string description = string.Empty;
+            string pnpDeviceID = string.Empty;
+            string query = $"SELECT * FROM WIN32_SerialPort WHERE DeviceID=\"{serialPortName.Text}\"";
+            using (var searcher = new ManagementObjectSearcher(query))
+            {
+                var ports = searcher.Get();
+                foreach (var port in ports)
+                {
+                    description = port.Properties["Description"].Value.ToString();
+                    pnpDeviceID = port.Properties["PNPDeviceID"].Value.ToString();
+                    break;
+                }
+            }
+            outputText.AppendText($"{description}");
+            outputText.AppendText($"{Environment.NewLine}");
+            outputText.AppendText($"{pnpDeviceID}");
+            outputText.AppendText($"{Environment.NewLine}");
+            outputText.AppendText($"{Environment.NewLine}");
         }
     }
 }

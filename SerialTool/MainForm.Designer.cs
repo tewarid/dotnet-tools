@@ -229,6 +229,7 @@ namespace SerialTool
             this.serialPortName.Name = "serialPortName";
             this.serialPortName.Size = new System.Drawing.Size(119, 21);
             this.serialPortName.TabIndex = 1;
+            this.serialPortName.SelectedIndexChanged += new System.EventHandler(this.serialPortName_SelectedIndexChanged);
             // 
             // panel2
             // 
