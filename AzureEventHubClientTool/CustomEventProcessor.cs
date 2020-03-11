@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 
 namespace AzureEventHubClientTool
 {
+    public class CustomReceivedData
+    {
+        public PartitionContext PartitionContext { get; set; }
+
+        public EventData EventData { get; set; }
+
+        public Exception Exception { get; set; }
+    }
+
     public class CustomEventProcessor : IEventProcessor
     {
-        public static EventHandler<EventData> OnEventReceived;
+        public static EventHandler<CustomReceivedData> OnEventReceived;
 
-        public static EventHandler<Exception> OnErrorProcessed;
+        public static EventHandler<CustomReceivedData> OnErrorProcessed;
 
         public Task OpenAsync(PartitionContext context)
         {
@@ -24,7 +33,13 @@ namespace AzureEventHubClientTool
 
         public Task ProcessErrorAsync(PartitionContext context, Exception error)
         {
-            OnErrorProcessed?.Invoke(this, error);
+            CustomReceivedData data = new CustomReceivedData()
+            { 
+                PartitionContext = context,
+                Exception = error,
+            };
+
+            OnErrorProcessed?.Invoke(this, data);
             return Task.CompletedTask;
         }
 
@@ -32,7 +47,13 @@ namespace AzureEventHubClientTool
         {
             foreach (EventData eventData in messages)
             {
-                OnEventReceived?.Invoke(this, eventData);
+                CustomReceivedData data = new CustomReceivedData()
+                {
+                    PartitionContext = context,
+                    EventData = eventData,
+                };
+
+                OnEventReceived?.Invoke(this, data);
             }
 
             return context.CheckpointAsync();

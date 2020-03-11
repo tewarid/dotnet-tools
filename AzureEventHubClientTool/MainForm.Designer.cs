@@ -51,6 +51,8 @@
             this.labelSenEvHubConn = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.textBoxRecConsumerGroup = new System.Windows.Forms.TextBox();
+            this.labelRecConsumerGroup = new System.Windows.Forms.Label();
             this.statusStrip.SuspendLayout();
             this.groupBoxReceiver.SuspendLayout();
             this.groupBoxSender.SuspendLayout();
@@ -77,6 +79,8 @@
             this.groupBoxReceiver.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxReceiver.Controls.Add(this.textBoxRecConsumerGroup);
+            this.groupBoxReceiver.Controls.Add(this.labelRecConsumerGroup);
             this.groupBoxReceiver.Controls.Add(this.outputTextBox);
             this.groupBoxReceiver.Controls.Add(this.buttonRecDisconnect);
             this.groupBoxReceiver.Controls.Add(this.buttonRecConnect);
@@ -93,7 +97,7 @@
             this.groupBoxReceiver.Size = new System.Drawing.Size(408, 499);
             this.groupBoxReceiver.TabIndex = 1;
             this.groupBoxReceiver.TabStop = false;
-            this.groupBoxReceiver.Text = "RECEIVER";
+            this.groupBoxReceiver.Text = "CONSUMER";
             // 
             // outputTextBox
             // 
@@ -101,15 +105,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.outputTextBox.AppendBinaryChecked = false;
-            this.outputTextBox.Location = new System.Drawing.Point(12, 141);
+            this.outputTextBox.Location = new System.Drawing.Point(12, 153);
             this.outputTextBox.Name = "outputTextBox";
-            this.outputTextBox.Size = new System.Drawing.Size(391, 347);
+            this.outputTextBox.Size = new System.Drawing.Size(391, 335);
             this.outputTextBox.TabIndex = 10;
             this.outputTextBox.TextValue = "";
             // 
             // buttonRecDisconnect
             // 
-            this.buttonRecDisconnect.Location = new System.Drawing.Point(93, 110);
+            this.buttonRecDisconnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRecDisconnect.Location = new System.Drawing.Point(324, 124);
             this.buttonRecDisconnect.Name = "buttonRecDisconnect";
             this.buttonRecDisconnect.Size = new System.Drawing.Size(75, 23);
             this.buttonRecDisconnect.TabIndex = 9;
@@ -119,7 +124,8 @@
             // 
             // buttonRecConnect
             // 
-            this.buttonRecConnect.Location = new System.Drawing.Point(12, 110);
+            this.buttonRecConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRecConnect.Location = new System.Drawing.Point(243, 124);
             this.buttonRecConnect.Name = "buttonRecConnect";
             this.buttonRecConnect.Size = new System.Drawing.Size(75, 23);
             this.buttonRecConnect.TabIndex = 8;
@@ -209,7 +215,7 @@
             this.groupBoxSender.Size = new System.Drawing.Size(408, 499);
             this.groupBoxSender.TabIndex = 2;
             this.groupBoxSender.TabStop = false;
-            this.groupBoxSender.Text = "SENDER";
+            this.groupBoxSender.Text = "PRODUCER";
             // 
             // buttonSend
             // 
@@ -218,7 +224,7 @@
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(75, 23);
             this.buttonSend.TabIndex = 11;
-            this.buttonSend.Text = "Send";
+            this.buttonSend.Text = "Produce";
             this.buttonSend.UseVisualStyleBackColor = true;
             this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
             // 
@@ -276,6 +282,22 @@
             this.toolTip.InitialDelay = 250;
             this.toolTip.ReshowDelay = 50;
             // 
+            // textBoxRecConsumerGroup
+            // 
+            this.textBoxRecConsumerGroup.Location = new System.Drawing.Point(12, 126);
+            this.textBoxRecConsumerGroup.Name = "textBoxRecConsumerGroup";
+            this.textBoxRecConsumerGroup.Size = new System.Drawing.Size(153, 20);
+            this.textBoxRecConsumerGroup.TabIndex = 12;
+            // 
+            // labelRecConsumerGroup
+            // 
+            this.labelRecConsumerGroup.AutoSize = true;
+            this.labelRecConsumerGroup.Location = new System.Drawing.Point(9, 109);
+            this.labelRecConsumerGroup.Name = "labelRecConsumerGroup";
+            this.labelRecConsumerGroup.Size = new System.Drawing.Size(86, 13);
+            this.labelRecConsumerGroup.TabIndex = 11;
+            this.labelRecConsumerGroup.Text = "Consumer Group";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,5 +345,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.TextBox textBoxRecConsumerGroup;
+        private System.Windows.Forms.Label labelRecConsumerGroup;
     }
 }

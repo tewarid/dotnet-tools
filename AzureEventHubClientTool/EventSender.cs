@@ -11,9 +11,12 @@ namespace AzureEventHubClientTool
     {
         public static async Task SendMessageAsync(string message, string connectionString)
         {
-            var connectionStringBuilder = new EventHubsConnectionStringBuilder(connectionString);
+            EventHubsConnectionStringBuilder connectionStringBuilder = new EventHubsConnectionStringBuilder(connectionString);
             EventHubClient eventHubClient = EventHubClient.CreateFromConnectionString(connectionStringBuilder.ToString());
-            await eventHubClient.SendAsync(new EventData(Encoding.UTF8.GetBytes(message)));
+
+            EventData eventData = new EventData(Encoding.UTF8.GetBytes(message));
+
+            await eventHubClient.SendAsync(eventData);
             await eventHubClient.CloseAsync();
         }
     }

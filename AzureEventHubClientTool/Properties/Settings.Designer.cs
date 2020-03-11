@@ -106,5 +106,20 @@ namespace AzureEventHubClientTool.Properties {
                 this["receiverStorageName"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string consumerGroup
+        {
+            get
+            {
+                return ((string)(this["consumerGroup"]));
+            }
+            set
+            {
+                this["consumerGroup"] = value;
+            }
+        }
     }
 }

@@ -31,6 +31,7 @@ namespace AzureEventHubClientTool
             this.textBoxRecEvHubConn.Text = Properties.Settings.Default.receiverEvHubConnectionString;
             this.textBoxRecStorageName.Text = Properties.Settings.Default.receiverStorageName;
             this.textBoxRecStorageConn.Text = Properties.Settings.Default.receiverStorageConnectionString;
+            this.textBoxRecConsumerGroup.Text = Properties.Settings.Default.consumerGroup;
             this.outputTextBox.TextValue = Properties.Settings.Default.output;
 
             this.buttonRecConnect.Enabled = true;
@@ -44,17 +45,20 @@ namespace AzureEventHubClientTool
             this.toolTip.SetToolTip(this.textBoxRecEvHubConn, ConstantMessages.TooltipEventHubConnectionString);
             this.toolTip.SetToolTip(this.textBoxRecStorageName, ConstantMessages.TooltipStorageName);
             this.toolTip.SetToolTip(this.textBoxRecStorageConn, ConstantMessages.TooltipStorageConnectionString);
+            this.toolTip.SetToolTip(this.textBoxRecConsumerGroup, ConstantMessages.TooltipConsumerGroup);
         }
 
         private void SetEventReceiver()
         {
-            CustomEventProcessor.OnEventReceived += (o, eventData) =>
+            CustomEventProcessor.OnEventReceived += (o, data) =>
             {
+                var eventData = data.EventData;
                 string message = Encoding.UTF8.GetString(eventData.Body.Array, eventData.Body.Offset, eventData.Body.Count);
 
                 this.outputTextBox.BeginInvoke((Action)(() =>
                 {
-                    this.outputTextBox.AppendText(string.Format(ConstantMessages.ConsumedMessageHeaderTemplate, eventData.Body.Offset, DateTime.Now));
+                    this.outputTextBox.AppendText(string.Format(ConstantMessages.ConsumedMessageHeaderTemplate,
+                        data.PartitionContext.PartitionId, eventData.Body.Offset, DateTime.Now));
                     this.outputTextBox.AppendText(Environment.NewLine);
                     this.outputTextBox.AppendText(message);
                     this.outputTextBox.AppendText(Environment.NewLine);
@@ -91,6 +95,7 @@ namespace AzureEventHubClientTool
             Properties.Settings.Default.receiverEvHubConnectionString = this.textBoxRecEvHubConn.Text;
             Properties.Settings.Default.receiverStorageName = this.textBoxRecStorageName.Text;
             Properties.Settings.Default.receiverStorageConnectionString = this.textBoxRecStorageConn.Text;
+            Properties.Settings.Default.consumerGroup = this.textBoxRecConsumerGroup.Text;
             Properties.Settings.Default.output = this.outputTextBox.TextValue;
             Properties.Settings.Default.Save();
         }
@@ -132,7 +137,8 @@ namespace AzureEventHubClientTool
             this.buttonRecDisconnect.Enabled = false;
 
             this.eventReceiver.Connect(this.textBoxRecEvHubName.Text, this.textBoxRecEvHubConn.Text,
-                this.textBoxRecStorageName.Text, this.textBoxRecStorageConn.Text)
+                this.textBoxRecStorageName.Text, this.textBoxRecStorageConn.Text,
+                this.textBoxRecConsumerGroup.Text)
                 .ContinueWith((t) =>
                 {
                     if(t.IsFaulted)

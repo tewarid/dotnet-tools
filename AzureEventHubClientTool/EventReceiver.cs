@@ -11,11 +11,11 @@ namespace AzureEventHubClientTool
 
         private EventProcessorHost eventProcessorHost;
 
-        public async Task Connect(string hubName, string hubConnStr, string storageName, string storageConnStr)
+        public async Task Connect(string hubName, string hubConnStr, string storageName, string storageConnStr, string consumerGroup)
         {
             this.eventProcessorHost = new EventProcessorHost(
                 hubName,
-                PartitionReceiver.DefaultConsumerGroupName,
+                consumerGroup != string.Empty ? consumerGroup : PartitionReceiver.DefaultConsumerGroupName,
                 hubConnStr,
                 storageConnStr,
                 storageName);
