@@ -249,7 +249,7 @@ namespace SerialTool
             }
         }
 
-        private void serialPortName_SelectedIndexChanged(object sender, EventArgs e)
+        private void SerialPortName_SelectedIndexChanged(object sender, EventArgs e)
         {
             string description = string.Empty;
             string pnpDeviceID = string.Empty;
