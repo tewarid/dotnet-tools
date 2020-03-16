@@ -69,11 +69,12 @@ namespace GlobalizationTool
                 foreach (var record in records)
                 {
                     int value = int.Parse(record.Field1, NumberStyles.HexNumber);
+                    string name = record.Field2;
                     unicodeGrid.Rows.Add(new object[]
                     {
-                        record.Field1,
-                        value,
-                        record.Field2,
+                        $"{value:X6}",
+                        $"{value:D7}",
+                        name,
                         (char)value
                     });
                 }
