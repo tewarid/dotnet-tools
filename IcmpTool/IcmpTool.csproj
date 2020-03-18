@@ -57,9 +57,6 @@
     <ApplicationIcon>icon-white.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HexToBinLib, Version=1.1.23.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HexToBin.1.1.23\lib\net40\HexToBinLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -98,7 +95,6 @@
     </Compile>
     <None Include="app.config" />
     <None Include="app.manifest" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -139,6 +135,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon-white.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="HexToBin">
+      <Version>1.1.23</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
