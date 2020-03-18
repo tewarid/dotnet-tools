@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Security.Principal;
-using System.ServiceModel;
 using System.Windows.Forms;
 
 namespace WebSocketServerTool

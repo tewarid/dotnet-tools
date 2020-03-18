@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Net;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.ServiceModel.Description;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,65 +9,11 @@ namespace WebSocketServerTool
     {
         private readonly Version MINIMUM_WINDOWS_VERSION = new Version(6, 2);
 
-        ServiceHost host;
         HttpListener httpListener;
 
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// Create a new service host with the specified Uri and certificate.
-        /// </summary>
-        /// <param name="uri">A Uri.</param>
-        /// <returns></returns>
-        private ServiceHost CreateServiceHost(Uri uri)
-        {
-            CustomBinding binding = new CustomBinding();
-            binding.Elements.Add(new ByteStreamMessageEncodingBindingElement());
-
-            string scheme = GetHttpScheme(uri);
-            HttpTransportBindingElement transport;
-            ServiceCredentials behavior = null;
-
-            if (scheme.Equals(Uri.UriSchemeHttp))
-            {
-                transport = new HttpTransportBindingElement();
-                scheme = Uri.UriSchemeHttp;
-            }
-            else
-            {
-                transport = new HttpsTransportBindingElement();
-                scheme = Uri.UriSchemeHttps;
-                behavior = new ServiceCredentials();
-            }
-
-            transport.WebSocketSettings = new WebSocketTransportSettings
-            {
-                TransportUsage = WebSocketTransportUsage.Always,
-                CreateNotificationOnConnection = true
-            };
-            binding.Elements.Add(transport);
-
-            ServiceHost newHost = new ServiceHost(typeof(Service));
-
-            UriBuilder newUri = new UriBuilder(uri)
-            {
-                Scheme = scheme
-            };
-
-            newHost.AddServiceEndpoint(typeof(IService), 
-                binding, newUri.ToString());
-
-            if (behavior != null)
-            {
-                newHost.Description.Behaviors.Add(behavior);
-            }
-
-            newHost.Open();
-
-            return newHost;
         }
 
         private static string GetHttpScheme(Uri uri)
@@ -95,39 +38,20 @@ namespace WebSocketServerTool
             return scheme;
         }
 
-        private void start_Click(object sender, System.EventArgs e)
+        private void Start_Click(object sender, System.EventArgs e)
         {
-            if (useWcf.Checked)
+            if (httpListener != null)
             {
-                if (host != null)
-                {
-                    return;
-                }
-                try
-                {
-                    host = CreateServiceHost(new Uri(url.Text));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, ex.Message, this.Text);
-                    return;
-                }
+                return;
             }
-            else
+            try
             {
-                if (httpListener != null)
-                {
-                    return;
-                }
-                try
-                {
-                    httpListener = CreateHttpListener(new Uri(url.Text));
-                }
-                catch (HttpListenerException ex)
-                {
-                    MessageBox.Show(this, ex.Message, this.Text);
-                    return;
-                }
+                httpListener = CreateHttpListener(new Uri(url.Text));
+            }
+            catch (HttpListenerException ex)
+            {
+                MessageBox.Show(this, ex.Message, this.Text);
+                return;
             }
             EnableDisable(false);
         }
@@ -176,14 +100,9 @@ namespace WebSocketServerTool
             return listener;
         }
 
-        private void stop_Click(object sender, EventArgs e)
+        private void Stop_Click(object sender, EventArgs e)
         {
-            if (host != null)
-            {
-                host.Close();
-                host = null;
-            }
-            else if (httpListener != null)
+            if (httpListener != null)
             {
                 httpListener.Close();
                 httpListener = null;

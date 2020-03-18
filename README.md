@@ -8,17 +8,9 @@ See releases section of this GitHub project. For older builds, head to https://d
 
 ## Build from source
 
-To build all the tools, clone this repository, and initialize submodules
+To build all the tools, clone this repository, and open the solution file `NeTools.sln` using Visual Studio 2019 and build.
 
-```bash
-git clone https://github.com/tewarid/net-tools.git
-cd net-tools
-git submodule update --init --recursive
-```
-
-Then, open the solution file `NeTools.sln` using Visual Studio 2017 and build.
-
-To build from the command line, open Developer Command Prompt for VS 2017, change to the `net-tools` directory, and run
+To build from the command line, open Developer Command Prompt for Visual Studio 2019, change to the `net-tools` directory, and run
 
 ```bash
 nuget restore NetTools.sln
@@ -29,7 +21,7 @@ You may have to download nuget from nuget.org.
 
 ### Mono
 
-A solution file is available for building some of the tools for Linux or macOS using [Mono](https://www.mono-project.com/download/stable/).
+A solution file is available for building some of the tools for Linux using [Mono](https://www.mono-project.com/download/stable/).
 
 Use the msbuild version supplied by Mono to build
 
@@ -45,15 +37,13 @@ A solution file is available to build some of the tools for Windows using .NET C
 dotnet build NetTools.NetCore.sln
 ```
 
-You can also use Visual Studio 2019 to build.
-
 ## AMQP 1.0 Client Tool
 
 A minimal interactive AMQP 1.0 client based on the [AMQPNetLite](https://github.com/Azure/amqpnetlite) library.
 
 ## Azure EventHub Client Tool
 
-An interactive EventHub client for Azure based on the official library [Microsoft.Azure.EventHubs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.eventhubs).
+An interactive EventHub client for Azure based on the official library [Microsoft.Azure.EventHubs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.eventhubs). Contributed by [Anderson Urbano](https://github.com/urbanoanderson).
 
 ## Bluetooth Serial Client Tool
 
@@ -133,7 +123,7 @@ Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.webs
 
 ## WebSocket Server Tool
 
-Interactive WebSocket server based on either System.Net.HttpListener or a self-hosted WCF service. WCF service is configured through `App.config` to run at port 8087, and in code to run at end point specified by user. Supports SSL. Requires Windows 10.
+Interactive WebSocket server based on System.Net.HttpListener. Supports SSL. Requires Windows 10.
 
 ## WMI Query Tool
 
