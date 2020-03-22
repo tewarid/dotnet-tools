@@ -39,7 +39,13 @@ namespace SerialTool
         {
             Invoke((MethodInvoker)delegate {
                 ManagementBaseObject target = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
-                serialPortName.Items.Remove(target.Properties["DeviceId"].Value.ToString());
+                string portName = target.Properties["DeviceId"].Value.ToString();
+                if (serialPortName.Text.Equals(portName))
+                {
+                    serialPortName.Text = string.Empty;
+                    CloseSerialPort();
+                }
+                serialPortName.Items.Remove(portName);
             });
         }
 
@@ -203,12 +209,7 @@ namespace SerialTool
 
         private void Refresh_Click(object sender, EventArgs e)
         {
-            serialPortName.Text = "";
             ShowSerialPorts();
-            if (serialPortName.Items.Count > 0)
-            {
-                serialPortName.SelectedIndex = 0;
-            }
         }
 
         private void CloseSerialPort()
