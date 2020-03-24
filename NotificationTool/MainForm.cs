@@ -11,6 +11,15 @@ namespace NotificationTool
         {
             InitializeComponent();
             SetStartup();
+            this.Deactivate += MainForm_Deactivate;
+        }
+
+        private void MainForm_Deactivate(object sender, EventArgs e)
+        {
+            if (WindowState != FormWindowState.Minimized)
+            {
+                Hide();
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -18,9 +27,8 @@ namespace NotificationTool
             if (e.CloseReason == CloseReason.UserClosing && runInBackground.Checked)
             {
                 e.Cancel = true;
-                ShowInTaskbar = false;
-                Visible = false;
                 notifyIcon.ShowBalloonTip(0, this.Text, backgroundTip.Text, ToolTipIcon.Info);
+                Hide();
             }
             else
             {

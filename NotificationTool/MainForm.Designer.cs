@@ -95,7 +95,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 32);
+            this.label1.Location = new System.Drawing.Point(30, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(173, 13);
             this.label1.TabIndex = 1;
@@ -103,9 +103,9 @@
             // 
             // backgroundTip
             // 
-            this.backgroundTip.Location = new System.Drawing.Point(15, 48);
+            this.backgroundTip.Location = new System.Drawing.Point(33, 49);
             this.backgroundTip.Name = "backgroundTip";
-            this.backgroundTip.Size = new System.Drawing.Size(557, 20);
+            this.backgroundTip.Size = new System.Drawing.Size(489, 20);
             this.backgroundTip.TabIndex = 2;
             this.backgroundTip.Text = "Notification Tool is now running in the background and can be accessed using the " +
     "tray icon.";
@@ -131,7 +131,7 @@
             // 
             // period
             // 
-            this.period.Location = new System.Drawing.Point(52, 98);
+            this.period.Location = new System.Drawing.Point(70, 99);
             this.period.Maximum = new decimal(new int[] {
             3600,
             0,
@@ -155,7 +155,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 100);
+            this.label2.Location = new System.Drawing.Point(30, 101);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 5;
@@ -164,7 +164,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(144, 100);
+            this.label3.Location = new System.Drawing.Point(162, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 6;
@@ -172,16 +172,16 @@
             // 
             // periodicTip
             // 
-            this.periodicTip.Location = new System.Drawing.Point(15, 137);
+            this.periodicTip.Location = new System.Drawing.Point(33, 138);
             this.periodicTip.Name = "periodicTip";
-            this.periodicTip.Size = new System.Drawing.Size(557, 20);
+            this.periodicTip.Size = new System.Drawing.Size(489, 20);
             this.periodicTip.TabIndex = 8;
             this.periodicTip.Text = "Remember to blink your eyes!";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 121);
+            this.label4.Location = new System.Drawing.Point(30, 122);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(131, 13);
             this.label4.TabIndex = 7;
@@ -204,7 +204,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 198);
+            this.ClientSize = new System.Drawing.Size(534, 186);
             this.Controls.Add(this.runAtStartup);
             this.Controls.Add(this.periodicTip);
             this.Controls.Add(this.label4);
