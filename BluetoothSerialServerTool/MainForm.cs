@@ -5,7 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BluetoothSppServerTool
+namespace BluetoothSerialServerTool
 {
     public partial class MainForm : Form
     {
