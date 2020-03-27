@@ -1,4 +1,5 @@
 ﻿using Common;
+using DesktopBridge;
 using Microsoft.Win32;
 using System;
 using System.Windows.Forms;
@@ -7,11 +8,19 @@ namespace NotificationTool
 {
     public partial class MainForm : Form
     {
+        private bool quitCalled = false;
+
         public MainForm()
         {
             InitializeComponent();
             SetStartup();
             this.Deactivate += MainForm_Deactivate;
+            Helpers helpers = new Helpers();
+            if (helpers.IsRunningAsUwp())
+            {
+                runAtStartup.Checked = false;
+                runAtStartup.Enabled = false;
+            }
         }
 
         private void MainForm_Deactivate(object sender, EventArgs e)
@@ -24,7 +33,7 @@ namespace NotificationTool
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing && runInBackground.Checked)
+            if (!quitCalled && e.CloseReason == CloseReason.UserClosing && runInBackground.Checked)
             {
                 e.Cancel = true;
                 notifyIcon.ShowBalloonTip(0, this.Text, backgroundTip.Text, ToolTipIcon.Info);
@@ -38,7 +47,8 @@ namespace NotificationTool
 
         private void Quit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            quitCalled = true;
+            Close();
         }
 
         private void RunInBackground_CheckedChanged(object sender, EventArgs e)

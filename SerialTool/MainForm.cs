@@ -29,7 +29,7 @@ namespace SerialTool
 
         private void Watcher_SerialPortCreation(object sender, EventArrivedEventArgs e)
         {
-            Invoke((MethodInvoker)delegate {
+            BeginInvoke((MethodInvoker)delegate {
                 ManagementBaseObject target = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
                 serialPortName.Items.Add(target.Properties["DeviceId"].Value.ToString());
             });
@@ -37,7 +37,7 @@ namespace SerialTool
 
         private void Watcher_SerialPortDeletion(object sender, EventArrivedEventArgs e)
         {
-            Invoke((MethodInvoker)delegate {
+            BeginInvoke((MethodInvoker)delegate {
                 ManagementBaseObject target = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
                 string portName = target.Properties["DeviceId"].Value.ToString();
                 if (serialPortName.Text.Equals(portName))

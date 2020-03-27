@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6353C13D-B63C-4062-AC81-8D70392D30CF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Launcher</RootNamespace>
+    <AssemblyName>Launcher</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AmqpClientTool\AmqpClientTool.csproj">
+      <Project>{be654748-3d68-4632-aa2e-af7b797f4f3d}</Project>
+      <Name>AmqpClientTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AzureEventHubClientTool\AzureEventHubClientTool.csproj">
+      <Project>{d4c55038-9bb0-4290-8543-702a75d62558}</Project>
+      <Name>AzureEventHubClientTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BluetoothSerialClientTool\BluetoothSerialClientTool.csproj">
+      <Project>{3bffb6bf-138d-4809-aa3b-f67b5fdc57c4}</Project>
+      <Name>BluetoothSerialClientTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BluetoothSerialServerTool\BluetoothSerialServerTool.csproj">
+      <Project>{93c2a8ea-73d2-43c4-bed7-362c650c709a}</Project>
+      <Name>BluetoothSerialServerTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EncodingTool\EncodingTool.csproj">
+      <Project>{1667a1d7-8f66-462c-99a3-ac86ba04d362}</Project>
+      <Name>EncodingTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FirewallTool\FirewallTool.csproj">
+      <Project>{bf6b0bf8-9fc0-4701-a7ce-fa66ea86c95e}</Project>
+      <Name>FirewallTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FontTool\FontTool.csproj">
+      <Project>{3f41abed-041c-4baf-82bd-1145bb61c3ee}</Project>
+      <Name>FontTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitLabTool\GitLabTool.csproj">
+      <Project>{622dab06-0a72-48e8-8392-60cf79baf143}</Project>
+      <Name>GitLabTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitTool\GitTool.csproj">
+      <Project>{344d1f03-ca1d-4f20-ba62-3b06a55c12b5}</Project>
+      <Name>GitTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GlobalizationTool\GlobalizationTool.csproj">
+      <Project>{dc2e13e2-91b2-4be4-950d-97f2226e2ad3}</Project>
+      <Name>GlobalizationTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HidTool\HidTool.csproj">
+      <Project>{e09dd6b5-d93b-4d68-939e-e0da21d90d11}</Project>
+      <Name>HidTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HttpListenerTool\HttpListenerTool.csproj">
+      <Project>{17f0f4cb-9a50-46c9-bb6d-4732de14f236}</Project>
+      <Name>HttpListenerTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HttpRequestTool\HttpRequestTool.csproj">
+      <Project>{51fa2b68-bb76-4cd2-a9f7-baff68b2e059}</Project>
+      <Name>HttpRequestTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IcmpTool\IcmpTool.csproj">
+      <Project>{5e693a9d-f2ff-4740-a95b-cb08b5ef2c8b}</Project>
+      <Name>IcmpTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KafkaClientTool\KafkaClientTool.csproj">
+      <Project>{5c4ae888-051e-49f8-9c6a-8e251205b33e}</Project>
+      <Name>KafkaClientTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MqttClientTool\MqttClientTool.csproj">
+      <Project>{29ee39bc-27e1-4903-b380-b5aa03525ef0}</Project>
+      <Name>MqttClientTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotificationTool\NotificationTool.csproj">
+      <Project>{4e4b6a30-4155-4aa9-a639-b3d35d4d2fb3}</Project>
+      <Name>NotificationTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RouteTool\RouteTool.csproj">
+      <Project>{f0d291a0-d1c7-4148-bf1a-407396510c06}</Project>
+      <Name>RouteTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SerialTool\SerialTool.csproj">
+      <Project>{74faad3b-b66c-40bd-acd3-c8baea47b8a4}</Project>
+      <Name>SerialTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmtpClientTool\SmtpClientTool.csproj">
+      <Project>{0bb9835b-6ed0-499f-8370-d219668bc127}</Project>
+      <Name>SmtpClientTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmtpServerTool\SmtpServerTool.csproj">
+      <Project>{7a252c0a-6704-4237-b4f4-9c75cd5fefbd}</Project>
+      <Name>SmtpServerTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SnifferTool\SnifferTool.csproj">
+      <Project>{5d3b68eb-0764-49d9-a5d4-1216aedefeaa}</Project>
+      <Name>SnifferTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TcpClientTool\TcpClientTool.csproj">
+      <Project>{1a80778f-b6b5-442e-9e1b-c6216a24f8c0}</Project>
+      <Name>TcpClientTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TcpListenerTool\TcpListenerTool.csproj">
+      <Project>{0aa07a12-6361-4bd7-9a24-87690a3aeace}</Project>
+      <Name>TcpListenerTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UdpTool\UdpTool.csproj">
+      <Project>{3455d706-1959-442a-a53f-0b4479d94f16}</Project>
+      <Name>UdpTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebSocketServerTool\WebSocketServerTool.csproj">
+      <Project>{4846204e-e40a-4abe-ab71-8cfed0cb1567}</Project>
+      <Name>WebSocketServerTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebSocketTool\WebSocketTool.csproj">
+      <Project>{23b1adca-39ff-4fbf-b336-770fb124c9f8}</Project>
+      <Name>WebSocketTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WmiQuery\WmiQuery.csproj">
+      <Project>{ead17954-85e2-4105-a66b-045084bf4851}</Project>
+      <Name>WmiQuery</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon-orange.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

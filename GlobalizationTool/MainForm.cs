@@ -60,7 +60,7 @@ namespace GlobalizationTool
             unicodeGrid.Columns.Add("Code", "Code (dec)");
             unicodeGrid.Columns.Add("Name", "Name");
             unicodeGrid.Columns.Add("Display", "Display");
-            using (var reader = new StreamReader("UnicodeData.txt"))
+            using (var reader = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "UnicodeData.txt"))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 csv.Configuration.HasHeaderRecord = false;
