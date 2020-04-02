@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Management;
 using System.Windows.Forms;
 
 namespace WmiQuery
 {
+    [MainForm(Name = "WMI Query Tool")]
     public partial class MainForm : Form
     {
         public MainForm()

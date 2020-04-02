@@ -1,4 +1,5 @@
-﻿using InTheHand.Net.Bluetooth;
+﻿using Common;
+using InTheHand.Net.Bluetooth;
 using InTheHand.Net.Sockets;
 using System;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Windows.Forms;
 
 namespace BluetoothSerialServerTool
 {
+    [MainForm(Name = "Bluetooth Serial Server Tool")]
     public partial class MainForm : Form
     {
         private readonly Guid MyServiceUuid = new Guid("{00001101-0000-1000-8000-00805F9B34FB}");

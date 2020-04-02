@@ -1,5 +1,6 @@
 ﻿using Amqp;
 using Amqp.Framing;
+using Common;
 using System;
 using System.ComponentModel;
 using System.Text;
@@ -7,6 +8,7 @@ using System.Windows.Forms;
 
 namespace AmqpClientTool
 {
+    [MainForm(Name = "AMQP Client Tool")]
     public partial class MainForm : Form
     {
         class SenderLinkWrapper

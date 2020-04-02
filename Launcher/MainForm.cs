@@ -1,153 +1,94 @@
-﻿using System;
+﻿using Common;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Launcher
 {
     public partial class MainForm : Form
     {
+        List<Form> activeForms = new List<Form>();
+
         public MainForm()
         {
             InitializeComponent();
+            Type[] forms = GetAllMainForm();
+            Add(forms);
         }
 
-        private void AmqpClient_Click(object sender, EventArgs e)
+        private void Add(Type[] forms)
         {
-            (new AmqpClientTool.MainForm()).Show();
+            foreach (var type in forms)
+            {
+                var name = type.Name;
+                var attributes = (MainFormAttribute[])type.GetCustomAttributes(typeof(MainFormAttribute), false);
+                if (attributes.Length > 0)
+                {
+                    name = attributes?[0].Name;
+                }
+                Button button = CreateButton(name);
+                button.Click += (sender, e) =>
+                {
+                    Form form = (Form)Activator.CreateInstance(type);
+                    activeForms.Add(form);
+                    form.Disposed += (sender2, e2) =>
+                    {
+                        activeForms.Remove(form);
+                        if (activeForms.Count == 0)
+                        {
+                            Application.Exit();
+                        }
+                    };
+                    form.Show();
+                };
+
+                panel.Controls.Add(button);
+            }
         }
 
-        private void azureEventHubClient_Click(object sender, EventArgs e)
+        private Button CreateButton(string name)
         {
-            (new AzureEventHubClientTool.MainForm()).Show();
+            Button button = new Button();
+            button.FlatAppearance.BorderSize = 0;
+            button.FlatStyle = FlatStyle.Popup;
+            button.Location = new System.Drawing.Point(3, 3);
+            button.Size = new System.Drawing.Size(250, 30);
+            button.Text = name;
+            button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button.UseVisualStyleBackColor = true;
+            return button;
         }
 
-        private void BluetoothSerialClient_Click(object sender, EventArgs e)
+        private Type[] GetAllMainForm()
         {
-            (new BluetoothSerialClientTool.MainForm()).Show();
+            List<Type> forms = new List<Type>();
+            Assembly[] assemblies = GetAllAssemblies();
+            foreach (var assembly in assemblies)
+            {
+                var types = from type in assembly.GetTypes()
+                            where Attribute.IsDefined(type, typeof(MainFormAttribute))
+                            select type;
+                foreach (var type in types)
+                {
+                    forms.Add(type);
+                }
+            }
+            return forms.ToArray();
         }
 
-        private void BluetoothSerialServer_Click(object sender, EventArgs e)
+        private Assembly[] GetAllAssemblies()
         {
-            (new BluetoothSerialServerTool.MainForm()).Show();
-        }
-
-        private void EncodingTool_Click(object sender, EventArgs e)
-        {
-            (new EncodingTool.MainForm()).Show();
-        }
-
-        private void FirewallTool_Click(object sender, EventArgs e)
-        {
-            (new FirewallTool.MainForm()).Show();
-        }
-
-        private void FontTool_Click(object sender, EventArgs e)
-        {
-            (new FontTool.MainForm()).Show();
-        }
-
-        private void GitLabTool_Click(object sender, EventArgs e)
-        {
-            (new GitLabTool.MainForm()).Show();
-        }
-
-        private void GitTool_Click(object sender, EventArgs e)
-        {
-            (new GitTool.MainForm()).Show();
-        }
-
-        private void GlobalizationTool_Click(object sender, EventArgs e)
-        {
-            (new GlobalizationTool.MainForm()).Show();
-        }
-
-        private void UsbHidTool_Click(object sender, EventArgs e)
-        {
-            (new HidTool.MainForm()).Show();
-        }
-
-        private void HttpListener_Click(object sender, EventArgs e)
-        {
-            (new HttpListenerTool.MainForm()).Show();
-        }
-
-        private void HttpRequestTool_Click(object sender, EventArgs e)
-        {
-            (new HttpRequestTool.MainForm()).Show();
-        }
-
-        private void icmpTool_Click(object sender, EventArgs e)
-        {
-            (new IcmpTool.MainForm()).Show();
-        }
-
-        private void KafkaClient_Click(object sender, EventArgs e)
-        {
-            (new KafkaClientTool.MainForm()).Show();
-        }
-
-        private void MqttClient_Click(object sender, EventArgs e)
-        {
-            (new MqttClientTool.MainForm()).Show();
-        }
-
-        private void NetworkRouteTool_Click(object sender, EventArgs e)
-        {
-            (new RouteTool.MainForm()).Show();
-        }
-
-        private void NotificationTool_Click(object sender, EventArgs e)
-        {
-            (new NotificationTool.MainForm()).Show();
-        }
-
-        private void SerialPortTool_Click(object sender, EventArgs e)
-        {
-            (new SerialTool.MainForm()).Show();
-        }
-
-        private void SmtpClient_Click(object sender, EventArgs e)
-        {
-            (new SmtpClientTool.MainForm()).Show();
-        }
-
-        private void SmtpServer_Click(object sender, EventArgs e)
-        {
-            (new SmtpServerTool.MainForm()).Show();
-        }
-
-        private void NetworkSniffer_Click(object sender, EventArgs e)
-        {
-            (new SnifferTool.MainForm()).Show();
-        }
-
-        private void TcpClient_Click(object sender, EventArgs e)
-        {
-            (new TcpClientTool.MainForm()).Show();
-        }
-
-        private void TcpListener_Click(object sender, EventArgs e)
-        {
-            (new TcpListenerTool.MainForm()).Show();
-        }
-
-        private void udpTool_Click(object sender, EventArgs e)
-        {
-            (new UdpTool.MainForm()).Show();
-        }
-
-        private void WebSocketServer_Click(object sender, EventArgs e)
-        {
-            (new WebSocketServerTool.MainForm()).Show();
-        }
-
-        private void WebSocketClient_Click(object sender, EventArgs e)
-        {
-            (new WebSocketTool.MainForm()).Show();
-        }
-
-        private void WmiQueryTool_Click(object sender, EventArgs e)
-        {
-            (new WmiQuery.MainForm()).Show();
+            List<Assembly> assemblies = new List<Assembly>();
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            foreach (string exe in Directory.GetFiles(path, "*.exe"))
+            {
+                assemblies.Add(Assembly.LoadFile(exe));
+            }
+            return assemblies.ToArray();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using HidSharp;
+﻿using Common;
+using HidSharp;
 using HidSharp.Reports;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Windows.Forms;
 
 namespace HidTool
 {
+    [MainForm(Name = "USB HID Tool")]
     public partial class MainForm : Form
     {
         List<HidDevice> hidDevices = new List<HidDevice>();

@@ -1,4 +1,5 @@
-﻿using LibGit2Sharp;
+﻿using Common;
+using LibGit2Sharp;
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
@@ -11,6 +12,7 @@ using System.Windows.Forms;
 
 namespace GitTool
 {
+    [MainForm(Name = "Git Tool")]
     public partial class MainForm : Form
     {
         private readonly RemoteBrowser browser = new RemoteBrowser();

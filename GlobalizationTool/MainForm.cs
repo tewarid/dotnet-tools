@@ -1,4 +1,5 @@
-﻿using CsvHelper;
+﻿using Common;
+using CsvHelper;
 using System;
 using System.Globalization;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Windows.Forms;
 
 namespace GlobalizationTool
 {
+    [MainForm(Name = "Globalization Tool")]
     public partial class MainForm : Form
     {
         [System.Runtime.InteropServices.DllImport("user32.dll")]

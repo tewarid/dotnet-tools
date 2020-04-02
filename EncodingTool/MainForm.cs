@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography;
@@ -26,6 +27,7 @@ namespace EncodingTool
         Sha1Hash,
     }
 
+    [MainForm(Name = "Encoding Tool")]
     public partial class MainForm : Form
     {
         public MainForm()

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace KafkaClientTool
 {
+    [MainForm(Name = "Kafka Client Tool")]
     public partial class MainForm : Form
     {
         IConsumer<Ignore, string> consumer;

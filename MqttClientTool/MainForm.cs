@@ -1,4 +1,5 @@
-﻿using MQTTnet;
+﻿using Common;
+using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Client.Connecting;
 using MQTTnet.Client.Disconnecting;
@@ -12,6 +13,7 @@ using System.Windows.Forms;
 
 namespace MqttClientTool
 {
+    [MainForm(Name = "MQTT Client Tool")]
     public partial class MainForm : Form
     {
         private IMqttClient mqttClient;

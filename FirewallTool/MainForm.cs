@@ -1,10 +1,12 @@
-﻿using Connection;
+﻿using Common;
+using Connection;
 using NetFwTypeLib;
 using System;
 using System.Windows.Forms;
 
 namespace FirewallTool
 {
+    [MainForm(Name = "Firewall Tool")]
     public partial class MainForm : Form
     {
         private readonly FirewallHelper firewall;

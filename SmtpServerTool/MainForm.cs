@@ -1,4 +1,5 @@
-﻿using SmtpServer;
+﻿using Common;
+using SmtpServer;
 using System;
 using System.Net.Sockets;
 using System.Threading;
@@ -6,6 +7,7 @@ using System.Windows.Forms;
 
 namespace SmtpServerTool
 {
+    [MainForm(Name = "SMTP Server Tool")]
     public partial class MainForm : Form, IDisposable
     {
         private CancellationTokenSource cancellationTokenSource;

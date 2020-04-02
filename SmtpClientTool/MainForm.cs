@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.ComponentModel;
 using System.Net.Mail;
 using System.Net.Mime;
@@ -7,6 +8,7 @@ using System.Windows.Forms;
 
 namespace SmtpClientTool
 {
+    [MainForm(Name = "SMTP Client Tool")]
     public partial class MainForm : Form
     {
         SmtpClient client;

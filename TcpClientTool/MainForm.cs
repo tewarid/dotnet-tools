@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Security;
@@ -12,6 +13,7 @@ using System.Windows.Forms;
 
 namespace TcpClientTool
 {
+    [MainForm(Name = "TCP Client Tool")]
     public partial class MainForm : Form
     {
         TcpClient tcpClient;

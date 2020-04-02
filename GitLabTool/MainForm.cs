@@ -14,6 +14,7 @@ using System.Windows.Forms;
 
 namespace GitLabTool
 {
+    [MainForm(Name = "GitLab Tool")]
     public partial class MainForm : Form
     {
         private GitLabClient client;

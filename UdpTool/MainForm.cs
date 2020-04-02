@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -6,6 +7,7 @@ using System.Windows.Forms;
 
 namespace UdpTool
 {
+    [MainForm(Name = "UDP Tool")]
     public partial class MainForm : Form
     {
         private UdpClient udpClient;

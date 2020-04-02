@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace NotificationTool
 {
+    [MainForm(Name="Notification Tool")]
     public partial class MainForm : Form
     {
         private bool quitCalled = false;
@@ -13,13 +14,21 @@ namespace NotificationTool
         public MainForm()
         {
             InitializeComponent();
-            SetStartup();
             this.Deactivate += MainForm_Deactivate;
+            CheckStartUp();
+        }
+
+        private void CheckStartUp()
+        {
             Helpers helpers = new Helpers();
             if (helpers.IsRunningAsUwp())
             {
                 runAtStartup.Checked = false;
                 runAtStartup.Enabled = false;
+            }
+            else
+            {
+                SetStartup();
             }
         }
 

@@ -5,6 +5,7 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
   IgnorableNamespaces="uap rescap iot">
 
   <Identity
@@ -30,7 +31,7 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="$targetentrypoint$">
+      EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements
         DisplayName="Tools for Windows Desktop"
         Description="Tools for Windows Desktop"
@@ -40,6 +41,15 @@
         <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
+      <Extensions>
+        <!--<desktop:Extension
+          Category="windows.startupTask">
+          <desktop:StartupTask
+            TaskId="ToolsForWindowsDesktop"
+            Enabled="true"
+            DisplayName="Tools for Windows Desktop" />
+        </desktop:Extension>-->
+      </Extensions>
     </Application>
   </Applications>
 
@@ -51,4 +61,5 @@
     <iot:Capability Name="systemManagement"/>
     <DeviceCapability Name="bluetooth"/>
   </Capabilities>
+
 </Package>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.IO;
 using System.IO.Ports;
 using System.Management;
@@ -8,6 +9,7 @@ using System.Windows.Forms;
 
 namespace SerialTool
 {
+    [MainForm(Name = "Serial Port Tool")]
     public partial class MainForm : Form
     {
         SerialPort port;

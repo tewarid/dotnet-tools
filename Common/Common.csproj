@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainFormAttribute.cs" />
     <Compile Include="ComboBoxItem.cs" />
     <Compile Include="ContentTypeSelector.cs">
       <SubType>UserControl</SubType>

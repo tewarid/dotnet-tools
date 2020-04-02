@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace HttpRequestTool
 {
+    [MainForm(Name = "HTTP Request Tool")]
     public partial class MainForm : Form
     {
         public MainForm()

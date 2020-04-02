@@ -1,5 +1,4 @@
 ﻿using Common;
-using MimeTypes;
 using System;
 using System.IO;
 using System.Net;
@@ -9,6 +8,7 @@ using System.Windows.Forms;
 
 namespace HttpListenerTool
 {
+    [MainForm(Name = "HTTP Listener Tool")]
     public partial class MainForm : Form
     {
         private HttpListener listener;

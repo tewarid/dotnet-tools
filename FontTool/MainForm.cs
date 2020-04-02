@@ -1,5 +1,5 @@
-﻿using System;
-using System.ComponentModel;
+﻿using Common;
+using System;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace FontTool
 {
+    [MainForm(Name = "Font Tool")]
     public partial class MainForm : Form
     {
         PrivateFontCollection fontCollection;

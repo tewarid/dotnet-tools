@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace WebSocketTool
 {
+    [MainForm(Name = "WebSocket Client Tool")]
     public partial class MainForm : Form
     {
         private readonly Version MINIMUM_WINDOWS_VERSION = new Version(6, 2);

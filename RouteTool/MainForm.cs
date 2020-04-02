@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Windows.Forms;
 
 namespace RouteTool
 {
+    [MainForm(Name = "Network Route Tool")]
     public partial class MainForm : Form
     {
         public MainForm()

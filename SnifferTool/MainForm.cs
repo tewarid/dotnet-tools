@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
@@ -6,6 +7,7 @@ using System.Windows.Forms;
 
 namespace SnifferTool
 {
+    [MainForm(Name = "Network Sniffer Tool")]
     public partial class MainForm : Form
     {
         private const int MTU = 65535;

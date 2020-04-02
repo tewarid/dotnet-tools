@@ -3,9 +3,11 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using HexToBinLib;
+using Common;
 
 namespace IcmpTool
 {
+    [MainForm(Name = "ICMP Tool")]
     public partial class MainForm : Form
     {
         IcmpSocket icmpSocket;

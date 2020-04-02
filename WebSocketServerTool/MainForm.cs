@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WebSocketServerTool
 {
+    [MainForm(Name = "WebSocket Server Tool")]
     public partial class MainForm : Form
     {
         private readonly Version MINIMUM_WINDOWS_VERSION = new Version(6, 2);

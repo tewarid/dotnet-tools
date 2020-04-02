@@ -100,6 +100,10 @@
       <Project>{93c2a8ea-73d2-43c4-bed7-362c650c709a}</Project>
       <Name>BluetoothSerialServerTool</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{e1fee78b-cbec-4a3e-9252-581406417ce0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EncodingTool\EncodingTool.csproj">
       <Project>{1667a1d7-8f66-462c-99a3-ac86ba04d362}</Project>
       <Name>EncodingTool</Name>
