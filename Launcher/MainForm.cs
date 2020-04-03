@@ -37,15 +37,20 @@ namespace Launcher
                     form.Disposed += (sender2, e2) =>
                     {
                         activeForms.Remove(form);
-                        if (activeForms.Count == 0)
-                        {
-                            Application.Exit();
-                        }
+                        Exit();
                     };
                     form.Show();
                 };
 
                 panel.Controls.Add(button);
+            }
+        }
+
+        private void Exit()
+        {
+            if (activeForms.Count == 0)
+            {
+                Application.Exit();
             }
         }
 
@@ -89,6 +94,11 @@ namespace Launcher
                 assemblies.Add(Assembly.LoadFile(exe));
             }
             return assemblies.ToArray();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Exit();
         }
     }
 }
