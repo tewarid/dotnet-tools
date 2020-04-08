@@ -12,26 +12,32 @@ namespace SerialTool
     [MainForm(Name = "Serial Port Tool")]
     public partial class MainForm : Form
     {
-        SerialPort port;
+        private SerialPort port;
+        private ManagementEventWatcher portCreationWatcher;
+        private ManagementEventWatcher portDeletionWatcher;
 
         public MainForm()
         {
             InitializeComponent();
 
-            string query = "SELECT * FROM __InstanceCreationEvent WITHIN 1 WHERE TargetInstance isa \"WIN32_SerialPort\"";
-            ManagementEventWatcher watcher = new ManagementEventWatcher(query);
-            watcher.EventArrived += Watcher_SerialPortCreation;
-            watcher.Start();
+            Task.Run(() =>
+            {
+                string query = "SELECT * FROM __InstanceCreationEvent WITHIN 1 WHERE TargetInstance isa \"WIN32_SerialPort\"";
+                portCreationWatcher = new ManagementEventWatcher(query);
+                portCreationWatcher.EventArrived += Watcher_SerialPortCreation;
+                portCreationWatcher.Start();
 
-            query = "SELECT * FROM __InstanceDeletionEvent WITHIN 1 WHERE TargetInstance isa \"WIN32_SerialPort\"";
-            watcher = new ManagementEventWatcher(query);
-            watcher.EventArrived += Watcher_SerialPortDeletion;
-            watcher.Start();
+                query = "SELECT * FROM __InstanceDeletionEvent WITHIN 1 WHERE TargetInstance isa \"WIN32_SerialPort\"";
+                portDeletionWatcher = new ManagementEventWatcher(query);
+                portDeletionWatcher.EventArrived += Watcher_SerialPortDeletion;
+                portDeletionWatcher.Start();
+            });
         }
 
         private void Watcher_SerialPortCreation(object sender, EventArrivedEventArgs e)
         {
-            BeginInvoke((MethodInvoker)delegate {
+            BeginInvoke((MethodInvoker)delegate
+            {
                 ManagementBaseObject target = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
                 serialPortName.Items.Add(target.Properties["DeviceId"].Value.ToString());
             });
@@ -39,7 +45,8 @@ namespace SerialTool
 
         private void Watcher_SerialPortDeletion(object sender, EventArrivedEventArgs e)
         {
-            BeginInvoke((MethodInvoker)delegate {
+            BeginInvoke((MethodInvoker)delegate
+            {
                 ManagementBaseObject target = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
                 string portName = target.Properties["DeviceId"].Value.ToString();
                 if (serialPortName.Text.Equals(portName))
@@ -88,7 +95,8 @@ namespace SerialTool
             // this will run in a worker thread
             try
             {
-                await Task.Run(delegate {
+                await Task.Run(delegate
+                {
                     port.WriteTimeout = timeOut.Checked ? (int)timeOutValue.Value * 1000
                         : SerialPort.InfiniteTimeout;
                     startTickCount = Environment.TickCount;
@@ -122,7 +130,8 @@ namespace SerialTool
         {
             if (InvokeRequired)
             {
-                Invoke((MethodInvoker)delegate {
+                Invoke((MethodInvoker)delegate
+                {
                     ShowReceivedData(data, length);
                 });
                 return;
@@ -171,12 +180,12 @@ namespace SerialTool
             refresh.Enabled = false;
         }
 
-        void Port_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
+        private void Port_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
             // we'll do nothing with error
         }
 
-        void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
@@ -224,7 +233,7 @@ namespace SerialTool
                 }
                 port = null;
             }
-            catch(IOException)
+            catch (IOException)
             {
                 // don't need user to do anything
             }
