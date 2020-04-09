@@ -85,6 +85,7 @@ namespace Launcher
                     forms.Add(type);
                 }
             }
+            forms.OrderBy(t => ((MainFormAttribute)t.GetCustomAttributes(typeof(MainFormAttribute), false)[0]).Name);
             return forms.ToArray();
         }
 
