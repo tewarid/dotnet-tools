@@ -11,9 +11,6 @@ namespace GlobalizationTool
     [MainForm(Name = "Globalization Tool")]
     public partial class MainForm : Form
     {
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern bool LockWindowUpdate(IntPtr hWndLock);
-        
         public MainForm()
         {
             InitializeComponent();
@@ -24,7 +21,7 @@ namespace GlobalizationTool
 
         private void LoadCultureGrid()
         {
-            LockWindowUpdate(culturesGrid.Handle);
+            Native.Windows.LockUpdate(culturesGrid.Handle);
             culturesGrid.Columns.Clear();
             culturesGrid.Columns.Add("EnglishName", "English Name");
             culturesGrid.Columns.Add("Name", "Name");
@@ -51,12 +48,12 @@ namespace GlobalizationTool
                     ci.TwoLetterISOLanguageName
                 });
             }
-            LockWindowUpdate(IntPtr.Zero);
+            Native.Windows.ReleaseUpdate();
         }
 
         private void LoadUnicodeGrid()
         {
-            LockWindowUpdate(unicodeGrid.Handle);
+            Native.Windows.LockUpdate(unicodeGrid.Handle);
             unicodeGrid.Columns.Clear();
             unicodeGrid.Columns.Add("Code", "Code (hex)");
             unicodeGrid.Columns.Add("Code", "Code (dec)");
@@ -81,7 +78,7 @@ namespace GlobalizationTool
                     });
                 }
             }
-            LockWindowUpdate(IntPtr.Zero);
+            Native.Windows.ReleaseUpdate();
         }
 
         private void UpperCase_Click(object sender, System.EventArgs e)

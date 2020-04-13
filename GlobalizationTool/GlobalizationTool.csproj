@@ -106,6 +106,10 @@
       <Project>{E1FEE78B-CBEC-4A3E-9252-581406417CE0}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Native\Native.vcxproj">
+      <Project>{df92b282-4505-484b-9bd9-a9e125ca607d}</Project>
+      <Name>Native</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
