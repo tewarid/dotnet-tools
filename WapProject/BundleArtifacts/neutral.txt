@@ -1,2 +1,0 @@
-MainPackage=C:\Users\dkt\Documents\Visual Studio 2019\net-tools\WapProject\bin\AnyCPU\Debug\WapProject_1.0.2.0_AnyCPU_Debug.appx
-SymbolPackage=C:\Users\dkt\Documents\Visual Studio 2019\net-tools\WapProject\obj\Debug\Symbols\WapProject_1.0.2.0_AnyCPU_Debug.appxsym
