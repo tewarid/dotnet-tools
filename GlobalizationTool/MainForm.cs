@@ -27,6 +27,7 @@ namespace GlobalizationTool
             culturesGrid.Columns.Add("Name", "Name");
             culturesGrid.Columns.Add("SpecificName", "Specific Name");
             culturesGrid.Columns.Add("LCID", "LCID");
+            culturesGrid.Columns.Add("LCIDHex", "LCID 0x");
             culturesGrid.Columns.Add("ShortDatePattern", "Short Date Pattern");
             culturesGrid.Columns.Add("DecimalSeparator", "Decimal Separator");
             culturesGrid.Columns.Add("TwoLetterISOLanguageName", "ISO Name");
@@ -42,7 +43,8 @@ namespace GlobalizationTool
                     ci.EnglishName,
                     ci.Name,
                     CultureInfo.CreateSpecificCulture(ci.Name).Name,
-                    ci.LCID,
+                    $"{ci.LCID}",
+                    $"{ci.LCID:X4}",
                     ci. DateTimeFormat.ShortDatePattern,
                     ci.NumberFormat.NumberDecimalSeparator,
                     ci.TwoLetterISOLanguageName
