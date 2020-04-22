@@ -54,6 +54,7 @@ namespace Launcher
                 };
 
                 panel.Controls.Add(button);
+                panel.Controls.SetChildIndex(button, panel.Controls.Count - 1);
             }
         }
 
