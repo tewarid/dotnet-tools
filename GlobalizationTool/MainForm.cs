@@ -43,7 +43,7 @@ namespace GlobalizationTool
                     ci.EnglishName,
                     ci.Name,
                     CultureInfo.CreateSpecificCulture(ci.Name).Name,
-                    $"{ci.LCID}",
+                    ci.LCID,
                     $"{ci.LCID:X4}",
                     ci. DateTimeFormat.ShortDatePattern,
                     ci.NumberFormat.NumberDecimalSeparator,
