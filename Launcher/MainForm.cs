@@ -78,9 +78,17 @@ namespace Launcher
             Assembly[] assemblies = GetAllAssemblies();
             foreach (var assembly in assemblies)
             {
-                var types = from type in assembly.GetTypes()
-                            where Attribute.IsDefined(type, typeof(MainFormAttribute))
-                            select type;
+                IEnumerable<Type> types;
+                try
+                {
+                    types = from type in assembly.GetTypes()
+                                where Attribute.IsDefined(type, typeof(MainFormAttribute))
+                                select type;
+                }
+                catch
+                {
+                    continue;
+                }
                 foreach (var type in types)
                 {
                     forms.Add(type);
@@ -94,9 +102,13 @@ namespace Launcher
         {
             List<Assembly> assemblies = new List<Assembly>();
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            foreach (string exe in Directory.GetFiles(path, "*.exe"))
+#if NETCOREAPP
+            foreach (string assembly in Directory.GetFiles(path, "*.dll"))
+#else
+            foreach (string assembly in Directory.GetFiles(path, "*.exe"))
+#endif
             {
-                assemblies.Add(Assembly.LoadFile(exe));
+                assemblies.Add(Assembly.LoadFile(assembly));
             }
             return assemblies.ToArray();
         }

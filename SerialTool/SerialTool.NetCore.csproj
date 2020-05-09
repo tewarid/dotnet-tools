@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>SerialTool</RootNamespace>
     <AssemblyName>SerialTool</AssemblyName>
     <UseWindowsForms>true</UseWindowsForms>
@@ -18,7 +18,7 @@
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
   </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.NetCore.csproj">
       <Project>{E1FEE78B-CBEC-4A3E-9252-581406417CE0}</Project>
@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <PackageReference Include="System.IO.Ports" Version="4.5.0" />
+    <PackageReference Include="System.Management" Version="4.7.0" />
   </ItemGroup>
 
 </Project>

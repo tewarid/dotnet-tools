@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>SmtpServerTool</RootNamespace>
     <AssemblyName>SmtpServerTool</AssemblyName>
     <UseWindowsForms>true</UseWindowsForms>
@@ -17,6 +17,13 @@
     <Compile Include="..\Common\Properties\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.NetCore.csproj">
+      <Project>{E1FEE78B-CBEC-4A3E-9252-581406417CE0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
