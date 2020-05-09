@@ -34,8 +34,16 @@ namespace GitTool
 
         private void PopulateCheats()
         {
-            string[] lines = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + "cheatsheet.md");
-            foreach(string line in lines)
+            string[] lines;
+            try
+            {
+                lines = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + "cheatsheet.md");
+            }
+            catch
+            {
+                return;
+            }
+            foreach (string line in lines)
             {
                 if (line.StartsWith(CHEATSHEET_COMMAND_START))
                 {
