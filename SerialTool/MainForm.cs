@@ -261,21 +261,25 @@ namespace SerialTool
             }
         }
 
-        private void SerialPortName_SelectedIndexChanged(object sender, EventArgs e)
+        private async void SerialPortName_SelectedIndexChanged(object sender, EventArgs e)
         {
             string description = string.Empty;
             string pnpDeviceID = string.Empty;
-            string query = $"SELECT * FROM WIN32_SerialPort WHERE DeviceID=\"{serialPortName.Text}\"";
-            using (var searcher = new ManagementObjectSearcher(query))
+            string portName = serialPortName.Text;
+            await Task.Run(() =>
             {
-                var ports = searcher.Get();
-                foreach (var port in ports)
+                string query = $"SELECT * FROM WIN32_SerialPort WHERE DeviceID=\"{portName}\"";
+                using (var searcher = new ManagementObjectSearcher(query))
                 {
-                    description = port.Properties["Description"].Value.ToString();
-                    pnpDeviceID = port.Properties["PNPDeviceID"].Value.ToString();
-                    break;
+                    var ports = searcher.Get();
+                    foreach (var port in ports)
+                    {
+                        description = port.Properties["Description"].Value.ToString();
+                        pnpDeviceID = port.Properties["PNPDeviceID"].Value.ToString();
+                        break;
+                    }
                 }
-            }
+            });
             outputText.AppendText($"{description}");
             outputText.AppendText($"{Environment.NewLine}");
             outputText.AppendText($"{pnpDeviceID}");
