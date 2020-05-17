@@ -94,8 +94,8 @@ namespace Launcher
                     forms.Add(type);
                 }
             }
-            forms.OrderBy(t => ((MainFormAttribute)t.GetCustomAttributes(typeof(MainFormAttribute), false)[0]).Name);
-            return forms.ToArray();
+            var orderedForms = forms.OrderBy(t => ((MainFormAttribute)t.GetCustomAttributes(typeof(MainFormAttribute), false)[0]).Name);
+            return orderedForms.ToArray();
         }
 
         private Assembly[] GetAllAssemblies()
