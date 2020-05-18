@@ -2,6 +2,7 @@
 using DesktopBridge;
 using Microsoft.Win32;
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace NotificationTool
@@ -99,7 +100,7 @@ namespace NotificationTool
 
             if (runAtStartup.Checked)
             {
-                rk.SetValue(this.Text, Application.ExecutablePath);
+                rk.SetValue(this.Text, Assembly.GetExecutingAssembly().Location);
             }
             else
             {
