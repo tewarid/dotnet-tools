@@ -124,7 +124,7 @@ namespace GitTool
                 {
                     var session = await client.LoginAsync(username.Text, password.Text);
                 }
-                catch (GitLabException ex)
+                catch (GitLabException)
                 {
                     MessageBox.Show("Login failed.");
                     return;
@@ -133,9 +133,12 @@ namespace GitTool
             IList<GitLabApiClient.Models.Projects.Responses.Project> list;
             try
             {
-                list = await client.Projects.GetAsync();
+                list = await client.Projects.GetAsync((o) =>
+                {
+                    o.Owned = true;
+                });
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 MessageBox.Show($"Failed to query GitLab instance at {baseUrl}.");
                 return;

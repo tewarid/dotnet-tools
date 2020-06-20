@@ -27,12 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="GitLabApiClient" Version="1.0.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="icon-orange.ico" />
+    <PackageReference Include="GitLabApiClient" Version="1.6.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>

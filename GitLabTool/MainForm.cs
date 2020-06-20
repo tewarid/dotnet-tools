@@ -42,17 +42,11 @@ namespace GitLabTool
         {
             CreateClient();
             IList<Project> projectList;
-            if (string.IsNullOrWhiteSpace(filter))
+            projectList = await client.Projects.GetAsync((o) =>
             {
-                projectList = await client.Projects.GetAsync().ConfigureAwait(true);
-            }
-            else
-            {
-                projectList = await client.Projects.GetAsync((o) =>
-                {
-                    o.Filter = filter;
-                }).ConfigureAwait(true);
-            }
+                o.Filter = filter;
+                o.Owned = true;
+            }).ConfigureAwait(true);
             projects.Items.Clear();
             milestones.Items.Clear();
             foreach (var project in projectList)
@@ -101,7 +95,7 @@ namespace GitLabTool
             else
             {
                 client = new GitLabClient(host.Text);
-                var session = await client.LoginAsync(username.Text, password.Text);
+                _ = await client.LoginAsync(username.Text, password.Text);
             }
         }
 

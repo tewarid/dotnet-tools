@@ -90,7 +90,16 @@ namespace GitTool
             {
                 return;
             }
-            else if (Repository.IsValid(rootDir.FullName))
+            bool valid;
+            try
+            {
+                valid = Repository.IsValid(rootDir.FullName);
+            }
+            catch
+            {
+                valid = false;
+            }
+            if (valid)
             {
                 BeginInvoke(new MethodInvoker(() =>
                 {
