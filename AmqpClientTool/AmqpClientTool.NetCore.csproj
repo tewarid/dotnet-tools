@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>MqttClientTool</RootNamespace>
-    <AssemblyName>MqttClientTool</AssemblyName>
+    <RootNamespace>AmqpClientTool</RootNamespace>
+    <AssemblyName>AmqpClientTool</AssemblyName>
     <UseWindowsForms>true</UseWindowsForms>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
@@ -24,10 +24,6 @@
       <Project>{E1FEE78B-CBEC-4A3E-9252-581406417CE0}</Project>
       <Name>Common</Name>
     </ProjectReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="icon-orange.ico" />
   </ItemGroup>
 
   <ItemGroup>

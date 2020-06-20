@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>GitTool</RootNamespace>
-    <AssemblyName>GitTool</AssemblyName>
+    <RootNamespace>GitLabTool</RootNamespace>
+    <AssemblyName>GitLabTool</AssemblyName>
     <UseWindowsForms>true</UseWindowsForms>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
