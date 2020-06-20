@@ -10,6 +10,7 @@ install:
   - ps: $fileContent += "`n-----END RSA PRIVATE KEY-----`n"
   - ps: Set-Content c:\users\appveyor\.ssh\id_rsa $fileContent
   - git submodule update --init --recursive
+platform: x86
 configuration: Release
 before_build:
   - nuget restore NetTools.sln
