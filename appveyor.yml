@@ -24,15 +24,6 @@ artifacts:
 - path: '**\*.zip'
   name: NetTools
 deploy:
-# - provider: BinTray
-#   username: tewarid
-#   api_key:
-#     secure: UZ/R7SoyXgGoBo7z7Dxz7BrS8CSaOfPGpBpfAjPuZPo+UVAY7LkvzEQmz+UKjBP6
-#   subject: tewarid
-#   repo: net-tools
-#   package: net-tools
-#   publish: true
-#   override: true
 - provider: GitHub
   release: net-tools-v$(appveyor_build_version)
   description: 'See project readme file for additional information.'
