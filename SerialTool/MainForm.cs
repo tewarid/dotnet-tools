@@ -2,7 +2,6 @@
 using System;
 using System.IO;
 using System.IO.Ports;
-using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,49 +12,10 @@ namespace SerialTool
     public partial class MainForm : Form
     {
         private SerialPort port;
-        private ManagementEventWatcher portCreationWatcher;
-        private ManagementEventWatcher portDeletionWatcher;
 
         public MainForm()
         {
             InitializeComponent();
-
-            Task.Run(() =>
-            {
-                string query = "SELECT * FROM __InstanceCreationEvent WITHIN 1 WHERE TargetInstance isa \"WIN32_SerialPort\"";
-                portCreationWatcher = new ManagementEventWatcher(query);
-                portCreationWatcher.EventArrived += Watcher_SerialPortCreation;
-                portCreationWatcher.Start();
-
-                query = "SELECT * FROM __InstanceDeletionEvent WITHIN 1 WHERE TargetInstance isa \"WIN32_SerialPort\"";
-                portDeletionWatcher = new ManagementEventWatcher(query);
-                portDeletionWatcher.EventArrived += Watcher_SerialPortDeletion;
-                portDeletionWatcher.Start();
-            });
-        }
-
-        private void Watcher_SerialPortCreation(object sender, EventArrivedEventArgs e)
-        {
-            BeginInvoke((MethodInvoker)delegate
-            {
-                ManagementBaseObject target = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
-                serialPortName.Items.Add(target.Properties["DeviceId"].Value.ToString());
-            });
-        }
-
-        private void Watcher_SerialPortDeletion(object sender, EventArrivedEventArgs e)
-        {
-            BeginInvoke((MethodInvoker)delegate
-            {
-                ManagementBaseObject target = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
-                string portName = target.Properties["DeviceId"].Value.ToString();
-                if (serialPortName.Text.Equals(portName))
-                {
-                    serialPortName.Text = string.Empty;
-                    CloseSerialPort();
-                }
-                serialPortName.Items.Remove(portName);
-            });
         }
 
         private void ShowSerialPorts()
@@ -263,27 +223,8 @@ namespace SerialTool
 
         private async void SerialPortName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string description = string.Empty;
-            string pnpDeviceID = string.Empty;
-            string portName = serialPortName.Text;
-            await Task.Run(() =>
-            {
-                string query = $"SELECT * FROM WIN32_SerialPort WHERE DeviceID=\"{portName}\"";
-                using (var searcher = new ManagementObjectSearcher(query))
-                {
-                    var ports = searcher.Get();
-                    foreach (var port in ports)
-                    {
-                        description = port.Properties["Description"].Value.ToString();
-                        pnpDeviceID = port.Properties["PNPDeviceID"].Value.ToString();
-                        break;
-                    }
-                }
-            });
-            outputText.AppendText($"{description}");
-            outputText.AppendText($"{Environment.NewLine}");
-            outputText.AppendText($"{pnpDeviceID}");
-            outputText.AppendText($"{Environment.NewLine}");
+            await Task.CompletedTask;
+            outputText.AppendText($"{serialPortName.Text} selected.");
             outputText.AppendText($"{Environment.NewLine}");
         }
     }
