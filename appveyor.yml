@@ -13,9 +13,9 @@ install:
 platform: x86
 configuration: Release
 before_build:
-  - nuget restore NetTools.sln
+  - nuget restore Tools.sln
 build:
-  project: NetTools.sln
+  project: Tools.sln
   verbosity: minimal
 after_build:
   - cmd: package.bat %APPVEYOR_BUILD_FOLDER% NetTools-%APPVEYOR_BUILD_VERSION%.zip
