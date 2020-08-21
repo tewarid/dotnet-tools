@@ -110,7 +110,35 @@
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AmqpClientTool\AmqpClientTool.csproj" />
+    <ProjectReference Include="..\AzureEventHubClientTool\AzureEventHubClientTool.csproj" />
+    <ProjectReference Include="..\BluetoothSerialClientTool\BluetoothSerialClientTool.csproj" />
+    <ProjectReference Include="..\BluetoothSerialServerTool\BluetoothSerialServerTool.csproj" />
+    <ProjectReference Include="..\EncodingTool\EncodingTool.csproj" />
+    <ProjectReference Include="..\FirewallTool\FirewallTool.csproj" />
+    <ProjectReference Include="..\FontTool\FontTool.csproj" />
+    <ProjectReference Include="..\GitLabTool\GitLabTool.csproj" />
+    <ProjectReference Include="..\GitTool\GitTool.csproj" />
+    <ProjectReference Include="..\GlobalizationTool\GlobalizationTool.csproj" />
+    <ProjectReference Include="..\HidTool\HidTool.csproj" />
+    <ProjectReference Include="..\HttpListenerTool\HttpListenerTool.csproj" />
+    <ProjectReference Include="..\HttpRequestTool\HttpRequestTool.csproj" />
+    <ProjectReference Include="..\IcmpTool\IcmpTool.csproj" />
+    <ProjectReference Include="..\KafkaClientTool\KafkaClientTool.csproj" />
     <ProjectReference Include="..\Launcher\Launcher.csproj" />
+    <ProjectReference Include="..\MqttClientTool\MqttClientTool.csproj" />
+    <ProjectReference Include="..\NotificationTool\NotificationTool.csproj" />
+    <ProjectReference Include="..\RouteTool\RouteTool.csproj" />
+    <ProjectReference Include="..\SerialTool\SerialTool.csproj" />
+    <ProjectReference Include="..\SmtpClientTool\SmtpClientTool.csproj" />
+    <ProjectReference Include="..\SmtpServerTool\SmtpServerTool.csproj" />
+    <ProjectReference Include="..\SnifferTool\SnifferTool.csproj" />
+    <ProjectReference Include="..\TcpClientTool\TcpClientTool.csproj" />
+    <ProjectReference Include="..\TcpListenerTool\TcpListenerTool.csproj" />
+    <ProjectReference Include="..\UdpTool\UdpTool.csproj" />
+    <ProjectReference Include="..\WebSocketServerTool\WebSocketServerTool.csproj" />
+    <ProjectReference Include="..\WebSocketTool\WebSocketTool.csproj" />
+    <ProjectReference Include="..\WmiQuery\WmiQuery.csproj" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>

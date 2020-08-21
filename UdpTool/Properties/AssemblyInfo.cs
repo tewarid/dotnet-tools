@@ -3,5 +3,5 @@
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UdpTool")]
-[assembly: AssemblyProduct("UdpTool")]
+[assembly: AssemblyTitle("UDP Tool")]
+[assembly: AssemblyProduct("UDP Tool")]

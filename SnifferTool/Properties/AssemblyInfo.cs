@@ -3,5 +3,5 @@
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SnifferTool")]
-[assembly: AssemblyProduct("SnifferTool")]
+[assembly: AssemblyTitle("Network Sniffer Tool")]
+[assembly: AssemblyProduct("Network Sniffer Tool")]

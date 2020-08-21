@@ -3,5 +3,5 @@
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RouteTool")]
-[assembly: AssemblyProduct("RouteTool")]
+[assembly: AssemblyTitle("Network Route Tool")]
+[assembly: AssemblyProduct("Network Route Tool")]

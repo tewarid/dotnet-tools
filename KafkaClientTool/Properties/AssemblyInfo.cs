@@ -3,5 +3,5 @@
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("KafkaClientTool")]
-[assembly: AssemblyProduct("KafkaClientTool")]
+[assembly: AssemblyTitle("Kafka Client Tool")]
+[assembly: AssemblyProduct("Kafka Client Tool")]

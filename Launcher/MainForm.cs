@@ -1,6 +1,6 @@
-﻿using Common;
-using System;
+﻿using DesktopBridge;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,47 +10,25 @@ namespace Launcher
 {
     public partial class MainForm : Form
     {
-        List<Form> activeForms = new List<Form>();
+        IList<Assembly> _assemblies;
 
         public MainForm()
         {
             InitializeComponent();
-            Type[] forms = GetAllMainForm();
-            Add(forms);
+            _assemblies = GetAllAssemblies();
+            Add(_assemblies);
         }
 
-        private void Add(Type[] forms)
+        private void Add(IList<Assembly> assemblies)
         {
-            foreach (var type in forms)
+            foreach (var assembly in assemblies)
             {
-                var name = type.Name;
-                var attributes = (MainFormAttribute[])type.GetCustomAttributes(typeof(MainFormAttribute), false);
-                if (attributes.Length > 0)
-                {
-                    name = attributes?[0].Name;
-                }
+                var attribute = (AssemblyTitleAttribute)assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).FirstOrDefault();
+                var name = attribute?.Title ?? assembly.GetName().Name;
                 Button button = CreateButton(name);
                 button.Click += (sender, e) =>
                 {
-                    Form form = (Form)Activator.CreateInstance(type);
-                    activeForms.Add(form);
-                    form.Disposed += (sender2, e2) =>
-                    {
-                        activeForms.Remove(form);
-                        if (activeForms.Count != 0)
-                        {
-                            activeForms.LastOrDefault().BringToFront();
-                        }
-                        else if (Visible)
-                        {
-                            BringToFront();
-                        }
-                        else
-                        {
-                            Application.Exit();
-                        }
-                    };
-                    form.Show();
+                    Process.Start(assembly.Location);
                 };
 
                 panel.Controls.Add(button);
@@ -72,53 +50,36 @@ namespace Launcher
             return button;
         }
 
-        private Type[] GetAllMainForm()
+        private IList<Assembly> GetAllAssemblies()
         {
-            List<Type> forms = new List<Type>();
-            Assembly[] assemblies = GetAllAssemblies();
-            foreach (var assembly in assemblies)
+            List<Assembly> assemblies = new List<Assembly>();
+            Assembly executingAssembly = Assembly.GetExecutingAssembly();
+            string path = Path.GetDirectoryName(executingAssembly.Location);
+            Helpers helpers = new Helpers();
+            if (helpers.IsRunningAsUwp())
             {
-                IEnumerable<Type> types;
-                try
-                {
-                    types = from type in assembly.GetTypes()
-                                where Attribute.IsDefined(type, typeof(MainFormAttribute))
-                                select type;
-                }
-                catch
+                path = Directory.GetParent(path).FullName;
+            }
+#if NETCOREAPP
+            var files = Directory.GetFiles(path, "*.dll", SearchOption.AllDirectories);
+#else
+            var files = Directory.GetFiles(path, "*.exe", SearchOption.AllDirectories);
+#endif
+            foreach (string file in files)
+            {
+                var assembly = Assembly.LoadFile(file);
+                if (executingAssembly.Equals(assembly))
                 {
                     continue;
                 }
-                foreach (var type in types)
-                {
-                    forms.Add(type);
-                }
+                assemblies.Add(assembly);
             }
-            var orderedForms = forms.OrderBy(t => ((MainFormAttribute)t.GetCustomAttributes(typeof(MainFormAttribute), false)[0]).Name);
-            return orderedForms.ToArray();
-        }
-
-        private Assembly[] GetAllAssemblies()
-        {
-            List<Assembly> assemblies = new List<Assembly>();
-            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-#if NETCOREAPP
-            foreach (string assembly in Directory.GetFiles(path, "*.dll"))
-#else
-            foreach (string assembly in Directory.GetFiles(path, "*.exe"))
-#endif
-            {
-                assemblies.Add(Assembly.LoadFile(assembly));
-            }
-            return assemblies.ToArray();
+            return assemblies;
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (activeForms.Count == 0)
-            {
-                Application.Exit();
-            }
+            Application.Exit();
         }
     }
 }

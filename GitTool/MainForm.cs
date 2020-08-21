@@ -1,5 +1,4 @@
 ﻿using Common;
-using LibGit2Sharp;
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
@@ -93,7 +92,7 @@ namespace GitTool
             bool valid;
             try
             {
-                valid = Repository.IsValid(rootDir.FullName);
+                valid = Directory.Exists(Path.Combine(rootDir.FullName, ".git"));
             }
             catch
             {
