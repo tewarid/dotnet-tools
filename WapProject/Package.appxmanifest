@@ -11,7 +11,7 @@
   <Identity
     Name="23413DevendraTewari.ToolsforWindowsDesktop"
     Publisher="CN=45EE7F3F-ED2B-45A2-91C7-7AC934F26DC4"
-    Version="1.0.3.0" />
+    Version="1.0.4.0" />
 
   <Properties>
     <DisplayName>Tools for Windows Desktop</DisplayName>
