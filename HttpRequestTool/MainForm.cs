@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 
@@ -60,7 +61,7 @@ namespace HttpRequestTool
                 ((ComboboxItem<SecurityProtocolType>)tlsVersion.SelectedItem).Value;
         }
 
-        private void Go_Click(object sender, EventArgs e)
+        private async void Go_Click(object sender, EventArgs e)
         {
             responseContent.Clear();
             responseHeaders.Clear();
@@ -91,7 +92,7 @@ namespace HttpRequestTool
             {
                 request.Headers.Add(headers);
             }
-            WebResponse response;
+            WebResponse response = null;
             try
             {
                 if (HasContentBody())
@@ -104,20 +105,22 @@ namespace HttpRequestTool
                     byte[] dataOut = requestContent.BinaryValue;
                     if (dataOut.Length > 0)
                     {
-                        request.GetRequestStream().WriteAsync(dataOut, 0, dataOut.Length);
+                        await request.GetRequestStream().WriteAsync(dataOut, 0, dataOut.Length);
                     }
                 }
-
-                response = request.GetResponse();
+                await Task.Run(() =>
+                {
+                    response = request.GetResponse();
+                });
             }
             catch (WebException w)
             {
                 MessageBox.Show(w.Message, this.Text);
-                if (w.Response == null)
-                {
-                    return;
-                }
-                response = w.Response;
+                response = w?.Response;
+            }
+            if (response == null)
+            {
+                return;
             }
             byte[] dataIn = ReadAllBytes(response.GetResponseStream());
             responseContent.AppendBinary(dataIn, dataIn.Length);
