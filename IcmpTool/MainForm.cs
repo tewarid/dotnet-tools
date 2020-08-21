@@ -52,7 +52,14 @@ namespace IcmpTool
             }
             else
             {
-                icmpSocket.Send(data, length, endPoint);
+                try
+                {
+                    icmpSocket.Send(data, length, endPoint);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, this.Text);
+                }
             }
         }
 
@@ -60,12 +67,13 @@ namespace IcmpTool
         {
             if (!InvokeRequired)
             {
-                outputText.AppendText(string.Format("{0} sent {1} bytes(s):\r\n", endPoint.ToString(), length));
+                outputText.AppendText($"{endPoint.ToString()} sent {length} byte(s):{Environment.NewLine}");
                 for (int i = 0; i < length; i++)
                 {
-                    outputText.AppendText(string.Format("{0:X2} ", data[i]));
+                    outputText.AppendText($"{data[i]:X2} ");
                 }
-                outputText.AppendText("\r\n\r\n");
+                outputText.AppendText(Environment.NewLine);
+                outputText.AppendText(Environment.NewLine);
             }
             else
             {
