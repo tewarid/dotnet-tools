@@ -1,4 +1,5 @@
 ﻿using DesktopBridge;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -10,7 +11,7 @@ namespace Launcher
 {
     public partial class MainForm : Form
     {
-        IList<Assembly> _assemblies;
+        IList<Tuple<string, Assembly>> _assemblies;
 
         public MainForm()
         {
@@ -19,16 +20,14 @@ namespace Launcher
             Add(_assemblies);
         }
 
-        private void Add(IList<Assembly> assemblies)
+        private void Add(IList<Tuple<string, Assembly>> assemblies)
         {
             foreach (var assembly in assemblies)
             {
-                var attribute = (AssemblyTitleAttribute)assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).FirstOrDefault();
-                var name = attribute?.Title ?? assembly.GetName().Name;
-                Button button = CreateButton(name);
+                Button button = CreateButton(assembly.Item1);
                 button.Click += (sender, e) =>
                 {
-                    Process.Start(assembly.Location);
+                    Process.Start(assembly.Item2.Location);
                 };
 
                 panel.Controls.Add(button);
@@ -50,9 +49,9 @@ namespace Launcher
             return button;
         }
 
-        private IList<Assembly> GetAllAssemblies()
+        private IList<Tuple<string, Assembly>> GetAllAssemblies()
         {
-            List<Assembly> assemblies = new List<Assembly>();
+            Dictionary<string, Tuple<string, Assembly>> assemblies = new Dictionary<string, Tuple<string, Assembly>>();
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
             string path = Path.GetDirectoryName(executingAssembly.Location);
             Helpers helpers = new Helpers();
@@ -72,9 +71,14 @@ namespace Launcher
                 {
                     continue;
                 }
-                assemblies.Add(assembly);
+                var attribute = (AssemblyTitleAttribute)assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).FirstOrDefault();
+                var name = attribute?.Title ?? assembly.GetName().Name;
+                if (!assemblies.ContainsKey(name))
+                {
+                    assemblies.Add(name, new Tuple<string, Assembly>(name, assembly));
+                }
             }
-            return assemblies;
+            return assemblies.Values.ToList();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
