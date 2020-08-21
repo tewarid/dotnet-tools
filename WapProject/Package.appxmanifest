@@ -42,13 +42,6 @@
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
-        <!--<desktop:Extension
-          Category="windows.startupTask">
-          <desktop:StartupTask
-            TaskId="ToolsForWindowsDesktop"
-            Enabled="true"
-            DisplayName="Tools for Windows Desktop" />
-        </desktop:Extension>-->
       </Extensions>
     </Application>
   </Applications>
