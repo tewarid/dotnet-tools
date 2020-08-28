@@ -2,22 +2,20 @@
 
 .NET tools written primarily for Windows.
 
-## Download
+## Install
 
-See releases section of this GitHub project. For older builds, head to https://dl.bintray.com/tewarid/net-tools/.
+An app containing all the tools is available from the Microsoft Store, for a small fee, at https://www.microsoft.com/store/productId/9NT0G542BWLG.
 
 ## Build from source
 
-To build all the tools, clone this repository, and open the solution file `NeTools.sln` using Visual Studio 2019 and build.
+To build all the tools, clone this repository, open the solution file `Tools.sln` using Visual Studio 2019, and build.
 
 To build from the command line, open Developer Command Prompt for Visual Studio 2019, change to the `net-tools` directory, and run
 
 ```bash
-nuget restore NetTools.sln
-msbuild NeTools.sln
+msbuild /t:Restore Tools.sln
+msbuild Tools.sln
 ```
-
-You may have to download nuget from nuget.org.
 
 ### Mono
 
@@ -26,7 +24,7 @@ A solution file is available for building some of the tools for Linux using [Mon
 Use the msbuild version supplied by Mono to build
 
 ```bash
-msbuild NetTools.Mono.sln
+msbuild Tools.Mono.sln
 ```
 
 ### .NET Core
@@ -34,7 +32,7 @@ msbuild NetTools.Mono.sln
 A solution file is available to build some of the tools for Windows using .NET Core
 
 ```powershell
-dotnet build NetTools.NetCore.sln
+dotnet build Tools.NetCore.sln
 ```
 
 ## AMQP 1.0 Client Tool
