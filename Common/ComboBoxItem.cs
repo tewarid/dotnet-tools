@@ -18,5 +18,4 @@ namespace Common
             return Text;
         }
     }
-
 }

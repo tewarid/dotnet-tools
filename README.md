@@ -1,6 +1,6 @@
-# .NET Tools [![Build status](https://ci.appveyor.com/api/projects/status/d3bn7jnje8rtts7v?svg=true)](https://ci.appveyor.com/project/tewarid/nettools) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9272afa7d6494d7fa5a885e8e02a2999)](https://www.codacy.com/app/tewarid/net-tools?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tewarid/net-tools&amp;utm_campaign=Badge_Grade) [![Join the chat at https://gitter.im/tewarid-net-tools/Lobby](https://badges.gitter.im/tewarid-net-tools/Lobby.svg)](https://gitter.im/tewarid-net-tools/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# Tools for Windows Desktop [![Build status](https://ci.appveyor.com/api/projects/status/d3bn7jnje8rtts7v?svg=true)](https://ci.appveyor.com/project/tewarid/nettools) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9272afa7d6494d7fa5a885e8e02a2999)](https://www.codacy.com/app/tewarid/net-tools?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tewarid/net-tools&amp;utm_campaign=Badge_Grade) [![Join the chat at https://gitter.im/tewarid-net-tools/Lobby](https://badges.gitter.im/tewarid-net-tools/Lobby.svg)](https://gitter.im/tewarid-net-tools/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-.NET tools written primarily for Windows.
+Tools written primarily for Windows Desktop using C# .NET.
 
 ## Install
 
@@ -45,11 +45,11 @@ An interactive EventHub client for Azure based on the official library [Microsof
 
 ## Bluetooth Serial Client Tool
 
-Interactive client that may be used to open a Bluetooth serial socket, send, and receive data. It is built with [32feet.NET](https://www.nuget.org/packages/32feet.NET), a .NET library layered over Windows Bluetooth socket API.
+Interactive client that may be used to open a Bluetooth serial socket, send, and receive data. Based on [Windows.Devices.Bluetooth](https://docs.microsoft.com/en-us/uwp/api/Windows.Devices.Bluetooth) UWP API.
 
 ## Bluetooth Serial Server Tool
 
-Simulate a Bluetooth serial listener/server on Windows. It is built with [32feet.NET](https://www.nuget.org/packages/32feet.NET), a .NET library layered over Windows Bluetooth socket API.
+Interactive Bluetooth serial listener/server based on [Windows.Devices.Bluetooth](https://docs.microsoft.com/en-us/uwp/api/Windows.Devices.Bluetooth) UWP API.
 
 ## Encoding Tool
 
@@ -85,7 +85,7 @@ Interactive MQTT client based on the [MQTTnet](https://github.com/chkr1011/MQTTn
 
 ## Route Tool
 
-Interactive client to add, view, and delete IP v4 routes on Windows. Requires PowerShell, which is available by default on Windows 7 and beyond. Requires administrative privilege.
+Interactive client to add, view, and delete IP v4 routes on Windows. Requires PowerShell. Requires administrative privilege.
 
 ## Serial Tool
 
@@ -117,11 +117,11 @@ Interactive UDP/IP client that may be used to establish IPv4 UDP sockets, send, 
 
 ## WebSocket Tool
 
-Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, send, and receive data. It is built with .NET's native implementation of WebSockets, and requires Windows 10.
+Interactive [WebSocket](https://msdn.microsoft.com/en-us/library/system.net.websockets.websocket.aspx) client that may be used to establish WebSocket sessions, send, and receive data. It is built with .NET's native implementation of WebSockets.
 
 ## WebSocket Server Tool
 
-Interactive WebSocket server based on System.Net.HttpListener. Supports SSL. Requires Windows 10.
+Interactive WebSocket server based on System.Net.HttpListener. Supports SSL.
 
 ## WMI Query Tool
 
