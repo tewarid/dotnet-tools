@@ -1,7 +1,7 @@
 ﻿using Common;
 using InTheHand.Net.Sockets;
 using System;
-using System.Net.Sockets;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -39,7 +39,7 @@ namespace BluetoothSerialClientTool
                 return;
             }
 
-            devices = client.DiscoverDevices(10, true, true, false);
+            devices = client.DiscoverDevices().ToArray();
 
             deviceList.Items.Clear();
             foreach (BluetoothDeviceInfo device in devices)
@@ -69,23 +69,22 @@ namespace BluetoothSerialClientTool
             connectButton.Enabled = false;
             closeButton.Enabled = true;
             sendButton.Enabled = true;
-            await ReadAsync(stream).ConfigureAwait(true);
+            await ReadAsync(stream);
         }
 
         private async Task ReadAsync(NetworkStream stream)
         {
             byte[] buffer = new byte[100];
-            int length = 0;
             while (true)
             {
+                int length;
                 try
                 {
-                    length = await stream.ReadAsync(buffer, 0, buffer.Length)
-                        .ConfigureAwait(true);
+                    length = await stream.ReadAsync(buffer, 0, buffer.Length);
                 }
                 catch
                 {
-                    if (this.Visible)
+                    if (Visible)
                     {
                         // we're not being closed
                         Stop();
@@ -140,23 +139,22 @@ namespace BluetoothSerialClientTool
             int ticks = Environment.TickCount;
             try
             {
-                await stream.WriteAsync(buffer, 0, buffer.Length)
-                    .ConfigureAwait(true);
+                await stream.WriteAsync(buffer, 0, buffer.Length);
                 // UI context gets resumed at this point
                 ticks = Environment.TickCount - ticks;
-                status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
-                    buffer.Length,ticks);
+                status.Text = $"Sent {buffer.Length} byte(s) in {ticks} milliseconds";
             }
             catch (Exception ex)
             {
                 Stop();
                 MessageBox.Show(ex.Message);
             }
+            await Task.CompletedTask;
         }
 
         private async void SendButton_Click(object sender, EventArgs e)
         {
-            await SendAsync(input.BinaryValue).ConfigureAwait(true);
+            await SendAsync(input.BinaryValue);
         }
     }
 }

@@ -45,7 +45,7 @@ An interactive EventHub client for Azure based on the official library [Microsof
 
 ## Bluetooth Serial Client Tool
 
-Interactive client that may be used to open a Bluetooth serial socket, send, and receive data. It is built with [32feet.NET](https://www.nuget.org/packages/32feet.NET), a .NET library layered over Windows Bluetooth socket API.
+Interactive client that may be used to open a Bluetooth serial socket, send, and receive data. It is built with [InTheHand.Net.Bluetooth](https://www.nuget.org/packages/InTheHand.Net.Bluetooth/), a .NET library layered over Windows Bluetooth socket API.
 
 ## Bluetooth Serial Server Tool
 
