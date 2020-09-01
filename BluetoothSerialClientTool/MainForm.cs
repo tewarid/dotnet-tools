@@ -1,63 +1,54 @@
 ﻿using Common;
-using InTheHand.Net.Sockets;
 using System;
-using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Windows.Devices.Bluetooth;
+using Windows.Devices.Bluetooth.Rfcomm;
+using Windows.Devices.Enumeration;
+using Windows.Networking.Sockets;
+using Windows.Storage.Streams;
 
 namespace BluetoothSerialClientTool
 {
     [MainForm(Name = "Bluetooth Serial Client Tool")]
     public partial class MainForm : Form
     {
-        private readonly Guid MyServiceUuid = new Guid("{00001101-0000-1000-8000-00805F9B34FB}");
-        // Android uses the well known SPP GUID 00001101-0000-1000-8000-00805F9B34FB
-
-        BluetoothClient client;
-        BluetoothDeviceInfo[] devices;
-        NetworkStream stream;
+        StreamSocket socket;
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private async void MainForm_Load(object sender, EventArgs e)
         {
-            Initialize();
+            await LoadDeviceList().ConfigureAwait(true);
         }
 
-        private void Initialize()
+        private async Task LoadDeviceList()
         {
-            try
-            {
-                client = new BluetoothClient();
-            }
-            catch(PlatformNotSupportedException ex)
-            {
-                MessageBox.Show(ex.Message, this.Text);
-                return;
-            }
-
-            devices = client.DiscoverDevices(10, true, true, false);
-
             deviceList.Items.Clear();
-            foreach (BluetoothDeviceInfo device in devices)
+            var list = await DeviceInformation.FindAllAsync(RfcommDeviceService.GetDeviceSelector(RfcommServiceId.SerialPort));
+            foreach(var info in list)
             {
-                deviceList.Items.Add(device.DeviceName);
+                var device = await BluetoothDevice.FromIdAsync(info.Id);
+                var item = new ComboboxItem<string>(device.Name, info.Id);
+                deviceList.Items.Add(item);
             }
         }
 
         private async void ConnectButton_Click(object sender, EventArgs e)
         {
-            if (deviceList.SelectedIndex >= devices.Length)
+            if (deviceList.SelectedIndex == -1)
             {
                 return;
             }
             try
             {
-                client.Connect(devices[deviceList.SelectedIndex].DeviceAddress, MyServiceUuid);
-                stream = client.GetStream();
+                ComboboxItem<string> item = (ComboboxItem<string>)deviceList.SelectedItem;
+                RfcommDeviceService rfcommDeviceService = await RfcommDeviceService.FromIdAsync(item.Value);
+                socket = new StreamSocket();
+                await socket.ConnectAsync(rfcommDeviceService.ConnectionHostName, rfcommDeviceService.ConnectionServiceName);
             }
             catch(Exception ex)
             {
@@ -69,65 +60,65 @@ namespace BluetoothSerialClientTool
             connectButton.Enabled = false;
             closeButton.Enabled = true;
             sendButton.Enabled = true;
-            await ReadAsync(stream).ConfigureAwait(true);
+            await ReadAsync(socket).ConfigureAwait(true);
         }
 
-        private async Task ReadAsync(NetworkStream stream)
+        private async Task ReadAsync(StreamSocket socket)
         {
-            byte[] buffer = new byte[100];
-            int length = 0;
+            IBuffer readBuffer = new Windows.Storage.Streams.Buffer(1024);
             while (true)
             {
+                IBuffer buffer;
                 try
                 {
-                    length = await stream.ReadAsync(buffer, 0, buffer.Length)
-                        .ConfigureAwait(true);
+                    buffer = await socket.InputStream.ReadAsync(readBuffer, 1024, InputStreamOptions.Partial);
                 }
                 catch
                 {
-                    if (this.Visible)
-                    {
-                        // we're not being closed
-                        Stop();
-                    }
-                    break;
+                    await Stop().ConfigureAwait(true);
+                    return;
                 }
-                if (length == 0)
+                if (buffer.Length != 0)
                 {
-                    Stop();
-                    break;
+                    var data = new byte[buffer.Length];
+                    using (DataReader dataReader = DataReader.FromBuffer(buffer))
+                    {
+                        dataReader.ReadBytes(data);
+                        outputText.AppendBinary(data, data.Length);
+                    }
                 }
-                outputText.AppendBinary(buffer, length);
+                else
+                {
+                    status.Text = "Disconnected.";
+                    await Stop().ConfigureAwait(true);
+                    return;
+                }
             }
         }
 
-        private void Stop()
+        private async Task Stop()
         {
-            if (stream != null)
+            if (socket != null)
             {
-                stream.Close();
-                stream = null;
-            }
-            if (client != null)
-            {
-                client.Close();
+                socket.Dispose();
+                socket = null;
             }
             deviceList.Enabled = true;
             refreshButton.Enabled = true;
             connectButton.Enabled = false;
             closeButton.Enabled = false;
             sendButton.Enabled = false;
-            Initialize();
+            await LoadDeviceList().ConfigureAwait(true);
         }
 
-        private void RefreshButton_Click(object sender, EventArgs e)
+        private async void RefreshButton_Click(object sender, EventArgs e)
         {
-            Initialize();
+            await LoadDeviceList().ConfigureAwait(true);
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            client.Close();
+            socket.Dispose();
         }
 
         private void DeviceList_SelectedIndexChanged(object sender, EventArgs e)
@@ -135,23 +126,26 @@ namespace BluetoothSerialClientTool
             connectButton.Enabled = deviceList.SelectedIndex >= 0;
         }
 
-        private async Task SendAsync(byte[] buffer)
+        private async Task SendAsync(byte[] data)
         {
             int ticks = Environment.TickCount;
-            try
+            using (DataWriter dataWriter = new DataWriter())
             {
-                await stream.WriteAsync(buffer, 0, buffer.Length)
-                    .ConfigureAwait(true);
-                // UI context gets resumed at this point
-                ticks = Environment.TickCount - ticks;
-                status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
-                    buffer.Length,ticks);
+                dataWriter.WriteBytes(data);
+                IBuffer buffer = dataWriter.DetachBuffer();
+                try
+                {
+                    await socket.OutputStream.WriteAsync(buffer);
+                }
+                catch (Exception ex)
+                {
+                    await Stop().ConfigureAwait(true);
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
             }
-            catch (Exception ex)
-            {
-                Stop();
-                MessageBox.Show(ex.Message);
-            }
+            ticks = Environment.TickCount - ticks;
+            status.Text = $"Sent {data.Length} byte(s) in {ticks} milliseconds";
         }
 
         private async void SendButton_Click(object sender, EventArgs e)

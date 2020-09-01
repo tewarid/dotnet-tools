@@ -1,108 +1,112 @@
 ﻿using Common;
-using InTheHand.Net.Bluetooth;
-using InTheHand.Net.Sockets;
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Windows.Devices.Bluetooth;
+using Windows.Devices.Bluetooth.Rfcomm;
+using Windows.Networking.Sockets;
+using Windows.Storage.Streams;
 
 namespace BluetoothSerialServerTool
 {
     [MainForm(Name = "Bluetooth Serial Server Tool")]
     public partial class MainForm : Form
     {
-        private readonly Guid MyServiceUuid = new Guid("{00001101-0000-1000-8000-00805F9B34FB}");
-        // Android uses the well known SPP GUID 00001101-0000-1000-8000-00805F9B34FB
-
-        BluetoothListener listener;
-        BluetoothClient client;
-        Stream stream;
+        private StreamSocket socket;
+        private RfcommServiceProvider rfcommProvider;
+        private StreamSocketListener socketListener;
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void StartButton_Click(object sender, EventArgs e)
+        private async void StartButton_Click(object sender, EventArgs e)
         {
-            Start();
+            await Start().ConfigureAwait(true);
         }
 
-        private void Start()
+        private async Task Start()
         {
             try
             {
-                listener = new BluetoothListener(MyServiceUuid); // Listen on primary radio
-                listener.Start();
-                listener.BeginAcceptBluetoothClient(AcceptBluetoothClient, null);
+                rfcommProvider = await RfcommServiceProvider.CreateAsync(RfcommServiceId.SerialPort);
+                socketListener = new StreamSocketListener();
+                socketListener.ConnectionReceived += OnConnectionReceived;
+                await socketListener.BindServiceNameAsync(rfcommProvider.ServiceId.AsString(),
+                    SocketProtectionLevel.BluetoothEncryptionAllowNullAuthentication);
+                rfcommProvider.StartAdvertising(socketListener, true);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, string.Format("Could not start listener. {0}", ex.Message));
+                MessageBox.Show(this, $"Could not start listener. {ex.Message}");
                 return;
             }
 
-            status.Text = string.Format("Listening at {0}, HCI version {1}...", 
-                BluetoothRadio.PrimaryRadio.Name, BluetoothRadio.PrimaryRadio.HciVersion);
+            status.Text = "Listening for connections...";
             startButton.Enabled = false;
             stopButton.Enabled = true;
         }
 
-        private void AcceptBluetoothClient(IAsyncResult ar)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Event handler")]
+        private async void OnConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
         {
-            if (client != null)
+            if (socket != null)
             {
                 Stop(false);
             }
 
-            if (listener == null)
+            if (socketListener == null)
             {
                 Stop(true);
                 return;
             }
 
-            client = listener.EndAcceptBluetoothClient(ar);
-            stream = client.GetStream();
+            socket = args.Socket;
+            
+            var remoteDevice = await BluetoothDevice.FromHostNameAsync(socket.Information.RemoteHostName);
 
-            BeginInvoke(new MethodInvoker(async delegate
+            BeginInvoke(new MethodInvoker(() =>
             {
-                status.Text = string.Format("Connected to {0}.", client.RemoteMachineName);
+                status.Text = $"Connected to {remoteDevice.Name}.";
                 sendButton.Enabled = true;
-                await ReadAsync(stream).ConfigureAwait(true);
             }));
-
-            listener.BeginAcceptBluetoothClient(AcceptBluetoothClient, null);
+            await ReadAsync(socket.InputStream).ConfigureAwait(true);
         }
 
-        private async Task ReadAsync(Stream stream)
+        private async Task ReadAsync(IInputStream stream)
         {
-            byte[] buffer = new byte[100];
-            int length = 0;
+            IBuffer readBuffer = new Windows.Storage.Streams.Buffer(1024);
             while (true)
             {
+                IBuffer buffer;
                 try
                 {
-                    length = await stream.ReadAsync(buffer, 0, buffer.Length)
-                        .ConfigureAwait(true);
+                    buffer = await stream.ReadAsync(readBuffer, 1024, InputStreamOptions.Partial);
                 }
-                catch(ObjectDisposedException)
+                catch
                 {
-                    if (this.Visible)
-                    {
-                        Stop(false);
-                    }
-                    break;
-                }
-
-                if (length == 0)
-                {
-                    // Done
                     Stop(false);
-                    break;
+                    return;
                 }
-
-                // UI context resumes here
-                outputText.AppendBinary(buffer, length);
+                if (buffer.Length != 0)
+                {
+                    var data = new byte[buffer.Length];
+                    using (DataReader dataReader = DataReader.FromBuffer(buffer))
+                    {
+                        dataReader.ReadBytes(data);
+                        BeginInvoke(new MethodInvoker(() =>
+                        {
+                            outputText.AppendBinary(data, data.Length);
+                        }));
+                    }
+                }
+                else
+                {
+                    status.Text = "Disconnected.";
+                    Stop(false);
+                    return;
+                }
             }
         }
 
@@ -122,28 +126,23 @@ namespace BluetoothSerialServerTool
                 return;
             }
 
-            if (stream != null)
+            if (rfcommProvider != null)
             {
-                stream.Close();
-                stream = null;
+                rfcommProvider.StopAdvertising();
+                rfcommProvider = null;
             }
-            if (client != null)
+
+            if (socket != null)
             {
-                client.Close();
-                client = null;
+                socket.Dispose();
+                socket = null;
             }
-            if (stopListener && listener != null)
+
+            if (stopListener && socketListener != null)
             {
-                BluetoothListener l = listener;
-                listener = null; // We want AsyncCallback to know we're done,
-                try
-                {
-                    l.Stop();    // because it gets invoked when we call Stop.
-                }
-                catch
-                {
-                    // nothing for program or user to do
-                }
+                socketListener.Dispose();
+                socketListener = null;
+
                 startButton.Enabled = true;
                 stopButton.Enabled = false;
                 status.Text = "Stopped.";
@@ -151,24 +150,26 @@ namespace BluetoothSerialServerTool
             sendButton.Enabled = false;
         }
 
-        private async Task SendAsync(byte[] buffer)
+        private async Task SendAsync(byte[] data)
         {
             int ticks = Environment.TickCount;
-            try
+            using (DataWriter dataWriter = new DataWriter())
             {
-                await stream.WriteAsync(buffer, 0, buffer.Length)
-                    .ConfigureAwait(true);
-
-                // UI context gets resumed at this point
-                ticks = Environment.TickCount - ticks;
-                status.Text = String.Format("Sent {0} byte(s) in {1} milliseconds",
-                    buffer.Length, ticks);
+                dataWriter.WriteBytes(data);
+                IBuffer buffer = dataWriter.DetachBuffer();
+                try
+                {
+                    await socket.OutputStream.WriteAsync(buffer);
+                }
+                catch (Exception ex)
+                {
+                    Stop(false);
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
             }
-            catch (Exception ex)
-            {
-                Stop(false);
-                MessageBox.Show(ex.Message);
-            }
+            ticks = Environment.TickCount - ticks;
+            status.Text = $"Sent {data.Length} byte(s) in {ticks} milliseconds";
         }
 
         private async void SendButton_Click(object sender, EventArgs e)
