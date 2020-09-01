@@ -22,7 +22,7 @@ namespace BluetoothSerialClientTool
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            await LoadDeviceList();
+            await LoadDeviceList().ConfigureAwait(true);
         }
 
         private async Task LoadDeviceList()
@@ -75,7 +75,7 @@ namespace BluetoothSerialClientTool
                 }
                 catch
                 {
-                    await Stop();
+                    await Stop().ConfigureAwait(true);
                     return;
                 }
                 if (buffer.Length != 0)
@@ -90,7 +90,7 @@ namespace BluetoothSerialClientTool
                 else
                 {
                     status.Text = "Disconnected.";
-                    await Stop();
+                    await Stop().ConfigureAwait(true);
                     return;
                 }
             }
@@ -108,12 +108,12 @@ namespace BluetoothSerialClientTool
             connectButton.Enabled = false;
             closeButton.Enabled = false;
             sendButton.Enabled = false;
-            await LoadDeviceList();
+            await LoadDeviceList().ConfigureAwait(true);
         }
 
         private async void RefreshButton_Click(object sender, EventArgs e)
         {
-            await LoadDeviceList();
+            await LoadDeviceList().ConfigureAwait(true);
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -139,7 +139,7 @@ namespace BluetoothSerialClientTool
                 }
                 catch (Exception ex)
                 {
-                    await Stop();
+                    await Stop().ConfigureAwait(true);
                     MessageBox.Show(ex.Message);
                     return;
                 }

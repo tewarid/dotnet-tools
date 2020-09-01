@@ -23,7 +23,7 @@ namespace BluetoothSerialServerTool
 
         private async void StartButton_Click(object sender, EventArgs e)
         {
-            await Start();
+            await Start().ConfigureAwait(true);
         }
 
         private async Task Start()
@@ -48,6 +48,7 @@ namespace BluetoothSerialServerTool
             stopButton.Enabled = true;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Event handler")]
         private async void OnConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
         {
             if (socket != null)
@@ -70,7 +71,7 @@ namespace BluetoothSerialServerTool
                 status.Text = $"Connected to {remoteDevice.Name}.";
                 sendButton.Enabled = true;
             }));
-            await ReadAsync(socket.InputStream);
+            await ReadAsync(socket.InputStream).ConfigureAwait(true);
         }
 
         private async Task ReadAsync(IInputStream stream)
@@ -173,7 +174,7 @@ namespace BluetoothSerialServerTool
 
         private async void SendButton_Click(object sender, EventArgs e)
         {
-            await SendAsync(input.BinaryValue);
+            await SendAsync(input.BinaryValue).ConfigureAwait(true);
         }
     }
 }
