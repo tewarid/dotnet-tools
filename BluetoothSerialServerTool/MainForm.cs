@@ -126,12 +126,6 @@ namespace BluetoothSerialServerTool
                 return;
             }
 
-            if (rfcommProvider != null)
-            {
-                rfcommProvider.StopAdvertising();
-                rfcommProvider = null;
-            }
-
             if (socket != null)
             {
                 socket.Dispose();
@@ -140,6 +134,12 @@ namespace BluetoothSerialServerTool
 
             if (stopListener && socketListener != null)
             {
+                if (rfcommProvider != null)
+                {
+                    rfcommProvider.StopAdvertising();
+                    rfcommProvider = null;
+                }
+
                 socketListener.Dispose();
                 socketListener = null;
 
