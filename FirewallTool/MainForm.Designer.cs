@@ -58,22 +58,22 @@ namespace FirewallTool
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Protocol";
             // 
-            // rbTCP
+            // tcpOption
             // 
             this.tcpOption.AutoSize = true;
             this.tcpOption.Location = new System.Drawing.Point(74, 16);
-            this.tcpOption.Name = "rbTCP";
+            this.tcpOption.Name = "tcpOption";
             this.tcpOption.Size = new System.Drawing.Size(46, 17);
             this.tcpOption.TabIndex = 7;
             this.tcpOption.Text = "TCP";
             this.tcpOption.UseVisualStyleBackColor = true;
             // 
-            // rbUDP
+            // udpOption
             // 
             this.udpOption.AutoSize = true;
             this.udpOption.Checked = true;
             this.udpOption.Location = new System.Drawing.Point(9, 16);
-            this.udpOption.Name = "rbUDP";
+            this.udpOption.Name = "udpOption";
             this.udpOption.Size = new System.Drawing.Size(48, 17);
             this.udpOption.TabIndex = 6;
             this.udpOption.TabStop = true;
@@ -89,20 +89,20 @@ namespace FirewallTool
             this.label1.TabIndex = 15;
             this.label1.Text = "Application";
             // 
-            // btnBrowser
+            // browse
             // 
             this.browse.Location = new System.Drawing.Point(254, 30);
-            this.browse.Name = "btnBrowser";
+            this.browse.Name = "browse";
             this.browse.Size = new System.Drawing.Size(75, 23);
             this.browse.TabIndex = 1;
             this.browse.Text = "Browse...";
             this.browse.UseVisualStyleBackColor = true;
             this.browse.Click += new System.EventHandler(this.Browse_Click);
             // 
-            // txtAppPath
+            // appPath
             // 
             this.appPath.Location = new System.Drawing.Point(15, 32);
-            this.appPath.Name = "txtAppPath";
+            this.appPath.Name = "appPath";
             this.appPath.Size = new System.Drawing.Size(233, 20);
             this.appPath.TabIndex = 0;
             this.appPath.TextChanged += new System.EventHandler(this.AppPath_TextChanged);
@@ -116,60 +116,60 @@ namespace FirewallTool
             this.label5.TabIndex = 10;
             this.label5.Text = "Port";
             // 
-            // txtPort
+            // port
             // 
             this.port.Enabled = false;
             this.port.Location = new System.Drawing.Point(15, 118);
-            this.port.Name = "txtPort";
+            this.port.Name = "port";
             this.port.Size = new System.Drawing.Size(56, 20);
             this.port.TabIndex = 4;
             this.port.TextChanged += new System.EventHandler(this.Port_TextChanged);
             // 
-            // btnRemovePortAuth
+            // removePortAuth
             // 
             this.removePortAuth.Enabled = false;
             this.removePortAuth.Location = new System.Drawing.Point(178, 154);
-            this.removePortAuth.Name = "btnRemovePortAuth";
+            this.removePortAuth.Name = "removePortAuth";
             this.removePortAuth.Size = new System.Drawing.Size(151, 23);
             this.removePortAuth.TabIndex = 9;
             this.removePortAuth.Text = "Remove Port Authorization";
             this.removePortAuth.UseVisualStyleBackColor = true;
             this.removePortAuth.Click += new System.EventHandler(this.RemovePortAuth_Click);
             // 
-            // btnGrantPortAuth
+            // grantPortAuth
             // 
             this.grantPortAuth.Enabled = false;
             this.grantPortAuth.Location = new System.Drawing.Point(15, 154);
-            this.grantPortAuth.Name = "btnGrantPortAuth";
+            this.grantPortAuth.Name = "grantPortAuth";
             this.grantPortAuth.Size = new System.Drawing.Size(151, 23);
             this.grantPortAuth.TabIndex = 8;
             this.grantPortAuth.Text = "Grant Port Authorization";
             this.grantPortAuth.UseVisualStyleBackColor = true;
             this.grantPortAuth.Click += new System.EventHandler(this.GrantPortAuth_Click);
             // 
-            // btnRemoveAppAuth
+            // removeAppAuth
             // 
             this.removeAppAuth.Enabled = false;
             this.removeAppAuth.Location = new System.Drawing.Point(178, 68);
-            this.removeAppAuth.Name = "btnRemoveAppAuth";
+            this.removeAppAuth.Name = "removeAppAuth";
             this.removeAppAuth.Size = new System.Drawing.Size(151, 23);
             this.removeAppAuth.TabIndex = 3;
             this.removeAppAuth.Text = "Remove App Authorization";
             this.removeAppAuth.UseVisualStyleBackColor = true;
             this.removeAppAuth.Click += new System.EventHandler(this.RemoveAppAuth_Click);
             // 
-            // btnGrantAppAuth
+            // grantAppAuth
             // 
             this.grantAppAuth.Enabled = false;
             this.grantAppAuth.Location = new System.Drawing.Point(15, 68);
-            this.grantAppAuth.Name = "btnGrantAppAuth";
+            this.grantAppAuth.Name = "grantAppAuth";
             this.grantAppAuth.Size = new System.Drawing.Size(151, 23);
             this.grantAppAuth.TabIndex = 2;
             this.grantAppAuth.Text = "Grant App Authorization";
             this.grantAppAuth.UseVisualStyleBackColor = true;
             this.grantAppAuth.Click += new System.EventHandler(this.GrantAppAuth_Click);
             // 
-            // openFileDialog1
+            // openFileDialog
             // 
             this.openFileDialog.Filter = "Executable|*.exe";
             // 
