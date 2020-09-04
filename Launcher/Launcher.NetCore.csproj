@@ -20,35 +20,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AmqpClientTool\AmqpClientTool.NetCore.csproj" />
-    <ProjectReference Include="..\AzureEventHubClientTool\AzureEventHubClientTool.NetCore.csproj" />
-    <ProjectReference Include="..\BluetoothSerialClientTool\BluetoothSerialClientTool.NetCore.csproj" />
-    <ProjectReference Include="..\BluetoothSerialServerTool\BluetoothSerialServerTool.NetCore.csproj" />
     <ProjectReference Include="..\Common\Common.NetCore.csproj">
       <Project>{E1FEE78B-CBEC-4A3E-9252-581406417CE0}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EncodingTool\EncodingTool.NetCore.csproj" />
-    <ProjectReference Include="..\GitLabTool\GitLabTool.NetCore.csproj" />
-    <ProjectReference Include="..\GitTool\GitTool.NetCore.csproj" />
-    <ProjectReference Include="..\HttpListenerTool\HttpListenerTool.NetCore.csproj" />
-    <ProjectReference Include="..\HttpRequestTool\HttpRequestTool.NetCore.csproj" />
-    <ProjectReference Include="..\IcmpTool\IcmpTool.NetCore.csproj" />
-    <ProjectReference Include="..\KafkaClientTool\KafkaClientTool.NetCore.csproj" />
-    <ProjectReference Include="..\MqttClientTool\MqttClientTool.NetCore.csproj" />
-    <ProjectReference Include="..\RouteTool\RouteTool.NetCore.csproj" />
-    <ProjectReference Include="..\SerialTool\SerialTool.NetCore.csproj" />
-    <ProjectReference Include="..\SmtpClientTool\SmtpClientTool.NetCore.csproj" />
-    <ProjectReference Include="..\SmtpServerTool\SmtpServerTool.NetCore.csproj" />
-    <ProjectReference Include="..\SnifferTool\SnifferTool.NetCore.csproj" />
-    <ProjectReference Include="..\TcpClientTool\TcpClientTool.NetCore.csproj" />
-    <ProjectReference Include="..\TcpListenerTool\TcpListenerTool.NetCore.csproj" />
-    <ProjectReference Include="..\UdpTool\UdpTool.NetCore.csproj" />
-    <ProjectReference Include="..\WebSocketTool\WebSocketTool.NetCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="icon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DesktopBridge.Helpers">
+      <Version>1.2.2</Version>
+    </PackageReference>
+  </ItemGroup>
 </Project>

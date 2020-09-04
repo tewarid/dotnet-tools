@@ -27,7 +27,11 @@ namespace Launcher
                 Button button = CreateButton(assembly.Item1);
                 button.Click += (sender, e) =>
                 {
-                    Process.Start(assembly.Item2.Location);
+                    string path = assembly.Item2.Location;
+#if NETCOREAPP
+                    path = Path.ChangeExtension(path, "exe");
+#endif
+                    Process.Start(path);
                 };
 
                 panel.Controls.Add(button);
@@ -66,11 +70,17 @@ namespace Launcher
 #endif
             foreach (string file in files)
             {
-                var assembly = Assembly.LoadFile(file);
-                if (executingAssembly.Equals(assembly))
+                if (executingAssembly.Location.Equals(file))
                 {
                     continue;
                 }
+#if NETCOREAPP
+                if (!File.Exists(Path.ChangeExtension(file, "exe")))
+                {
+                    continue;
+                }
+#endif
+                Assembly assembly = Assembly.LoadFile(file);
                 var attribute = (AssemblyTitleAttribute)assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).FirstOrDefault();
                 var name = attribute?.Title ?? assembly.GetName().Name;
                 if (!assemblies.ContainsKey(name))
