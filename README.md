@@ -57,11 +57,27 @@ Convert data or text to or from various formats such as Base64, and encoded HTML
 
 ## Firewall Tool
 
-Add exceptions to Windows Firewall using native COM library `NetFwTypeLib`. With contributions from Bruno Silveira.
+Add exceptions to Windows Firewall using native COM library `NetFwTypeLib`. Contributed by Bruno Silveira.
+
+## Font Tool
+
+A tool to play with fonts. 
+
+## GitLab Tool
+
+A tool to query projects and their milestones in GitLab.
 
 ## Git Tool
 
 A wrapper around command line Git, that allows running multiple commands on several cloned repos at once. A command can reference all or part of the output of the previous command with `{{OUT:start,length}}` where `start` is zero-indexed. Several repos can be cloned from GitHub or GitLab at once. A customizable cheatsheet is available in [cheatsheet.md](GitTool/cheatsheet.md). Any line starting with `$ git ` is assumed to be a git command and displayed in the tool.
+
+## Globalization Tool
+
+A tool to view information on locales, unicode characters, and do some basic conversions such as converting to upper and lower case.
+
+## HID Tool
+
+An interactive client for USB HID devices based on [HidSharp](https://www.nuget.org/packages/HidSharp/).
 
 ## HTTP Request Tool
 
@@ -82,6 +98,10 @@ An interactive Kafka client based on the Confluent.Kafka library. The tool has b
 ## MQTT Client Tool
 
 Interactive MQTT client based on the [MQTTnet](https://github.com/chkr1011/MQTTnet) library.
+
+## Notification Tool
+
+A tool used to show a notification to be reminded of something such as blinking your eyes.
 
 ## Route Tool
 
