@@ -355,6 +355,10 @@ namespace GitTool
 
         private void GitFolders_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (gitFolders.SelectedIndex == -1)
+            {
+                return;
+            }
             gitFolders.Tag = gitFolders.Items[gitFolders.SelectedIndex];
         }
     }
