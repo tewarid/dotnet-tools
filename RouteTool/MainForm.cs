@@ -13,7 +13,7 @@ namespace RouteTool
     {
         public MainForm()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -23,15 +23,13 @@ namespace RouteTool
 
         private void RefreshRoutes()
         {
-            using (PowerShell PowerShellInstance = PowerShell.Create())
+            using (PowerShell powerShellInstance = PowerShell.Create())
             {
-                PowerShellInstance.AddScript("Get-NetRoute");
+                powerShellInstance.AddScript("Get-NetRoute");
 
                 Collection<PSObject> outputCollection = 
-                    PowerShellInstance.Invoke<PSObject>(null);
+                    powerShellInstance.Invoke<PSObject>(null);
 
-                routes.AutoGenerateColumns = true;
-                routes.Columns.Clear();
                 var data = from dynamic item in outputCollection
                            select new
                            {
@@ -42,42 +40,46 @@ namespace RouteTool
                                item.InterfaceIndex,
                                item.InterfaceAlias
                            };
-                BindingSource bs = new BindingSource();
-                bs.DataSource = data;
-                routes.DataSource = bs;
+                BindingSource bindingSource = new BindingSource
+                {
+                    DataSource = data
+                };
+                routes.AutoGenerateColumns = true;
+                routes.Columns.Clear();
+                routes.DataSource = bindingSource;
             }
         }
 
-        private void refresh_Click(object sender, EventArgs e)
+        private void Refresh_Click(object sender, EventArgs e)
         {
             RefreshRoutes();
         }
 
-        private void delete_Click(object sender, EventArgs e)
+        private void Delete_Click(object sender, EventArgs e)
         {
             if (routes.SelectedRows.Count > 0)
             {
-                using (PowerShell PowerShellInstance = PowerShell.Create())
+                using (PowerShell powerShellInstance = PowerShell.Create())
                 {
                     foreach (DataGridViewRow row in routes.SelectedRows)
                     {
                         string script = string.Format("Remove-NetRoute -Confirm:$false -DestinationPrefix {0} -InterfaceIndex {1}", 
                             ((dynamic)row.DataBoundItem).DestinationPrefix, ((dynamic)row.DataBoundItem).InterfaceIndex);
-                        PowerShellInstance.AddScript(script);
+                        powerShellInstance.AddScript(script);
                     }
-                    PowerShellInstance.Invoke();
+                    powerShellInstance.Invoke();
                 }
                 RefreshRoutes();
             }
         }
 
-        private void add_Click(object sender, EventArgs e)
+        private void Add_Click(object sender, EventArgs e)
         {
             AddRouteForm form = new AddRouteForm();
             DialogResult result = form.ShowDialog(this);
             if (result != DialogResult.Cancel)
             {
-                using (PowerShell PowerShellInstance = PowerShell.Create())
+                using (PowerShell powerShellInstance = PowerShell.Create())
                 {
                     string nextHop = string.Empty;
                     if (!string.IsNullOrEmpty(form.NextHop))
@@ -93,8 +95,8 @@ namespace RouteTool
                     string format = "New-NetRoute -DestinationPrefix {0} -InterfaceIndex {1} {2} {3} -RouteMetric {4}";
                     string script = string.Format(format, form.DestinationPrefix,
                         form.InterfaceIndex, nextHop, persistent, form.RouteMetric);
-                    PowerShellInstance.AddScript(script);
-                    PowerShellInstance.Invoke();
+                    powerShellInstance.AddScript(script);
+                    powerShellInstance.Invoke();
                 }
                 RefreshRoutes();
             }

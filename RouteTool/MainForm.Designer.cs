@@ -73,7 +73,7 @@
             this.add.TabIndex = 1;
             this.add.Text = "Add...";
             this.add.UseVisualStyleBackColor = true;
-            this.add.Click += new System.EventHandler(this.add_Click);
+            this.add.Click += new System.EventHandler(this.Add_Click);
             // 
             // delete
             // 
@@ -84,7 +84,7 @@
             this.delete.TabIndex = 2;
             this.delete.Text = "Delete";
             this.delete.UseVisualStyleBackColor = true;
-            this.delete.Click += new System.EventHandler(this.delete_Click);
+            this.delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // refresh
             // 
@@ -95,7 +95,7 @@
             this.refresh.TabIndex = 3;
             this.refresh.Text = "Refresh";
             this.refresh.UseVisualStyleBackColor = true;
-            this.refresh.Click += new System.EventHandler(this.refresh_Click);
+            this.refresh.Click += new System.EventHandler(this.Refresh_Click);
             // 
             // MainForm
             // 
