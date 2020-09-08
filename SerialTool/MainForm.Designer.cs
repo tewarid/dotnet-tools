@@ -151,7 +151,7 @@ namespace SerialTool
             // close
             // 
             this.close.Enabled = false;
-            this.close.Location = new System.Drawing.Point(213, 72);
+            this.close.Location = new System.Drawing.Point(213, 69);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(75, 23);
             this.close.TabIndex = 8;
@@ -204,7 +204,7 @@ namespace SerialTool
             // 
             // open
             // 
-            this.open.Location = new System.Drawing.Point(132, 72);
+            this.open.Location = new System.Drawing.Point(132, 69);
             this.open.Name = "open";
             this.open.Size = new System.Drawing.Size(75, 23);
             this.open.TabIndex = 7;
