@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AzureEventHubClientTool
@@ -14,7 +11,7 @@ namespace AzureEventHubClientTool
         [STAThread]
         static void Main()
         {
-#if NETCOREAPP3_0
+#if NETCOREAPP
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
 #endif
             Application.EnableVisualStyles();
