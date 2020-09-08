@@ -51,18 +51,18 @@ namespace HttpRequestTool
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label9 = new System.Windows.Forms.Label();
-            this.queryParameters = new NetTools.Common.NameValueGrid();
-            this.requestHeaders = new NetTools.Common.NameValueGrid();
             this.label5 = new System.Windows.Forms.Label();
-            this.requestContentType = new NetTools.Common.ContentTypeSelector();
             this.go = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.requestContent = new Common.InputTextBox();
             this.requestMethod = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.responseHeaders = new NetTools.Common.NameValueGrid();
             this.label8 = new System.Windows.Forms.Label();
+            this.queryParameters = new NetTools.Common.NameValueGrid();
+            this.requestHeaders = new NetTools.Common.NameValueGrid();
+            this.requestContentType = new NetTools.Common.ContentTypeSelector();
+            this.requestContent = new Common.InputTextBox();
+            this.responseHeaders = new NetTools.Common.NameValueGrid();
             this.responseContent = new Common.OutputTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -283,50 +283,15 @@ namespace HttpRequestTool
             this.label9.TabIndex = 32;
             this.label9.Text = "Request Query Parameters";
             // 
-            // queryParameters
-            // 
-            this.queryParameters.AllowUserToAddRows = false;
-            this.queryParameters.AllowUserToDeleteRows = false;
-            this.queryParameters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.queryParameters.Location = new System.Drawing.Point(3, 23);
-            this.queryParameters.Margin = new System.Windows.Forms.Padding(2);
-            this.queryParameters.Name = "queryParameters";
-            this.queryParameters.ReadOnly = true;
-            this.queryParameters.Size = new System.Drawing.Size(236, 118);
-            this.queryParameters.TabIndex = 31;
-            // 
-            // requestHeaders
-            // 
-            this.requestHeaders.AllowUserToAddRows = true;
-            this.requestHeaders.AllowUserToDeleteRows = true;
-            this.requestHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.requestHeaders.Location = new System.Drawing.Point(3, 162);
-            this.requestHeaders.Margin = new System.Windows.Forms.Padding(2);
-            this.requestHeaders.Name = "requestHeaders";
-            this.requestHeaders.ReadOnly = false;
-            this.requestHeaders.Size = new System.Drawing.Size(236, 79);
-            this.requestHeaders.TabIndex = 30;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 143);
+            this.label5.Location = new System.Drawing.Point(3, 130);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 13);
             this.label5.TabIndex = 29;
             this.label5.Text = "Request Headers";
-            // 
-            // requestContentType
-            // 
-            this.requestContentType.AutoSize = true;
-            this.requestContentType.Location = new System.Drawing.Point(151, 22);
-            this.requestContentType.Name = "requestContentType";
-            this.requestContentType.Size = new System.Drawing.Size(150, 21);
-            this.requestContentType.TabIndex = 23;
             // 
             // go
             // 
@@ -349,23 +314,6 @@ namespace HttpRequestTool
             this.label7.Size = new System.Drawing.Size(114, 13);
             this.label7.TabIndex = 25;
             this.label7.Text = "Request Content Type";
-            // 
-            // requestContent
-            // 
-            this.requestContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.requestContent.BinaryChecked = false;
-            this.requestContent.ChangeEndOfLine = true;
-            this.requestContent.Enabled = false;
-            this.requestContent.EndOfLine = Common.EndOfLine.Dos;
-            this.requestContent.Location = new System.Drawing.Point(5, 51);
-            this.requestContent.MinimumSize = new System.Drawing.Size(280, 130);
-            this.requestContent.Name = "requestContent";
-            this.requestContent.SelectedTextValue = "";
-            this.requestContent.Size = new System.Drawing.Size(381, 168);
-            this.requestContent.TabIndex = 24;
-            this.requestContent.TextValue = "";
             // 
             // requestMethod
             // 
@@ -408,6 +356,70 @@ namespace HttpRequestTool
             this.splitContainer2.SplitterDistance = 243;
             this.splitContainer2.TabIndex = 31;
             // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1, 3);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(98, 13);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Response Headers";
+            // 
+            // queryParameters
+            // 
+            this.queryParameters.AllowUserToAddRows = false;
+            this.queryParameters.AllowUserToDeleteRows = false;
+            this.queryParameters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.queryParameters.Location = new System.Drawing.Point(3, 23);
+            this.queryParameters.Margin = new System.Windows.Forms.Padding(2);
+            this.queryParameters.Name = "queryParameters";
+            this.queryParameters.ReadOnly = true;
+            this.queryParameters.Size = new System.Drawing.Size(236, 95);
+            this.queryParameters.TabIndex = 31;
+            // 
+            // requestHeaders
+            // 
+            this.requestHeaders.AllowUserToAddRows = true;
+            this.requestHeaders.AllowUserToDeleteRows = true;
+            this.requestHeaders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.requestHeaders.Location = new System.Drawing.Point(3, 145);
+            this.requestHeaders.Margin = new System.Windows.Forms.Padding(2);
+            this.requestHeaders.Name = "requestHeaders";
+            this.requestHeaders.ReadOnly = false;
+            this.requestHeaders.Size = new System.Drawing.Size(236, 96);
+            this.requestHeaders.TabIndex = 30;
+            // 
+            // requestContentType
+            // 
+            this.requestContentType.AutoSize = true;
+            this.requestContentType.Location = new System.Drawing.Point(151, 22);
+            this.requestContentType.Name = "requestContentType";
+            this.requestContentType.Size = new System.Drawing.Size(150, 21);
+            this.requestContentType.TabIndex = 23;
+            // 
+            // requestContent
+            // 
+            this.requestContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.requestContent.BinaryChecked = false;
+            this.requestContent.ChangeEndOfLine = true;
+            this.requestContent.Enabled = false;
+            this.requestContent.EndOfLine = Common.EndOfLine.Dos;
+            this.requestContent.Location = new System.Drawing.Point(5, 51);
+            this.requestContent.MinimumSize = new System.Drawing.Size(280, 130);
+            this.requestContent.Name = "requestContent";
+            this.requestContent.SelectedTextValue = "";
+            this.requestContent.Size = new System.Drawing.Size(381, 168);
+            this.requestContent.TabIndex = 24;
+            this.requestContent.TextValue = "";
+            // 
             // responseHeaders
             // 
             this.responseHeaders.AllowUserToAddRows = false;
@@ -421,18 +433,6 @@ namespace HttpRequestTool
             this.responseHeaders.ReadOnly = true;
             this.responseHeaders.Size = new System.Drawing.Size(234, 236);
             this.responseHeaders.TabIndex = 26;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1, 3);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(98, 13);
-            this.label8.TabIndex = 25;
-            this.label8.Text = "Response Headers";
             // 
             // responseContent
             // 
@@ -449,6 +449,8 @@ namespace HttpRequestTool
             // 
             // MainForm
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(642, 613);
             this.Controls.Add(this.splitContainer3);
             this.Controls.Add(this.tlsVersion);
