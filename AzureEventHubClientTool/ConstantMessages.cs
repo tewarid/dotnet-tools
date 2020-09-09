@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AzureEventHubClientTool
+﻿namespace AzureEventHubClientTool
 {
     public static class ConstantMessages
     {
@@ -12,7 +6,7 @@ namespace AzureEventHubClientTool
 
         public const string TooltipEventHubConnectionString = "A connection string following the template:\n'Endpoint=sb://<FQDN>/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>'\nCannot be blank";
 
-        public const string TooltipStorageName = "Name of the as Azure Storage blob dependency used for persistence. Cannot be blank";
+        public const string TooltipStorageName = "Name of the Azure Storage blob dependency used for persistence. Cannot be blank";
 
         public const string TooltipStorageConnectionString = "A storage connection string following the template:\n'DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_NAME>;AccountKey=<STORAGE_ACCOUNT_KEY>;EndpointSuffix=core.windows.net'\nCannot be blank";
 

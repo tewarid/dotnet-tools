@@ -14,34 +14,34 @@ namespace AzureEventHubClientTool
         public MainForm()
         {
             InitializeComponent();
-            this.SetUIComponentsInitialState();
-            this.SetToolTips();
-            this.SetEventReceiver();
+            SetUIComponentsInitialState();
+            SetToolTips();
+            SetEventReceiver();
         }
 
         private void SetUIComponentsInitialState()
         {
-            this.textBoxSenEvHubConn.Text = Properties.Settings.Default.senderConnectionString;
-            this.inputTextBox.TextValue = Properties.Settings.Default.input;
-            this.textBoxRecEvHubName.Text = Properties.Settings.Default.receiverEvHubName;
-            this.textBoxRecEvHubConn.Text = Properties.Settings.Default.receiverEvHubConnectionString;
-            this.textBoxRecStorageName.Text = Properties.Settings.Default.receiverStorageName;
-            this.textBoxRecStorageConn.Text = Properties.Settings.Default.receiverStorageConnectionString;
-            this.textBoxRecConsumerGroup.Text = Properties.Settings.Default.consumerGroup;
-            this.outputTextBox.TextValue = Properties.Settings.Default.output;
+            textBoxSenEvHubConn.Text = Properties.Settings.Default.senderConnectionString;
+            inputTextBox.TextValue = Properties.Settings.Default.input;
+            textBoxRecEvHubName.Text = Properties.Settings.Default.receiverEvHubName;
+            textBoxRecEvHubConn.Text = Properties.Settings.Default.receiverEvHubConnectionString;
+            textBoxRecStorageName.Text = Properties.Settings.Default.receiverStorageName;
+            textBoxRecStorageConn.Text = Properties.Settings.Default.receiverStorageConnectionString;
+            textBoxRecConsumerGroup.Text = Properties.Settings.Default.consumerGroup;
+            outputTextBox.TextValue = Properties.Settings.Default.output;
 
-            this.buttonRecConnect.Enabled = true;
-            this.buttonRecDisconnect.Enabled = false;
+            receiverConnect.Enabled = true;
+            receiverDisconnect.Enabled = false;
         }
 
         private void SetToolTips()
         {
-            this.toolTip.SetToolTip(this.textBoxRecEvHubName, ConstantMessages.TooltipEventHubName);
-            this.toolTip.SetToolTip(this.textBoxSenEvHubConn, ConstantMessages.TooltipEventHubConnectionString);
-            this.toolTip.SetToolTip(this.textBoxRecEvHubConn, ConstantMessages.TooltipEventHubConnectionString);
-            this.toolTip.SetToolTip(this.textBoxRecStorageName, ConstantMessages.TooltipStorageName);
-            this.toolTip.SetToolTip(this.textBoxRecStorageConn, ConstantMessages.TooltipStorageConnectionString);
-            this.toolTip.SetToolTip(this.textBoxRecConsumerGroup, ConstantMessages.TooltipConsumerGroup);
+            toolTip.SetToolTip(textBoxRecEvHubName, ConstantMessages.TooltipEventHubName);
+            toolTip.SetToolTip(textBoxSenEvHubConn, ConstantMessages.TooltipEventHubConnectionString);
+            toolTip.SetToolTip(textBoxRecEvHubConn, ConstantMessages.TooltipEventHubConnectionString);
+            toolTip.SetToolTip(textBoxRecStorageName, ConstantMessages.TooltipStorageName);
+            toolTip.SetToolTip(textBoxRecStorageConn, ConstantMessages.TooltipStorageConnectionString);
+            toolTip.SetToolTip(textBoxRecConsumerGroup, ConstantMessages.TooltipConsumerGroup);
         }
 
         private void SetEventReceiver()
@@ -51,18 +51,18 @@ namespace AzureEventHubClientTool
                 var eventData = data.EventData;
                 string message = Encoding.UTF8.GetString(eventData.Body.Array, eventData.Body.Offset, eventData.Body.Count);
 
-                this.outputTextBox.BeginInvoke((Action)(() =>
+                outputTextBox.BeginInvoke((Action)(() =>
                 {
-                    this.outputTextBox.AppendText(string.Format(ConstantMessages.ConsumedMessageHeaderTemplate,
+                    outputTextBox.AppendText(string.Format(ConstantMessages.ConsumedMessageHeaderTemplate,
                         data.PartitionContext.PartitionId, eventData.Body.Offset, DateTime.Now));
-                    this.outputTextBox.AppendText(Environment.NewLine);
-                    this.outputTextBox.AppendText(message);
-                    this.outputTextBox.AppendText(Environment.NewLine);
-                    this.outputTextBox.AppendText(Environment.NewLine);
+                    outputTextBox.AppendText(Environment.NewLine);
+                    outputTextBox.AppendText(message);
+                    outputTextBox.AppendText(Environment.NewLine);
+                    outputTextBox.AppendText(Environment.NewLine);
                 }));
             };
 
-            this.eventReceiver = new EventReceiver();
+            eventReceiver = new EventReceiver();
         }
 
         private void SetStatusBarInfo(string msg)
@@ -85,99 +85,82 @@ namespace AzureEventHubClientTool
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.senderConnectionString = this.textBoxSenEvHubConn.Text;
-            Properties.Settings.Default.input = this.inputTextBox.TextValue;
-            Properties.Settings.Default.receiverEvHubName = this.textBoxRecEvHubName.Text;
-            Properties.Settings.Default.receiverEvHubConnectionString = this.textBoxRecEvHubConn.Text;
-            Properties.Settings.Default.receiverStorageName = this.textBoxRecStorageName.Text;
-            Properties.Settings.Default.receiverStorageConnectionString = this.textBoxRecStorageConn.Text;
-            Properties.Settings.Default.consumerGroup = this.textBoxRecConsumerGroup.Text;
-            Properties.Settings.Default.output = this.outputTextBox.TextValue;
+            Properties.Settings.Default.senderConnectionString = textBoxSenEvHubConn.Text;
+            Properties.Settings.Default.input = inputTextBox.TextValue;
+            Properties.Settings.Default.receiverEvHubName = textBoxRecEvHubName.Text;
+            Properties.Settings.Default.receiverEvHubConnectionString = textBoxRecEvHubConn.Text;
+            Properties.Settings.Default.receiverStorageName = textBoxRecStorageName.Text;
+            Properties.Settings.Default.receiverStorageConnectionString = textBoxRecStorageConn.Text;
+            Properties.Settings.Default.consumerGroup = textBoxRecConsumerGroup.Text;
+            Properties.Settings.Default.output = outputTextBox.TextValue;
             Properties.Settings.Default.Save();
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            this.outputTextBox.ScrollToEnd();
+            outputTextBox.ScrollToEnd();
         }
 
-        private async void buttonSend_Click(object sender, EventArgs e)
+        private async void Produce_Click(object sender, EventArgs e)
         {
-            this.SetStatusBarInfo(ConstantMessages.SendingMessage);
+            SetStatusBarInfo(ConstantMessages.SendingMessage);
 
-            await EventSender.SendMessageAsync(this.inputTextBox.TextValue, this.textBoxSenEvHubConn.Text)
-                .ContinueWith(t =>
-                {
-                    if(!t.IsFaulted)
-                        statusStrip.BeginInvoke((Action)(() => this.SetStatusBarSuccess(ConstantMessages.MessageSent)));
-                    else
-                    {
-                        this.BeginInvoke((Action)(() =>
-                        {
-                            string errorMessage = ConstantMessages.ErrorSendingMessage;
-                            this.SetStatusBarError(errorMessage);
-                            MessageBox.Show(
-                                string.Format(ConstantMessages.ExceptionDisplayFormat, t.Exception.InnerException.GetType(), t.Exception.InnerException.Message),
-                                errorMessage, MessageBoxButtons.OK, MessageBoxIcon.Error
-                            );
-                        }));
-                    }
-                });
-        }
-
-        private void buttonRecConnect_Click(object sender, EventArgs e)
-        {
-            this.SetStatusBarInfo(ConstantMessages.Connecting);
-
-            this.buttonRecConnect.Enabled = false;
-            this.buttonRecDisconnect.Enabled = false;
-
-            this.eventReceiver.Connect(this.textBoxRecEvHubName.Text, this.textBoxRecEvHubConn.Text,
-                this.textBoxRecStorageName.Text, this.textBoxRecStorageConn.Text,
-                this.textBoxRecConsumerGroup.Text)
-                .ContinueWith((t) =>
-                {
-                    if(t.IsFaulted)
-                    {
-                        this.BeginInvoke((Action)(() =>
-                        {
-                            this.buttonRecConnect.Enabled = true;
-                            this.buttonRecDisconnect.Enabled = false;
-                            this.SetStatusBarError(ConstantMessages.ErrorConnecting);
-                            MessageBox.Show(
-                                string.Format(ConstantMessages.ExceptionDisplayFormat, t.Exception.InnerException.GetType(), t.Exception.InnerException.Message),
-                                ConstantMessages.ErrorConnecting, MessageBoxButtons.OK, MessageBoxIcon.Error
-                            );
-                        }));
-                    }
-                    else
-                    {
-                        this.BeginInvoke((Action)(() =>
-                        {
-                            this.buttonRecConnect.Enabled = false;
-                            this.buttonRecDisconnect.Enabled = true;
-                            this.SetStatusBarSuccess(ConstantMessages.Connected);
-                        }));
-                    }
-                });
-        }
-
-        private void buttonRecDisconnect_Click(object sender, EventArgs e)
-        {
-            this.SetStatusBarInfo(ConstantMessages.Disconnecting);
-
-            this.buttonRecConnect.Enabled = false;
-            this.buttonRecDisconnect.Enabled = false;
-
-            this.eventReceiver.Disconnect().ContinueWith((t) =>
+            try
             {
-                this.BeginInvoke((Action)(() =>
-                {
-                    this.buttonRecConnect.Enabled = true;
-                    this.buttonRecDisconnect.Enabled = false;
-                    this.SetStatusBarInfo(ConstantMessages.Disconnected);
-                }));
-            });
+                await EventSender.SendMessageAsync(inputTextBox.TextValue, textBoxSenEvHubConn.Text);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = ConstantMessages.ErrorSendingMessage;
+                SetStatusBarError(errorMessage);
+                MessageBox.Show(
+                    string.Format(ConstantMessages.ExceptionDisplayFormat, ex.GetType(), ex.Message),
+                    errorMessage, MessageBoxButtons.OK, MessageBoxIcon.Error
+                );
+                return;
+            }
+            statusStrip.BeginInvoke((Action)(() => SetStatusBarSuccess(ConstantMessages.MessageSent)));
+        }
+
+        private async void ReceiverConnect_Click(object sender, EventArgs e)
+        {
+            SetStatusBarInfo(ConstantMessages.Connecting);
+            receiverConnect.Enabled = false;
+            receiverDisconnect.Enabled = false;
+            try
+            {
+                await eventReceiver.Connect(textBoxRecEvHubName.Text, textBoxRecEvHubConn.Text,
+                    textBoxRecStorageName.Text, textBoxRecStorageConn.Text,
+                    textBoxRecConsumerGroup.Text);
+            }
+            catch (Exception ex)
+            {
+                receiverConnect.Enabled = true;
+                receiverDisconnect.Enabled = false;
+                SetStatusBarError(ConstantMessages.ErrorConnecting);
+                MessageBox.Show(
+                    string.Format(ConstantMessages.ExceptionDisplayFormat, ex.GetType(), ex.Message),
+                    ConstantMessages.ErrorConnecting, MessageBoxButtons.OK, MessageBoxIcon.Error
+                );
+                return;
+            }
+            receiverConnect.Enabled = false;
+            receiverDisconnect.Enabled = true;
+            SetStatusBarSuccess(ConstantMessages.Connected);
+        }
+
+        private async void ReceiverDisconnect_Click(object sender, EventArgs e)
+        {
+            SetStatusBarInfo(ConstantMessages.Disconnecting);
+
+            receiverConnect.Enabled = false;
+            receiverDisconnect.Enabled = false;
+
+            await eventReceiver.Disconnect();
+            
+            receiverConnect.Enabled = true;
+            receiverDisconnect.Enabled = false;
+            SetStatusBarInfo(ConstantMessages.Disconnected);
         }
     }
 }
