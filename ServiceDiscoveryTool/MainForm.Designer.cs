@@ -59,7 +59,7 @@ namespace ServiceBrowserTool
             "local",
             "apple.com"});
             this.domainText.Location = new System.Drawing.Point(12, 28);
-            this.domainText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.domainText.Margin = new System.Windows.Forms.Padding(2);
             this.domainText.Name = "domainText";
             this.domainText.Size = new System.Drawing.Size(118, 21);
             this.domainText.TabIndex = 1;
@@ -85,7 +85,7 @@ namespace ServiceBrowserTool
             "_mediaremotetv",
             "_raop"});
             this.serviceType.Location = new System.Drawing.Point(12, 66);
-            this.serviceType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.serviceType.Margin = new System.Windows.Forms.Padding(2);
             this.serviceType.Name = "serviceType";
             this.serviceType.Size = new System.Drawing.Size(118, 21);
             this.serviceType.TabIndex = 3;
@@ -106,7 +106,7 @@ namespace ServiceBrowserTool
             this.networkProtocol.Items.AddRange(new object[] {
             "_tcp"});
             this.networkProtocol.Location = new System.Drawing.Point(12, 104);
-            this.networkProtocol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.networkProtocol.Margin = new System.Windows.Forms.Padding(2);
             this.networkProtocol.Name = "networkProtocol";
             this.networkProtocol.Size = new System.Drawing.Size(118, 21);
             this.networkProtocol.TabIndex = 5;
@@ -115,9 +115,9 @@ namespace ServiceBrowserTool
             // startWatcher
             // 
             this.startWatcher.Location = new System.Drawing.Point(12, 136);
-            this.startWatcher.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.startWatcher.Margin = new System.Windows.Forms.Padding(2);
             this.startWatcher.Name = "startWatcher";
-            this.startWatcher.Size = new System.Drawing.Size(56, 19);
+            this.startWatcher.Size = new System.Drawing.Size(56, 23);
             this.startWatcher.TabIndex = 6;
             this.startWatcher.Text = "Start";
             this.startWatcher.UseVisualStyleBackColor = true;
@@ -127,9 +127,9 @@ namespace ServiceBrowserTool
             // 
             this.stopWatcher.Enabled = false;
             this.stopWatcher.Location = new System.Drawing.Point(73, 136);
-            this.stopWatcher.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.stopWatcher.Margin = new System.Windows.Forms.Padding(2);
             this.stopWatcher.Name = "stopWatcher";
-            this.stopWatcher.Size = new System.Drawing.Size(56, 19);
+            this.stopWatcher.Size = new System.Drawing.Size(56, 23);
             this.stopWatcher.TabIndex = 7;
             this.stopWatcher.Text = "Stop";
             this.stopWatcher.UseVisualStyleBackColor = true;
@@ -142,7 +142,7 @@ namespace ServiceBrowserTool
             | System.Windows.Forms.AnchorStyles.Right)));
             this.output.AppendBinaryChecked = false;
             this.output.Location = new System.Drawing.Point(148, 11);
-            this.output.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.output.Margin = new System.Windows.Forms.Padding(2);
             this.output.Name = "output";
             this.output.Size = new System.Drawing.Size(442, 345);
             this.output.TabIndex = 8;
@@ -174,7 +174,7 @@ namespace ServiceBrowserTool
             this.Controls.Add(this.domainText);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "Service Discovery Tool";
             this.ResumeLayout(false);
