@@ -111,6 +111,10 @@ Interactive client to add, view, and delete IP v4 routes on Windows. Requires Po
 
 Interactive client that may be used to open a serial port, send, and receive data.
 
+## Service Discovery Tool
+
+Sends out mDNS queries for the specified network service. Based on Windows.Devices.Enumeration UWP API.
+
 ## SMTP Client Tool
 
 An SMTP client.
