@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace ServiceBrowserTool
+namespace ServiceDiscoveryTool
 {
     partial class MainForm : Form
     {

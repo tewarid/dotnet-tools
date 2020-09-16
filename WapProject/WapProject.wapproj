@@ -130,7 +130,7 @@
     <ProjectReference Include="..\NotificationTool\NotificationTool.csproj" />
     <ProjectReference Include="..\RouteTool\RouteTool.csproj" />
     <ProjectReference Include="..\SerialTool\SerialTool.csproj" />
-    <ProjectReference Include="..\ServiceBrowserTool\ServiceDiscoveryTool.csproj" />
+    <ProjectReference Include="..\ServiceDiscoveryTool\ServiceDiscoveryTool.csproj" />
     <ProjectReference Include="..\SmtpClientTool\SmtpClientTool.csproj" />
     <ProjectReference Include="..\SmtpServerTool\SmtpServerTool.csproj" />
     <ProjectReference Include="..\SnifferTool\SnifferTool.csproj" />

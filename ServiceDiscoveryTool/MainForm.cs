@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Windows.Devices.Enumeration;
 
-namespace ServiceBrowserTool
+namespace ServiceDiscoveryTool
 {
     public partial class MainForm : Form
     {
