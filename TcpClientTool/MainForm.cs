@@ -227,7 +227,7 @@ namespace TcpClientTool
                 {
                     ssls.AuthenticateAsClient(string.Empty, certs, SslProtocols.Tls12, false);
                 }
-                catch (IOException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(this, ex.Message, this.Text);
                     CloseTcpClient();
