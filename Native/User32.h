@@ -3,7 +3,7 @@
 using namespace System;
 
 namespace Native {
-	public ref class Windows
+	public ref class Window
 	{
 	public:
 		static bool LockUpdate(IntPtr handle);

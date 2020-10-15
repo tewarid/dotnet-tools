@@ -21,7 +21,7 @@ namespace GlobalizationTool
 
         private void LoadCultureGrid()
         {
-            Native.Windows.LockUpdate(culturesGrid.Handle);
+            Native.Window.LockUpdate(culturesGrid.Handle);
             culturesGrid.Columns.Clear();
             culturesGrid.Columns.Add("EnglishName", "English Name");
             culturesGrid.Columns.Add("Name", "Name");
@@ -50,12 +50,12 @@ namespace GlobalizationTool
                     ci.TwoLetterISOLanguageName
                 });
             }
-            Native.Windows.ReleaseUpdate();
+            Native.Window.ReleaseUpdate();
         }
 
         private void LoadUnicodeGrid()
         {
-            Native.Windows.LockUpdate(unicodeGrid.Handle);
+            Native.Window.LockUpdate(unicodeGrid.Handle);
             unicodeGrid.Columns.Clear();
             unicodeGrid.Columns.Add("Code", "Code (hex)");
             unicodeGrid.Columns.Add("Code", "Code (dec)");
@@ -80,7 +80,7 @@ namespace GlobalizationTool
                     });
                 }
             }
-            Native.Windows.ReleaseUpdate();
+            Native.Window.ReleaseUpdate();
         }
 
         private void UpperCase_Click(object sender, System.EventArgs e)
