@@ -31,7 +31,7 @@ namespace RouteTool
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.destinationPrefix = new System.Windows.Forms.TextBox();
+            this.destinationAddress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.interfaces = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,6 +41,8 @@ namespace RouteTool
             this.persistent = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.nextHopIPAddress = new System.Windows.Forms.TextBox();
+            this.destinationMask = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.routeMetric)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,18 +51,18 @@ namespace RouteTool
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 13);
+            this.label1.Size = new System.Drawing.Size(101, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Destination Prefix";
+            this.label1.Text = "Destination Address";
             // 
-            // destinationPrefix
+            // destinationAddress
             // 
-            this.destinationPrefix.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.destinationPrefix.Location = new System.Drawing.Point(16, 30);
-            this.destinationPrefix.Name = "destinationPrefix";
-            this.destinationPrefix.Size = new System.Drawing.Size(170, 22);
-            this.destinationPrefix.TabIndex = 1;
-            this.destinationPrefix.Text = "0.0.0.0/8";
+            this.destinationAddress.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.destinationAddress.Location = new System.Drawing.Point(16, 30);
+            this.destinationAddress.Name = "destinationAddress";
+            this.destinationAddress.Size = new System.Drawing.Size(170, 22);
+            this.destinationAddress.TabIndex = 1;
+            this.destinationAddress.Text = "0.0.0.0";
             // 
             // label2
             // 
@@ -78,9 +80,8 @@ namespace RouteTool
             this.interfaces.FormattingEnabled = true;
             this.interfaces.Location = new System.Drawing.Point(16, 71);
             this.interfaces.Name = "interfaces";
-            this.interfaces.Size = new System.Drawing.Size(351, 24);
+            this.interfaces.Size = new System.Drawing.Size(434, 24);
             this.interfaces.TabIndex = 3;
-            this.interfaces.SelectedIndexChanged += new System.EventHandler(this.Interfaces_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -108,7 +109,7 @@ namespace RouteTool
             this.routeMetric.Size = new System.Drawing.Size(120, 20);
             this.routeMetric.TabIndex = 5;
             this.routeMetric.Value = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
             0});
@@ -116,7 +117,7 @@ namespace RouteTool
             // add
             // 
             this.add.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.add.Location = new System.Drawing.Point(210, 192);
+            this.add.Location = new System.Drawing.Point(293, 226);
             this.add.Name = "add";
             this.add.Size = new System.Drawing.Size(75, 23);
             this.add.TabIndex = 7;
@@ -126,7 +127,7 @@ namespace RouteTool
             // cancel
             // 
             this.cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancel.Location = new System.Drawing.Point(292, 192);
+            this.cancel.Location = new System.Drawing.Point(375, 226);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(75, 23);
             this.cancel.TabIndex = 8;
@@ -159,14 +160,35 @@ namespace RouteTool
             this.nextHopIPAddress.Name = "nextHopIPAddress";
             this.nextHopIPAddress.Size = new System.Drawing.Size(120, 20);
             this.nextHopIPAddress.TabIndex = 4;
+            this.nextHopIPAddress.Text = "0.0.0.0";
             // 
-            // AddRoute
+            // destinationMask
+            // 
+            this.destinationMask.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.destinationMask.Location = new System.Drawing.Point(199, 30);
+            this.destinationMask.Name = "destinationMask";
+            this.destinationMask.Size = new System.Drawing.Size(170, 22);
+            this.destinationMask.TabIndex = 2;
+            this.destinationMask.Text = "255.255.255.255";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(196, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Destination Mask";
+            // 
+            // AddRouteForm
             // 
             this.AcceptButton = this.add;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancel;
-            this.ClientSize = new System.Drawing.Size(379, 244);
+            this.ClientSize = new System.Drawing.Size(464, 261);
+            this.Controls.Add(this.destinationMask);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.nextHopIPAddress);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.persistent);
@@ -176,12 +198,12 @@ namespace RouteTool
             this.Controls.Add(this.label3);
             this.Controls.Add(this.interfaces);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.destinationPrefix);
+            this.Controls.Add(this.destinationAddress);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AddRoute";
+            this.Name = "AddRouteForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Route";
             this.Load += new System.EventHandler(this.AddRoute_Load);
@@ -194,7 +216,7 @@ namespace RouteTool
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox destinationPrefix;
+        private System.Windows.Forms.TextBox destinationAddress;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox interfaces;
         private System.Windows.Forms.Label label3;
@@ -204,5 +226,7 @@ namespace RouteTool
         private System.Windows.Forms.CheckBox persistent;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox nextHopIPAddress;
+        private TextBox destinationMask;
+        private Label label5;
     }
 }
