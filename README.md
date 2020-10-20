@@ -99,13 +99,13 @@ An interactive Kafka client based on the Confluent.Kafka library. The tool has b
 
 Interactive MQTT client based on the [MQTTnet](https://github.com/chkr1011/MQTTnet) library.
 
+## Network Route Tool
+
+Interactive client to add, view, and delete IP v4 routes on Windows. Requires administrative privilege.
+
 ## Notification Tool
 
 A tool used to show a notification to be reminded of something such as blinking your eyes.
-
-## Route Tool
-
-Interactive client to add, view, and delete IP v4 routes on Windows. Requires PowerShell. Requires administrative privilege.
 
 ## Serial Tool
 

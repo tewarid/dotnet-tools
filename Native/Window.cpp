@@ -2,9 +2,10 @@
 
 #include <Windows.h>
 #include <WinUser.h>
+
 #pragma comment(lib, "User32.lib") 
 
-#include "User32.h"
+#include "Window.h"
 
 bool Native::Window::LockUpdate(IntPtr handle)
 {
