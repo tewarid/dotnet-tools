@@ -144,9 +144,10 @@ namespace RouteTool
             // 
             // nextHopIPAddress
             // 
+            this.nextHopIPAddress.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.nextHopIPAddress.Location = new System.Drawing.Point(16, 156);
             this.nextHopIPAddress.Name = "nextHopIPAddress";
-            this.nextHopIPAddress.Size = new System.Drawing.Size(120, 20);
+            this.nextHopIPAddress.Size = new System.Drawing.Size(120, 22);
             this.nextHopIPAddress.TabIndex = 4;
             this.nextHopIPAddress.Text = "0.0.0.0";
             // 
