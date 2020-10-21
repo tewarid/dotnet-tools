@@ -109,7 +109,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Route Tool (Requires PowerShell)";
+            this.Text = "Network Route Tool";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.routes)).EndInit();
             this.ResumeLayout(false);
